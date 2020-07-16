@@ -5,10 +5,53 @@
     android:layout_height="match_parent"
     tools:context=".ui.mission.MissionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv_mission_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/frag_mission_header_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_title_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_mission_tag_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_margin="8dp"
+            android:background="@color/divider_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="추천 미션"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_weight="1"
+            android:id="@+id/rv_mission_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_margin="16dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_mission_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="더많은 미션보기 >" />
+    </LinearLayout>
 </FrameLayout>

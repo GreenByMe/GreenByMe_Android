@@ -3,19 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:icon="@drawable/baseline_home_24"
         android:id="@+id/menu_bottom_home"
         app:showAsAction="always"
         android:title="홈" />
     <item
+        android:icon="@drawable/baseline_eco_24"
         android:id="@+id/menu_bottom_mission"
         app:showAsAction="always"
         android:title="미션" />
     <item
+        android:icon="@drawable/baseline_dashboard_24"
         android:id="@+id/menu_bottom_timeline"
         app:showAsAction="always"
         android:title="타임라인" />
 
     <item
+        android:icon="@drawable/baseline_face_24"
         android:id="@+id/menu_bottom_my"
         app:showAsAction="always"
         android:title="마이" />

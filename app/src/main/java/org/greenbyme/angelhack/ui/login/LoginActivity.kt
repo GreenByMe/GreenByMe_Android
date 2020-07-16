@@ -1,7 +1,7 @@
 package org.greenbyme.angelhack.ui.login
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import org.greenbyme.angelhack.R
 
 class LoginActivity : AppCompatActivity() {
