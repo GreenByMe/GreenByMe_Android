@@ -2,5 +2,8 @@
     <string name="app_name">내가그린</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello mission fragment</string>
+    <string name="frag_mission_header_title">탐색</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

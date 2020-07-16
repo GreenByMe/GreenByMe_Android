@@ -3,12 +3,11 @@ package org.greenbyme.angelhack.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.internal.NavigationMenuItemView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.ui.mission.detail.MissionDetailFragment
 import org.greenbyme.angelhack.ui.mission.MissionFragment
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -23,9 +22,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_bottom_home -> {
-                supportFragmentManager.beginTransaction().add(R.id.frame_main_frag,MissionFragment.newInstance("",""))
+                setFragment(MissionFragment.newInstance("mission"))
             }
             R.id.menu_bottom_mission -> {
+                setFragment(MissionDetailFragment.newInstance("",""))
             }
             R.id.menu_bottom_timeline -> {
             }
@@ -34,5 +34,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
         }
         return true
+    }
+
+    fun setFragment(frag : Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_main_frag, frag)
+            .commit()
     }
 }

@@ -1,3 +1,7 @@
 package org.greenbyme.angelhack.data
 
-data class MissionTagDAO(val missionTagCategory: Int = -1, val missionTagName: String = "dummy")
+data class MissionDAO(
+    val missionId: Int = -1,
+    val missionContents: String = "dummy_contents",
+    val missionDescription: String = "missionDescription"
+)
