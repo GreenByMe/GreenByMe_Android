@@ -7,10 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_mission_recommend.view.*
-import kotlinx.android.synthetic.main.item_mission_tag.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionDAO
-import kotlin.collections.ArrayList
 
 class MissionRecommendAdapter(private val list: ArrayList<MissionDAO>) :
     RecyclerView.Adapter<MissionRecommendAdapter.Holder>() {

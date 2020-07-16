@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_mission_tag.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionTagDAO
-import java.util.*
-import kotlin.collections.ArrayList
 
 class MissionTagAdapter(private val list: ArrayList<MissionTagDAO>) :
     RecyclerView.Adapter<MissionTagAdapter.Holder>() {

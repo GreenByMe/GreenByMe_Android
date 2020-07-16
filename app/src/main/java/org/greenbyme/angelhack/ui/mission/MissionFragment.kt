@@ -1,22 +1,16 @@
 package org.greenbyme.angelhack.ui.mission
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import kotlinx.android.synthetic.main.fragment_mission.*
-import kotlinx.android.synthetic.main.fragment_mission.rv_mission_recommend
-import kotlinx.android.synthetic.main.fragment_mission.rv_mission_tag_list
 import kotlinx.android.synthetic.main.fragment_mission.view.*
-
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MissionTagDAO
 import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
-import java.util.*
 
 private const val ARG_PARAM1 = "tag"
 
@@ -45,14 +39,14 @@ class MissionFragment : Fragment() {
         rv_mission_tag_list.adapter = MissionTagAdapter(MissionTagAdapter.makeDummy())
         rv_mission_tag_list.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rv_mission_recommend.apply{
+        rv_mission_recommend.apply {
             adapter = MissionRecommendDateAdapter(MissionRecommendAdapter.makeDummy())
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            clipToPadding=false
-            clipChildren=false
-            offscreenPageLimit=3
-            setCurrentItem(1,false)
-            setPadding(200,0,200,0)
+            clipToPadding = false
+            clipChildren = false
+            offscreenPageLimit = 3
+            setCurrentItem(1, false)
+            setPadding(200, 0, 200, 0)
         }
 
         tv_mission_more.setOnClickListener {

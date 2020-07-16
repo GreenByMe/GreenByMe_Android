@@ -3,15 +3,11 @@ package org.greenbyme.angelhack.ui.mission
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_mission_recommend.view.*
 import kotlinx.android.synthetic.main.item_mission_recommend_date.view.*
-import kotlinx.android.synthetic.main.item_mission_tag.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionDAO
-import kotlin.collections.ArrayList
 
 class MissionRecommendDateAdapter(private val list: ArrayList<MissionDAO>) :
     RecyclerView.Adapter<MissionRecommendDateAdapter.Holder>() {

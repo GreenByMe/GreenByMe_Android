@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_mission_userpick.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionDAO
-import kotlin.collections.ArrayList
 
 class MissionUserpickAdapter(private val list: ArrayList<MissionDAO>) :
     RecyclerView.Adapter<MissionUserpickAdapter.Holder>() {
@@ -37,7 +36,7 @@ class MissionUserpickAdapter(private val list: ArrayList<MissionDAO>) :
                 .inflate(R.layout.item_mission_userpick, parent, false)
         with(Holder(view)) {
             missionUserPickAdd.setOnClickListener {
-                Toast.makeText(parent.context,"추가",Toast.LENGTH_SHORT).show()
+                Toast.makeText(parent.context, "추가", Toast.LENGTH_SHORT).show()
             }
             return this
         }

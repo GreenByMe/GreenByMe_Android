@@ -1,22 +1,14 @@
 package org.greenbyme.angelhack.ui.mission.userpick
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
-import kotlinx.android.synthetic.main.fragment_mission.*
-import kotlinx.android.synthetic.main.fragment_mission.rv_mission_recommend
-import kotlinx.android.synthetic.main.fragment_mission.rv_mission_tag_list
-import kotlinx.android.synthetic.main.fragment_mission.view.*
 import kotlinx.android.synthetic.main.fragment_mission_userpick.view.*
-
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MissionTagDAO
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
-import java.util.*
 
 private const val ARG_PARAM1 = "tag"
 
