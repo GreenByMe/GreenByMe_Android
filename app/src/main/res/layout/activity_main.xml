@@ -8,17 +8,17 @@
     tools:context=".ui.MainActivity">
 
     <FrameLayout
-        android:background="@color/colorAccent"
         android:id="@+id/frame_main_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
-
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu_bottom_navi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemTextColor="@color/colorAccent"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_bottom" />
 </LinearLayout>
