@@ -8,7 +8,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.content_main.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.home.HomeFragment
-import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailFragment
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_bottom_home -> {
-                setFragment(MissionFragment.newInstance("mission"))
+                setFragment(HomeFragment())
             }
             R.id.menu_bottom_mission -> {
                 setFragment(MissionDetailFragment.newInstance("", ""))

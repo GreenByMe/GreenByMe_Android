@@ -1,5 +1,8 @@
 package org.greenbyme.angelhack.ui.certification
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -14,7 +17,9 @@ class CertificationActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar_certification)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        iv_certification_thumbnail.setImageURI(Uri.parse(intent?.getStringExtra(EXTRA_THUMBNAIL) ?: ""))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -23,5 +28,15 @@ class CertificationActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
 
+    }
+
+    companion object {
+        private const val EXTRA_THUMBNAIL = "extraThumbnail"
+
+        fun getIntent(activity: Activity, imageUri: String): Intent {
+            return Intent(activity, CertificationActivity::class.java).apply {
+                putExtra(EXTRA_THUMBNAIL, imageUri)
+            }
+        }
     }
 }
