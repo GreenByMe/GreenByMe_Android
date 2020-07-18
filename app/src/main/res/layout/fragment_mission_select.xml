@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.mission.MissionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:textSize="@dimen/header_title_size"
+                android:layout_margin="16dp"
+                android:textColor="@color/black"
+                android:id="@+id/tv_mission_header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/frag_mission_header_title" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_mission_userpick_tag_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_margin="8dp"
+                android:background="@color/divider_bg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"/>
+            <Spinner
+                android:layout_margin="8dp"
+                android:entries="@array/city"
+                android:id="@+id/sp_mission_userpick_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_mission_userpick"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
