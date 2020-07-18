@@ -28,7 +28,7 @@ class ApiService {
         return@lazy retrofit.create(HomeUserApi::class.java)
     }
 
-    companion object{
+    companion object {
         val service = ApiService().homeUserApi
     }
 }

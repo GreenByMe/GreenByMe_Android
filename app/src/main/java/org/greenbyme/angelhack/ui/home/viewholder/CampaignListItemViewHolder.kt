@@ -11,11 +11,11 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<CampaignListItem>(
 
     private val mPicasso = Picasso.get()
 
-    private val mThumbnail : ImageView = view.findViewById(R.id.iv_home_mission_image)
-    private val mTag : TextView = view.findViewById(R.id.tv_home_tag)
-    private val mName : TextView = view.findViewById(R.id.tv_home_mission_name)
-    private val mData : TextView = view.findViewById(R.id.tv_home_mission_date)
-    private val mNums : TextView = view.findViewById(R.id.tv_home_nums)
+    private val mThumbnail: ImageView = view.findViewById(R.id.iv_home_mission_image)
+    private val mTag: TextView = view.findViewById(R.id.tv_home_tag)
+    private val mName: TextView = view.findViewById(R.id.tv_home_mission_name)
+    private val mData: TextView = view.findViewById(R.id.tv_home_mission_date)
+    private val mNums: TextView = view.findViewById(R.id.tv_home_nums)
 
     override fun bind(data: CampaignListItem) {
         mPicasso.load(data.thumbnail).into(mThumbnail)
