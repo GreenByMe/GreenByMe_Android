@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.mypage.EditProfileActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_mypage_edit_profile"
+        android:layout_marginTop="32dp"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/img_mypage_edit_add"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_mypage_edit_profile"
+        app:layout_constraintEnd_toEndOf="@+id/img_mypage_edit_profile" />
+
+    <EditText
+        android:id="@+id/et_mypage_edit_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:hint="변경할닉네임"
+        app:layout_constraintTop_toBottomOf="@+id/img_mypage_edit_profile"
+        tools:layout_editor_absoluteX="0dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

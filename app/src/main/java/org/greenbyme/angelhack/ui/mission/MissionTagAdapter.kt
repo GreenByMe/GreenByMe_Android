@@ -38,11 +38,9 @@ class MissionTagAdapter(
                 tagListener.onClickTag()
                 list[adapterPosition].isSelected = !list[adapterPosition].isSelected
                 if (list[position].isSelected) {
-                    missionTag.setBackgroundColor(itemView.resources.getColor(R.color.tag_highlight))
-                    missionTag.setTextColor(itemView.resources.getColor(R.color.white))
+                    missionTag.setTextColor(itemView.resources.getColor(R.color.colorPrimary))
                 } else {
-                    missionTag.setBackgroundColor(itemView.resources.getColor(R.color.white))
-                    missionTag.setTextColor(itemView.resources.getColor(R.color.tag_highlight))
+                    missionTag.setTextColor(itemView.resources.getColor(R.color.tag_color))
                 }
             }
             return this
@@ -53,11 +51,9 @@ class MissionTagAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.missionTag.apply {
             if (list[position].isSelected) {
-                setBackgroundColor(resources.getColor(R.color.tag_highlight))
-                setTextColor(resources.getColor(R.color.white))
+                setTextColor(resources.getColor(R.color.colorPrimary))
             } else {
-                setBackgroundColor(resources.getColor(R.color.white))
-                setTextColor(resources.getColor(R.color.tag_highlight))
+                setTextColor(resources.getColor(R.color.tag_color))
             }
             text = "#" + list[position].missionTagName
         }

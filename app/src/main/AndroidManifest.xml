@@ -20,11 +20,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.login.LoginActivity"></activity>
-        <activity android:name=".ui.certification.CertificationActivity"></activity>
+        <activity android:name=".ui.mypage.EditProfileActivity" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.certification.CertificationActivity" />
+        <activity
+            android:name=".ui.certification.CertificationCompleteActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.certification.TakePictureActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight" />
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

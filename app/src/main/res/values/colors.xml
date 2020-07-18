@@ -11,6 +11,9 @@
     <color name="white">#ffffff</color>
     <color name="divider_bg">#6A6A6A</color>
     <color name="tag_highlight">#2354DF</color>
+
+    <color name="tag_color">#888888</color>
+    <color name="tag_bg">#F4F4F4</color>
     <color name="whiteGray">#E5E5E5</color>
     <color name="tran_gray">#776A6A6A</color>
 </resources>

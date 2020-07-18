@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.home.HomeFragment
 import org.greenbyme.angelhack.ui.mission.MissionFragment
+import org.greenbyme.angelhack.ui.mypage.MyPageFragment
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.menu_bottom_timeline -> {
             }
             R.id.menu_bottom_my -> {
+                setFragment(MyPageFragment.newInstance("missi",""))
             }
         }
         return true
