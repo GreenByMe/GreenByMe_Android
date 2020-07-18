@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_mission_userpick.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
+import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 
 private const val ARG_PARAM1 = "tag"
 
-class MissionUserFickFragment : Fragment() {
+class MissionUserFickFragment : Fragment(), TagOnClickListener {
     private var param1: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,8 @@ class MissionUserFickFragment : Fragment() {
     }
 
     private fun View.init() {
-        rv_mission_userpick_tag_list.adapter = MissionTagAdapter(MissionTagAdapter.makeDummy())
+        rv_mission_userpick_tag_list.adapter =
+            MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionUserFickFragment)
         rv_mission_userpick_tag_list.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rv_mission_userpick.adapter = MissionUserpickAdapter(MissionUserpickAdapter.makeDummy())
@@ -51,5 +53,9 @@ class MissionUserFickFragment : Fragment() {
                     putString(ARG_PARAM1, param1)
                 }
             }
+    }
+
+    override fun onClickTag() {
+
     }
 }

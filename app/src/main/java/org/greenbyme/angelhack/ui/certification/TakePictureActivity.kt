@@ -154,6 +154,7 @@ class CameraPreview(
         setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS)
     }
 
+
     fun setCamera(camera: Camera?) {
         if (mCamera == camera) {
             return
@@ -196,15 +197,18 @@ class CameraPreview(
         }
     }
 
+
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, w: Int, h: Int) {
         if (mHolder.surface == null) {
             return
         }
 
         try {
+
             mCamera?.stopPreview()
         } catch (e: Exception) {
         }
+
 
         mCamera?.run {
             try {
