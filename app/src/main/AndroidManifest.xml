@@ -24,7 +24,8 @@
         <activity
             android:name=".ui.certification.TakePictureActivity"
             android:theme="@style/Theme.AppCompat.DayNight" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.home.HomeFragment
 import org.greenbyme.angelhack.ui.mission.MissionFragment
-import org.greenbyme.angelhack.ui.mission.detail.MissionDetailFragment
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -17,16 +16,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         menu_bottom_navi.setOnNavigationItemSelectedListener(this)
-        supportFragmentManager.beginTransaction().add(R.id.frame_main_frag, HomeFragment()).commit()
+        setFragment(HomeFragment())
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_bottom_home -> {
-                setFragment(MissionFragment.newInstance("mission"))
+                setFragment(HomeFragment())
             }
             R.id.menu_bottom_mission -> {
-                setFragment(MissionDetailFragment.newInstance("", ""))
+                setFragment(MissionFragment.newInstance("mission"))
+//                setFragment(MissionDetailFragment.newInstance("", ""))
             }
             R.id.menu_bottom_timeline -> {
             }
@@ -41,4 +41,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             .replace(R.id.frame_main_frag, frag)
             .commit()
     }
+
+    fun addFragment(frag: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_main_frag, frag)
+            .commit()
+    }
+
 }

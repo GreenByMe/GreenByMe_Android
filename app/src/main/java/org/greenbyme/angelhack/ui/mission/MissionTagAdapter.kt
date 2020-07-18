@@ -9,7 +9,10 @@ import kotlinx.android.synthetic.main.item_mission_tag.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionTagDAO
 
-class MissionTagAdapter(private val list: ArrayList<MissionTagDAO>) :
+class MissionTagAdapter(
+    private val list: ArrayList<MissionTagDAO>,
+    val tagListener: TagOnClickListener
+) :
     RecyclerView.Adapter<MissionTagAdapter.Holder>() {
 
     companion object {
@@ -32,6 +35,7 @@ class MissionTagAdapter(private val list: ArrayList<MissionTagDAO>) :
             LayoutInflater.from(parent.context).inflate(R.layout.item_mission_tag, parent, false)
         with(Holder(view)) {
             itemView.setOnClickListener {
+                tagListener.onClickTag()
                 list[adapterPosition].isSelected = !list[adapterPosition].isSelected
                 if (list[position].isSelected) {
                     missionTag.setBackgroundColor(itemView.resources.getColor(R.color.tag_highlight))

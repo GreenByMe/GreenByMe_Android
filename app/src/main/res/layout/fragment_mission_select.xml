@@ -3,47 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mission.MissionFragment">
+    tools:context=".ui.mission.MissionSelectFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_mission_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/frag_mission_header_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_title_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_mission_select_tag_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:textSize="@dimen/header_title_size"
-                android:layout_margin="16dp"
-                android:textColor="@color/black"
-                android:id="@+id/tv_mission_header"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/frag_mission_header_title" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_margin="8dp"
+            android:background="@color/divider_bg" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_mission_userpick_tag_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <View
-                android:layout_margin="8dp"
-                android:background="@color/divider_bg"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider"/>
-            <Spinner
-                android:layout_margin="8dp"
-                android:entries="@array/city"
-                android:id="@+id/sp_mission_userpick_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_mission_userpick"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        <Spinner
+            android:id="@+id/sp_mission_select_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:entries="@array/city" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/rv_mission_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </FrameLayout>

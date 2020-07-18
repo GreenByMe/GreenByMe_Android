@@ -22,11 +22,8 @@ import android.view.TextureView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_picutre.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import org.greenbyme.angelhack.R
 import java.io.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class TakePictureActivity : AppCompatActivity() {
@@ -46,11 +43,11 @@ class TakePictureActivity : AppCompatActivity() {
 
     var imageDimension: Size? = null
     lateinit var imageReader: ImageReader
-    lateinit var file :File
+    lateinit var file: File
     lateinit var mBackgroundHandler: Handler
     lateinit var mBackgroundThread: HandlerThread
 
-    val ORIENTATION : SparseIntArray = SparseIntArray()
+    val ORIENTATION: SparseIntArray = SparseIntArray()
 
     val REQUEST_CAMERA_PERMISSION = 1001
 
@@ -59,10 +56,10 @@ class TakePictureActivity : AppCompatActivity() {
         setContentView(R.layout.activity_picutre)
         takePicture()
 
-        ORIENTATION.append(Surface.ROTATION_0,90)
-        ORIENTATION.append(Surface.ROTATION_90,0)
-        ORIENTATION.append(Surface.ROTATION_180,270)
-        ORIENTATION.append(Surface.ROTATION_270,180)
+        ORIENTATION.append(Surface.ROTATION_0, 90)
+        ORIENTATION.append(Surface.ROTATION_90, 0)
+        ORIENTATION.append(Surface.ROTATION_180, 270)
+        ORIENTATION.append(Surface.ROTATION_270, 180)
 
         txv_certification.surfaceTextureListener = textureListener
 
@@ -109,21 +106,31 @@ class TakePictureActivity : AppCompatActivity() {
 
         cameraId = manager.cameraIdList[0]
 
-        var characteristics : CameraCharacteristics = manager.getCameraCharacteristics(cameraId)
+        var characteristics: CameraCharacteristics = manager.getCameraCharacteristics(cameraId)
 
-        var map : StreamConfigurationMap? = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
+        var map: StreamConfigurationMap? =
+            characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
 
         imageDimension = map?.getOutputSizes(SurfaceTexture::class.java)?.get(0)
 
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-        {
-             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE),101)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                101
+            )
             return
         }
 
-        manager.openCamera(cameraId,stateCallback,null)
-
+        manager.openCamera(cameraId, stateCallback, null)
 
 
 //        try {
@@ -198,7 +205,6 @@ class TakePictureActivity : AppCompatActivity() {
             cameraDevice = null
         }
     }
-
 
 
     // openCamera() 에 넘겨주는 stateCallback 에서 카메라가 제대로 연결되었으면
@@ -279,12 +285,12 @@ class TakePictureActivity : AppCompatActivity() {
             imageReader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1)
 
             val outputSurface = ArrayList<Surface>(2)
-            outputSurface.add(imageReader!!.surface)
+            outputSurface.add(imageReader.surface)
             outputSurface.add(Surface(txv_certification!!.surfaceTexture))
 
             val captureBuilder =
                 cameraDevice!!.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
-            captureBuilder.addTarget(imageReader!!.surface)
+            captureBuilder.addTarget(imageReader.surface)
 
             captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO)
 
@@ -295,7 +301,7 @@ class TakePictureActivity : AppCompatActivity() {
                     var image: Image? = null
 
                     try {
-                        image = imageReader!!.acquireLatestImage()
+                        image = imageReader.acquireLatestImage()
 
                         val buffer = image!!.planes[0].buffer
                         val bytes = ByteArray(buffer.capacity())
@@ -341,7 +347,7 @@ class TakePictureActivity : AppCompatActivity() {
             }
 
             // imageReader 객체에 위에서 만든 readerListener 를 달아서, 이미지가 사용가능하면 사진을 저장한다
-            imageReader!!.setOnImageAvailableListener(readerListener, null)
+            imageReader.setOnImageAvailableListener(readerListener, null)
 
             val captureListener = object : CameraCaptureSession.CaptureCallback() {
                 override fun onCaptureCompleted(
@@ -381,15 +387,13 @@ class TakePictureActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        if(txv_certification.isAvailable)
-        {
+        if (txv_certification.isAvailable) {
             try {
                 openCamera()
-            }catch (e : CameraAccessException){
+            } catch (e: CameraAccessException) {
                 e.printStackTrace()
             }
-        }
-        else{
+        } else {
             txv_certification.surfaceTextureListener = textureListener
         }
     }

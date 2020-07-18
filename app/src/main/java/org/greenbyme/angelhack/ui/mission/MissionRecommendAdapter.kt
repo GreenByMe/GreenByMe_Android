@@ -36,15 +36,19 @@ class MissionRecommendAdapter(private val list: ArrayList<MissionDAO>) :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.missionRecommendContents.text = list[position].missionContents
-        holder.missionRecommendDiscription.text = list[position].missionDescription
-        holder.missionRecommendBackgound.setBackgroundColor(15)
+        holder.bind(list[position])
     }
 
-    class Holder(view: View) : RecyclerView.ViewHolder(view) {
-        val missionRecommendContents: TextView = view.tv_mission_recommend_contents
-        val missionRecommendDiscription: TextView = view.tv_mission_recommend_description
-        val missionRecommendBackgound: ImageView = view.img_mission_recommend_bg
 
+    class Holder(view: View) : RecyclerView.ViewHolder(view) {
+        private val missionRecommendContents: TextView = view.tv_mission_recommend_contents
+        private val missionRecommendDiscription: TextView = view.tv_mission_recommend_description
+        private val missionRecommendBackgound: ImageView = view.img_mission_recommend_bg
+
+        fun bind(item: MissionDAO) {
+            missionRecommendContents.text = item.missionContents
+            missionRecommendDiscription.text = item.missionDescription
+            missionRecommendBackgound.setBackgroundColor(15)
+        }
     }
 }

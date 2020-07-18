@@ -41,6 +41,5 @@ class MissionRecommendDateAdapter(private val list: ArrayList<MissionDAO>) :
         val missionRecommendContents: TextView = view.tv_mission_recommend_date_contents
         val missionRecommendDiscription: TextView = view.tv_mission_recommend_date_description
         val missionRecommendTitle: TextView = view.tv_mission_recommend_date
-
     }
 }
