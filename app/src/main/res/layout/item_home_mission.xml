@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:layout_marginRight="20dp">
+
+    <ImageView
+        android:id="@+id/iv_home_mission_image"
+        android:layout_width="match_parent"
+        android:layout_height="97dp"
+        android:background="@color/whiteGray"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:textSize="10sp"
+        android:textAlignment="center"
+        android:id="@+id/tv_home_tag"
+        android:layout_width="43dp"
+        android:layout_height="15dp"
+        android:background="@color/main_green"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_home_mission_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/iv_home_mission_image"
+        tools:text="오늘 하루 채식하기" />
+
+    <TextView
+        android:id="@+id/tv_home_mission_date"
+        android:layout_width="36dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_btn"
+        android:textAlignment="center"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_mission_name"
+        tools:text="7/13" />
+
+    <TextView
+        android:id="@+id/tv_home_nums"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_home_mission_date"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_mission_name"
+        tools:text="300명 도전중" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

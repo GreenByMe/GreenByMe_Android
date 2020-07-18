@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:id="@+id/tv_home_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="44dp"
+        android:text="내가 그린"
+        android:textColor="@color/main_green"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_home_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="118dp"
+        android:text="안녕하세요 김그린님"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_home_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="143dp"
+        android:text="이번주에만 벌써\n2개의 나무를\n살리셨군요!"
+        android:textColor="@color/black"
+        android:textSize="31sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_home_carbone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="274dp"
+        android:text="줄인 탄소양"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_desc"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_home_check"
+        android:layout_width="180dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/shape_btn"
+        android:text="탄소발자국 계산하기"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_carbone" />
+
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="12dp"-->
+    <!--        android:background="@color/divider_bg"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

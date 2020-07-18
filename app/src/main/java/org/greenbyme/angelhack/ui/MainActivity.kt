@@ -10,6 +10,7 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.home.HomeFragment
 import org.greenbyme.angelhack.ui.mission.MissionFragment
 
+
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {

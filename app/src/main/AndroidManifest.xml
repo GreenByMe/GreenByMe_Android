@@ -3,6 +3,7 @@
     package="org.greenbyme.angelhack">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -23,8 +24,9 @@
         <activity android:name=".ui.certification.CertificationActivity"></activity>
         <activity
             android:name=".ui.certification.TakePictureActivity"
-            android:theme="@style/Theme.AppCompat.DayNight" />
-        <activity android:name=".ui.MainActivity"
+            android:theme="@style/Theme.AppCompat.DayNight"></activity>
+        <activity
+            android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
