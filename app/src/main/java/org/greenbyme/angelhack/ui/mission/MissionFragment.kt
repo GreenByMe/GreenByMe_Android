@@ -1,26 +1,32 @@
 package org.greenbyme.angelhack.ui.mission
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_mission.*
 import kotlinx.android.synthetic.main.fragment_mission.view.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.data.MainMissionDTO
+import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 private const val ARG_PARAM1 = "tag"
 
 class MissionFragment : Fragment(), TagOnClickListener {
-    private var param1: String? = null
+    private var param1: Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            param1 = it.getInt(ARG_PARAM1)
         }
     }
 
@@ -37,15 +43,12 @@ class MissionFragment : Fragment(), TagOnClickListener {
 
     private fun View.init() {
         rv_mission_tag_list.apply {
-            adapter = MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionFragment)
+            adapter = MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionFragment, true)
             layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
-        rv_mission_recommend.apply {
-            adapter = MissionRecommendAdapter(MissionRecommendAdapter.makeDummy())
-            layoutManager = LinearLayoutManager(context)
-        }
 
+        getMissionList()
         tv_mission_more.setOnClickListener {
             (activity as MainActivity).setFragment(MissionUserFickFragment.newInstance(""))
         }
@@ -53,16 +56,48 @@ class MissionFragment : Fragment(), TagOnClickListener {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String) =
+        fun newInstance(param1: Int) =
             MissionFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
+                    putInt(ARG_PARAM1, param1)
                 }
             }
+
+        fun getCategoryString(category: Int?): String {
+            when (category) {
+                1 -> return "ENERGY"
+                2 -> return "DISPOSABLE"
+                3 -> return "TRAFFIC"
+                4 -> return "WATERWORKS"
+                5 -> return "CAMPAIGN"
+            }
+            return "NONE"
+        }
     }
 
-    override fun onClickTag() {
-        Toast.makeText(context, "왜 안 바 껴", Toast.LENGTH_SHORT).show()
-        (activity as MainActivity).setFragment(MissionSelectFragment.newInstance(""))
+    fun getMissionList() {
+        val response: Call<MainMissionDTO> =
+            ApiService.networkMission.getMissionResponse()
+        response.enqueue(object : Callback<MainMissionDTO> {
+            override fun onFailure(call: Call<MainMissionDTO>, t: Throwable) {
+                Log.e("FRAG_MISSION", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<MainMissionDTO>,
+                response: Response<MainMissionDTO>
+            ) {
+                if (response.isSuccessful) {
+                    rv_mission_recommend.apply {
+                        adapter = MissionRecommendAdapter(response.body()!!.content)
+                        layoutManager = LinearLayoutManager(context)
+                    }
+                }
+            }
+        })
+    }
+
+    override fun onClickTag(category: Int) {
+        (activity as MainActivity).setFragment(MissionSelectFragment.newInstance(category))
     }
 }

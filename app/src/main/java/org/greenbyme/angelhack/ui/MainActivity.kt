@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.content_main.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.home.HomeFragment
 import org.greenbyme.angelhack.ui.mission.MissionFragment
+import org.greenbyme.angelhack.ui.mypage.MyPageFragment
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(R.layout.activity_main)
         menu_bottom_navi.setOnNavigationItemSelectedListener(this)
         setFragment(HomeFragment())
+        ApiService().init
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -26,12 +29,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 setFragment(HomeFragment())
             }
             R.id.menu_bottom_mission -> {
-                setFragment(MissionFragment.newInstance("mission"))
+                setFragment(MissionFragment.newInstance(0))
 //                setFragment(MissionDetailFragment.newInstance("", ""))
             }
             R.id.menu_bottom_timeline -> {
             }
             R.id.menu_bottom_my -> {
+                setFragment(MyPageFragment.newInstance("missi", ""))
             }
         }
         return true

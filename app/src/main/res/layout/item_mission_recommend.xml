@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_marginTop="24dp"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="220dp"
     android:background="@color/colorPrimary">
 
     <ImageView
@@ -20,12 +20,12 @@
             android:layout_height="24dp"
             android:background="@color/colorPrimaryDark"
             android:gravity="center"
-            android:text="D-0"
+            android:text="D-DAY"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_mission_recommend_sponser"
+            android:id="@+id/tv_mission_progress_user_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tv_mission_recommend_day_count"
@@ -66,8 +66,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_round_button_gray"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:text="8/10 ~ 8/20"
             android:textColor="@color/white" />
 
@@ -80,9 +82,11 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_round_button_gray"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:text="100명 창여중"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="0명 참여중"
             android:textColor="@color/white" />
     </RelativeLayout>
 </FrameLayout>

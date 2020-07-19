@@ -55,7 +55,7 @@ class MissionUserFickFragment : Fragment(), TagOnClickListener {
             }
     }
 
-    override fun onClickTag() {
+    override fun onClickTag(category: Int) {
 
     }
 }

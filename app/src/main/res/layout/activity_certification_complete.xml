@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.certification.CertificationCompleteActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/an_complete"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_speed="0.35"
+        app:lottie_rawRes="@raw/tree_anim2"/>
+    <TextView
+        android:id="@+id/tv_complete_contents"
+        android:layout_marginTop="16dp"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:layout_below="@id/an_complete"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="김그린님 축하드려요 방금 나무 0.2그루를 심었어요!!"/>
+
+    <TextView
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/img_complete_facebook"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:text="공유하기"/>
+
+    <ImageView
+        android:layout_marginTop="64dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_complete_contents"
+        android:id="@+id/img_complete_facebook"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_toLeftOf="@id/img_complete_facebook"
+        android:layout_alignTop="@id/img_complete_facebook"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_complete_contents"
+        android:id="@+id/img_complete_twitter"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_toRightOf="@id/img_complete_facebook"
+
+        android:layout_alignTop="@id/img_complete_facebook"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_complete_contents"
+        android:id="@+id/img_complete_instagram"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textSize="20sp"
+        android:layout_marginTop="88dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/img_complete_facebook"
+        android:id="@+id/tv_complete_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인증페이지로 돌아가기"/>
+
+</RelativeLayout>
