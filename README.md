@@ -40,3 +40,9 @@ Green by me, Green by earth(us)
 
 
 ## Android
+
+* 사용 라이브러리 
+* Rxjava
+* Picasso
+* Lottie
+
