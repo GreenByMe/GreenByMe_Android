@@ -4,28 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/page"
     tools:context=".ui.certification.CertificationCompleteActivity">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_centerHorizontal="true"
-        android:id="@+id/an_complete"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:scaleType="centerCrop"
-        app:lottie_autoPlay="true"
-        app:lottie_speed="0.35"
-        app:lottie_rawRes="@raw/tree_anim2"/>
-    <TextView
-        android:id="@+id/tv_complete_contents"
-        android:layout_marginTop="16dp"
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:layout_below="@id/an_complete"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="김그린님 축하드려요 방금 나무 0.2그루를 심었어요!!"/>
+    <RelativeLayout
+        android:id="@+id/fl_complete_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/an_complete"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:scaleType="centerCrop"
+            app:lottie_autoPlay="true"
+            app:lottie_speed="0.35"
+            app:lottie_rawRes="@raw/tree_anim2"/>
+        <TextView
+            android:id="@+id/tv_complete_contents"
+            android:layout_marginTop="16dp"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:layout_below="@id/an_complete"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="김민석님 축하드려요 방금 나무 0.2그루를 심었어요!!"/>
+    </RelativeLayout>
+
 
     <TextView
         android:layout_marginTop="32dp"
@@ -40,7 +47,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv_complete_contents"
+        android:layout_below="@id/fl_complete_share"
         android:id="@+id/img_complete_facebook"
         android:src="@drawable/facebook"
         android:layout_width="wrap_content"
@@ -50,7 +57,7 @@
         android:layout_toLeftOf="@id/img_complete_facebook"
         android:layout_alignTop="@id/img_complete_facebook"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv_complete_contents"
+        android:layout_below="@id/fl_complete_share"
         android:id="@+id/img_complete_twitter"
         android:src="@drawable/twitter"
         android:layout_width="wrap_content"
@@ -61,9 +68,9 @@
 
         android:layout_alignTop="@id/img_complete_facebook"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv_complete_contents"
+        android:layout_below="@id/fl_complete_share"
         android:id="@+id/img_complete_instagram"
-        android:src="@drawable/facebook"
+        android:src="@drawable/logo_instar_xxxhdpi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

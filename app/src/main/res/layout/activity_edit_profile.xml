@@ -7,17 +7,19 @@
     tools:context=".ui.mypage.EditProfileActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_width="2dp"
+        app:civ_border_color="#44000000"
         android:id="@+id/img_mypage_edit_profile"
         android:layout_marginTop="32dp"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/camera_01"
         android:id="@+id/img_mypage_edit_add"
         android:layout_width="32dp"
         android:layout_height="32dp"
