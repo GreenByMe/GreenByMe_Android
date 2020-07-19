@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_mission.*
 import kotlinx.android.synthetic.main.fragment_mission.view.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MainMissionDTO
+import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
@@ -73,19 +73,28 @@ class MissionFragment : Fragment(), TagOnClickListener {
             }
             return "NONE"
         }
+
+        fun getDateString(day : Int):String{
+            when(day){
+                0->return "DAY"
+                1->return "WEEK"
+                2->return "MONTH"
+            }
+            return "DAY"
+        }
     }
 
     fun getMissionList() {
-        val response: Call<MainMissionDTO> =
+        val response: Call<MainMissionDAO> =
             ApiService.networkMission.getMissionResponse()
-        response.enqueue(object : Callback<MainMissionDTO> {
-            override fun onFailure(call: Call<MainMissionDTO>, t: Throwable) {
+        response.enqueue(object : Callback<MainMissionDAO> {
+            override fun onFailure(call: Call<MainMissionDAO>, t: Throwable) {
                 Log.e("FRAG_MISSION", t.toString())
             }
 
             override fun onResponse(
-                call: Call<MainMissionDTO>,
-                response: Response<MainMissionDTO>
+                call: Call<MainMissionDAO>,
+                response: Response<MainMissionDAO>
             ) {
                 if (response.isSuccessful) {
                     rv_mission_recommend.apply {
@@ -98,6 +107,6 @@ class MissionFragment : Fragment(), TagOnClickListener {
     }
 
     override fun onClickTag(category: Int) {
-        (activity as MainActivity).setFragment(MissionSelectFragment.newInstance(category))
+        (activity as MainActivity).addFragment(MissionSelectFragment.newInstance(category))
     }
 }

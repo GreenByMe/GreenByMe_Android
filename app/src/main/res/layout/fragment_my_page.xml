@@ -21,7 +21,7 @@
                 android:id="@+id/img_maypage_profile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/tv_mypage_edit_btn"
@@ -33,7 +33,7 @@
                 android:paddingTop="4dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="4dp"
-                android:text="김그린님의 활동 >" />
+                android:text="님의 활동 >" />
 
             <LinearLayout
                 android:layout_marginTop="24dp"
@@ -55,9 +55,10 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_pro"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="6"
+                            android:text="0"
                             android:textColor="@color/colorPrimary"
                             android:textSize="28sp"
                             android:textStyle="bold" />
@@ -94,7 +95,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="28.9"
+                            android:text="0"
                             android:textColor="@color/colorPrimary"
                             android:textSize="28sp"
                             android:textStyle="bold" />
@@ -131,7 +132,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2.3"
+                            android:text="0"
                             android:textColor="@color/colorPrimary"
                             android:textSize="28sp"
                             android:textStyle="bold" />

@@ -7,10 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_mission_recommend_date.view.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MainMissionDTO
+import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDAO
 
-class MissionRecommendDateAdapter(private val list: List<MainMissionDTO.Content>) :
+class MissionRecommendDateAdapter(private val list: List<MainMissionDAO.Content>) :
     RecyclerView.Adapter<MissionRecommendDateAdapter.Holder>() {
 
     companion object {

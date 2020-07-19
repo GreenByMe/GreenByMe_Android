@@ -7,8 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.picasso.Picasso
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.data.MyPageDAO
+import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.certification.CertificationCompleteActivity
 import org.greenbyme.angelhack.ui.home.HomeAdapter
 import org.greenbyme.angelhack.ui.home.model.CertificationList
@@ -18,8 +23,20 @@ import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 
 
-class MyPageFragment : Fragment(), TagOnClickListener {
+private const val ARG_PARAM1 = "profile_id"
 
+class MyPageFragment : Fragment(), TagOnClickListener {
+    var profile_id: Int = 0
+    override fun onClickTag(category: Int) {
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            profile_id = it.getInt(ARG_PARAM1)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,17 +82,26 @@ class MyPageFragment : Fragment(), TagOnClickListener {
             adapter = mHomeAdapter
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         }
+        val subscribe = ApiService.service.getUserInfo(profile_id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::setProfile)
+    }
+
+    private fun setProfile(user: MyPageDAO) {
+        Picasso.get().load(user.pictureUrl).into(img_maypage_profile)
+        tv_mypage_edit_btn.text = "${user.nickName}님의 활동 >"
+
     }
 
     companion object {
-
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: Int) =
             MyPageFragment().apply {
-
+                this.profile_id = param1
+                arguments = Bundle().apply {
+                    putInt(ARG_PARAM1, param1)
+                }
             }
     }
 
-    override fun onClickTag(category: Int) {
-
-    }
 }

@@ -2,15 +2,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_marginTop="24dp"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="240dp"
     android:background="@color/colorPrimary">
 
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/img_mission_recommend_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <RelativeLayout
+        android:background="@color/tran_gray"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -59,12 +61,13 @@
             android:textSize="16sp" />
 
         <TextView
+            android:layout_alignParentBottom="true"
             android:id="@+id/tv_mission_recommend_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_mission_recommend_description"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/bg_round_button_gray"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
@@ -74,11 +77,12 @@
             android:textColor="@color/white" />
 
         <TextView
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentBottom="true"
             android:id="@+id/tv_mission_recommend_user_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_mission_recommend_date"
-            android:layout_below="@id/tv_mission_recommend_description"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_round_button_gray"

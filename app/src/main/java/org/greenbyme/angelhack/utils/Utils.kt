@@ -1,5 +1,6 @@
 package org.greenbyme.angelhack.utils
 
+import android.util.Log
 import java.text.SimpleDateFormat
 
 class Utils {
@@ -9,12 +10,16 @@ class Utils {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
                 try {
                     val date = sim.parse(time)
-                    return "${date.month + 1}/${date.date + 1}"
+                    val ret ="${date.month + 1}/${date.date + 1}"
+                    Log.d("utils",ret)
+                    return ret
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
 
             }
+
+            Log.d("utils","fuck")
             return "funck"
         }
     }

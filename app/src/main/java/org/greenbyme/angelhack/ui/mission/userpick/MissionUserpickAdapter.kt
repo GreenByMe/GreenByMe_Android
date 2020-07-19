@@ -35,8 +35,8 @@ class MissionUserpickAdapter(private val list: ArrayList<MissionDAO>) :
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_mission_userpick, parent, false)
         with(Holder(view)) {
-            missionUserPickAdd.setOnClickListener {
-                Toast.makeText(parent.context, "추가", Toast.LENGTH_SHORT).show()
+            itemView.setOnClickListener {
+
             }
             return this
         }
@@ -50,9 +50,8 @@ class MissionUserpickAdapter(private val list: ArrayList<MissionDAO>) :
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         val missionUserPickContents: TextView = view.tv_mission_userpick_title
-        val missionUserPickDiscription: TextView = view.tv_mission_userpick_contents
+        val missionUserPickDiscription: TextView = view.tv_mission_userpick_category
         val missionUserPickIcon: ImageView = view.img_mission_userpick_icon
-        val missionUserPickAdd: Button = view.bt_mission_userpick_add
 
     }
 }
