@@ -16,8 +16,11 @@ class CertificationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_certification)
 
         setSupportActionBar(toolbar_certification)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.run {
+            title = "인증"
+            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+        }
 
         iv_certification_thumbnail.setImageURI(
             Uri.parse(

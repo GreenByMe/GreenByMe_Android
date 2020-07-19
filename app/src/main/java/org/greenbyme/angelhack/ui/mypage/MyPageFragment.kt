@@ -15,7 +15,7 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.certification.CertificationCompleteActivity
-import org.greenbyme.angelhack.ui.home.HomeAdapter
+import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.model.CertificationList
 import org.greenbyme.angelhack.ui.home.model.CertificationListItem
 import org.greenbyme.angelhack.ui.home.model.HomeItem
@@ -77,7 +77,8 @@ class MyPageFragment : Fragment(), TagOnClickListener {
                     )
                 )
             }
-            val mHomeAdapter = HomeAdapter()
+            val mHomeAdapter =
+                HomeAdapter()
             mHomeAdapter.setItems(mData)
             adapter = mHomeAdapter
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)

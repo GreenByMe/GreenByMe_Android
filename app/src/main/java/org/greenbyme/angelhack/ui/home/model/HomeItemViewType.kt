@@ -1,8 +1,8 @@
 package org.greenbyme.angelhack.ui.home.model
 
 enum class HomeItemViewType(val viewType: Int) {
-    EMPTY(0), HEADER(1), HORIZONTAL_LIST(2), CAMPAIGN_LIST_ITEM(3),
-    NEWS_LIST(4), NEWS_LIST_ITEM(5), CERTIFICATION_LIST(6), CERTIFICATION_LIST_ITEM(7);
+    EMPTY(0), HEADER(1), CAMPAIGN_LIST(2), CAMPAIGN_LIST_ITEM(3),
+    CAMPAIGN_DETAIL_ITEM(4), CERTIFICATION_LIST(5), CERTIFICATION_LIST_ITEM(6);
 
     companion object {
         fun get(viewType: Int): HomeItemViewType {

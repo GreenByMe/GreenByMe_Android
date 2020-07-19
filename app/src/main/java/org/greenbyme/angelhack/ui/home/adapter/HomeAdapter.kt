@@ -1,4 +1,4 @@
-package org.greenbyme.angelhack.ui.home
+package org.greenbyme.angelhack.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +8,10 @@ import org.greenbyme.angelhack.ui.home.model.HomeItem
 import org.greenbyme.angelhack.ui.home.model.HomeItemViewType
 import org.greenbyme.angelhack.ui.home.viewholder.*
 
-class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
     private val mItemList = mutableListOf<HomeItem>()
+
+    var itemClickListener: HomeItemClickListener? = null
 
     fun setItems(items: List<HomeItem>) {
         synchronized(mItemList) {
@@ -26,15 +27,15 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return mItemList[position].getViewType()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder<HomeItem> {
         val layoutInflater = LayoutInflater.from(parent.context)
 
         return when (HomeItemViewType.get(viewType)) {
             HomeItemViewType.HEADER -> {
                 HeaderViewHolder(layoutInflater.inflate(R.layout.item_home_header, parent, false))
             }
-            HomeItemViewType.HORIZONTAL_LIST -> {
-                HorizontalListViewHolder(
+            HomeItemViewType.CAMPAIGN_LIST -> {
+                CampaignListViewHolder(
                     layoutInflater.inflate(
                         R.layout.row_horizontal_list,
                         parent,
@@ -52,57 +53,25 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 )
             }
 
-            HomeItemViewType.NEWS_LIST -> {
-                NewsViewHolder(
-                    layoutInflater.inflate(
-                        R.layout.item_home_news,
-                        parent,
-                        false
-                    )
-                )
-            }
-
-            HomeItemViewType.NEWS_LIST_ITEM -> {
-                NewsListItemViewHolder(
-                    layoutInflater.inflate(
-                        R.layout.item_home_news_contents,
-                        parent,
-                        false
-                    )
-                )
-            }
-
-            HomeItemViewType.CERTIFICATION_LIST -> {
-                CertificationViewHolder(
-                    layoutInflater.inflate(
-                        R.layout.item_home_certification,
-                        parent,
-                        false
-                    )
-                )
-            }
-
-            HomeItemViewType.CERTIFICATION_LIST_ITEM -> {
-                GridListViewHolder(
-                    layoutInflater.inflate(
-                        R.layout.item_home_mission_img,
-                        parent,
-                        false
-                    )
-                )
+            HomeItemViewType.CAMPAIGN_DETAIL_ITEM -> {
+                ProgressViewHolder(layoutInflater.inflate(
+                    R.layout.item_mission_progress,
+                    parent,
+                    false
+                ))
             }
 
             else -> {
                 EmptyViewHolder(layoutInflater.inflate(R.layout.row_empty, parent, false))
             }
-        }
+        } as HomeViewHolder<HomeItem>
     }
 
     override fun getItemCount(): Int {
         return mItemList.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as? HomeViewHolder<HomeItem>)?.bind(mItemList[position])
+    override fun onBindViewHolder(holder: HomeViewHolder<HomeItem>, position: Int) {
+        holder.bind(mItemList[position], itemClickListener)
     }
 }

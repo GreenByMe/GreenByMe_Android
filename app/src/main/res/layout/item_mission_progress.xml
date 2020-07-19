@@ -1,94 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
     android:layout_marginTop="24dp">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/img_mission_progress_bg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="104dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/img_mission_progress_bg"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorPrimaryDark" />
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/tv_mission_progress_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img_mission_progress_bg"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_round_button_gray"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="7/13"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_mission_progress_bg" />
 
-        <TextView
-            android:id="@+id/tv_mission_progress_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/img_mission_progress_bg"
-            android:layout_margin="8dp"
-            android:background="@drawable/bg_round_button_gray"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="7/13"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/tv_mission_progress_user_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img_mission_progress_bg"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toRightOf="@+id/tv_mission_progress_day"
+        android:background="@drawable/bg_round_button_gray"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:padding="8dp"
+        android:text="300명 도전중"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/img_mission_progress_bg"
+        app:layout_constraintLeft_toRightOf="@id/tv_mission_progress_day" />
 
-        <TextView
-            android:padding="8dp"
-            android:id="@+id/tv_mission_progress_user_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/img_mission_progress_bg"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_toRightOf="@+id/tv_mission_progress_day"
-            android:background="@drawable/bg_round_button_gray"
-            android:gravity="center"
-            android:text="300명 도전중"
-            android:textColor="@color/white" />
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/tv_mission_progress_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_mission_progress_bg"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="한달동안 텀블러 들고다니기"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/img_mission_progress_bg" />
 
-        <TextView
-            android:layout_marginTop="16dp"
-            android:layout_below="@id/img_mission_progress_bg"
-            android:id="@+id/tv_mission_progress_contents"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:text="한달동안 텀블러 들고다니기"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-        <TextView
-            android:textStyle="bold"
-            android:layout_margin="16dp"
-            android:layout_below="@id/tv_mission_progress_contents"
-            android:id="@+id/tv_mission_progress_percents"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="30%"
-            android:textSize="24dp"
-            android:textColor="@color/colorPrimaryDark"/>
+    <TextView
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/tv_mission_progress_percents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="30%"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mission_progress_contents" />
 
-        <ProgressBar
-            android:id="@+id/pb_mission_progress_complete"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_mission_progress_contents"
-            android:layout_alignTop="@id/tv_mission_progress_percents"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_toRightOf="@id/tv_mission_progress_percents"
-            android:progress="10"
-            android:progressTint="@color/colorPrimaryDark" />
-        <TextView
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_margin="16dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/pb_mission_progress_complete"
-            android:id="@+id/tv_mission_progress_percents_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="13/31"/>
-    </RelativeLayout>
-</FrameLayout>
+    <ProgressBar
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/pb_mission_progress_complete"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/tv_mission_progress_percents"
+        android:layout_below="@id/tv_mission_progress_contents"
+        android:layout_alignTop="@id/tv_mission_progress_percents"
+        android:layout_alignParentEnd="true"
+        android:progress="10"
+        android:progressTint="@color/colorPrimaryDark"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mission_progress_contents" />
+
+    <TextView
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pb_mission_progress_complete"
+        android:id="@+id/tv_mission_progress_percents_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pb_mission_progress_complete"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:text="13/31"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

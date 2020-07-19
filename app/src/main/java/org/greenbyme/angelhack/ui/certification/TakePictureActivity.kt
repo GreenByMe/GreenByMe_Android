@@ -2,14 +2,15 @@ package org.greenbyme.angelhack.ui.certification
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.appcompat.app.AppCompatActivity
@@ -34,11 +35,34 @@ class TakePictureActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_CAMERA = 1001
+        private const val EXTRA_SUBJECT = "extraKeySubject"
+
+        fun getIntent(activity: Activity, subject: String): Intent {
+            return Intent(activity, TakePictureActivity::class.java).apply {
+                putExtra(EXTRA_SUBJECT, subject)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_picutre)
+
+        initActionBar()
+        initViews()
+    }
+
+    private fun initActionBar() {
+        supportActionBar?.run {
+            title = "인증"
+            setHomeButtonEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initViews() {
+        subject.text = "인증미션 : ${intent?.getStringExtra(EXTRA_SUBJECT) ?: ""}"
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED
@@ -65,12 +89,10 @@ class TakePictureActivity : AppCompatActivity() {
 
                             val uri = Uri.fromFile(pictureFile)
 
-                            Log.d("Kangdroid", "Picture : $uri")
-
                             startActivity(
-                                CertificationActivity.getIntent(
+                                CertificationInputActivity.getIntent(
                                     this@TakePictureActivity,
-                                    uri.toString()
+                                    uri.toString(), System.currentTimeMillis()
                                 )
                             )
                         } catch (e: Exception) {

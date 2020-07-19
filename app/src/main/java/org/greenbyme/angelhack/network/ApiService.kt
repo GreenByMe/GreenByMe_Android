@@ -27,10 +27,12 @@ class ApiService {
 
         service = retrofit.create(HomeUserApi::class.java)
         networkMission = retrofit.create(MissionAPI::class.java)
+        certApi = retrofit.create(CertAPI::class.java)
     }
 
     companion object {
         lateinit var service: HomeUserApi
         lateinit var networkMission: MissionAPI
+        lateinit var certApi: CertAPI
     }
 }
