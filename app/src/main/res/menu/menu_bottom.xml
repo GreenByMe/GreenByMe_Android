@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
         android:icon="@drawable/baseline_home_24"
         android:id="@+id/menu_bottom_home"
@@ -14,10 +13,9 @@
         android:title="미션" />
     <item
         android:icon="@drawable/baseline_dashboard_24"
-        android:id="@+id/menu_bottom_timeline"
+        android:id="@+id/menu_bottom_certification"
         app:showAsAction="always"
-        android:title="타임라인" />
-
+        android:title="인증" />
     <item
         android:icon="@drawable/baseline_face_24"
         android:id="@+id/menu_bottom_my"

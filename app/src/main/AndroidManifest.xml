@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.greenbyme.angelhack">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -37,15 +38,22 @@
         <activity android:name=".ui.certification.CertificationActivity" />
         <activity
             android:name=".ui.certification.CertificationCompleteActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:usesCleartextTraffic="true" />
         <activity
             android:name=".ui.certification.TakePictureActivity"
-            android:theme="@style/Theme.AppCompat.DayNight" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.certification.CertificationInputActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
     </application>
-
 </manifest>

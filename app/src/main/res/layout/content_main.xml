@@ -14,6 +14,8 @@
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:background="@color/white"
+        app:labelVisibilityMode="labeled"
         android:id="@+id/menu_bottom_navi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
