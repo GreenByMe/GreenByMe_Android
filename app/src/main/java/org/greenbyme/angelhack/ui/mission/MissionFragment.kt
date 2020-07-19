@@ -13,7 +13,6 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.MainActivity
-import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -71,6 +70,7 @@ class MissionFragment : Fragment(), TagOnClickListener {
             }
             return "NONE"
         }
+
         fun getCategoryStringKOR(category: String?): String {
             when (category) {
                 "ENERGY" -> return "에너지"
@@ -82,11 +82,11 @@ class MissionFragment : Fragment(), TagOnClickListener {
             return "전체"
         }
 
-        fun getDateString(day : Int):String{
-            when(day){
-                0->return "DAY"
-                1->return "WEEK"
-                2->return "MONTH"
+        fun getDateString(day: Int): String {
+            when (day) {
+                0 -> return "DAY"
+                1 -> return "WEEK"
+                2 -> return "MONTH"
             }
             return "DAY"
         }

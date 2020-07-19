@@ -1,7 +1,6 @@
 package org.greenbyme.angelhack.ui.mission
 
 import android.content.Intent
-import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
@@ -43,8 +42,8 @@ class MissionRecommendAdapter(private val list: List<MainMissionDAO.Content>) :
         return Holder(view).apply {
             itemView.setOnClickListener {
                 val intent = Intent(parent.context, MissionDetailActivity::class.java)
-                intent.putExtra("mission_id",list[adapterPosition].id)
-                startActivity(parent.context,intent,null)
+                intent.putExtra("mission_id", list[adapterPosition].id)
+                startActivity(parent.context, intent, null)
             }
         }
     }
@@ -67,7 +66,7 @@ class MissionRecommendAdapter(private val list: List<MainMissionDAO.Content>) :
             missionRecommendContents.text = Html.fromHtml(item.subject)
             missionRecommendDiscription.text = Html.fromHtml(item.description)
             missionRecommendDate.text = Utils.formatTimeMonthDay(item.startDate)
-            missionRecommendUserCount.text="${item.passCandidates}명 완료"
+            missionRecommendUserCount.text = "${item.passCandidates}명 완료"
 
         }
     }

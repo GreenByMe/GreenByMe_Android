@@ -117,7 +117,7 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
     private fun setMissionList(response: MainMissionDAO?) {
 
         rv_mission_select?.apply {
-            adapter = MissionRecommendDateAdapter(response!!.content,this@MissionSelectFragment)
+            adapter = MissionRecommendDateAdapter(response!!.content, this@MissionSelectFragment)
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
             clipToPadding = false
             clipChildren = false
@@ -150,9 +150,9 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
             }
     }
 
-    override fun onMoreClick(mission_id : Int) {
+    override fun onMoreClick(mission_id: Int) {
         val intent = Intent(context, MissionDetailActivity::class.java)
-        intent.putExtra("mission_id",mission_id)
+        intent.putExtra("mission_id", mission_id)
         startActivity(intent)
     }
 }

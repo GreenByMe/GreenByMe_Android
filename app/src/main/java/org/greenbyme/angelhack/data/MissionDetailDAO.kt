@@ -8,7 +8,7 @@ data class MissionDetailDAO(
     val expectCo2: Double,
     val expectTree: Double,
     val id: Int,
-    val pictureUrl:String,
+    val pictureUrl: String,
     val missionCertificationMethod: MissionCertificationMethod,
     val passCandidatesCount: Int,
     val progressByMissionId: Int,

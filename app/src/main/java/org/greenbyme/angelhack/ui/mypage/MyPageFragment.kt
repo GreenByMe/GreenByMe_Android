@@ -49,10 +49,6 @@ class MyPageFragment : Fragment(), TagOnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_mypage_edit_btn.setOnClickListener {
-            val intent = Intent(context, CertificationCompleteActivity::class.java)
-            activity?.startActivity(intent)
-        }
 
         rv_mypage_tag_list.apply {
             adapter = MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MyPageFragment)
@@ -92,6 +88,13 @@ class MyPageFragment : Fragment(), TagOnClickListener {
     private fun setProfile(user: MyPageDAO) {
         Picasso.get().load(user.pictureUrl).into(img_maypage_profile)
         tv_mypage_edit_btn.text = "${user.nickName}님의 활동 >"
+
+        tv_mypage_edit_btn.setOnClickListener {
+            val intent = Intent(context, CertificationCompleteActivity::class.java)
+            intent.putExtra("nickname", user.nickName)
+            intent.putExtra("profile", user.pictureUrl)
+            activity?.startActivity(intent)
+        }
 
     }
 
