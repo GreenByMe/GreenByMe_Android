@@ -11,19 +11,24 @@ import org.greenbyme.angelhack.data.MissionTagDAO
 
 class MissionTagAdapter(
     private val list: ArrayList<MissionTagDAO>,
-    val tagListener: TagOnClickListener
+    val tagListener: TagOnClickListener,
+    val setCircle: Boolean = false
 ) :
     RecyclerView.Adapter<MissionTagAdapter.Holder>() {
+    var fontColor = R.color.tag_color
 
     companion object {
-        fun makeDummy(): ArrayList<MissionTagDAO> {
+        var prePosition: Int = 5
+        fun makeDummy(category: Int=5): ArrayList<MissionTagDAO> {
             val dummy = ArrayList<MissionTagDAO>()
-            dummy.add(MissionTagDAO())
-            dummy.add(MissionTagDAO())
-            dummy.add(MissionTagDAO())
-            dummy.add(MissionTagDAO())
-            dummy.add(MissionTagDAO())
-            dummy.add(MissionTagDAO())
+            dummy.add(MissionTagDAO(missionTagCategory = 0, missionTagName = "전체"))
+            dummy.add(MissionTagDAO(missionTagCategory = 1, missionTagName = "에너지"))
+            dummy.add(MissionTagDAO(missionTagCategory = 2, missionTagName = "일회용"))
+            dummy.add(MissionTagDAO(missionTagCategory = 3, missionTagName = "교통"))
+            dummy.add(MissionTagDAO(missionTagCategory = 4, missionTagName = "수자원"))
+            dummy.add(MissionTagDAO(missionTagCategory = 5, missionTagName = "캠페인"))
+            dummy[category].isSelected=true
+            prePosition=category
             return dummy
         }
     }
@@ -32,16 +37,29 @@ class MissionTagAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_mission_tag, parent, false)
+            if (setCircle) {
+                fontColor = R.color.white
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_mission_tag_circle, parent, false)
+            } else {
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_mission_tag, parent, false)
+            }
         with(Holder(view)) {
             itemView.setOnClickListener {
-                tagListener.onClickTag()
-                list[adapterPosition].isSelected = !list[adapterPosition].isSelected
-                if (list[position].isSelected) {
+                if (prePosition != adapterPosition) {
+                    tagListener.onClickTag(adapterPosition)
+                    list[prePosition].isSelected = false
+                    list[adapterPosition].isSelected = true
+                }
+
+                if (list[adapterPosition].isSelected) {
                     missionTag.setTextColor(itemView.resources.getColor(R.color.colorPrimary))
                 } else {
-                    missionTag.setTextColor(itemView.resources.getColor(R.color.tag_color))
+                    missionTag.setTextColor(itemView.resources.getColor(fontColor))
                 }
+                prePosition = adapterPosition
+                notifyDataSetChanged()
             }
             return this
         }
@@ -53,7 +71,7 @@ class MissionTagAdapter(
             if (list[position].isSelected) {
                 setTextColor(resources.getColor(R.color.colorPrimary))
             } else {
-                setTextColor(resources.getColor(R.color.tag_color))
+                setTextColor(resources.getColor(fontColor))
             }
             text = "#" + list[position].missionTagName
         }

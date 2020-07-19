@@ -8,9 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiService {
 
-    private val BASE_URL = "http://ec2-15-165-113-25.ap-northeast-2.compute.amazonaws.com:8080"
+    private val BASE_URL = "http://ec2-13-58-104-154.us-east-2.compute.amazonaws.com:8080/"
 
-    private val homeUserApi: HomeUserApi by lazy {
+    val init by lazy {
 
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
@@ -25,10 +25,12 @@ class ApiService {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
-        return@lazy retrofit.create(HomeUserApi::class.java)
+        service=retrofit.create(HomeUserApi::class.java)
+        networkMission=retrofit.create(MissionAPI::class.java)
     }
 
     companion object {
-        val service = ApiService().homeUserApi
+        lateinit var service: HomeUserApi
+        lateinit var networkMission: MissionAPI
     }
 }

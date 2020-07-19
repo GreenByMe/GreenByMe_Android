@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_mission_recommend_date.view.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.data.MainMissionDTO
 import org.greenbyme.angelhack.data.MissionDAO
 
-class MissionRecommendDateAdapter(private val list: ArrayList<MissionDAO>) :
+class MissionRecommendDateAdapter(private val list: List<MainMissionDTO.Content>) :
     RecyclerView.Adapter<MissionRecommendDateAdapter.Holder>() {
 
     companion object {
@@ -32,8 +33,8 @@ class MissionRecommendDateAdapter(private val list: ArrayList<MissionDAO>) :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.missionRecommendContents.text = list[position].missionContents
-        holder.missionRecommendDiscription.text = list[position].missionDescription
+        holder.missionRecommendContents.text = list[position].subject
+        holder.missionRecommendDiscription.text = list[position].description
 
     }
 

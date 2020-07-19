@@ -1,16 +1,20 @@
 package org.greenbyme.angelhack.ui.mission
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_mission_recommend.view.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.data.MainMissionDTO
 import org.greenbyme.angelhack.data.MissionDAO
+import org.greenbyme.angelhack.utils.Utils
 
-class MissionRecommendAdapter(private val list: ArrayList<MissionDAO>) :
+class MissionRecommendAdapter(private val list: List<MainMissionDTO.Content>) :
     RecyclerView.Adapter<MissionRecommendAdapter.Holder>() {
 
     companion object {
@@ -44,11 +48,14 @@ class MissionRecommendAdapter(private val list: ArrayList<MissionDAO>) :
         private val missionRecommendContents: TextView = view.tv_mission_recommend_contents
         private val missionRecommendDiscription: TextView = view.tv_mission_recommend_description
         private val missionRecommendBackgound: ImageView = view.img_mission_recommend_bg
+        private val missionRecommendDate: TextView = view.tv_mission_recommend_date
 
-        fun bind(item: MissionDAO) {
-            missionRecommendContents.text = item.missionContents
-            missionRecommendDiscription.text = item.missionDescription
-            missionRecommendBackgound.setBackgroundColor(15)
+
+        fun bind(item: MainMissionDTO.Content) {
+            missionRecommendContents.text = Html.fromHtml(item.subject)
+            missionRecommendDiscription.text = Html.fromHtml(item.description)
+            missionRecommendDate.text=Utils.formatTimeMonthDay(item.startDate)
+
         }
     }
 }

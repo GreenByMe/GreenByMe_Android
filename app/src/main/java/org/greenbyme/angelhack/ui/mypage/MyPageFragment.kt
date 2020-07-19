@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.certification.CertificationCompleteActivity
@@ -34,7 +33,7 @@ class MyPageFragment : Fragment(), TagOnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         tv_mypage_edit_btn.setOnClickListener {
-            val intent = Intent(context,CertificationCompleteActivity::class.java)
+            val intent = Intent(context, CertificationCompleteActivity::class.java)
             activity?.startActivity(intent)
         }
 
@@ -57,14 +56,14 @@ class MyPageFragment : Fragment(), TagOnClickListener {
                             CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
                             CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
                             CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png")
-                        )
+                        ), false
                     )
                 )
             }
-            val mHomeAdapter =HomeAdapter()
+            val mHomeAdapter = HomeAdapter()
             mHomeAdapter.setItems(mData)
-            adapter= mHomeAdapter
-            layoutManager= LinearLayoutManager(this.context)
+            adapter = mHomeAdapter
+            layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
         }
     }
 
@@ -76,7 +75,7 @@ class MyPageFragment : Fragment(), TagOnClickListener {
             }
     }
 
-    override fun onClickTag() {
+    override fun onClickTag(category: Int) {
 
     }
 }

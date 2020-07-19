@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_mission_progress_bg"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tv_mission_progress_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img_mission_progress_bg"
+            android:layout_margin="8dp"
+            android:background="@drawable/bg_round_button_gray"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="7/13"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:padding="8dp"
+            android:id="@+id/tv_mission_progress_user_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img_mission_progress_bg"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@+id/tv_mission_progress_day"
+            android:background="@drawable/bg_round_button_gray"
+            android:gravity="center"
+            android:text="300명 도전중"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/img_mission_progress_bg"
+            android:id="@+id/tv_mission_progress_contents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="한달동안 텀블러 들고다니기"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:textStyle="bold"
+            android:layout_margin="16dp"
+            android:layout_below="@id/tv_mission_progress_contents"
+            android:id="@+id/tv_mission_progress_percents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30%"
+            android:textSize="24dp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <ProgressBar
+            android:id="@+id/pb_mission_progress_complete"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_mission_progress_contents"
+            android:layout_alignTop="@id/tv_mission_progress_percents"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@id/tv_mission_progress_percents"
+            android:progress="10"
+            android:progressTint="@color/colorPrimaryDark" />
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_margin="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/pb_mission_progress_complete"
+            android:id="@+id/tv_mission_progress_percents_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13/31"/>
+    </RelativeLayout>
+</FrameLayout>
