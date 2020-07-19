@@ -13,7 +13,10 @@ import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDAO
 import org.greenbyme.angelhack.utils.Utils
 
-class MissionRecommendDateAdapter(private val list: List<MainMissionDAO.Content>,val onClickListener: OnMoreClickListener) :
+class MissionRecommendDateAdapter(
+    private val list: List<MainMissionDAO.Content>,
+    val onClickListener: OnMoreClickListener
+) :
     RecyclerView.Adapter<MissionRecommendDateAdapter.Holder>() {
 
     companion object {
@@ -60,7 +63,9 @@ class MissionRecommendDateAdapter(private val list: List<MainMissionDAO.Content>
             missionRecommendContents.text = item.subject
             missionRecommendDiscription.text = item.description
             missionRecommendDate.text =
-                "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(item.endDate)}"
+                "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(
+                    item.endDate
+                )}"
             missionRecommendCategory.text =
                 "#${MissionFragment.getCategoryStringKOR(item.category)}"
             missionRecommendComplete.text = "${item.passCandidates}명 완료"
@@ -69,6 +74,6 @@ class MissionRecommendDateAdapter(private val list: List<MainMissionDAO.Content>
     }
 
     interface OnMoreClickListener {
-        fun onMoreClick(mission_id : Int)
+        fun onMoreClick(mission_id: Int)
     }
 }

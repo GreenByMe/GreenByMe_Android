@@ -3,7 +3,6 @@ package org.greenbyme.angelhack.network
 import com.google.gson.JsonObject
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MyPageDAO
-import org.greenbyme.angelhack.data.User
 import org.greenbyme.angelhack.data.UserLoginDAO
 import retrofit2.Call
 import retrofit2.http.Body

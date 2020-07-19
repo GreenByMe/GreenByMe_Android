@@ -26,8 +26,8 @@ class LoginActivity : AppCompatActivity() {
             val id = et_login_id.text.toString()
             val pw = et_login_pw.text.toString()
             val json = JsonObject()
-            json.addProperty("email",id)
-            json.addProperty("password",pw)
+            json.addProperty("email", id)
+            json.addProperty("password", pw)
             login(json)
         }
 
@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         response.enqueue(object : Callback<UserLoginDAO> {
             override fun onFailure(call: Call<UserLoginDAO>, t: Throwable) {
                 Log.e("ACT_LOGIN", t.toString())
-                Toast.makeText(applicationContext,"인터넷 연결 상태를 확인해 주세요.",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "인터넷 연결 상태를 확인해 주세요.", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(
@@ -47,12 +47,12 @@ class LoginActivity : AppCompatActivity() {
                 response: Response<UserLoginDAO>
             ) {
                 if (response.isSuccessful) {
-                    val intent = Intent(this@LoginActivity,MainActivity::class.java)
-                    intent.putExtra("id",response.body()!!.id)
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.putExtra("id", response.body()!!.id)
                     startActivity(intent)
                     finish()
-                }else{
-                    Toast.makeText(applicationContext,"ID, PW를 확인해주세요",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(applicationContext, "ID, PW를 확인해주세요", Toast.LENGTH_SHORT).show()
                 }
             }
         })

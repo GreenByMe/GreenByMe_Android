@@ -5,7 +5,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.content_main.*
 import org.greenbyme.angelhack.R
@@ -17,13 +16,13 @@ import org.greenbyme.angelhack.ui.mypage.MyPageFragment
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     var backTime = System.currentTimeMillis()
     override fun onBackPressed() {
-        if(supportFragmentManager.backStackEntryCount==0){
-            if(System.currentTimeMillis()-backTime<2000){
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            if (System.currentTimeMillis() - backTime < 2000) {
                 onBackPressed()
-                Toast.makeText(this, "종료하시려면 다시한번 눌러주세요.",Toast.LENGTH_SHORT).show()
-                backTime=System.currentTimeMillis()
+                Toast.makeText(this, "종료하시려면 다시한번 눌러주세요.", Toast.LENGTH_SHORT).show()
+                backTime = System.currentTimeMillis()
             }
-        }else {
+        } else {
             supportFragmentManager.popBackStack()
         }
     }
@@ -67,7 +66,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             .replace(R.id.frame_main_frag, frag)
             .commit()
     }
-    companion object{
+
+    companion object {
         var id: Int = 0
     }
 }
