@@ -50,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this@LoginActivity,MainActivity::class.java)
                     intent.putExtra("id",response.body()!!.id)
                     startActivity(intent)
+                    finish()
                 }else{
                     Toast.makeText(applicationContext,"ID, PW를 확인해주세요",Toast.LENGTH_SHORT).show()
                 }

@@ -11,7 +11,7 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 
-private const val ARG_PARAM1 = "tag"
+private const val ARG_PARAM1 = "user_pick"
 
 class MissionUserFickFragment : Fragment(), TagOnClickListener {
     private var param1: String? = null
@@ -51,6 +51,7 @@ class MissionUserFickFragment : Fragment(), TagOnClickListener {
             MissionUserFickFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
+
                 }
             }
     }

@@ -20,9 +20,9 @@
             android:id="@+id/tv_mission_recommend_day_count"
             android:layout_width="60dp"
             android:layout_height="24dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/orange"
             android:gravity="center"
-            android:text="D-DAY"
+            android:text="NEW!"
             android:textColor="@color/white"
             android:textSize="16sp" />
 

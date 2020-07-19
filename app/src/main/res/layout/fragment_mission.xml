@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:text="특별 캠페인"
+                    android:text="기업과 함께하는 캠페인"
                     android:textColor="@color/black"
                     android:textSize="22dp" />
             </RelativeLayout>
@@ -72,16 +72,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_mission_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="16dp"
-                android:text="더많은 미션보기 >"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

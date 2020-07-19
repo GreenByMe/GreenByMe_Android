@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
     android:background="@color/white"
-    android:padding="16dp">
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/tv_mission_detail_certification_title"

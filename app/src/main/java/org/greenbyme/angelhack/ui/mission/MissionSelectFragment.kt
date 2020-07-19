@@ -1,5 +1,6 @@
 package org.greenbyme.angelhack.ui.mission
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,13 +16,18 @@ import kotlinx.android.synthetic.main.fragment_mission_select.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
+import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val ARG_PARAM1 = "tag"
+private const val ARG_PARAM1 = "mission_select"
 
-class MissionSelectFragment : Fragment(), TagOnClickListener, AdapterView.OnItemSelectedListener {
+class MissionSelectFragment : Fragment(), TagOnClickListener,
+    MissionRecommendDateAdapter.OnMoreClickListener,
+    AdapterView.OnItemSelectedListener {
     private var category: Int? = null
     private var currentDate = "DAY"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,12 +51,19 @@ class MissionSelectFragment : Fragment(), TagOnClickListener, AdapterView.OnItem
     private fun View.init() {
         rv_mission_select_tag_list.apply {
             adapter =
-                MissionTagAdapter(MissionTagAdapter.makeDummy(category!!), this@MissionSelectFragment)
+                MissionTagAdapter(
+                    MissionTagAdapter.makeDummy(category!!),
+                    this@MissionSelectFragment
+                )
             layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
         getCategoryByList(category!!)
         sp_mission_select_date.onItemSelectedListener = this@MissionSelectFragment
+
+        tv_mission_select_more.setOnClickListener {
+            (activity as MainActivity).addFragment(MissionUserFickFragment.newInstance(""))
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -102,14 +115,15 @@ class MissionSelectFragment : Fragment(), TagOnClickListener, AdapterView.OnItem
     }
 
     private fun setMissionList(response: MainMissionDAO?) {
-        rv_mission_select.apply {
-            adapter = MissionRecommendDateAdapter(response!!.content)
+
+        rv_mission_select?.apply {
+            adapter = MissionRecommendDateAdapter(response!!.content,this@MissionSelectFragment)
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
             clipToPadding = false
             clipChildren = false
             setPageTransformer(MarginPageTransformer(32))
             offscreenPageLimit = 6
-            setPadding(200, 0, 200, 0)
+            setPadding(160, 0, 160, 0)
         }
     }
 
@@ -134,5 +148,11 @@ class MissionSelectFragment : Fragment(), TagOnClickListener, AdapterView.OnItem
                     putInt(ARG_PARAM1, category)
                 }
             }
+    }
+
+    override fun onMoreClick(mission_id : Int) {
+        val intent = Intent(context, MissionDetailActivity::class.java)
+        intent.putExtra("mission_id",mission_id)
+        startActivity(intent)
     }
 }

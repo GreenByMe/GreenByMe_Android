@@ -18,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val ARG_PARAM1 = "tag"
+private const val ARG_PARAM1 = "mission"
 
 class MissionFragment : Fragment(), TagOnClickListener {
     private var param1: Int? = 0
@@ -49,9 +49,7 @@ class MissionFragment : Fragment(), TagOnClickListener {
         }
 
         getMissionList()
-        tv_mission_more.setOnClickListener {
-            (activity as MainActivity).setFragment(MissionUserFickFragment.newInstance(""))
-        }
+
     }
 
     companion object {
@@ -73,6 +71,16 @@ class MissionFragment : Fragment(), TagOnClickListener {
             }
             return "NONE"
         }
+        fun getCategoryStringKOR(category: String?): String {
+            when (category) {
+                "ENERGY" -> return "에너지"
+                "DISPOSABLE" -> return "일회용품"
+                "TRAFFIC" -> return "교통"
+                "WATERWORKS" -> return "수자원"
+                "CAMPAIGN" -> return "캠페인"
+            }
+            return "전체"
+        }
 
         fun getDateString(day : Int):String{
             when(day){
@@ -86,7 +94,7 @@ class MissionFragment : Fragment(), TagOnClickListener {
 
     fun getMissionList() {
         val response: Call<MainMissionDAO> =
-            ApiService.networkMission.getMissionResponse()
+            ApiService.networkMission.getAllMissionResponse()
         response.enqueue(object : Callback<MainMissionDAO> {
             override fun onFailure(call: Call<MainMissionDAO>, t: Throwable) {
                 Log.e("FRAG_MISSION", t.toString())
@@ -97,7 +105,7 @@ class MissionFragment : Fragment(), TagOnClickListener {
                 response: Response<MainMissionDAO>
             ) {
                 if (response.isSuccessful) {
-                    rv_mission_recommend.apply {
+                    rv_mission_recommend?.apply {
                         adapter = MissionRecommendAdapter(response.body()!!.content)
                         layoutManager = LinearLayoutManager(context)
                     }
