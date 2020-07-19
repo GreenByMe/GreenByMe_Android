@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_mission.*
 import kotlinx.android.synthetic.main.fragment_mission.view.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MainMissionDTO
+import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
@@ -18,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val ARG_PARAM1 = "tag"
+private const val ARG_PARAM1 = "mission"
 
 class MissionFragment : Fragment(), TagOnClickListener {
     private var param1: Int? = 0
@@ -49,9 +49,7 @@ class MissionFragment : Fragment(), TagOnClickListener {
         }
 
         getMissionList()
-        tv_mission_more.setOnClickListener {
-            (activity as MainActivity).setFragment(MissionUserFickFragment.newInstance(""))
-        }
+
     }
 
     companion object {
@@ -73,22 +71,41 @@ class MissionFragment : Fragment(), TagOnClickListener {
             }
             return "NONE"
         }
+        fun getCategoryStringKOR(category: String?): String {
+            when (category) {
+                "ENERGY" -> return "에너지"
+                "DISPOSABLE" -> return "일회용품"
+                "TRAFFIC" -> return "교통"
+                "WATERWORKS" -> return "수자원"
+                "CAMPAIGN" -> return "캠페인"
+            }
+            return "전체"
+        }
+
+        fun getDateString(day : Int):String{
+            when(day){
+                0->return "DAY"
+                1->return "WEEK"
+                2->return "MONTH"
+            }
+            return "DAY"
+        }
     }
 
     fun getMissionList() {
-        val response: Call<MainMissionDTO> =
-            ApiService.networkMission.getMissionResponse()
-        response.enqueue(object : Callback<MainMissionDTO> {
-            override fun onFailure(call: Call<MainMissionDTO>, t: Throwable) {
+        val response: Call<MainMissionDAO> =
+            ApiService.networkMission.getAllMissionResponse()
+        response.enqueue(object : Callback<MainMissionDAO> {
+            override fun onFailure(call: Call<MainMissionDAO>, t: Throwable) {
                 Log.e("FRAG_MISSION", t.toString())
             }
 
             override fun onResponse(
-                call: Call<MainMissionDTO>,
-                response: Response<MainMissionDTO>
+                call: Call<MainMissionDAO>,
+                response: Response<MainMissionDAO>
             ) {
                 if (response.isSuccessful) {
-                    rv_mission_recommend.apply {
+                    rv_mission_recommend?.apply {
                         adapter = MissionRecommendAdapter(response.body()!!.content)
                         layoutManager = LinearLayoutManager(context)
                     }
@@ -98,6 +115,6 @@ class MissionFragment : Fragment(), TagOnClickListener {
     }
 
     override fun onClickTag(category: Int) {
-        (activity as MainActivity).setFragment(MissionSelectFragment.newInstance(category))
+        (activity as MainActivity).addFragment(MissionSelectFragment.newInstance(category))
     }
 }

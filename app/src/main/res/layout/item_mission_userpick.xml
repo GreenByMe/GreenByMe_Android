@@ -1,51 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="16dp">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
+                android:src="@color/colorPrimary"
                 android:id="@+id/img_mission_userpick_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="88dp"
+                android:layout_height="88dp" />
 
             <TextView
+                android:layout_marginLeft="16dp"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:id="@+id/tv_mission_userpick_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/img_mission_userpick_icon"
-                android:text="title" />
+                android:text="텀블러 사용하기" />
 
             <TextView
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
                 android:textSize="14sp"
-                android:textColor="@color/black"
-                android:id="@+id/tv_mission_userpick_contents"
+                android:textColor="@color/divider_bg"
+                android:id="@+id/tv_mission_userpick_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_mission_userpick_title"
                 android:layout_toRightOf="@id/img_mission_userpick_icon"
-                android:text="contents" />
+                android:text="#태그" />
 
-            <Button
-                android:id="@+id/bt_mission_userpick_add"
+            <TextView
+                android:id="@+id/tv_mission_userpick_date"
+                android:textColor="@color/colorPrimary"
+                android:text="일주일"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@id/img_mission_userpick_icon"
+                android:layout_below="@id/tv_mission_userpick_category"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="참여하기" />
+                android:layout_height="wrap_content" />
 
+            <View
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/tv_mission_userpick_date"
+                android:layout_alignTop="@id/tv_mission_userpick_date"
+                android:layout_alignBottom="@+id/tv_mission_userpick_date"
+                android:background="@color/colorPrimary"
+                android:layout_width="0.2dp"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@id/tv_mission_userpick_date"
+                android:layout_alignTop="@id/tv_mission_userpick_date"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tv_mission_userpick_complete"
+                android:text="0명 완료"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

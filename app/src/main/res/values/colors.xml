@@ -14,6 +14,9 @@
 
     <color name="tag_color">#888888</color>
     <color name="tag_bg">#F4F4F4</color>
-    <color name="whiteGray">#E5E5E5</color>
+    <color name="whiteGray">#F4F4F4</color>
     <color name="tran_gray">#776A6A6A</color>
+    <color name="tran_black">#77000000</color>
+    <color name="orange">#FE9776</color>
+
 </resources>

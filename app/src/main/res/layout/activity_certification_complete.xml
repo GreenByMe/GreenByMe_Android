@@ -42,7 +42,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_complete_contents"
         android:id="@+id/img_complete_facebook"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -52,7 +52,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_complete_contents"
         android:id="@+id/img_complete_twitter"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/twitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -63,7 +63,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_complete_contents"
         android:id="@+id/img_complete_instagram"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

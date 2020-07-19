@@ -3,14 +3,17 @@ package org.greenbyme.angelhack.ui.mission
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_mission_recommend_date.view.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MainMissionDTO
+import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDAO
+import org.greenbyme.angelhack.utils.Utils
 
-class MissionRecommendDateAdapter(private val list: List<MainMissionDTO.Content>) :
+class MissionRecommendDateAdapter(private val list: List<MainMissionDAO.Content>,val onClickListener: OnMoreClickListener) :
     RecyclerView.Adapter<MissionRecommendDateAdapter.Holder>() {
 
     companion object {
@@ -29,18 +32,43 @@ class MissionRecommendDateAdapter(private val list: List<MainMissionDTO.Content>
         val view =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_mission_recommend_date, parent, false)
-        return Holder(view)
+        return Holder(view).apply {
+            missionRecommendMore.setOnClickListener {
+                onClickListener.onMoreClick(list[adapterPosition].id)
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.missionRecommendContents.text = list[position].subject
-        holder.missionRecommendDiscription.text = list[position].description
+        holder.bind(list[position])
 
     }
 
+
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         val missionRecommendContents: TextView = view.tv_mission_recommend_date_contents
-        val missionRecommendDiscription: TextView = view.tv_mission_recommend_date_description
-        val missionRecommendTitle: TextView = view.tv_mission_recommend_date
+        val missionRecommendDiscription: TextView = view.tv_mission_recommend_date_complete
+        val missionRecommendDate: TextView = view.tv_mission_recommend_date
+        val missionRecommendCategory: TextView = view.tv_mission_recommend_category
+        val missionRecommendComplete: TextView = view.tv_mission_recommend_date_complete
+        val missionRecommendMore: TextView = view.bt_mission_recommend_date_yes
+        val missionRecommendBackgorund: ImageView = view.img_mission_recommend_bg
+
+        fun bind(
+            item: MainMissionDAO.Content
+        ) {
+            missionRecommendContents.text = item.subject
+            missionRecommendDiscription.text = item.description
+            missionRecommendDate.text =
+                "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(item.endDate)}"
+            missionRecommendCategory.text =
+                "#${MissionFragment.getCategoryStringKOR(item.category)}"
+            missionRecommendComplete.text = "${item.passCandidates}명 완료"
+            Picasso.get().load(item.pictureUrl).into(missionRecommendBackgorund)
+        }
+    }
+
+    interface OnMoreClickListener {
+        fun onMoreClick(mission_id : Int)
     }
 }

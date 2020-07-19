@@ -1,6 +1,6 @@
 package org.greenbyme.angelhack.data
 
-data class MainMissionDTO(
+data class MainMissionDAO(
     val content: List<Content>,
     val empty: Boolean,
     val first: Boolean,
@@ -19,6 +19,8 @@ data class MainMissionDTO(
         val description: String,
         val endDate: String,
         val id: Int,
+        val passCandidates: Int,
+        val pictureUrl: String,
         val startDate: String,
         val subject: String
     )
