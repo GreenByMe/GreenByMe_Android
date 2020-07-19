@@ -1,11 +1,7 @@
 package org.greenbyme.angelhack.ui.certification
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_certification_complete.*
 import org.greenbyme.angelhack.R
 
@@ -26,7 +22,7 @@ class CertificationCompleteActivity : AppCompatActivity() {
 
         }
 
-        tv_complete_back.setOnClickListener{
+        tv_complete_back.setOnClickListener {
             finish()
         }
     }

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_mission_recommend.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDTO
@@ -54,7 +53,7 @@ class MissionRecommendAdapter(private val list: List<MainMissionDTO.Content>) :
         fun bind(item: MainMissionDTO.Content) {
             missionRecommendContents.text = Html.fromHtml(item.subject)
             missionRecommendDiscription.text = Html.fromHtml(item.description)
-            missionRecommendDate.text=Utils.formatTimeMonthDay(item.startDate)
+            missionRecommendDate.text = Utils.formatTimeMonthDay(item.startDate)
 
         }
     }

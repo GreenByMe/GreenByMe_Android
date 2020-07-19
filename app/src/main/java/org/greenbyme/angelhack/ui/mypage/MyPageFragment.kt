@@ -63,7 +63,7 @@ class MyPageFragment : Fragment(), TagOnClickListener {
             val mHomeAdapter = HomeAdapter()
             mHomeAdapter.setItems(mData)
             adapter = mHomeAdapter
-            layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
+            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         }
     }
 

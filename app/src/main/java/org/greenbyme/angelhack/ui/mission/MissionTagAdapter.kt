@@ -19,7 +19,7 @@ class MissionTagAdapter(
 
     companion object {
         var prePosition: Int = 5
-        fun makeDummy(category: Int=5): ArrayList<MissionTagDAO> {
+        fun makeDummy(category: Int = 5): ArrayList<MissionTagDAO> {
             val dummy = ArrayList<MissionTagDAO>()
             dummy.add(MissionTagDAO(missionTagCategory = 0, missionTagName = "전체"))
             dummy.add(MissionTagDAO(missionTagCategory = 1, missionTagName = "에너지"))
@@ -27,8 +27,8 @@ class MissionTagAdapter(
             dummy.add(MissionTagDAO(missionTagCategory = 3, missionTagName = "교통"))
             dummy.add(MissionTagDAO(missionTagCategory = 4, missionTagName = "수자원"))
             dummy.add(MissionTagDAO(missionTagCategory = 5, missionTagName = "캠페인"))
-            dummy[category].isSelected=true
-            prePosition=category
+            dummy[category].isSelected = true
+            prePosition = category
             return dummy
         }
     }

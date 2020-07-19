@@ -10,6 +10,6 @@ interface MissionAPI {
     //Available values : NONE, ENERGY, DISPOSABLE, TRAFFIC, WATERWORKS, CAMPAIGN
     @GET("/api/missions/categorys/{category}")
     fun getMissionResponse(
-        @Path("category") category: String="CAMPAIGN"
+        @Path("category") category: String = "CAMPAIGN"
     ): Call<MainMissionDTO>
 }

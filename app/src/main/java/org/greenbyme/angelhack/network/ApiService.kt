@@ -25,8 +25,8 @@ class ApiService {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
-        service=retrofit.create(HomeUserApi::class.java)
-        networkMission=retrofit.create(MissionAPI::class.java)
+        service = retrofit.create(HomeUserApi::class.java)
+        networkMission = retrofit.create(MissionAPI::class.java)
     }
 
     companion object {

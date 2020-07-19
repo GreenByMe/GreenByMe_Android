@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.menu_bottom_timeline -> {
             }
             R.id.menu_bottom_my -> {
-                setFragment(MyPageFragment.newInstance("missi",""))
+                setFragment(MyPageFragment.newInstance("missi", ""))
             }
         }
         return true

@@ -20,11 +20,12 @@ class CertificationViewHolder(view: View) : HomeViewHolder<CertificationList>(vi
     }
 
     override fun bind(data: CertificationList) {
-        if(data.isVisibleTitle){
-            itemView.tv_certification_title.visibility=View.VISIBLE
-        }else {
-            itemView.rv_home_certification_img.layoutManager = GridLayoutManager(itemView.context, 3, GridLayoutManager.VERTICAL, false)
-            itemView.tv_certification_title.visibility=View.GONE
+        if (data.isVisibleTitle) {
+            itemView.tv_certification_title.visibility = View.VISIBLE
+        } else {
+            itemView.rv_home_certification_img.layoutManager =
+                GridLayoutManager(itemView.context, 3, GridLayoutManager.VERTICAL, false)
+            itemView.tv_certification_title.visibility = View.GONE
         }
         mAdapter.setItems(data.certificationList)
     }

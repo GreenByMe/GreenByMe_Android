@@ -3,7 +3,6 @@ package org.greenbyme.angelhack.ui.mypage
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit_profile.*
-import kotlinx.android.synthetic.main.activity_main.*
 import org.greenbyme.angelhack.R
 
 class EditProfileActivity : AppCompatActivity() {
