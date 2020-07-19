@@ -6,8 +6,6 @@ Green by me, Green by earth(us)
 
 "내가 그린"은 미션 기반 참여를 통해 사용자의 지속 가능한 소비와 생산을 유도하는 공간을 제공합니다.
 
-<center>![image](https://user-images.githubusercontent.com/13096845/87873545-70869b00-c9fd-11ea-9132-4cf881ad549b.png){: width="50%" height="50%"}</center>
-
 ## 소개
 
 ---
