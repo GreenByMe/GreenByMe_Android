@@ -15,14 +15,14 @@ import org.greenbyme.angelhack.ui.mypage.MyPageFragment
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    var backTime = System.currentTimeMillis()
+    private var backTime: Long = 0
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 0) {
             if (System.currentTimeMillis() - backTime < 2000) {
-                onBackPressed()
-                Toast.makeText(this, "종료하시려면 다시한번 눌러주세요.", Toast.LENGTH_SHORT).show()
-                backTime = System.currentTimeMillis()
+                finish()
             }
+            Toast.makeText(this, "종료하시려면 다시한번 눌러주세요.", Toast.LENGTH_SHORT).show()
+            backTime = System.currentTimeMillis()
         } else {
             supportFragmentManager.popBackStack()
         }
@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
             R.id.menu_bottom_mission -> {
                 setFragment(MissionFragment.newInstance(0))
-//                setFragment(MissionDetailFragment.newInstance("", ""))
             }
             R.id.menu_bottom_certification -> {
                 setFragment(CertificationFragment())

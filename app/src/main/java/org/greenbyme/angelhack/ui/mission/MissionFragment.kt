@@ -46,9 +46,7 @@ class MissionFragment : Fragment(), TagOnClickListener {
             layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
-
         getMissionList()
-
     }
 
     companion object {
