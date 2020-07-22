@@ -54,11 +54,13 @@ class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
             }
 
             HomeItemViewType.CAMPAIGN_DETAIL_ITEM -> {
-                ProgressViewHolder(layoutInflater.inflate(
-                    R.layout.item_mission_progress,
-                    parent,
-                    false
-                ))
+                ProgressViewHolder(
+                    layoutInflater.inflate(
+                        R.layout.item_mission_progress,
+                        parent,
+                        false
+                    )
+                )
             }
 
             else -> {

@@ -4,7 +4,6 @@ package org.greenbyme.angelhack.ui.home.model
 import android.annotation.SuppressLint
 import com.google.gson.annotations.SerializedName
 import org.greenbyme.angelhack.extention.convert
-import java.text.SimpleDateFormat
 
 data class HomeModel(
     @SerializedName("expectedCO2")

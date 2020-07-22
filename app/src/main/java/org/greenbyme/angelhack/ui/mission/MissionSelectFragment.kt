@@ -35,6 +35,16 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
         }
     }
 
+    override fun onClickTag(category: Int) {
+        getCategoryByList(category)
+    }
+
+    override fun onMoreClick(mission_id: Int) {
+        val intent = Intent(context, MissionDetailActivity::class.java)
+        intent.putExtra("mission_id", mission_id)
+        startActivity(intent)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,23 +80,6 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
         getCategoryByList(category!!)
     }
 
-
-    fun getMissionList(category: Int) =
-        ApiService.networkMission
-            .getMissionResponse(MissionFragment.getCategoryString(category), currentDate)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::setMissionList)
-
-
-    fun getALLMissionList() =
-        ApiService.networkMission
-            .getMissionResponse()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::setMissionList)
-
-
     private fun setMissionList(response: MainMissionDAO?) {
 
         rv_mission_select?.apply {
@@ -107,10 +100,20 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
             getMissionList(category)
     }
 
-    override fun onClickTag(category: Int) {
-        getCategoryByList(category)
-    }
+    fun getMissionList(category: Int) =
+        ApiService.networkMission
+            .getMissionResponse(MissionFragment.getCategoryString(category), currentDate)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::setMissionList)
 
+
+    fun getALLMissionList() =
+        ApiService.networkMission
+            .getMissionResponse()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::setMissionList)
 
     companion object {
         @JvmStatic
@@ -123,9 +126,4 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
             }
     }
 
-    override fun onMoreClick(mission_id: Int) {
-        val intent = Intent(context, MissionDetailActivity::class.java)
-        intent.putExtra("mission_id", mission_id)
-        startActivity(intent)
-    }
 }

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.extention.convert
-import org.greenbyme.angelhack.ui.certification.model.CertificationItem
 import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
 class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -2,7 +2,6 @@ package org.greenbyme.angelhack.network
 
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MainMissionDAO
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
