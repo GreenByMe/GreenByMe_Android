@@ -2,6 +2,7 @@ package org.greenbyme.angelhack.network
 
 import com.google.gson.JsonObject
 import io.reactivex.Single
+import io.reactivex.disposables.Disposable
 import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.data.UserLoginDAO
 import retrofit2.Call
@@ -19,7 +20,7 @@ interface HomeUserApi {
     @POST("api/login/users")
     fun login(
         @Body body: JsonObject
-    ): Call<UserLoginDAO>
+    ): Single<UserLoginDAO>
 
     @GET("api/page/home/users/{id}")
     fun getUserHomeInfo(@Path("id") id: Int): Single<HomeModel>

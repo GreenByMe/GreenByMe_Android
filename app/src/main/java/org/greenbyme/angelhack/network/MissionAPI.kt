@@ -16,12 +16,11 @@ interface MissionAPI {
     fun getMissionResponse(
         @Path("category") category: String = "CAMPAIGN",
         @Path("dateCategory") dateCategory: String = "DAY"
-    ): Call<MainMissionDAO>
-
+    ): Single<MainMissionDAO>
 
     @GET("/api/missions")
     fun getAllMissionResponse(
-    ): Call<MainMissionDAO>
+    ): Single<MainMissionDAO>
 
     @GET("/api/missions/{mission_id}")
     fun getMissionDetailResponse(

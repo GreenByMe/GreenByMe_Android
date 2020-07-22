@@ -2,7 +2,6 @@ package org.greenbyme.angelhack.ui.mission
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_mission_select.*
 import kotlinx.android.synthetic.main.fragment_mission_select.view.*
 import org.greenbyme.angelhack.R
@@ -19,9 +20,6 @@ import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 private const val ARG_PARAM1 = "mission_select"
 
@@ -73,46 +71,21 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
     }
 
 
-    fun getMissionList(category: Int) {
-        val response: Call<MainMissionDAO> =
-            ApiService.networkMission.getMissionResponse(
-                MissionFragment.getCategoryString(category),
-                currentDate
-            )
-        response.enqueue(object : Callback<MainMissionDAO> {
-            override fun onFailure(call: Call<MainMissionDAO>, t: Throwable) {
-                Log.e("FRAG_MISSION", t.toString())
-            }
+    fun getMissionList(category: Int) =
+        ApiService.networkMission
+            .getMissionResponse(MissionFragment.getCategoryString(category), currentDate)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::setMissionList)
 
-            override fun onResponse(
-                call: Call<MainMissionDAO>,
-                response: Response<MainMissionDAO>
-            ) {
-                if (response.isSuccessful) {
-                    setMissionList(response.body())
-                }
-            }
-        })
-    }
 
-    fun getALLMissionList() {
-        val response: Call<MainMissionDAO> =
-            ApiService.networkMission.getMissionResponse()
-        response.enqueue(object : Callback<MainMissionDAO> {
-            override fun onFailure(call: Call<MainMissionDAO>, t: Throwable) {
-                Log.e("FRAG_MISSION", t.toString())
-            }
+    fun getALLMissionList() =
+        ApiService.networkMission
+            .getMissionResponse()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::setMissionList)
 
-            override fun onResponse(
-                call: Call<MainMissionDAO>,
-                response: Response<MainMissionDAO>
-            ) {
-                if (response.isSuccessful) {
-                    setMissionList(response.body())
-                }
-            }
-        })
-    }
 
     private fun setMissionList(response: MainMissionDAO?) {
 

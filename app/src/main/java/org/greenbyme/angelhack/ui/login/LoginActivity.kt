@@ -6,14 +6,12 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonObject
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.UserLoginDAO
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.MainActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
@@ -33,28 +31,20 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun login(json: JsonObject) {
-        val response: Call<UserLoginDAO> =
-            ApiService.service.login(json)
-        response.enqueue(object : Callback<UserLoginDAO> {
-            override fun onFailure(call: Call<UserLoginDAO>, t: Throwable) {
-                Log.e("ACT_LOGIN", t.toString())
-                Toast.makeText(applicationContext, "인터넷 연결 상태를 확인해 주세요.", Toast.LENGTH_SHORT).show()
-            }
+    fun login(json: JsonObject) =
+        ApiService.service.login(json)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ it ->
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.putExtra("id", it.id)
+                startActivity(intent)
+                finish()
+            }, this::toastMessage)
 
-            override fun onResponse(
-                call: Call<UserLoginDAO>,
-                response: Response<UserLoginDAO>
-            ) {
-                if (response.isSuccessful) {
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    intent.putExtra("id", response.body()!!.id)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(applicationContext, "ID, PW를 확인해주세요", Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
+
+    private fun toastMessage(t: Throwable) {
+        Log.e("ACT_LOGIN", t.toString())
+        Toast.makeText(applicationContext, "인터넷 연결 상태를 확인해 주세요.", Toast.LENGTH_SHORT).show()
     }
 }
