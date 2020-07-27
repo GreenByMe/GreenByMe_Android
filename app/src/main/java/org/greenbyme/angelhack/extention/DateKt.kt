@@ -2,7 +2,6 @@ package org.greenbyme.angelhack.extention
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
-import java.util.*
 
 @SuppressLint("SimpleDateFormat")
 fun String.convert(from: String, to: String): String {

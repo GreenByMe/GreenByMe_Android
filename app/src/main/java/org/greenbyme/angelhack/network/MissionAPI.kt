@@ -4,7 +4,6 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDetailDAO
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -16,12 +15,11 @@ interface MissionAPI {
     fun getMissionResponse(
         @Path("category") category: String = "CAMPAIGN",
         @Path("dateCategory") dateCategory: String = "DAY"
-    ): Call<MainMissionDAO>
-
+    ): Single<MainMissionDAO>
 
     @GET("/api/missions")
     fun getAllMissionResponse(
-    ): Call<MainMissionDAO>
+    ): Single<MainMissionDAO>
 
     @GET("/api/missions/{mission_id}")
     fun getMissionDetailResponse(

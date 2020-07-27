@@ -1,26 +1,28 @@
 package org.greenbyme.angelhack.ui.mission
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_mission.*
 import kotlinx.android.synthetic.main.fragment_mission.view.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.MainActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 private const val ARG_PARAM1 = "mission"
 
 class MissionFragment : Fragment(), TagOnClickListener {
     private var param1: Int? = 0
+
+    override fun onClickTag(category: Int) {
+        (activity as MainActivity).addFragment(MissionSelectFragment.newInstance(category))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +48,19 @@ class MissionFragment : Fragment(), TagOnClickListener {
             layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
-
         getMissionList()
-
     }
+
+    fun getMissionList(): Disposable =
+        ApiService.networkMission.getAllMissionResponse().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { it ->
+                rv_mission_recommend?.apply {
+                    adapter = MissionRecommendAdapter(it.content)
+                    layoutManager = LinearLayoutManager(context)
+                }
+
+            }
 
     companion object {
         @JvmStatic
@@ -90,31 +101,5 @@ class MissionFragment : Fragment(), TagOnClickListener {
             }
             return "DAY"
         }
-    }
-
-    fun getMissionList() {
-        val response: Call<MainMissionDAO> =
-            ApiService.networkMission.getAllMissionResponse()
-        response.enqueue(object : Callback<MainMissionDAO> {
-            override fun onFailure(call: Call<MainMissionDAO>, t: Throwable) {
-                Log.e("FRAG_MISSION", t.toString())
-            }
-
-            override fun onResponse(
-                call: Call<MainMissionDAO>,
-                response: Response<MainMissionDAO>
-            ) {
-                if (response.isSuccessful) {
-                    rv_mission_recommend?.apply {
-                        adapter = MissionRecommendAdapter(response.body()!!.content)
-                        layoutManager = LinearLayoutManager(context)
-                    }
-                }
-            }
-        })
-    }
-
-    override fun onClickTag(category: Int) {
-        (activity as MainActivity).addFragment(MissionSelectFragment.newInstance(category))
     }
 }

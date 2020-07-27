@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_mission_detail.*
 import kotlinx.android.synthetic.main.item_mission_detail_eco_point.*
@@ -24,16 +25,15 @@ class MissionDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_detail)
-        val mission_id = intent.getIntExtra("mission_id", -1)
-
-        val dis = ApiService.networkMission.getMissionDetailResponse(mission_id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::setMissionDetail)
+        val missionId = intent.getIntExtra("mission_id", -1)
+        if (missionId != -1) {
+            getMissionDetail(missionId)
+        } else {
+            Toast.makeText(applicationContext, "잘못된 접근입니다.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun setMissionDetail(item: MissionDetailDAO) {
-
         val missionDetailBackGround: ImageView = img_mission_detail_bg
         val missionDetailContents: TextView = tv_mission_recommend_date_contents
         val missionDetailDiscription: TextView = tv_mission_detail_description
@@ -57,16 +57,35 @@ class MissionDetailActivity : AppCompatActivity() {
         Picasso.get().load(item.pictureUrl).into(missionDetailBackGround)
 
         missionDetailYes.setOnClickListener {
-            ApiService.networkMission.PostJoinMissionResponse(MainActivity.id, item.id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { joinSucces() }
-
+            addMission(item)
         }
     }
+
 
     private fun joinSucces() {
         Toast.makeText(this, "미션에 참가하였습니다.", Toast.LENGTH_LONG).show()
         finish()
+    }
+
+
+    /*
+-------------------------------------------------
+비지니스
+-------------------------------------------------
+ */
+
+    private fun getMissionDetail(mission_id: Int): Disposable? {
+        return ApiService.networkMission.getMissionDetailResponse(mission_id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::setMissionDetail)
+    }
+
+
+    private fun addMission(item: MissionDetailDAO) {
+        ApiService.networkMission.PostJoinMissionResponse(MainActivity.id, item.id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { joinSucces() }
     }
 }

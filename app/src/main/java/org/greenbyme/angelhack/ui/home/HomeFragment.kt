@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.HomeItem
@@ -62,12 +63,12 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun loadData() {
-        ApiService.service.getUserHomeInfo(3)
+    private fun loadData() =
+        ApiService.service.getUserHomeInfo(MainActivity.id)
             .map {
                 listOf<HomeItem>(
                     User(
-                        3,
+                        MainActivity.id,
                         it.nickName,
                         it.treeSentence,
                         it.progressCampaign,
@@ -91,5 +92,5 @@ class HomeFragment : Fragment() {
             }, {
                 Log.e("TAG_SHOW_ERR", it.toString())
             })
-    }
+
 }

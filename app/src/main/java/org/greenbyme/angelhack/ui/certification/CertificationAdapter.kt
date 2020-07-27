@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.ui.certification.model.CertificationItem
 import org.greenbyme.angelhack.ui.certification.viewholder.CertificationViewHolder
 import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 

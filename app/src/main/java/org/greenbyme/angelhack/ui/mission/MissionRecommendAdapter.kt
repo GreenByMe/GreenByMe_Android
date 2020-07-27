@@ -52,13 +52,11 @@ class MissionRecommendAdapter(private val list: List<MainMissionDAO.Content>) :
         holder.bind(list[position])
     }
 
-
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         private val missionRecommendContents: TextView = view.tv_mission_recommend_contents
         private val missionRecommendDiscription: TextView = view.tv_mission_recommend_description
         private val missionRecommendBackgound: ImageView = view.img_mission_recommend_bg
         private val missionRecommendDate: TextView = view.tv_mission_recommend_date
-
         private val missionRecommendUserCount: TextView = view.tv_mission_recommend_user_count
 
         fun bind(item: MainMissionDAO.Content) {

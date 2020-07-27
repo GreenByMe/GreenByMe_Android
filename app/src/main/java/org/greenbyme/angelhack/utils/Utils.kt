@@ -39,7 +39,7 @@ class Utils {
             }
 
             Log.d("utils", "fuck")
-            return "funck"
+            return " "
         }
 
         fun formatTimeMonthDayDate(time: String): String {
@@ -53,28 +53,20 @@ class Utils {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-
             }
 
             Log.d("utils", "fuck")
-            return "funck"
+            return " "
         }
 
         fun shareInstagram(context: Context, view: View) {
-
             view.buildDrawingCache()
             val bitmap = view.drawingCache
-
-            val storage: String =
-                Environment.getExternalStorageDirectory().absolutePath
             val fileName = "green.png"
-            val folderName = ""
-            val fullPath = storage + folderName
-            val filePath: File
-            val realfile = File(Environment.getExternalStorageDirectory(), fileName)
+            val realFile = File(Environment.getExternalStorageDirectory(), fileName)
             try {
-                realfile.createNewFile()
-                val fos = FileOutputStream(realfile)
+                realFile.createNewFile()
+                val fos = FileOutputStream(realFile)
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
                 fos.flush()
                 fos.close()
@@ -88,7 +80,7 @@ class Utils {
             val uri: Uri = FileProvider.getUriForFile(
                 context,
                 "org.greenbyme.angelhack.fileprovider",
-                realfile
+                realFile
             )
 
             try {

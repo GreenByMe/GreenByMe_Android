@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiService {
 
-    private val BASE_URL = "http://ec2-13-58-104-154.us-east-2.compute.amazonaws.com:8080/"
+    private val BASE_URL = "http://cafecube.iptime.org:10080/"
 
     val init by lazy {
 
