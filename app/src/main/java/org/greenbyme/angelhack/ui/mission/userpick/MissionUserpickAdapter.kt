@@ -41,15 +41,20 @@ class MissionUserpickAdapter(private val list: ArrayList<MissionDAO>) :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.missionUserPickContents.text = list[position].missionContents
-        holder.missionUserPickDiscription.text = list[position].missionDescription
-        holder.missionUserPickIcon.setBackgroundColor(15)
+        holder.bind(list[position])
     }
+
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         val missionUserPickContents: TextView = view.tv_mission_userpick_title
         val missionUserPickDiscription: TextView = view.tv_mission_userpick_category
         val missionUserPickIcon: ImageView = view.img_mission_userpick_icon
-
+        fun bind(item: MissionDAO) {
+            missionUserPickContents.text = item.missionContents
+            missionUserPickDiscription.text = item.missionDescription
+            missionUserPickIcon.setBackgroundColor(15)
+        }
     }
+
+
 }

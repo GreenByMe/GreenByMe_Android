@@ -62,7 +62,7 @@ data class Campaign(
     var imageUrl: String = "",
     var memberCount: Int = 0,
     var startDate: String = "",
-    var endDate: String
+    var endDate: String = ""
 ) : HomeItem {
     override fun getViewType(): Int {
         return HomeItemViewType.CAMPAIGN_LIST_ITEM.viewType

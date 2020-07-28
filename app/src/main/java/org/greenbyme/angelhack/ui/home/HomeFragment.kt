@@ -1,5 +1,6 @@
 package org.greenbyme.angelhack.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.HomeItem
 import org.greenbyme.angelhack.ui.home.model.User
+import org.greenbyme.angelhack.ui.mission.more.MissionMoreActivity
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
 
 
@@ -28,11 +30,14 @@ class HomeFragment : Fragment() {
         HomeAdapter().apply {
             itemClickListener = object : HomeItemClickListener {
                 override fun onCampaignClicked() {
-
+                    val intent = Intent(context, MissionMoreActivity::class.java)
+                    context?.startActivity(intent)
                 }
 
                 override fun onPopularCampaignClicked() {
                     MissionUserFickFragment
+                    val intent = Intent(context, MissionMoreActivity::class.java)
+                    context?.startActivity(intent)
                 }
             }
         }

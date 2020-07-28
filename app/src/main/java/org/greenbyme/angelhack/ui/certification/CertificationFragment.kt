@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_certification.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.BaseApplication
 import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
 class CertificationFragment : Fragment() {
@@ -27,7 +28,6 @@ class CertificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         vp_certification.run {
             adapter = mCertAdapter
             ViewPager2.ORIENTATION_HORIZONTAL

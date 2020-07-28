@@ -20,7 +20,8 @@
             android:scaleType="centerCrop"
             app:lottie_autoPlay="true"
             app:lottie_speed="0.35"
-            app:lottie_rawRes="@raw/tree_anim2"/>
+            app:lottie_rawRes="@raw/tree_anim2" />
+
         <TextView
             android:id="@+id/tv_complete_contents"
             android:layout_marginTop="16dp"
@@ -30,7 +31,7 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="김민석님 축하드려요 방금 나무 0.2그루를 심었어요!!"/>
+            android:text="김민석님 축하드려요 방금 나무 0.2그루를 심었어요!!" />
     </RelativeLayout>
 
 
@@ -40,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:text="공유하기"/>
+        android:text="공유하기" />
 
     <ImageView
         android:layout_marginTop="64dp"
@@ -51,7 +52,7 @@
         android:id="@+id/img_complete_facebook"
         android:src="@drawable/facebook"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:layout_toLeftOf="@id/img_complete_facebook"
@@ -61,7 +62,7 @@
         android:id="@+id/img_complete_twitter"
         android:src="@drawable/twitter"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:layout_toRightOf="@id/img_complete_facebook"
@@ -72,7 +73,7 @@
         android:id="@+id/img_complete_instagram"
         android:src="@drawable/logo_instar_xxxhdpi"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:textSize="20sp"
@@ -82,6 +83,6 @@
         android:id="@+id/tv_complete_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="인증페이지로 돌아가기"/>
+        android:text="인증페이지로 돌아가기" />
 
 </RelativeLayout>
