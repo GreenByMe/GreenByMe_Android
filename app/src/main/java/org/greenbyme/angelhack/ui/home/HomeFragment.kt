@@ -18,6 +18,7 @@ import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.HomeItem
 import org.greenbyme.angelhack.ui.home.model.User
+import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.ui.mission.more.MissionMoreActivity
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
 
@@ -35,8 +36,13 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onPopularCampaignClicked() {
-                    MissionUserFickFragment
                     val intent = Intent(context, MissionMoreActivity::class.java)
+                    context?.startActivity(intent)
+                }
+
+                override fun onMissionClicked(missionId: Int) {
+                    val intent = Intent(context, MissionDetailActivity::class.java)
+                    intent.putExtra("mission_id",missionId)
                     context?.startActivity(intent)
                 }
             }

@@ -28,6 +28,7 @@ class MissionMoreActivity : AppCompatActivity() {
                 listOf<HomeItem>(
                     CampaignList("", it.content.map { item ->
                         Campaign(
+                            item.missionId,
                             item.subject,
                             item.passCandidatesCount,
                             item.category,

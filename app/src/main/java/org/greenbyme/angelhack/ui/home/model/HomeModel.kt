@@ -27,7 +27,7 @@ data class HomeModel(
 ) {
     val myCampaign: CampaignList
         get() = CampaignList("진행 중인 캠페인", progressResponseDtoList.map {
-            Campaign(
+            Campaign(id=it.missionInfoId,
                 title = it.missionTitle, progress = it.progress, memberCount = it.manyPeople,
                 startDate = it.startDate, endDate = it.endDate, imageUrl = it.pictureUrl
             )
@@ -35,7 +35,7 @@ data class HomeModel(
 
     val popularCampaign: CampaignList
         get() = CampaignList("인기 캠페인", popularCampaignList.content.map {
-            Campaign(
+            Campaign(id=it.missionId,
                 title = it.subject, progress = it.progressCount, startDate = it.startDate,
                 endDate = it.endDate, imageUrl = it.pictureUrl
             )
@@ -57,6 +57,7 @@ data class CampaignList(
 }
 
 data class Campaign(
+    var id :Int =-1,
     var title: String = "",
     var progress: Int = 0,
     var imageUrl: String = "",
