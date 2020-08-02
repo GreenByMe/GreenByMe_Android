@@ -3,5 +3,4 @@
     android:padding="10dp"
     android:id="@+id/iv_home_mission_image"
     android:layout_width="136dp"
-    android:layout_height="113dp">
-</ImageView>
+    android:layout_height="113dp"></ImageView>

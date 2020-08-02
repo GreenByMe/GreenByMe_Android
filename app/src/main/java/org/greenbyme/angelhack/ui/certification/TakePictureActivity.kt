@@ -60,7 +60,6 @@ class TakePictureActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initViews() {
         subject.text = "인증미션 : ${intent?.getStringExtra(EXTRA_SUBJECT) ?: ""}"
 

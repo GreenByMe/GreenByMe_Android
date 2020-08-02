@@ -16,6 +16,7 @@ import org.greenbyme.angelhack.ui.mypage.MyPageFragment
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var backTime: Long = 0
+
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 0) {
             if (System.currentTimeMillis() - backTime < 2000) {

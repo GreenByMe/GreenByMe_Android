@@ -10,8 +10,7 @@
         android:id="@+id/frame_main_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
-    </FrameLayout>
+        android:layout_weight="1"></FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:background="@color/white"

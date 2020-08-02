@@ -1,11 +1,13 @@
 package org.greenbyme.angelhack.ui.home.viewholder
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.Campaign
 
 class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
@@ -18,7 +20,8 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
     private val mNums: TextView = view.findViewById(R.id.tv_home_nums)
 
     @SuppressLint("SetTextI18n")
-    override fun bind(data: Campaign) {
+    override fun bind(data: Campaign, itemClickListener: HomeItemClickListener?) {
+        super.bind(data, itemClickListener)
         if (data.imageUrl.isNotBlank()) {
             mPicasso.load(data.imageUrl).into(mThumbnail)
         }
@@ -29,5 +32,10 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
         }
         mDate.text = data.getDueDate()
         mNums.text = "${data.memberCount}명 도전 중"
+
+        itemView.setOnClickListener {
+            Log.d("capign",data.id.toString())
+            itemClickListener?.onMissionClicked(data.id)
+        }
     }
 }

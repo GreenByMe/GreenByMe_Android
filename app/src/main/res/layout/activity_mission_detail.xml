@@ -18,7 +18,7 @@
             <include layout="@layout/item_mission_detail_header" />
 
             <!--eco point report -->
-            <include layout="@layout/item_mission_detail_eco_point"/>
+            <include layout="@layout/item_mission_detail_eco_point" />
 
             <!--mission description -->
             <LinearLayout
@@ -37,9 +37,9 @@
             </LinearLayout>
 
             <!--other user feed-->
-            <include layout="@layout/item_mission_detail_other_feed"/>
+            <include layout="@layout/item_mission_detail_other_feed" />
 
-            <include layout="@layout/item_mission_detail_certification_way"/>
+            <include layout="@layout/item_mission_detail_certification_way" />
 
 
             <Button

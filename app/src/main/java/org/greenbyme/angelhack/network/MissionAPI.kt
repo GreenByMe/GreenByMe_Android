@@ -4,6 +4,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDetailDAO
+import org.greenbyme.angelhack.data.PopularMissionDAO
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -31,5 +32,10 @@ interface MissionAPI {
         @Path("userId") userId: Int,
         @Path("missionId") missionId: Int
     ): Maybe<MissionDetailDAO>
+
+    @GET("/api/missions/populars")
+    fun getPopularMission(
+    ): Single<PopularMissionDAO>
+
 
 }
