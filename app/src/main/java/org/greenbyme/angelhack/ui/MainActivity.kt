@@ -3,7 +3,6 @@ package org.greenbyme.angelhack.ui
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.content_main.*
@@ -14,7 +13,7 @@ import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.ui.mypage.MyPageFragment
 
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var backTime: Long = 0
 
     override fun onBackPressed() {
@@ -32,10 +31,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        init()
+    }
+
+    private fun init() {
         menu_bottom_navi.setOnNavigationItemSelectedListener(this)
         setFragment(HomeFragment())
-
-        id = intent.getIntExtra("id", 0)
+        userId = intent.getIntExtra("id", 0)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 setFragment(CertificationFragment())
             }
             R.id.menu_bottom_my -> {
-                setFragment(MyPageFragment.newInstance(id))
+                setFragment(MyPageFragment.newInstance(userId))
             }
         }
         return true
@@ -70,6 +72,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     companion object {
-        var id: Int = 0
+        var userId: Int = 0
     }
 }

@@ -20,7 +20,6 @@ import org.greenbyme.angelhack.ui.home.model.HomeItem
 import org.greenbyme.angelhack.ui.home.model.User
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.ui.mission.more.MissionMoreActivity
-import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
 
 
 /**
@@ -75,11 +74,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadData() =
-        ApiService.service.getUserHomeInfo(MainActivity.id)
+        ApiService.service.getUserHomeInfo(MainActivity.userId)
             .map {
                 listOf<HomeItem>(
                     User(
-                        MainActivity.id,
+                        MainActivity.userId,
                         it.nickName,
                         it.treeSentence,
                         it.progressCampaign,

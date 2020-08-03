@@ -12,11 +12,12 @@ import kotlinx.android.synthetic.main.item_mission_detail_eco_point.*
 import kotlinx.android.synthetic.main.item_mission_detail_header.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionDetailDAO
+import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.BaseApplication
 import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.utils.Utils
 
-class MissionDetailActivity : AppCompatActivity(), MissionDetailContract.View {
+class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
     override var app: BaseApplication = (applicationContext as BaseApplication)
     lateinit var presenter: MissionDetailContract.Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,7 @@ class MissionDetailActivity : AppCompatActivity(), MissionDetailContract.View {
         if (missionId != -1) {
             presenter.getMissionDetail(missionId)
         } else {
-            Toast.makeText(applicationContext, "잘못된 접근입니다.", Toast.LENGTH_SHORT).show()
+            toastMessage("잘못된 접근입니다.")
         }
     }
 
