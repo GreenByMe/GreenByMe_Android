@@ -6,7 +6,6 @@ import org.greenbyme.angelhack.ui.BaseApplication
 
 interface MissionDetailContract {
     interface View {
-        var app : BaseApplication
         fun setMissionDetail(item: MissionDetailDAO)
         fun joinSucessed()
     }

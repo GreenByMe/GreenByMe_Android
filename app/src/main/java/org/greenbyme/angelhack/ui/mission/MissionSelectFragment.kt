@@ -101,7 +101,7 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
     }
 
     fun getMissionList(category: Int) =
-        ApiService.networkMission
+        ApiService.missionAPI
             .getMissionResponse(MissionFragment.getCategoryString(category), currentDate)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -109,7 +109,7 @@ class MissionSelectFragment : Fragment(), TagOnClickListener,
 
 
     fun getALLMissionList() =
-        ApiService.networkMission
+        ApiService.missionAPI
             .getMissionResponse()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

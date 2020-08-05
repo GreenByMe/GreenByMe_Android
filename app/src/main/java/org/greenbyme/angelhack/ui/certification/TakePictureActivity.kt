@@ -36,10 +36,11 @@ class TakePictureActivity : AppCompatActivity() {
     companion object {
         private const val REQUEST_CAMERA = 1001
         private const val EXTRA_SUBJECT = "extraKeySubject"
-
-        fun getIntent(activity: Activity, subject: String): Intent {
+        private const val EXTRA_MISSION_ID = "extraMissionId"
+        fun getIntent(activity: Activity, subject: String, missionId: Int): Intent {
             return Intent(activity, TakePictureActivity::class.java).apply {
                 putExtra(EXTRA_SUBJECT, subject)
+                putExtra(EXTRA_MISSION_ID, missionId)
             }
         }
     }
@@ -87,11 +88,13 @@ class TakePictureActivity : AppCompatActivity() {
                             }
 
                             val uri = Uri.fromFile(pictureFile)
-
+                            val missionId = intent.getIntExtra(EXTRA_MISSION_ID, 0)
                             startActivity(
                                 CertificationInputActivity.getIntent(
                                     this@TakePictureActivity,
-                                    uri.toString(), System.currentTimeMillis()
+                                    uri.toString(),
+                                    System.currentTimeMillis(),
+                                    missionId
                                 )
                             )
                         } catch (e: Exception) {

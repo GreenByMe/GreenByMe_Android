@@ -10,8 +10,7 @@ import org.greenbyme.angelhack.ui.home.viewholder.*
 
 class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
     private val mItemList = mutableListOf<HomeItem>()
-
-    var itemClickListener: HomeItemClickListener? = null
+    var itemClickListener: HomeItemClickListener? =null
 
     fun setItems(items: List<HomeItem>) {
         synchronized(mItemList) {

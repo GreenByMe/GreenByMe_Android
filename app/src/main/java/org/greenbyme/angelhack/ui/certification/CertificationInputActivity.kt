@@ -5,24 +5,38 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_certification_input.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.BaseActivity
+import org.greenbyme.angelhack.ui.MainActivity
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CertificationInputActivity : AppCompatActivity() {
+class CertificationInputActivity : BaseActivity() {
     companion object {
         private const val EXTRA_THUMBNAIL = "extraThumbnail"
         private const val EXTRA_TIME = "extraTime"
+        private const val EXTRA_MISSION_ID = "extraMissionId"
 
-        fun getIntent(activity: Activity, imageUri: String, time: Long): Intent {
+        fun getIntent(activity: Activity, imageUri: String, time: Long, missionId: Int): Intent {
             return Intent(activity, CertificationInputActivity::class.java).apply {
                 putExtra(EXTRA_THUMBNAIL, imageUri)
                 putExtra(EXTRA_TIME, time)
+                putExtra(EXTRA_MISSION_ID, missionId)
             }
         }
     }
@@ -49,6 +63,7 @@ class CertificationInputActivity : AppCompatActivity() {
             val thumbnailUri = getStringExtra(EXTRA_THUMBNAIL) ?: ""
 
             if (thumbnailUri.isNotBlank()) {
+                Log.d("certiinput", thumbnailUri)
                 Picasso.get().load(thumbnailUri).rotate(90f)
                     .into(thumbnail)
             }
@@ -76,14 +91,40 @@ class CertificationInputActivity : AppCompatActivity() {
                 progressDialog.setMessage("업로드 중입니다. 잠시만 기다려주세요")
                 progressDialog.show()
 
-                thumbnail.postDelayed({
-                    progressDialog.dismiss()
-                    startActivity(Intent(this, CertificationCompleteActivity::class.java))
-                    finish()
-                }, 2000)
+                var json = JsonObject()
+
+                json.addProperty("missionInfoId", 6)
+                json.addProperty("open", cb_certification_open.isChecked)
+                json.addProperty("text", et_certification_input.text.toString())
+                json.addProperty("title", et_certification_input.text.toString())
+                json.addProperty("userId", MainActivity.userId)
+
+                var contents = json.toString().toRequestBody()
+
+                val fileName = "green.png"
+                val realFile = File(Environment.getExternalStorageDirectory(), fileName)
+                //File(intent.getStringExtra(EXTRA_THUMBNAIL)).let { file ->
+
+                realFile.let { file ->
+                    val surveyBody = file.asRequestBody("image/*".toMediaType())
+                    val multipart = MultipartBody.Part.createFormData("file", file.name, surveyBody)
+                    ApiService.postAPI.postCertification(contents,
+                        multipart)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            progressDialog.dismiss()
+                            startActivity(Intent(this, CertificationCompleteActivity::class.java))
+                            finish()
+                        }, this::throwError)
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun uploadCertificationPost(uri: String, json: JsonObject) {
+
     }
 }

@@ -1,7 +1,6 @@
 package org.greenbyme.angelhack.ui.mission.more
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_mission_more.*
@@ -25,7 +24,7 @@ class MissionMoreActivity : BaseActivity() {
     }
 
     private fun getPopularMission() =
-        ApiService.networkMission.getPopularMission()
+        ApiService.missionAPI.getPopularMission()
             .map { it ->
                 listOf<HomeItem>(
                     CampaignList("", it.content.map { item ->

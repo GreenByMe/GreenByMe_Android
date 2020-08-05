@@ -8,6 +8,8 @@ import retrofit2.http.Path
 interface CertAPI {
     @GET("/api/page/cert/users/{userId}")
     fun getMissionResponse(
-        @Path("userId") userId: Long = 3
+        @Path("userId") userId: Int = 0
     ): Single<CertResult>
+
+
 }

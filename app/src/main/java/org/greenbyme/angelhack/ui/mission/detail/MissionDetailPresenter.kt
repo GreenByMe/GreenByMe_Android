@@ -15,7 +15,7 @@ class MissionDetailPresenter(
     MissionDetailContract.Presenter {
 
     override fun getMissionDetail(mission_id: Int): Disposable? {
-        return ApiService.networkMission.getMissionDetailResponse(mission_id)
+        return ApiService.missionAPI.getMissionDetailResponse(mission_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(view::setMissionDetail, baseActivity::throwError)
@@ -24,7 +24,7 @@ class MissionDetailPresenter(
 
     override fun addMission(item: MissionDetailDAO) {
         val subscribe =
-            ApiService.networkMission.PostJoinMissionResponse(MainActivity.userId, item.id)
+            ApiService.missionAPI.PostJoinMissionResponse(MainActivity.userId, item.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {

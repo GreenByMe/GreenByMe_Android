@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.SignupActivity">
+    <EditText
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="아이디"
+        android:id="@+id/et_sign_up_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        app:layout_constraintTop_toBottomOf="@id/et_sign_up_id"
+        android:hint="이름"
+        android:id="@+id/et_sign_up_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        app:layout_constraintTop_toBottomOf="@id/et_sign_up_name"
+        android:hint="닉네임"
+        android:id="@+id/et_sign_up_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        app:layout_constraintTop_toBottomOf="@id/et_sign_up_nickname"
+        android:hint="비밀번호"
+        android:id="@+id/et_sign_up_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        app:layout_constraintTop_toBottomOf="@id/et_sign_up_password"
+        android:hint="비밀번호 확인"
+        android:id="@+id/et_sign_up_password_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:textColor="@color/white"
+        android:text="회원 가입"
+        app:layout_constraintTop_toBottomOf="@id/et_sign_up_password_check"
+        android:id="@+id/bt_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_round_button_green"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

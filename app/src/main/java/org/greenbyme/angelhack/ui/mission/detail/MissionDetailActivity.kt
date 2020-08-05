@@ -5,7 +5,6 @@ import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_mission_detail.*
 import kotlinx.android.synthetic.main.item_mission_detail_eco_point.*
@@ -18,13 +17,12 @@ import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
-    override var app: BaseApplication = (applicationContext as BaseApplication)
     lateinit var presenter: MissionDetailContract.Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_detail)
 
-        presenter = MissionDetailPresenter(this)
+        presenter = MissionDetailPresenter(baseActivity = this, view = this)
 
         val missionId = intent.getIntExtra("mission_id", -1)
         if (missionId != -1) {

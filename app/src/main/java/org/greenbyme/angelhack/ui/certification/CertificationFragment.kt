@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_certification.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
-import org.greenbyme.angelhack.ui.BaseApplication
+import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
 class CertificationFragment : Fragment() {
@@ -46,7 +46,7 @@ class CertificationFragment : Fragment() {
             startActivity(
                 TakePictureActivity.getIntent(
                     requireActivity(), mCampaign?.subject ?: ""
-                )
+                ,mCampaign?.missionInfoId?:0)
             )
         }
 
@@ -54,7 +54,7 @@ class CertificationFragment : Fragment() {
     }
 
     private fun loadCertData() {
-        ApiService.certApi.getMissionResponse(3)
+        ApiService.certAPI.getMissionResponse(MainActivity.userId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

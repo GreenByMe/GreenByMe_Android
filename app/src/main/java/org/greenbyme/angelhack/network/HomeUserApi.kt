@@ -19,7 +19,13 @@ interface HomeUserApi {
         @Body body: JsonObject
     ): Single<UserLoginDAO>
 
+    @POST("/api/users")
+    fun signUp(
+        @Body body: JsonObject
+    ): Single<UserLoginDAO>
+
     @GET("api/page/home/users/{id}")
     fun getUserHomeInfo(@Path("id") id: Int): Single<HomeModel>
+
 
 }

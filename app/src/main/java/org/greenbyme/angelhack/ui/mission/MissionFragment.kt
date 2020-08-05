@@ -52,7 +52,8 @@ class MissionFragment : Fragment(), TagOnClickListener {
     }
 
     fun getMissionList(): Disposable =
-        ApiService.networkMission.getAllMissionResponse().subscribeOn(Schedulers.io())
+        ApiService.missionAPI.getAllMissionResponse()
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { it ->
                 rv_mission_recommend?.apply {
