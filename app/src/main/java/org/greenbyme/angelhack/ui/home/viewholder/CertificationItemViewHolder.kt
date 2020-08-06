@@ -6,7 +6,7 @@ import com.squareup.picasso.Picasso
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.home.model.CertificationListItem
 
-class GridListViewHolder(view: View) : HomeViewHolder<CertificationListItem>(view) {
+class CertificationItemViewHolder(view: View) : HomeViewHolder<CertificationListItem>(view) {
     private val picasso = Picasso.get()
     private val imageView: ImageView = view.findViewById(R.id.iv_home_mission_image)
 

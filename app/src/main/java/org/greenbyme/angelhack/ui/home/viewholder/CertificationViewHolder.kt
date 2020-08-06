@@ -1,5 +1,6 @@
 package org.greenbyme.angelhack.ui.home.viewholder
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,9 +21,9 @@ class CertificationViewHolder(view: View) : HomeViewHolder<CertificationList>(vi
     }
 
     override fun bind(data: CertificationList) {
-        val mad= HomeAdapter()
-        itemView.rv_home_certification_img.adapter=mad
-        mad.setItems(data.certificationList)
+        Log.d("asd","바인드"+data.certificationList[0].thumbnail)
+        itemView.rv_home_certification_img.adapter=mAdapter
+        mAdapter.setItems(data.certificationList)
         if (data.isVisibleTitle) {
             itemView.tv_home_certification_title.visibility = View.VISIBLE
         } else {
@@ -30,6 +31,5 @@ class CertificationViewHolder(view: View) : HomeViewHolder<CertificationList>(vi
                 GridLayoutManager(itemView.context, 3, GridLayoutManager.VERTICAL, false)
             itemView.tv_home_certification_title.visibility = View.GONE
         }
-        //mAdapter.setItems(data.certificationList)
     }
 }

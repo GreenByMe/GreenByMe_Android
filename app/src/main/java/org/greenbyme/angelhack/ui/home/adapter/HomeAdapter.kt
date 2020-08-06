@@ -70,6 +70,15 @@ class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
                     )
                 )
             }
+            HomeItemViewType.CERTIFICATION_LIST_ITEM -> {
+                CertificationItemViewHolder(
+                    layoutInflater.inflate(
+                        R.layout.item_mission_certification_img,
+                        parent,
+                        false
+                    )
+                )
+            }
 
             else -> {
                 EmptyViewHolder(layoutInflater.inflate(R.layout.row_empty, parent, false))
