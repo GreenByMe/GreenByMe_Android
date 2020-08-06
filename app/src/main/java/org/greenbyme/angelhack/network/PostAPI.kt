@@ -10,9 +10,12 @@ interface PostAPI {
     @Multipart
     @POST("/api/posts")
     fun postCertification(
-        @Part("body") body: RequestBody,
+        @Query("missionInfoId") missionInfoId:Int,
+        @Query("open") open:Boolean,
+        @Query("text") text:String,
+        @Query("title") title:String,
+        @Query("userId") userId:Int,
+        //@Part("body") body: RequestBody,
         @Part file: MultipartBody.Part
     ): Single<CertResult>
-
-    
 }

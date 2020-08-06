@@ -18,7 +18,6 @@ import org.greenbyme.angelhack.ui.certification.CertificationCompleteActivity
 import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.model.CertificationList
 import org.greenbyme.angelhack.ui.home.model.CertificationListItem
-import org.greenbyme.angelhack.ui.home.model.HomeItem
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 
@@ -48,37 +47,11 @@ class MyPageFragment : Fragment(), TagOnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         rv_mypage_tag_list.apply {
             adapter = MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MyPageFragment)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        rv_mypage_user_photo.apply {
-            val mData = ArrayList<HomeItem>()
-            mData.run {
-                add(
-                    CertificationList(
-                        "title", listOf(
-                            CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
-                            CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
-                            CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
-                            CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
-                            CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
-                            CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
-                            CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png"),
-                            CertificationListItem("https://i.pinimg.com/originals/05/1f/f3/051ff3fb781ff83c9b0f8a32f9922fa6.png")
-                        ), false
-                    )
-                )
-            }
-            val mHomeAdapter =
-                HomeAdapter()
-            mHomeAdapter.setItems(mData)
-            adapter = mHomeAdapter
-            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        }
         val subscribe = ApiService.service.getUserInfo(profile_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -95,6 +68,27 @@ class MyPageFragment : Fragment(), TagOnClickListener {
             intent.putExtra("profile", user.pictureUrl)
             activity?.startActivity(intent)
         }
+
+        tv_mypage_complete_count.text = user.passMissionCount.toString()
+        tv_mypage_co2_count.text = user.expectCo2.toString()
+        tv_mypage_plant_tree_count.text = user.expectTree.toString()
+
+        val mAdapter = HomeAdapter()
+        mAdapter.setItems(
+            listOf(
+                CertificationList(
+                    "",
+                    user.posts.map {
+                        CertificationListItem(it.postId, it.picture)
+                    }
+                    , false
+                )
+            ))
+        rv_mypage_user_photo.apply {
+            adapter = mAdapter
+            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        }
+
 
     }
 

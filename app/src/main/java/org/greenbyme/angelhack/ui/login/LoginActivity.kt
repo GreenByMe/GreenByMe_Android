@@ -20,7 +20,7 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        ApiService().init
+        ApiService.init
         bt_login.setOnClickListener {
             val id = et_login_id.text.toString()
             val pw = et_login_pw.text.toString()
@@ -42,9 +42,9 @@ class LoginActivity : BaseActivity() {
         ApiService.service.login(json)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ it ->
+            .subscribe({
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                intent.putExtra("id", it.id)
+                intent.putExtra("id", 1)
                 startActivity(intent)
                 finish()
             }, this::toastMessage)

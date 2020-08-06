@@ -93,7 +93,7 @@ class CertificationInputActivity : BaseActivity() {
 
                 var json = JsonObject()
 
-                json.addProperty("missionInfoId", 6)
+                json.addProperty("missionInfoId", intent.getIntExtra(EXTRA_MISSION_ID,0))
                 json.addProperty("open", cb_certification_open.isChecked)
                 json.addProperty("text", et_certification_input.text.toString())
                 json.addProperty("title", et_certification_input.text.toString())
@@ -108,8 +108,12 @@ class CertificationInputActivity : BaseActivity() {
                 realFile.let { file ->
                     val surveyBody = file.asRequestBody("image/*".toMediaType())
                     val multipart = MultipartBody.Part.createFormData("file", file.name, surveyBody)
-                    ApiService.postAPI.postCertification(contents,
-                        multipart)
+                    ApiService.postAPI.postCertification(intent.getIntExtra(EXTRA_MISSION_ID,0),
+                        open = cb_certification_open.isChecked,
+                        text = et_certification_input.text.toString(),
+                        title = et_certification_input.text.toString(),
+                        userId = MainActivity.userId,
+                        file = multipart)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({

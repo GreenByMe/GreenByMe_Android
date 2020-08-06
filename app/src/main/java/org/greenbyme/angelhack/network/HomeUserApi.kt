@@ -1,6 +1,7 @@
 package org.greenbyme.angelhack.network
 
 import com.google.gson.JsonObject
+import io.reactivex.Maybe
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.data.UserLoginDAO
@@ -11,13 +12,13 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface HomeUserApi {
-    @GET("api/users/{id}")
+    @GET("api/page/users/{id}")
     fun getUserInfo(@Path("id") id: Int): Single<MyPageDAO>
 
-    @POST("api/login/users")
+    @POST("api/users/signin")
     fun login(
         @Body body: JsonObject
-    ): Single<UserLoginDAO>
+    ): Maybe<String>
 
     @POST("/api/users")
     fun signUp(
