@@ -75,11 +75,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadData() =
-        ApiService.service.getUserHomeInfo(MainActivity.userId)
+        ApiService.service.getUserHomeInfo(sharepre)
             .map {
                 listOf<HomeItem>(
                     User(
-                        MainActivity.userId,
+                        0,
                         it.nickName,
                         it.treeSentence,
                         it.progressCampaign,

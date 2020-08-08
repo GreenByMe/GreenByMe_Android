@@ -37,7 +37,6 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     private fun init() {
         menu_bottom_navi.setOnNavigationItemSelectedListener(this)
         setFragment(HomeFragment())
-        userId = intent.getIntExtra("id", 0)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
