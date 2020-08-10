@@ -1,5 +1,6 @@
-package org.greenbyme.angelhack.ui.mission
+package org.greenbyme.angelhack.ui.mission.category
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.item_mission_recommend_date.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDAO
+import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionRecommendDateAdapter(
@@ -47,7 +49,6 @@ class MissionRecommendDateAdapter(
 
     }
 
-
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         val missionRecommendContents: TextView = view.tv_mission_recommend_date_contents
         val missionRecommendDiscription: TextView = view.tv_mission_recommend_date_complete
@@ -57,9 +58,8 @@ class MissionRecommendDateAdapter(
         val missionRecommendMore: TextView = view.bt_mission_recommend_date_yes
         val missionRecommendBackgorund: ImageView = view.img_mission_recommend_bg
 
-        fun bind(
-            item: MainMissionDAO.Content
-        ) {
+        @SuppressLint("SetTextI18n")
+        fun bind(item: MainMissionDAO.Content) {
             missionRecommendContents.text = item.subject
             missionRecommendDiscription.text = item.description
             missionRecommendDate.text =
@@ -67,7 +67,9 @@ class MissionRecommendDateAdapter(
                     item.endDate
                 )}"
             missionRecommendCategory.text =
-                "#${MissionFragment.getCategoryStringKOR(item.category)}"
+                "#${MissionFragment.getCategoryStringKOR(
+                    item.category
+                )}"
             missionRecommendComplete.text = "${item.passCandidates}명 완료"
             Picasso.get().load(item.pictureUrl).into(missionRecommendBackgorund)
         }

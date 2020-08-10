@@ -6,6 +6,7 @@ import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.data.PopularMissionDAO
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -27,9 +28,9 @@ interface MissionAPI {
         @Path("mission_id") mission_id: Int
     ): Single<MissionDetailDAO>
 
-    @POST("/api/missionInfos/users/{userId}/missions/{missionId}")
-    fun PostJoinMissionResponse(
-        @Path("userId") userId: Int,
+    @POST("/api/missionInfos/missions/{missionId}")
+    fun joinMissionResponse(
+        @Header("jwt") token: String,
         @Path("missionId") missionId: Int
     ): Maybe<MissionDetailDAO>
 

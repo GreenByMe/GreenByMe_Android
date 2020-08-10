@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_mission.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.ui.mission.category.MissionCategorySelectFragment
 
 private const val ARG_PARAM1 = "mission"
 
@@ -21,7 +22,9 @@ class MissionFragment : Fragment(), TagOnClickListener {
     private var param1: Int? = 0
 
     override fun onClickTag(category: Int) {
-        (activity as MainActivity).addFragment(MissionSelectFragment.newInstance(category))
+        (activity as MainActivity).addFragment(
+            MissionCategorySelectFragment.newInstance(category)
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +54,7 @@ class MissionFragment : Fragment(), TagOnClickListener {
         getMissionList()
     }
 
-    fun getMissionList(): Disposable =
+    private fun getMissionList(): Disposable =
         ApiService.missionAPI.getAllMissionResponse()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -60,7 +63,6 @@ class MissionFragment : Fragment(), TagOnClickListener {
                     adapter = MissionRecommendAdapter(it.content)
                     layoutManager = LinearLayoutManager(context)
                 }
-
             }
 
     companion object {

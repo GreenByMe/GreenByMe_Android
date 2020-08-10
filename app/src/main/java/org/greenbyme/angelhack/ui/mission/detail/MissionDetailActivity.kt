@@ -12,17 +12,16 @@ import kotlinx.android.synthetic.main.item_mission_detail_header.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.ui.BaseActivity
-import org.greenbyme.angelhack.ui.BaseApplication
 import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
-    lateinit var presenter: MissionDetailContract.Presenter
+    override lateinit var presenter: MissionDetailContract.Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_detail)
 
-        presenter = MissionDetailPresenter(baseActivity = this, view = this)
+        presenter = MissionDetailPresenter(baseActivity = this)
 
         val missionId = intent.getIntExtra("mission_id", -1)
         if (missionId != -1) {

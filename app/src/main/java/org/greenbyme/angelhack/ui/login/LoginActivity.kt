@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.edit
 import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -42,9 +43,9 @@ class LoginActivity : BaseActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                sharePreferences
-                    .putString("token", it)
-                    .apply()
+                sharePreferences.edit(){
+                    putString("token", it)
+                }
 
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)

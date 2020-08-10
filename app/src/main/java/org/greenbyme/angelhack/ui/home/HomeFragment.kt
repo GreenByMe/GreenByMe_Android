@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
@@ -75,7 +76,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadData() =
-        ApiService.service.getUserHomeInfo(sharepre)
+        ApiService.service.getUserHomeInfo((activity as BaseActivity).getToken())
             .map {
                 listOf<HomeItem>(
                     User(

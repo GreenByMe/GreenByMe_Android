@@ -8,9 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 
 open class BaseActivity : AppCompatActivity() {
     var tag: String = "TAG"
-    val sharePreferences: SharedPreferences.Editor =
-        getSharedPreferences("green", Activity.MODE_PRIVATE).edit()
 
+    val sharePreferences: SharedPreferences by lazy {
+        getSharedPreferences("green", Activity.MODE_PRIVATE)
+    }
+
+    fun getToken(): String {
+        return sharePreferences.getString("token", "") ?: ""
+    }
 
     fun throwError(msg: Throwable) {
         Log.e(tag, msg.message)

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.certification.CertificationCompleteActivity
 import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.model.CertificationList
@@ -52,7 +53,7 @@ class MyPageFragment : Fragment(), TagOnClickListener {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        val subscribe = ApiService.service.getUserInfo(profile_id)
+        val subscribe = ApiService.service.getUserInfo((activity as BaseActivity).getToken())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(this::setProfile)
