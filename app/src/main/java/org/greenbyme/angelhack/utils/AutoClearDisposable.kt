@@ -7,9 +7,10 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.greenbyme.angelhack.ui.BaseActivity
 
-class AutoClearDispoasable(
-    private val lifecycleOwner: AppCompatActivity,
+class AutoClearDisposable(
+    private val lifecycleOwner: BaseActivity,
     private val alwaysClearOnStop: Boolean = false,
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 ) : LifecycleObserver {

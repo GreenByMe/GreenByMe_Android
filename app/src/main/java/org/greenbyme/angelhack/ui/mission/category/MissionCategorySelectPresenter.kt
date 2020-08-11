@@ -6,10 +6,10 @@ import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.mission.MissionFragment
 
-class MissionCategorySelectPresenter(baseActivity: MissionCategorySelectFragment) :
+class MissionCategorySelectPresenter(view: MissionCategorySelectContract.View) :
     MissionCategorySelectContract.Presenter {
 
-    override val view: MissionCategorySelectContract.View = baseActivity
+    private val viewControl: MissionCategorySelectContract.View = view
 
     override fun getMissionList(category: Int, currentDate: String): Disposable =
         ApiService.missionAPI
@@ -20,12 +20,12 @@ class MissionCategorySelectPresenter(baseActivity: MissionCategorySelectFragment
             )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(view::setMissionList)
+            .subscribe(viewControl::setMissionList)
 
     override fun getALLMissionList(): Disposable =
         ApiService.missionAPI
             .getMissionResponse()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(view::setMissionList)
+            .subscribe(viewControl::setMissionList)
 }

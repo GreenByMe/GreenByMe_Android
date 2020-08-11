@@ -15,20 +15,33 @@ import kotlinx.android.synthetic.main.fragment_mission_select.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.ui.MainActivity
-import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
+import org.greenbyme.angelhack.utils.Utils
 
 private const val ARG_PARAM1 = "mission_select"
 
 class MissionCategorySelectFragment : Fragment(),
-    TagOnClickListener, MissionCategorySelectContract.View,
+    TagOnClickListener,
+    MissionCategorySelectContract.View,
     MissionRecommendDateAdapter.OnMoreClickListener,
     AdapterView.OnItemSelectedListener {
 
     override lateinit var presenter: MissionCategorySelectContract.Presenter
+    override fun throwError(msg: Throwable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun toastMessage(msg: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getToken(): String {
+        TODO("Not yet implemented")
+    }
+
     private var category: Int = 0
     private var currentDate = "DAY"
 
@@ -88,7 +101,7 @@ class MissionCategorySelectFragment : Fragment(),
     override fun onNothingSelected(parent: AdapterView<*>?) {}
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         currentDate =
-            MissionFragment.getDateString(
+            Utils.getDateString(
                 position
             )
         getCategoryByList(category)

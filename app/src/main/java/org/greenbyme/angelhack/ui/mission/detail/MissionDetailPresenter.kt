@@ -6,23 +6,24 @@ import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.network.ApiService
 
-class MissionDetailPresenter(private val baseActivity: MissionDetailActivity) :
+class MissionDetailPresenter(view: MissionDetailContract.View) :
     MissionDetailContract.Presenter {
-    override val viewControl: MissionDetailContract.View = baseActivity
+    override val viewControl: MissionDetailContract.View = view
     override fun getMissionDetail(mission_id: Int): Disposable? {
         return ApiService.missionAPI.getMissionDetailResponse(mission_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(viewControl::setMissionDetail, baseActivity::throwError)
+            .subscribe(viewControl::setMissionDetail, viewControl::throwError)
     }
 
     override fun addMission(item: MissionDetailDAO) {
         val subscribe =
-            ApiService.missionAPI.joinMissionResponse(baseActivity.getToken(), item.id)
+            ApiService.missionAPI.joinMissionResponse(viewControl.getToken(), item.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     viewControl.joinSucessed()
                 }
     }
+
 }

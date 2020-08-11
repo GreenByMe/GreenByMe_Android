@@ -8,7 +8,7 @@ import org.greenbyme.angelhack.data.UserLoginDAO
 import org.greenbyme.angelhack.ui.home.model.HomeModel
 import retrofit2.http.*
 
-interface HomeUserApi {
+interface HomeUserAPI {
     @GET("api/page/")
     fun getUserInfo(@Header("jwt") token: String): Single<MyPageDAO>
 

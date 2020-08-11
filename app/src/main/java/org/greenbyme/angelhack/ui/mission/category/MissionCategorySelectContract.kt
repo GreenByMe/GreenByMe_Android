@@ -8,7 +8,6 @@ import org.greenbyme.angelhack.ui.BaseView
 
 interface MissionCategorySelectContract {
     interface Presenter : BasePresenter {
-        val view : View
         fun getMissionList(category: Int, currentDate: String): Disposable?
         fun getALLMissionList(): Disposable?
     }
