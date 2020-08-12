@@ -21,7 +21,7 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_detail)
 
-        presenter = MissionDetailPresenter(baseActivity = this)
+        presenter = MissionDetailPresenter(this)
 
         val missionId = intent.getIntExtra("mission_id", -1)
         if (missionId != -1) {
@@ -48,7 +48,7 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
         missionDetailDate.text =
             "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(item.endDate)}"
         missionDetailCategory.text =
-            "#${MissionFragment.getCategoryStringKOR(item.category)}"
+            "#${Utils.getCategoryStringKOR(item.category)}"
         missionDetailComplete.text = "${item.passCandidatesCount}명 완료"
 
         missionDetailPlantTree.text = "${String.format("%.2f", item.expectTree)}그루"

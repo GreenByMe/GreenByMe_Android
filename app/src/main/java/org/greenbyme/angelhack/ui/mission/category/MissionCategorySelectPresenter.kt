@@ -5,6 +5,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.mission.MissionFragment
+import org.greenbyme.angelhack.utils.Utils
 
 class MissionCategorySelectPresenter(view: MissionCategorySelectContract.View) :
     MissionCategorySelectContract.Presenter {
@@ -14,7 +15,7 @@ class MissionCategorySelectPresenter(view: MissionCategorySelectContract.View) :
     override fun getMissionList(category: Int, currentDate: String): Disposable =
         ApiService.missionAPI
             .getMissionResponse(
-                MissionFragment.getCategoryString(
+                Utils.getCategoryString(
                     category
                 ), currentDate
             )

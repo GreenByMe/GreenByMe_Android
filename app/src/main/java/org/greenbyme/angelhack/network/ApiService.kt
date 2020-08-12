@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiService {
     companion object {
         val BASE_URL = "http://cafecube.iptime.org:10080/"
-        lateinit var service: HomeUserApi
+        lateinit var service: HomeUserAPI
         lateinit var missionAPI: MissionAPI
         lateinit var certAPI: CertAPI
         lateinit var postAPI: PostAPI
@@ -33,7 +33,7 @@ class ApiService {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
 
-            service = retrofit.create(HomeUserApi::class.java)
+            service = retrofit.create(HomeUserAPI::class.java)
             missionAPI = retrofit.create(MissionAPI::class.java)
             certAPI = retrofit.create(CertAPI::class.java)
             postAPI = retrofit.create(PostAPI::class.java)

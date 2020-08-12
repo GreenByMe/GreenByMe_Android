@@ -39,20 +39,17 @@ class MissionFragment : Fragment(), TagOnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         with(inflater.inflate(R.layout.fragment_mission, container, false)) {
-            init()
+            rv_mission_tag_list.apply {
+                adapter = MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionFragment, true)
+                layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            }
+            getMissionList()
             return this
         }
 
     }
 
-    private fun View.init() {
-        rv_mission_tag_list.apply {
-            adapter = MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionFragment, true)
-            layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        }
-        getMissionList()
-    }
 
     private fun getMissionList(): Disposable =
         ApiService.missionAPI.getAllMissionResponse()

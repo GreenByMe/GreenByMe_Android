@@ -67,7 +67,7 @@ class MissionRecommendDateAdapter(
                     item.endDate
                 )}"
             missionRecommendCategory.text =
-                "#${MissionFragment.getCategoryStringKOR(
+                "#${Utils.getCategoryStringKOR(
                     item.category
                 )}"
             missionRecommendComplete.text = "${item.passCandidates}명 완료"
