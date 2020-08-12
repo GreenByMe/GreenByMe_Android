@@ -14,6 +14,7 @@ interface MissionDetailContract {
     interface Presenter : BasePresenter {
         val viewControl : View
         fun getMissionDetail(mission_id: Int): Disposable?
+        fun getMissionProgressDetail(missionInfo_id: Int): Disposable?
         fun addMission(item: MissionDetailDAO)
     }
 }

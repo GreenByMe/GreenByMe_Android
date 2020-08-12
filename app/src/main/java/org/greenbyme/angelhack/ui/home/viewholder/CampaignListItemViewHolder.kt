@@ -29,14 +29,13 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
         }
         mDate.text = data.getDueDate()
         mNums.text = "${data.memberCount}명 도전 중"
-
     }
 
     override fun bind(data: Campaign, itemClickListener: HomeItemClickListener?) {
         super.bind(data, itemClickListener)
 
         itemView.setOnClickListener {
-            itemClickListener?.onMissionClicked(data.id)
+            itemClickListener?.onMissionClicked(data.id,data.missionType)
         }
     }
 }

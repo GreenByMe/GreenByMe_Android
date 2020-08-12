@@ -28,6 +28,11 @@ interface MissionAPI {
         @Path("mission_id") mission_id: Int
     ): Single<MissionDetailDAO>
 
+    @GET("/api/missionInfos/{mission_id}")
+    fun getMissionProgressDetailResponse(
+        @Path("mission_id") mission_id: Int
+    ): Single<MissionDetailDAO>
+
     @POST("/api/missionInfos/missions/{missionId}")
     fun joinMissionResponse(
         @Header("jwt") token: String,

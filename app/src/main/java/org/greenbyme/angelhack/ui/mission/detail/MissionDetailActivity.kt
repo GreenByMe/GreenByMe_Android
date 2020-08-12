@@ -1,5 +1,7 @@
 package org.greenbyme.angelhack.ui.mission.detail
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.widget.ImageView
@@ -12,7 +14,7 @@ import kotlinx.android.synthetic.main.item_mission_detail_header.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.ui.BaseActivity
-import org.greenbyme.angelhack.ui.mission.MissionFragment
+import org.greenbyme.angelhack.ui.home.model.CampaignList
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
@@ -24,8 +26,14 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
         presenter = MissionDetailPresenter(this)
 
         val missionId = intent.getIntExtra("mission_id", -1)
+        val missionType: CampaignList.Type =
+            intent.getSerializableExtra("mission_type") as CampaignList.Type
         if (missionId != -1) {
-            presenter.getMissionDetail(missionId)
+            if (missionType == CampaignList.Type.POPULAR) {
+                presenter.getMissionDetail(missionId)
+            } else {
+                presenter.getMissionProgressDetail(missionId)
+            }
         } else {
             toastMessage("잘못된 접근입니다.")
         }
@@ -63,6 +71,15 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
     override fun joinSucessed() {
         Toast.makeText(this, "미션에 참가하였습니다.", Toast.LENGTH_LONG).show()
         finish()
+    }
+
+    companion object {
+        fun getIntent(context: Context, missionId: Int, missionType: CampaignList.Type): Intent {
+            val intent = Intent(context, MissionDetailActivity::class.java)
+            intent.putExtra("mission_id", missionId)
+            intent.putExtra("mission_type", missionType)
+            return intent
+        }
     }
 
 }

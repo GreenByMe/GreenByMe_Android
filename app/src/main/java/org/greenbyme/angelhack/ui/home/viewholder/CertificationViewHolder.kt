@@ -21,7 +21,6 @@ class CertificationViewHolder(view: View) : HomeViewHolder<CertificationList>(vi
     }
 
     override fun bind(data: CertificationList) {
-        Log.d("asd","바인드"+data.certificationList[0].thumbnail)
         itemView.rv_home_certification_img.adapter=mAdapter
         mAdapter.setItems(data.certificationList)
         if (data.isVisibleTitle) {
