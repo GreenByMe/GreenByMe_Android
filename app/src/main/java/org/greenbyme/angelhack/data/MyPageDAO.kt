@@ -1,6 +1,9 @@
 package org.greenbyme.angelhack.data
 
+import com.google.gson.annotations.SerializedName
+
 data class MyPageDAO(
+    @SerializedName("email")
     val email: String,
     val expectCo2: Int,
     val expectTree: Int,

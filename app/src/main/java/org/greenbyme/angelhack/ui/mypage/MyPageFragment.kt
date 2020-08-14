@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
@@ -13,6 +14,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MyPageDAO
+import org.greenbyme.angelhack.databinding.FragmentMyPageBinding
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.certification.CertificationCompleteActivity
@@ -43,7 +45,13 @@ class MyPageFragment : Fragment(), TagOnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page, container, false)
+
+        val binding : FragmentMyPageBinding =
+            DataBindingUtil.inflate(inflater,R.layout.fragment_my_page, container, false)
+        //return inflater.inflate(R.layout.fragment_my_page, container, false)
+        binding.mypageVm=MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
+        binding.lifecycleOwner=this
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,10 +61,10 @@ class MyPageFragment : Fragment(), TagOnClickListener {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        val subscribe = ApiService.service.getUserInfo((activity as BaseActivity).getToken())
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::setProfile)
+//        val subscribe = ApiService.service.getUserInfo((activity as BaseActivity).getToken())
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe(this::setProfile)
     }
 
     private fun setProfile(user: MyPageDAO) {
