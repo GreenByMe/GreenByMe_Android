@@ -9,7 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.data.MyPageDAO
 
-class MyPageUiModel(val repo: MyPageRepo) : BaseObservable(){
+class MyPageUiModel(val repo: MyPageRepo) : ViewModel(){
     var myPageDAO: LiveData<MyPageDAO> = repo.getProfile()
 
     fun getProfile(){

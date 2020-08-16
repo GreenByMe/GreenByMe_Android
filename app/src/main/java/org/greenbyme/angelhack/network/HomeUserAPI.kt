@@ -2,6 +2,7 @@ package org.greenbyme.angelhack.network
 
 import com.google.gson.JsonObject
 import io.reactivex.Maybe
+import io.reactivex.Observable
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.data.UserLoginDAO
@@ -10,7 +11,7 @@ import retrofit2.http.*
 
 interface HomeUserAPI {
     @GET("api/page/")
-    fun getUserInfo(@Header("jwt") token: String): Single<MyPageDAO>
+    fun  getUserInfo(@Header("jwt") token: String): Single<MyPageDAO>
 
     @POST("api/users/signin")
     fun login(
@@ -24,6 +25,4 @@ interface HomeUserAPI {
 
     @GET("api/page/home/")
     fun getUserHomeInfo(@Header("jwt") token: String): Single<HomeModel>
-
-
 }
