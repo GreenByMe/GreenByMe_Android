@@ -10,11 +10,12 @@ import org.greenbyme.angelhack.ui.BaseActivity
 
 class MyPageRepo(val activity: BaseActivity) {
     fun getProfile(): LiveData<MyPageDAO> {
-        val foo = MutableLiveData<MyPageDAO>()
-        ApiService.service.getUserInfo((activity as BaseActivity).getToken())
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ foo.value=it},activity::throwError)
-        return foo
+        MutableLiveData<MyPageDAO>().let { ret ->
+            ApiService.service.getUserInfo((activity as BaseActivity).getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ ret.value = it }, activity::throwError)
+            return ret
+        }
     }
 }
