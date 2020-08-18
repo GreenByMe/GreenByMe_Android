@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.home.viewholder
 
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +20,7 @@ class CertificationViewHolder(view: View) : HomeViewHolder<CertificationList>(vi
     }
 
     override fun bind(data: CertificationList) {
-        itemView.rv_home_certification_img.adapter=mAdapter
+        itemView.rv_home_certification_img.adapter = mAdapter
         mAdapter.setItems(data.certificationList)
         if (data.isVisibleTitle) {
             itemView.tv_home_certification_title.visibility = View.VISIBLE

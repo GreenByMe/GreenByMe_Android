@@ -40,7 +40,8 @@ class MissionFragment : Fragment(), TagOnClickListener {
     ): View? {
         with(inflater.inflate(R.layout.fragment_mission, container, false)) {
             rv_mission_tag_list.apply {
-                adapter = MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionFragment, true)
+                adapter =
+                    MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionFragment, true)
                 layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }

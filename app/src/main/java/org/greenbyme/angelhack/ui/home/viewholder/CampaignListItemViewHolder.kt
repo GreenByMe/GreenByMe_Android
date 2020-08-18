@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.home.viewholder
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -35,7 +34,7 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
         super.bind(data, itemClickListener)
 
         itemView.setOnClickListener {
-            itemClickListener?.onMissionClicked(data.id,data.missionType)
+            itemClickListener?.onMissionClicked(data.id, data.missionType)
         }
     }
 }

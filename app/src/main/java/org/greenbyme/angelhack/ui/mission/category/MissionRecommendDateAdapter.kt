@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.item_mission_recommend_date.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDAO
-import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionRecommendDateAdapter(

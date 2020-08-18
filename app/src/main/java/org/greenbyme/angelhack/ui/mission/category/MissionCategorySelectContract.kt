@@ -12,7 +12,7 @@ interface MissionCategorySelectContract {
         fun getALLMissionList(): Disposable?
     }
 
-    interface View :BaseView<Presenter>{
+    interface View : BaseView<Presenter> {
         fun setMissionList(response: MainMissionDAO?)
     }
 }

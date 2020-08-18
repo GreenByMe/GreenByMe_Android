@@ -17,7 +17,7 @@ class MissionMoreActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_more)
-        tag="MISSION_MORE"
+        tag = "MISSION_MORE"
 
         rv_mission_more_list.adapter = HomeAdapter()
         getPopularMission()
@@ -40,5 +40,5 @@ class MissionMoreActivity : BaseActivity() {
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(homeAdapter::setItems,this::throwError)
+            .subscribe(homeAdapter::setItems, this::throwError)
 }

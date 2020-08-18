@@ -66,7 +66,6 @@ class MyPageFragment : Fragment(), TagOnClickListener {
             intent.putExtra("profile", user.pictureUrl)
             activity?.startActivity(intent)
         }
-
         tv_mypage_complete_count.text = user.passMissionCount.toString()
         tv_mypage_co2_count.text = user.expectCo2.toString()
         tv_mypage_plant_tree_count.text = user.expectTree.toString()

@@ -43,7 +43,7 @@ class LoginActivity : BaseActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                sharePreferences.edit(){
+                sharePreferences.edit {
                     putString("token", it)
                 }
 

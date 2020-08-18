@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.home.viewholder
 
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,7 +27,7 @@ class CampaignListViewHolder(view: View) : HomeViewHolder<CampaignList>(view) {
 
     override fun bind(data: CampaignList, itemClickListener: HomeItemClickListener?) {
         super.bind(data, itemClickListener)
-        mAdapter.itemClickListener=itemClickListener
+        mAdapter.itemClickListener = itemClickListener
         itemView.setOnClickListener {
             if (data.type == CampaignList.Type.POPULAR) {
                 itemClickListener?.onPopularCampaignClicked()

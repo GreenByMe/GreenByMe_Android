@@ -1,4 +1,3 @@
 package org.greenbyme.angelhack.ui
 
-interface BasePresenter{
-}
+interface BasePresenter

@@ -4,7 +4,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.network.ApiService
-import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionCategorySelectPresenter(view: MissionCategorySelectContract.View) :

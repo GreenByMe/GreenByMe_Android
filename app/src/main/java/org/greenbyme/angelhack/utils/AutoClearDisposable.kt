@@ -1,7 +1,6 @@
 package org.greenbyme.angelhack.utils
 
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent

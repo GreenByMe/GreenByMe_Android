@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.fragment_certification.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
-import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
 class CertificationFragment : Fragment() {
@@ -47,7 +46,8 @@ class CertificationFragment : Fragment() {
             startActivity(
                 TakePictureActivity.getIntent(
                     requireActivity(), mCampaign?.subject ?: ""
-                ,mCampaign?.missionInfoId?:0)
+                    , mCampaign?.missionInfoId ?: 0
+                )
             )
         }
 
