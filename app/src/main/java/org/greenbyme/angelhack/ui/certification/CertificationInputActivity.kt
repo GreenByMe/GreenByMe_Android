@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -23,6 +24,7 @@ import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
 import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -87,47 +89,58 @@ class CertificationInputActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.upload -> {
-                val progressDialog = ProgressDialog(this)
-                progressDialog.setMessage("업로드 중입니다. 잠시만 기다려주세요")
-                progressDialog.show()
-
-                var json = JsonObject()
-
-                json.addProperty("missionInfoId", intent.getIntExtra(EXTRA_MISSION_ID, 0))
-                json.addProperty("open", cb_certification_open.isChecked)
-                json.addProperty("text", et_certification_input.text.toString())
-                json.addProperty("title", et_certification_input.text.toString())
-                json.addProperty("userId", MainActivity.userId)
-
-                var contents = json.toString().toRequestBody()
-
-                val fileName = "green.png"
-                val realFile = File(Environment.getExternalStorageDirectory(), fileName)
-                //File(intent.getStringExtra(EXTRA_THUMBNAIL)).let { file ->
-
-                realFile.let { file ->
-                    val surveyBody = file.asRequestBody("image/*".toMediaType())
-                    val multipart = MultipartBody.Part.createFormData("file", file.name, surveyBody)
-                    ApiService.postAPI.postCertification(
-                        intent.getIntExtra(EXTRA_MISSION_ID, 0),
-                        open = cb_certification_open.isChecked,
-                        text = et_certification_input.text.toString(),
-                        title = et_certification_input.text.toString(),
-                        userId = MainActivity.userId,
-                        file = multipart
-                    )
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            progressDialog.dismiss()
-                            startActivity(Intent(this, CertificationCompleteActivity::class.java))
-                            finish()
-                        }, this::throwError)
-                }
-                true
+                onClickUpload()
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun onClickUpload(): Boolean {
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("업로드 중입니다. 잠시만 기다려주세요")
+        progressDialog.show()
+
+        var json = JsonObject()
+
+        json.addProperty("missionInfoId", intent.getIntExtra(EXTRA_MISSION_ID, 0))
+        json.addProperty("open", cb_certification_open.isChecked)
+        json.addProperty("text", et_certification_input.text.toString())
+        json.addProperty("title", et_certification_input.text.toString())
+        json.addProperty("userId", MainActivity.userId)
+
+        var contents = json.toString().toRequestBody()
+        val thumbnailUri = intent.getStringExtra(EXTRA_THUMBNAIL) ?: ""
+        //val input = applicationContext.contentResolver.openInputStream(Uri.parse(thumbnailUri))
+//
+        val fileName = "green.png"
+        //val realFile = File(Environment.getExternalStorageDirectory(), fileName)
+
+        //File(intent.getStringExtra(EXTRA_THUMBNAIL)).let { file ->
+        val realFile = File(thumbnailUri)
+
+        Log.e("asdasd",realFile.name)
+        Log.e("asdasd",realFile.toString())
+        realFile.let { file ->
+            val surveyBody = file.asRequestBody("image/*".toMediaType())
+            val multipart = MultipartBody.Part.createFormData("file", file.name, surveyBody)
+            ApiService.postAPI.postCertification(
+                token = getToken(),
+                missionInfoId = intent.getIntExtra(EXTRA_MISSION_ID, 0),
+                open = cb_certification_open.isChecked,
+                text = et_certification_input.text.toString(),
+                title = et_certification_input.text.toString(),
+                userId = MainActivity.userId,
+                file = multipart
+            )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    progressDialog.dismiss()
+                    startActivity(Intent(this, CertificationCompleteActivity::class.java))
+                    finish()
+                }, this::throwError)
+        }
+        return true
     }
 
     fun uploadCertificationPost(uri: String, json: JsonObject) {

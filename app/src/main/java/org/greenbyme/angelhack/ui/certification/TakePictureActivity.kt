@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.ui.BaseActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -29,7 +31,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class TakePictureActivity : AppCompatActivity() {
+class TakePictureActivity : BaseActivity() {
     private var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
 
@@ -82,17 +84,16 @@ class TakePictureActivity : AppCompatActivity() {
                     getOutputMediaFile(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE)?.let { pictureFile ->
                         try {
                             withContext(Dispatchers.IO) {
-                                val fos = FileOutputStream(pictureFile)
-                                fos.write(data)
-                                fos.close()
+                                val fos = applicationContext.contentResolver.openOutputStream(Uri.fromFile(pictureFile))
+                                fos?.write(data)
+                                fos?.close()
                             }
 
-                            val uri = Uri.fromFile(pictureFile)
                             val missionId = intent.getIntExtra(EXTRA_MISSION_ID, 0)
                             startActivity(
                                 CertificationInputActivity.getIntent(
                                     this@TakePictureActivity,
-                                    uri.toString(),
+                                    pictureFile.toString(),
                                     System.currentTimeMillis(),
                                     missionId
                                 )
@@ -131,6 +132,7 @@ class TakePictureActivity : AppCompatActivity() {
                 mPreview?.setCamera(camera)
             }
         } catch (e: Exception) {
+            throwError(e)
             finish()
         }
     }

@@ -68,6 +68,11 @@ class HomeFragment : Fragment() {
         loadData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
+
     private fun initViews() {
         refreshLayout.setOnRefreshListener {
             loadData()

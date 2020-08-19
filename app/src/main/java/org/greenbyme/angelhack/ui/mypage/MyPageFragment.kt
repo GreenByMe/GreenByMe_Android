@@ -61,10 +61,7 @@ class MyPageFragment : Fragment(), TagOnClickListener {
         tv_mypage_edit_btn.text = "${user.nickName}님의 활동 >"
 
         tv_mypage_edit_btn.setOnClickListener {
-            val intent = Intent(context, CertificationCompleteActivity::class.java)
-            intent.putExtra("nickname", user.nickName)
-            intent.putExtra("profile", user.pictureUrl)
-            activity?.startActivity(intent)
+            onClickNickname(user)
         }
         tv_mypage_complete_count.text = user.passMissionCount.toString()
         tv_mypage_co2_count.text = user.expectCo2.toString()
@@ -87,6 +84,13 @@ class MyPageFragment : Fragment(), TagOnClickListener {
         }
 
 
+    }
+
+    private fun onClickNickname(user: MyPageDAO) {
+        val intent = Intent(context, CertificationCompleteActivity::class.java)
+        intent.putExtra("nickname", user.nickName)
+        intent.putExtra("profile", user.pictureUrl)
+        activity?.startActivity(intent)
     }
 
     companion object {

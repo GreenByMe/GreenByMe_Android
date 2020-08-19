@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiService {
     companion object {
-        val BASE_URL = "http://cafecube.iptime.org:10080/"
+        val BASE_URL = "https://cafecube.iptime.org"
         lateinit var service: HomeUserAPI
         lateinit var missionAPI: MissionAPI
         lateinit var certAPI: CertAPI
