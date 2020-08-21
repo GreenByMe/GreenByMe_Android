@@ -29,7 +29,6 @@ import org.greenbyme.angelhack.ui.mission.more.MissionMoreActivity
 class HomeFragment : Fragment() {
     private val mHomeAdapter: HomeAdapter by lazy {
         HomeAdapter().apply {
-            Log.e("asd", "make adapter")
             itemClickListener = object : HomeItemClickListener {
                 override fun onCampaignClicked() {
                     val intent = Intent(context, MissionMoreActivity::class.java)
@@ -88,15 +87,7 @@ class HomeFragment : Fragment() {
         ApiService.service.getUserHomeInfo((activity as BaseActivity).getToken())
             .map {
                 listOf<HomeItem>(
-                    User(
-                        0,
-                        it.nickName,
-                        it.treeSentence,
-                        it.progressCampaign,
-                        it.expectedCO2,
-                        it.expectedTree,
-                        it.progressRates
-                    ),
+                    User.parseHomeModel(it),
                     it.myCampaign,
                     it.popularCampaign
                 )

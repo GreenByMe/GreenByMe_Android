@@ -59,7 +59,7 @@ class CertificationFragment : Fragment() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                val campaigns = it.missionInfoList
+                val campaigns = it.personalMissions
                 mCertAdapter.setItems(campaigns)
                 indicator_certification.createIndicators(campaigns.size, 0)
             }, {

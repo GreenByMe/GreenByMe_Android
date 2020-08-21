@@ -27,33 +27,36 @@
         android:inputType="textAutoComplete" />
 
     <EditText
-        android:hint="PW"
-        android:inputType="textPassword"
         android:id="@+id/et_login_pw"
-        android:layout_marginTop="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_below="@id/et_login_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_login_id"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="PW"
+        android:imeOptions="actionSend"
+        android:inputType="textPassword"
+        android:nextFocusDown="@id/bt_login" />
 
     <Button
         android:id="@+id/bt_login"
-        android:textColor="@color/white"
-        android:text="@string/login_login"
-        android:background="@drawable/shape_btn"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_below="@id/et_login_pw"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_login_pw"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/shape_btn"
+        android:text="@string/login_login"
+        android:textColor="@color/white" />
+
     <TextView
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_below="@id/bt_login"
+        android:id="@+id/tv_login_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_login_sign_up"
-        android:text="@string/login_signup"/>
+        android:layout_below="@id/bt_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/login_signup" />
 </RelativeLayout>

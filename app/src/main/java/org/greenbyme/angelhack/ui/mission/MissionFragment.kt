@@ -58,7 +58,7 @@ class MissionFragment : Fragment(), TagOnClickListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { it ->
                 rv_mission_recommend?.apply {
-                    adapter = MissionRecommendAdapter(it.content)
+                    adapter = MissionRecommendAdapter(it.contents)
                     layoutManager = LinearLayoutManager(context)
                 }
             }

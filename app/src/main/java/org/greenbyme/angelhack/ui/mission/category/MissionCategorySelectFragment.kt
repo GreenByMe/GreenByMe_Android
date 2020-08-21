@@ -111,7 +111,7 @@ class MissionCategorySelectFragment : Fragment(),
         rv_mission_select?.apply {
             adapter =
                 MissionRecommendDateAdapter(
-                    response!!.content,
+                    response!!.contents,
                     this@MissionCategorySelectFragment
                 )
             orientation = ViewPager2.ORIENTATION_HORIZONTAL

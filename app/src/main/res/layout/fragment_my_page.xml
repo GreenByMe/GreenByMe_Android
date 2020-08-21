@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
     <!-- ViewModel 정의 -->
     <data>
-
         <import type="android.view.View"/>
         <variable
             name="mypageVm"
@@ -45,7 +45,7 @@
                     android:paddingTop="4dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="4dp"
-                    android:onClick="@{mypageVm.onClick}"
+                    android:onClick="@{mypageVm.onClickNickName}"
                     android:text='@{mypageVm.myPageDAO.nickName+"asd"}' />
 
                 <LinearLayout
@@ -176,6 +176,7 @@
                     android:background="@color/whiteGray" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    bind:item="@{mypageVm.myPageDAO}"
                     android:id="@+id/rv_mypage_user_photo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

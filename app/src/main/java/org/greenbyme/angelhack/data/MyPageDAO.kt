@@ -7,7 +7,7 @@ data class MyPageDAO(
     val email: String,
     val expectCo2: Int,
     val expectTree: Int,
-    val missionInfoList: List<MissionInfo>,
+    val personalMissions: List<MissionInfo>,
     val nickName: String,
     val passMissionCount: Int,
     val pictureUrl: String,

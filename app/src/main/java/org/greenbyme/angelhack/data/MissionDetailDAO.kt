@@ -13,7 +13,8 @@ data class MissionDetailDAO(
     val passCandidatesCount: Int,
     val progressByMissionId: Int,
     val startDate: String,
-    val subject: String
+    val subject: String,
+    val title: String
 ) {
     data class MissionCertificationMethod(
         val missionCertificateCount: String,

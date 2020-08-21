@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -24,7 +22,6 @@ import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
 import java.io.File
-import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -118,8 +115,8 @@ class CertificationInputActivity : BaseActivity() {
         //File(intent.getStringExtra(EXTRA_THUMBNAIL)).let { file ->
         val realFile = File(thumbnailUri)
 
-        Log.e("asdasd",realFile.name)
-        Log.e("asdasd",realFile.toString())
+        Log.e("asdasd", realFile.name)
+        Log.e("asdasd", realFile.toString())
         realFile.let { file ->
             val surveyBody = file.asRequestBody("image/*".toMediaType())
             val multipart = MultipartBody.Part.createFormData("file", file.name, surveyBody)

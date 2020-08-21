@@ -2,6 +2,7 @@
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/iv_home_mission_image"
     android:layout_width="match_parent"
-    android:layout_height="113dp"
-    android:src="@color/tran_gray"
-    android:scaleType="centerCrop"/>
+    android:layout_height="120dp"
+    android:layout_margin="2dp"
+    android:scaleType="centerCrop"
+    android:src="@color/tran_gray" />

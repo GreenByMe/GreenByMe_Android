@@ -9,7 +9,7 @@ interface PostAPI {
     @Multipart
     @POST("/api/posts")
     fun postCertification(
-        @Header("jwt")token:String,
+        @Header("jwt") token: String,
         @Query("missionInfoId") missionInfoId: Int,
         @Query("open") open: Boolean,
         @Query("text") text: String,

@@ -7,13 +7,13 @@ import org.greenbyme.angelhack.extention.convert
 
 data class HomeModel(
     @SerializedName("expectedCO2")
-    var expectedCO2: Int,
+    var expectedCO2: Double,
     @SerializedName("expectedTree")
-    var expectedTree: Int,
+    var expectedTree: Double,
     @SerializedName("nickName")
     var nickName: String,
     @SerializedName("popularMissionResponseDtoList")
-    var popularCampaignList: PopularCampaignList,
+    var popularCampaignList: List<PopularCampaignList>,
     @SerializedName("progressCampaign")
     var progressCampaign: Int,
     @SerializedName("progressRates")
@@ -40,7 +40,7 @@ data class HomeModel(
         }, CampaignList.Type.MY_CAMPAIGN)
 
     val popularCampaign: CampaignList
-        get() = CampaignList("인기 캠페인", popularCampaignList.content.map {
+        get() = CampaignList("인기 캠페인", popularCampaignList.map {
             Campaign(
                 id = it.missionId,
                 title = it.subject,
