@@ -23,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="내가 그린"
+                android:fontFamily="@font/leesunsin"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp" />
         </androidx.appcompat.widget.Toolbar>

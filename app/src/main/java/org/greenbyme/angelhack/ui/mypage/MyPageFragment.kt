@@ -56,43 +56,6 @@ class MyPageFragment : Fragment(), TagOnClickListener {
         }
     }
 
-    private fun setProfile(user: MyPageDAO) {
-        Picasso.get().load(user.pictureUrl).into(img_maypage_profile)
-        tv_mypage_edit_btn.text = "${user.nickName}님의 활동 >"
-
-        tv_mypage_edit_btn.setOnClickListener {
-            onClickNickname(user)
-        }
-        tv_mypage_complete_count.text = user.passMissionCount.toString()
-        tv_mypage_co2_count.text = user.expectCo2.toString()
-        tv_mypage_plant_tree_count.text = user.expectTree.toString()
-
-        val mAdapter = HomeAdapter()
-        mAdapter.setItems(
-            listOf(
-                CertificationList(
-                    "",
-                    user.posts.map {
-                        CertificationListItem(it.postId, it.picture)
-                    }
-                    , false
-                )
-            ))
-        rv_mypage_user_photo.apply {
-            adapter = mAdapter
-            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        }
-
-
-    }
-
-    private fun onClickNickname(user: MyPageDAO) {
-        val intent = Intent(context, CertificationCompleteActivity::class.java)
-        intent.putExtra("nickname", user.nickName)
-        intent.putExtra("profile", user.pictureUrl)
-        activity?.startActivity(intent)
-    }
-
     companion object {
         fun newInstance(param1: Int) =
             MyPageFragment().apply {

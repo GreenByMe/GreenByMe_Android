@@ -16,8 +16,13 @@ interface HomeUserAPI {
     fun getUserInfo(@Header("jwt") token: String): Single<MyPageDAO>
 
     @POST("api/users/signin")
-    fun login(
+    fun idLogin(
         @Body body: JsonObject
+    ): Maybe<String>
+
+    @POST("api/users/refresh")
+    fun tokenLogin(
+        @Header("jwt")token: String
     ): Maybe<String>
 
     @POST("/api/users")

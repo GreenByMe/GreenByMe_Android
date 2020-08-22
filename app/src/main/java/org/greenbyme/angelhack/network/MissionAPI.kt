@@ -33,7 +33,7 @@ interface MissionAPI {
         @Path("mission_id") mission_id: Int
     ): Single<MissionDetailDAO>
 
-    @POST("/api/personalMissions/missions/{missionId}")
+    @POST("/api/personalmissions/missions/{missionId}")
     fun joinMissionResponse(
         @Header("jwt") token: String,
         @Path("missionId") missionId: Int

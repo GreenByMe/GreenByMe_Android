@@ -1,5 +1,6 @@
 package org.greenbyme.angelhack.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,19 +16,20 @@ import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
 
 class LoginActivity : BaseActivity() {
-
+    var isLoading = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        ApiService.init
         bt_login.setOnClickListener {
-            val id = et_login_id.text.toString()
-            val pw = et_login_pw.text.toString()
-            val json = JsonObject()
-            json.addProperty("email", id)
-            json.addProperty("password", pw)
-            login(json)
+            if (!isLoading) {
+                val id = et_login_id.text.toString()
+                val pw = et_login_pw.text.toString()
+                val json = JsonObject()
+                json.addProperty("email", id)
+                json.addProperty("password", pw)
+                login(json)
+            }
         }
 
 
@@ -39,9 +41,15 @@ class LoginActivity : BaseActivity() {
     }
 
     fun login(json: JsonObject) =
-        ApiService.service.login(json)
+        ApiService.service.idLogin(json)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                isLoading = true
+            }
+            .doFinally {
+                isLoading = false
+            }
             .subscribe({
                 sharePreferences.edit {
                     putString("token", it)
@@ -56,5 +64,11 @@ class LoginActivity : BaseActivity() {
     private fun toastMessage(t: Throwable) {
         Log.e("ACT_LOGIN", t.toString())
         Toast.makeText(applicationContext, "인터넷 연결 상태를 확인해 주세요.", Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        fun getIntent(context: Context): Intent {
+            return Intent(context, LoginActivity::class.java)
+        }
     }
 }

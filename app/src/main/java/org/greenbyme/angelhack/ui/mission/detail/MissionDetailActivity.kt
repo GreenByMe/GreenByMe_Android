@@ -74,7 +74,7 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
     }
 
     companion object {
-        fun getIntent(context: Context, missionId: Int, missionType: CampaignList.Type): Intent {
+        fun getIntent(context: Context, missionId: Int, missionType: CampaignList.Type = CampaignList.Type.POPULAR): Intent {
             val intent = Intent(context, MissionDetailActivity::class.java)
             intent.putExtra("mission_id", missionId)
             intent.putExtra("mission_type", missionType)
