@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/white">
 
     <TextView
@@ -66,20 +65,19 @@
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/campaign_count_title_m"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="3" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/campaign_count_title_m"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="개"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toTopOf="@+id/campaign_count"
                     app:layout_constraintLeft_toRightOf="@id/campaign_count_title"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    tools:text="개" />
+                    app:layout_constraintVertical_bias="0.5" />
 
                 <TextView
                     android:id="@+id/campaign_count"
@@ -123,20 +121,19 @@
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/co_title_m"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="4.26" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/co_title_m"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Kg Co2"
                     android:textSize="8sp"
                     app:layout_constraintBottom_toTopOf="@+id/co_value"
                     app:layout_constraintLeft_toRightOf="@id/co_title"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    tools:text="Kg Co2" />
+                    app:layout_constraintVertical_bias="0.5" />
 
                 <TextView
                     android:id="@+id/co_value"
@@ -176,15 +173,14 @@
                     android:id="@+id/tree_count_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="23dp"
-                    android:layout_marginRight="4dp"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/tree_count_title_m"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="3" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/tree_count_title_m"
@@ -221,24 +217,11 @@
         android:text="오늘 미션 진행률"
         android:textColor="@color/text_gray"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@id/btn_home_graph"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summary_layout" />
+        app:layout_constraintTop_toBottomOf="@id/summary_layout" />
 
-    <ProgressBar
-        android:id="@+id/btn_home_graph"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="40dp"
-        android:max="100"
-        android:progress="50"
-        android:progressDrawable="@drawable/progressbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_home_graph_title" />
 
+    <include
+        layout="@layout/seekbar_icon"
+        android:id="@+id/pb_mission"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

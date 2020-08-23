@@ -13,15 +13,15 @@ class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
     private val mCampaign: TextView = view.findViewById(R.id.campaign_count_title)
     private val mCo2: TextView = view.findViewById(R.id.co_title)
     private val mTree: TextView = view.findViewById(R.id.tree_count_title)
-    private var mPercent: ProgressBar = view.findViewById(R.id.btn_home_graph)
+    //private var mPercent: ProgressBar = view.findViewById(R.id.btn_home_graph)
 
     override fun bind(data: User) {
-        mUserName.text = "안녕하세요 " + data.nickName + "님"
+        mUserName.text = "안녕하세요 ${data.nickName} 님"
         mSentence.text = data.desc.parseAsHtml()
-        mCampaign.text = data.progressCampaign.toString() + "개"
-        mCo2.text = data.co2.toString() + "Kg"
-        mTree.text = data.tree.toString() + "그루"
-        mPercent.progress = data.rate
+        mCampaign.text = data.progressCampaign.toString()
+        mCo2.text = data.co2.toString()
+        mTree.text = data.tree.toString()
+        //mPercent.progress = data.rate
 
     }
 }
