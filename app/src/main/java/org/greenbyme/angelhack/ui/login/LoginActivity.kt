@@ -52,7 +52,7 @@ class LoginActivity : BaseActivity() {
             }
             .subscribe({
                 sharePreferences.edit {
-                    putString("token", it)
+                    putString("token", it.token)
                 }
 
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)

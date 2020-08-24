@@ -11,12 +11,12 @@ import android.view.MenuItem
 import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_certification_input.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
@@ -105,42 +105,40 @@ class CertificationInputActivity : BaseActivity() {
         json.addProperty("title", et_certification_input.text.toString())
         json.addProperty("userId", MainActivity.userId)
 
-        var contents = json.toString().toRequestBody()
         val thumbnailUri = intent.getStringExtra(EXTRA_THUMBNAIL) ?: ""
-        //val input = applicationContext.contentResolver.openInputStream(Uri.parse(thumbnailUri))
-//
-        val fileName = "green.png"
-        //val realFile = File(Environment.getExternalStorageDirectory(), fileName)
-
-        //File(intent.getStringExtra(EXTRA_THUMBNAIL)).let { file ->
         val realFile = File(thumbnailUri)
-
-        Log.e("asdasd", realFile.name)
-        Log.e("asdasd", realFile.toString())
         realFile.let { file ->
             val surveyBody = file.asRequestBody("image/*".toMediaType())
             val multipart = MultipartBody.Part.createFormData("file", file.name, surveyBody)
-            ApiService.postAPI.postCertification(
-                token = getToken(),
-                missionInfoId = intent.getIntExtra(EXTRA_MISSION_ID, 0),
-                open = cb_certification_open.isChecked,
-                text = et_certification_input.text.toString(),
-                title = et_certification_input.text.toString(),
-                userId = MainActivity.userId,
-                file = multipart
-            )
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    progressDialog.dismiss()
-                    startActivity(Intent(this, CertificationCompleteActivity::class.java))
-                    finish()
-                }, this::throwError)
+            postCertification(multipart, progressDialog)
         }
         return true
     }
 
-    fun uploadCertificationPost(uri: String, json: JsonObject) {
-
+    private fun postCertification(
+        multipart: MultipartBody.Part,
+        progressDialog: ProgressDialog
+    ): Disposable {
+        return ApiService.postAPI.postCertification(
+            token = getToken(),
+            personalMissionId = intent.getIntExtra(EXTRA_MISSION_ID, 0),
+            open = cb_certification_open.isChecked,
+            text = et_certification_input.text.toString(),
+            title = et_certification_input.text.toString(),
+            userId = MainActivity.userId,
+            file = multipart
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                progressDialog.dismiss()
+                startActivity(
+                    CertificationCompleteActivity.getIntent(
+                        applicationContext,
+                        it.message
+                    )
+                )
+                finish()
+            }, this::throwError)
     }
 }

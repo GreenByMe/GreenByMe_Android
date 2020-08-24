@@ -93,10 +93,10 @@ class HomeFragment : Fragment() {
             }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
-                //refreshLayout.isRefreshing = true
+                refreshLayout.isRefreshing = true
             }
             .doFinally {
-                //refreshLayout.isRefreshing = false
+                refreshLayout.isRefreshing = false
             }
             .subscribe({
                 mHomeAdapter.setItems(it)

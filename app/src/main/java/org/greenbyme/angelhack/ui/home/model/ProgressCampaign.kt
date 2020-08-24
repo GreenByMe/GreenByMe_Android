@@ -7,14 +7,17 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ProgressCampaign(
+
+
+
     @SerializedName("subject")
     var subject: String? = null,
     @SerializedName("finishCount")
     var finishCount: Int,
     @SerializedName("manyPeople")
     var manyPeople: Int,
-    @SerializedName("missionInfoId")
-    var missionInfoId: Int,
+    @SerializedName("personalMission_id")
+    var personalMissionid: Int,
     @SerializedName("missionTitle")
     var missionTitle: String,
     @SerializedName("pictureUrl")

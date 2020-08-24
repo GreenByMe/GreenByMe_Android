@@ -76,7 +76,9 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     companion object {
         var userId: Int = 0
         fun getIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
+            return Intent(context, MainActivity::class.java).apply{
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
         }
     }
 

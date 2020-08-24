@@ -1,14 +1,18 @@
 package org.greenbyme.angelhack.ui.certification
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.text.parseAsHtml
 import kotlinx.android.synthetic.main.activity_certification_complete.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.utils.Utils
 
 
@@ -19,6 +23,9 @@ class CertificationCompleteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_certification_complete)
+
+        val content = intent.getStringExtra(CERTIFICATION_TEXT)
+        tv_complete_contents.text = content.parseAsHtml() ?: "축하합니다!"
 
         img_complete_instagram.setOnClickListener {
 
@@ -32,6 +39,7 @@ class CertificationCompleteActivity : AppCompatActivity() {
         }
 
         tv_complete_back.setOnClickListener {
+            startActivity(MainActivity.getIntent(applicationContext))
             finish()
         }
     }
@@ -82,5 +90,15 @@ class CertificationCompleteActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    companion object {
+        const val CERTIFICATION_TEXT = "certificationText"
+        fun getIntent(context: Context, certificationText: String): Intent {
+            return Intent(context, CertificationCompleteActivity::class.java).apply {
+                putExtra(CERTIFICATION_TEXT, certificationText)
+            }
+        }
+
     }
 }

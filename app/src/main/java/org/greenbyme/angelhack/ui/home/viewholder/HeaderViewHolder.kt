@@ -3,9 +3,12 @@ package org.greenbyme.angelhack.ui.home.viewholder
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.text.parseAsHtml
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.home.model.User
+
 
 class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
     private val mUserName: TextView = view.findViewById(R.id.tv_home_name)
@@ -13,7 +16,10 @@ class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
     private val mCampaign: TextView = view.findViewById(R.id.campaign_count_title)
     private val mCo2: TextView = view.findViewById(R.id.co_title)
     private val mTree: TextView = view.findViewById(R.id.tree_count_title)
-    //private var mPercent: ProgressBar = view.findViewById(R.id.btn_home_graph)
+    private var mPercent: ProgressBar = view.findViewById(R.id.pb_home_mission_progress)
+    private var mPercent_layout: ConstraintLayout = view.findViewById(R.id.layout_home_mission_progress)
+    private var mPercent_text: TextView = view.findViewById(R.id.tv_home_mission_progress_text)
+
 
     override fun bind(data: User) {
         mUserName.text = "안녕하세요 ${data.nickName} 님"
@@ -21,7 +27,18 @@ class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
         mCampaign.text = data.progressCampaign.toString()
         mCo2.text = data.co2.toString()
         mTree.text = data.tree.toString()
-        //mPercent.progress = data.rate
+        setProgressBar(data.rate)
+    }
 
+    fun setProgressBar(persent : Int){
+        mPercent_layout.let{
+            val cs = ConstraintSet().apply {
+                clone(it)
+                setHorizontalBias(R.id.layout_home_mission_progress_box, persent/10f)
+                applyTo(it)
+            }
+        }
+        mPercent_text.text="${persent}%"
+        mPercent.progress = persent
     }
 }

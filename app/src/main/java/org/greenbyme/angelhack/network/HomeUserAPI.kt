@@ -3,6 +3,7 @@ package org.greenbyme.angelhack.network
 import com.google.gson.JsonObject
 import io.reactivex.Maybe
 import io.reactivex.Single
+import org.greenbyme.angelhack.data.LoginDAO
 import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.data.UserLoginDAO
 import org.greenbyme.angelhack.ui.home.model.HomeModel
@@ -18,12 +19,12 @@ interface HomeUserAPI {
     @POST("api/users/signin")
     fun idLogin(
         @Body body: JsonObject
-    ): Maybe<String>
+    ): Maybe<LoginDAO>
 
     @POST("api/users/refresh")
     fun tokenLogin(
         @Header("jwt")token: String
-    ): Maybe<String>
+    ): Maybe<LoginDAO>
 
     @POST("/api/users")
     fun signUp(

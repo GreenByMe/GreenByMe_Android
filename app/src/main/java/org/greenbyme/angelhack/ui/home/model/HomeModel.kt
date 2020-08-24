@@ -28,7 +28,7 @@ data class HomeModel(
     val myCampaign: CampaignList
         get() = CampaignList("진행 중인 캠페인", progressResponseDtoList.map {
             Campaign(
-                id = it.missionInfoId,
+                id = it.personalMissionid,
                 title = it.missionTitle,
                 progress = it.progress,
                 memberCount = it.manyPeople,

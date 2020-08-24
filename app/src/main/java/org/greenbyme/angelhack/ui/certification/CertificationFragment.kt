@@ -46,7 +46,7 @@ class CertificationFragment : Fragment() {
             startActivity(
                 TakePictureActivity.getIntent(
                     requireActivity(), mCampaign?.subject ?: ""
-                    , mCampaign?.missionInfoId ?: 0
+                    , mCampaign?.personalMissionid ?: 0
                 )
             )
         }
