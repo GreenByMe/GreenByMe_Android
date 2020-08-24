@@ -5,25 +5,33 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.network.ApiService
-import org.greenbyme.angelhack.ui.MainActivity
 
-class MissionDetailPresenter(val view: MissionDetailContract.View) :
+class MissionDetailPresenter(view: MissionDetailContract.View) :
     MissionDetailContract.Presenter {
-
+    override val viewControl: MissionDetailContract.View = view
     override fun getMissionDetail(mission_id: Int): Disposable? {
-        return ApiService.networkMission.getMissionDetailResponse(mission_id)
+        return ApiService.missionAPI.getMissionDetailResponse(mission_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(view::setMissionDetail)
+            .subscribe(viewControl::setMissionDetail, viewControl::throwError)
+    }
+
+    override fun getMissionProgressDetail(missionInfo_id: Int): Disposable? {
+        return ApiService.missionAPI.getMissionProgressDetailResponse(missionInfo_id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(viewControl::setMissionDetail, viewControl::throwError)
     }
 
 
     override fun addMission(item: MissionDetailDAO) {
-        ApiService.networkMission.PostJoinMissionResponse(MainActivity.id, item.id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                view::joinSucessed
-            }
+        val subscribe =
+            ApiService.missionAPI.joinMissionResponse(viewControl.getToken(), item.id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    viewControl.joinSucessed()
+                }
     }
+
 }

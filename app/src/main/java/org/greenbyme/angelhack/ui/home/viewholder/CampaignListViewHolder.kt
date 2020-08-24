@@ -27,7 +27,7 @@ class CampaignListViewHolder(view: View) : HomeViewHolder<CampaignList>(view) {
 
     override fun bind(data: CampaignList, itemClickListener: HomeItemClickListener?) {
         super.bind(data, itemClickListener)
-
+        mAdapter.itemClickListener = itemClickListener
         itemView.setOnClickListener {
             if (data.type == CampaignList.Type.POPULAR) {
                 itemClickListener?.onPopularCampaignClicked()

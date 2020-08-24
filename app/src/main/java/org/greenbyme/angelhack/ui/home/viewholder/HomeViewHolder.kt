@@ -11,7 +11,7 @@ open class HomeViewHolder<T : HomeItem>(view: View) : RecyclerView.ViewHolder(vi
     }
 
     @CallSuper
-    open fun bind(data: T, itemClickListener: HomeItemClickListener? = null) {
+    open fun bind(data: T, itemClickListener: HomeItemClickListener?) {
         bind(data)
     }
 }

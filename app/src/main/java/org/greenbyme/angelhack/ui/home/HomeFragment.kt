@@ -13,14 +13,14 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
-import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
+import org.greenbyme.angelhack.ui.home.model.CampaignList
 import org.greenbyme.angelhack.ui.home.model.HomeItem
 import org.greenbyme.angelhack.ui.home.model.User
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.ui.mission.more.MissionMoreActivity
-import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
 
 
 /**
@@ -40,10 +40,14 @@ class HomeFragment : Fragment() {
                     context?.startActivity(intent)
                 }
 
-                override fun onMissionClicked(missionId: Int) {
-                    val intent = Intent(context, MissionDetailActivity::class.java)
-                    intent.putExtra("mission_id",missionId)
-                    context?.startActivity(intent)
+                override fun onMissionClicked(missionId: Int, missionType: CampaignList.Type) {
+                    context?.startActivity(
+                        MissionDetailActivity.getIntent(
+                            context!!,
+                            missionId,
+                            missionType
+                        )
+                    )
                 }
             }
         }
@@ -58,8 +62,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initViews()
+        loadData()
+    }
+
+    override fun onResume() {
+        super.onResume()
         loadData()
     }
 
@@ -75,18 +83,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadData() =
-        ApiService.service.getUserHomeInfo(MainActivity.id)
+        ApiService.service.getUserHomeInfo((activity as BaseActivity).getToken())
             .map {
                 listOf<HomeItem>(
-                    User(
-                        MainActivity.id,
-                        it.nickName,
-                        it.treeSentence,
-                        it.progressCampaign,
-                        it.expectedCO2,
-                        it.expectedTree,
-                        it.progressRates
-                    ),
+                    User.parseHomeModel(it),
                     it.myCampaign,
                     it.popularCampaign
                 )

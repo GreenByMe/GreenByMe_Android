@@ -13,7 +13,6 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -22,24 +21,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.ui.BaseActivity
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class TakePictureActivity : AppCompatActivity() {
+class TakePictureActivity : BaseActivity() {
     private var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
 
     companion object {
         private const val REQUEST_CAMERA = 1001
         private const val EXTRA_SUBJECT = "extraKeySubject"
-
-        fun getIntent(activity: Activity, subject: String): Intent {
+        private const val EXTRA_MISSION_ID = "extraMissionId"
+        fun getIntent(activity: Activity, subject: String, missionId: Int): Intent {
             return Intent(activity, TakePictureActivity::class.java).apply {
                 putExtra(EXTRA_SUBJECT, subject)
+                putExtra(EXTRA_MISSION_ID, missionId)
             }
         }
     }
@@ -81,17 +81,20 @@ class TakePictureActivity : AppCompatActivity() {
                     getOutputMediaFile(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE)?.let { pictureFile ->
                         try {
                             withContext(Dispatchers.IO) {
-                                val fos = FileOutputStream(pictureFile)
-                                fos.write(data)
-                                fos.close()
+                                val fos = applicationContext.contentResolver.openOutputStream(
+                                    Uri.fromFile(pictureFile)
+                                )
+                                fos?.write(data)
+                                fos?.close()
                             }
 
-                            val uri = Uri.fromFile(pictureFile)
-
+                            val missionId = intent.getIntExtra(EXTRA_MISSION_ID, 0)
                             startActivity(
                                 CertificationInputActivity.getIntent(
                                     this@TakePictureActivity,
-                                    uri.toString(), System.currentTimeMillis()
+                                    pictureFile.toString(),
+                                    System.currentTimeMillis(),
+                                    missionId
                                 )
                             )
                         } catch (e: Exception) {
@@ -128,6 +131,7 @@ class TakePictureActivity : AppCompatActivity() {
                 mPreview?.setCamera(camera)
             }
         } catch (e: Exception) {
+            throwError(e)
             finish()
         }
     }

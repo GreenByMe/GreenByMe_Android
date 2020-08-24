@@ -1,13 +1,11 @@
 package org.greenbyme.angelhack.ui.mission
 
-import android.content.Intent
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_mission_recommend.view.*
@@ -17,8 +15,8 @@ import org.greenbyme.angelhack.data.MissionDAO
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.utils.Utils
 
-class MissionRecommendAdapter(private val list: List<MainMissionDAO.Content>) :
-    RecyclerView.Adapter<MissionRecommendAdapter.Holder>() {
+class MissionAdapter(private val list: List<MainMissionDAO.Content>) :
+    RecyclerView.Adapter<MissionAdapter.Holder>() {
 
     companion object {
         fun makeDummy(): ArrayList<MissionDAO> {
@@ -39,11 +37,13 @@ class MissionRecommendAdapter(private val list: List<MainMissionDAO.Content>) :
         val view =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_mission_recommend, parent, false)
+        val context = parent.context
+
         return Holder(view).apply {
             itemView.setOnClickListener {
-                val intent = Intent(parent.context, MissionDetailActivity::class.java)
-                intent.putExtra("mission_id", list[adapterPosition].id)
-                startActivity(parent.context, intent, null)
+                context.startActivity(
+                    MissionDetailActivity.getIntent(context, list[adapterPosition].id)
+                )
             }
         }
     }
@@ -65,7 +65,6 @@ class MissionRecommendAdapter(private val list: List<MainMissionDAO.Content>) :
             missionRecommendDiscription.text = Html.fromHtml(item.description)
             missionRecommendDate.text = Utils.formatTimeMonthDay(item.startDate)
             missionRecommendUserCount.text = "${item.passCandidates}명 완료"
-
         }
     }
 }

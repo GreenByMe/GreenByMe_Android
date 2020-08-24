@@ -7,13 +7,13 @@ import org.greenbyme.angelhack.extention.convert
 
 data class HomeModel(
     @SerializedName("expectedCO2")
-    var expectedCO2: Int,
+    var expectedCO2: Double,
     @SerializedName("expectedTree")
-    var expectedTree: Int,
+    var expectedTree: Double,
     @SerializedName("nickName")
     var nickName: String,
     @SerializedName("popularMissionResponseDtoList")
-    var popularCampaignList: PopularCampaignList,
+    var popularCampaignList: List<PopularCampaignList>,
     @SerializedName("progressCampaign")
     var progressCampaign: Int,
     @SerializedName("progressRates")
@@ -27,17 +27,28 @@ data class HomeModel(
 ) {
     val myCampaign: CampaignList
         get() = CampaignList("진행 중인 캠페인", progressResponseDtoList.map {
-            Campaign(id=it.missionInfoId,
-                title = it.missionTitle, progress = it.progress, memberCount = it.manyPeople,
-                startDate = it.startDate, endDate = it.endDate, imageUrl = it.pictureUrl
+            Campaign(
+                id = it.personalMissionid,
+                title = it.missionTitle,
+                progress = it.progress,
+                memberCount = it.manyPeople,
+                startDate = it.startDate,
+                endDate = it.endDate,
+                imageUrl = it.pictureUrl,
+                missionType = CampaignList.Type.MY_CAMPAIGN
             )
         }, CampaignList.Type.MY_CAMPAIGN)
 
     val popularCampaign: CampaignList
-        get() = CampaignList("인기 캠페인", popularCampaignList.content.map {
-            Campaign(id=it.missionId,
-                title = it.subject, progress = it.progressCount, startDate = it.startDate,
-                endDate = it.endDate, imageUrl = it.pictureUrl
+        get() = CampaignList("인기 캠페인", popularCampaignList.map {
+            Campaign(
+                id = it.missionId,
+                title = it.subject,
+                progress = it.progressCount,
+                startDate = it.startDate,
+                endDate = it.endDate,
+                imageUrl = it.pictureUrl,
+                missionType = CampaignList.Type.POPULAR
             )
         }, CampaignList.Type.POPULAR)
 }
@@ -57,13 +68,14 @@ data class CampaignList(
 }
 
 data class Campaign(
-    var id :Int =-1,
+    var id: Int = -1,
     var title: String = "",
     var progress: Int = 0,
     var imageUrl: String = "",
     var memberCount: Int = 0,
     var startDate: String = "",
-    var endDate: String = ""
+    var endDate: String = "",
+    var missionType: CampaignList.Type = CampaignList.Type.MY_CAMPAIGN
 ) : HomeItem {
     override fun getViewType(): Int {
         return HomeItemViewType.CAMPAIGN_LIST_ITEM.viewType

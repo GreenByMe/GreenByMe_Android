@@ -1,20 +1,22 @@
 package org.greenbyme.angelhack.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.content_main.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.certification.CertificationFragment
 import org.greenbyme.angelhack.ui.home.HomeFragment
+import org.greenbyme.angelhack.ui.login.LoginActivity
 import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.ui.mypage.MyPageFragment
 
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var backTime: Long = 0
 
     override fun onBackPressed() {
@@ -32,10 +34,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        init()
+    }
+
+    private fun init() {
         menu_bottom_navi.setOnNavigationItemSelectedListener(this)
         setFragment(HomeFragment())
-
-        id = intent.getIntExtra("id", 0)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -50,13 +54,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 setFragment(CertificationFragment())
             }
             R.id.menu_bottom_my -> {
-                setFragment(MyPageFragment.newInstance(id))
+                setFragment(MyPageFragment.newInstance(userId))
             }
         }
         return true
     }
 
-    fun setFragment(frag: Fragment) {
+    private fun setFragment(frag: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_frag, frag)
             .commit()
@@ -70,6 +74,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     companion object {
-        var id: Int = 0
+        var userId: Int = 0
+        fun getIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java).apply{
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+        }
     }
+
 }

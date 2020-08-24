@@ -1,19 +1,23 @@
 package org.greenbyme.angelhack.network
 
 import io.reactivex.Single
+import okhttp3.MultipartBody
 import org.greenbyme.angelhack.data.MainMissionDAO
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Query
 
 interface MyPageAPI {
-    //Available values : NONE, ENERGY, DISPOSABLE, TRAFFIC, WATERWORKS, CAMPAIGN
-    //Available values : DAY, WEEK, MONTH
-    @GET("/api/users/{userId}")
-    fun getMissionResponse(
-        @Path("category") category: Int
+    //TODO : Require API UPDATE
+    @PUT("/api/users/image")
+    fun updateProfileImage(
+        @Part file: MultipartBody.Part
     ): Single<MainMissionDAO>
 
-    @GET("/api/missions")
-    fun getMissionResponse(
+
+    //TODO : Require API UPDATE
+    @PUT("/api/users/nickname")
+    fun updateNickname(
+        @Query("nickname") nickname: String
     ): Single<MainMissionDAO>
 }

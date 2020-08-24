@@ -10,7 +10,6 @@ import org.greenbyme.angelhack.ui.home.viewholder.*
 
 class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
     private val mItemList = mutableListOf<HomeItem>()
-
     var itemClickListener: HomeItemClickListener? = null
 
     fun setItems(items: List<HomeItem>) {
@@ -57,6 +56,24 @@ class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
                 ProgressViewHolder(
                     layoutInflater.inflate(
                         R.layout.item_mission_progress,
+                        parent,
+                        false
+                    )
+                )
+            }
+            HomeItemViewType.CERTIFICATION_LIST -> {
+                CertificationViewHolder(
+                    layoutInflater.inflate(
+                        R.layout.item_home_certification,
+                        parent,
+                        false
+                    )
+                )
+            }
+            HomeItemViewType.CERTIFICATION_LIST_ITEM -> {
+                CertificationItemViewHolder(
+                    layoutInflater.inflate(
+                        R.layout.item_mission_certification_img,
                         parent,
                         false
                     )

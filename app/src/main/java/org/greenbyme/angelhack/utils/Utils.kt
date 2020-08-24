@@ -19,6 +19,37 @@ import java.text.SimpleDateFormat
 
 class Utils {
     companion object {
+        fun getCategoryString(category: Int?): String {
+            when (category) {
+                1 -> return "ENERGY"
+                2 -> return "DISPOSABLE"
+                3 -> return "TRAFFIC"
+                4 -> return "WATERWORKS"
+                5 -> return "CAMPAIGN"
+            }
+            return "NONE"
+        }
+
+        fun getCategoryStringKOR(category: String?): String {
+            when (category) {
+                "ENERGY" -> return "에너지"
+                "DISPOSABLE" -> return "일회용품"
+                "TRAFFIC" -> return "교통"
+                "WATERWORKS" -> return "수자원"
+                "CAMPAIGN" -> return "캠페인"
+            }
+            return "전체"
+        }
+
+        fun getDateString(day: Int): String {
+            when (day) {
+                0 -> return "DAY"
+                1 -> return "WEEK"
+                2 -> return "MONTH"
+            }
+            return "DAY"
+        }
+
         fun getNumToDay(day: Int): String {
             val list = listOf<String>("일", "월", "화", "수", "목", "금", "토")
             return list[day]

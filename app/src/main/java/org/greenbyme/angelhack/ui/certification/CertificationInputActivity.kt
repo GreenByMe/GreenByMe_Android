@@ -5,24 +5,37 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_certification_input.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.BaseActivity
+import org.greenbyme.angelhack.ui.MainActivity
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CertificationInputActivity : AppCompatActivity() {
+class CertificationInputActivity : BaseActivity() {
     companion object {
         private const val EXTRA_THUMBNAIL = "extraThumbnail"
         private const val EXTRA_TIME = "extraTime"
+        private const val EXTRA_MISSION_ID = "extraMissionId"
 
-        fun getIntent(activity: Activity, imageUri: String, time: Long): Intent {
+        fun getIntent(activity: Activity, imageUri: String, time: Long, missionId: Int): Intent {
             return Intent(activity, CertificationInputActivity::class.java).apply {
                 putExtra(EXTRA_THUMBNAIL, imageUri)
                 putExtra(EXTRA_TIME, time)
+                putExtra(EXTRA_MISSION_ID, missionId)
             }
         }
     }
@@ -49,6 +62,7 @@ class CertificationInputActivity : AppCompatActivity() {
             val thumbnailUri = getStringExtra(EXTRA_THUMBNAIL) ?: ""
 
             if (thumbnailUri.isNotBlank()) {
+                Log.d("certiinput", thumbnailUri)
                 Picasso.get().load(thumbnailUri).rotate(90f)
                     .into(thumbnail)
             }
@@ -72,18 +86,59 @@ class CertificationInputActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.upload -> {
-                val progressDialog = ProgressDialog(this)
-                progressDialog.setMessage("업로드 중입니다. 잠시만 기다려주세요")
-                progressDialog.show()
-
-                thumbnail.postDelayed({
-                    progressDialog.dismiss()
-                    startActivity(Intent(this, CertificationCompleteActivity::class.java))
-                    finish()
-                }, 2000)
-                true
+                onClickUpload()
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun onClickUpload(): Boolean {
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("업로드 중입니다. 잠시만 기다려주세요")
+        progressDialog.show()
+
+        var json = JsonObject()
+
+        json.addProperty("missionInfoId", intent.getIntExtra(EXTRA_MISSION_ID, 0))
+        json.addProperty("open", cb_certification_open.isChecked)
+        json.addProperty("text", et_certification_input.text.toString())
+        json.addProperty("title", et_certification_input.text.toString())
+        json.addProperty("userId", MainActivity.userId)
+
+        val thumbnailUri = intent.getStringExtra(EXTRA_THUMBNAIL) ?: ""
+        val realFile = File(thumbnailUri)
+        realFile.let { file ->
+            val surveyBody = file.asRequestBody("image/*".toMediaType())
+            val multipart = MultipartBody.Part.createFormData("file", file.name, surveyBody)
+            postCertification(multipart, progressDialog)
+        }
+        return true
+    }
+
+    private fun postCertification(
+        multipart: MultipartBody.Part,
+        progressDialog: ProgressDialog
+    ): Disposable {
+        return ApiService.postAPI.postCertification(
+            token = getToken(),
+            personalMissionId = intent.getIntExtra(EXTRA_MISSION_ID, 0),
+            open = cb_certification_open.isChecked,
+            text = et_certification_input.text.toString(),
+            title = et_certification_input.text.toString(),
+            userId = MainActivity.userId,
+            file = multipart
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                progressDialog.dismiss()
+                startActivity(
+                    CertificationCompleteActivity.getIntent(
+                        applicationContext,
+                        it.message
+                    )
+                )
+                finish()
+            }, this::throwError)
     }
 }

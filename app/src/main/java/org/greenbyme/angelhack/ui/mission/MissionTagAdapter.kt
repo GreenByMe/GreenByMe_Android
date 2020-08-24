@@ -11,11 +11,11 @@ import org.greenbyme.angelhack.data.MissionTagDAO
 
 class MissionTagAdapter(
     private val list: ArrayList<MissionTagDAO>,
-    val tagListener: TagOnClickListener,
-    val setCircle: Boolean = false
+    private val tagListener: TagOnClickListener,
+    private val isSelected: Boolean = false
 ) :
     RecyclerView.Adapter<MissionTagAdapter.Holder>() {
-    var fontColor = R.color.tag_color
+    private var fontColor = R.color.tag_color
 
     companion object {
         var prePosition: Int = 5
@@ -37,7 +37,7 @@ class MissionTagAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view =
-            if (setCircle) {
+            if (isSelected) {
                 fontColor = R.color.white
                 LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_mission_tag_circle, parent, false)

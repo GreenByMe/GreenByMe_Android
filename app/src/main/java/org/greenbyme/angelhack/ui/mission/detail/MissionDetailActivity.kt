@@ -1,24 +1,24 @@
 package org.greenbyme.angelhack.ui.mission.detail
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_mission_detail.*
 import kotlinx.android.synthetic.main.item_mission_detail_eco_point.*
 import kotlinx.android.synthetic.main.item_mission_detail_header.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionDetailDAO
-import org.greenbyme.angelhack.ui.BaseApplication
-import org.greenbyme.angelhack.ui.mission.MissionFragment
+import org.greenbyme.angelhack.ui.BaseActivity
+import org.greenbyme.angelhack.ui.home.model.CampaignList
 import org.greenbyme.angelhack.utils.Utils
 
-class MissionDetailActivity : AppCompatActivity(), MissionDetailContract.View {
-    override var app: BaseApplication = (applicationContext as BaseApplication)
-    lateinit var presenter: MissionDetailContract.Presenter
+class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
+    override lateinit var presenter: MissionDetailContract.Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_detail)
@@ -26,10 +26,16 @@ class MissionDetailActivity : AppCompatActivity(), MissionDetailContract.View {
         presenter = MissionDetailPresenter(this)
 
         val missionId = intent.getIntExtra("mission_id", -1)
+        val missionType: CampaignList.Type =
+            intent.getSerializableExtra("mission_type") as CampaignList.Type
         if (missionId != -1) {
-            presenter.getMissionDetail(missionId)
+            if (missionType == CampaignList.Type.POPULAR) {
+                presenter.getMissionDetail(missionId)
+            } else {
+                presenter.getMissionProgressDetail(missionId)
+            }
         } else {
-            Toast.makeText(applicationContext, "잘못된 접근입니다.", Toast.LENGTH_SHORT).show()
+            toastMessage("잘못된 접근입니다.")
         }
     }
 
@@ -50,7 +56,7 @@ class MissionDetailActivity : AppCompatActivity(), MissionDetailContract.View {
         missionDetailDate.text =
             "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(item.endDate)}"
         missionDetailCategory.text =
-            "#${MissionFragment.getCategoryStringKOR(item.category)}"
+            "#${Utils.getCategoryStringKOR(item.category)}"
         missionDetailComplete.text = "${item.passCandidatesCount}명 완료"
 
         missionDetailPlantTree.text = "${String.format("%.2f", item.expectTree)}그루"
@@ -65,6 +71,15 @@ class MissionDetailActivity : AppCompatActivity(), MissionDetailContract.View {
     override fun joinSucessed() {
         Toast.makeText(this, "미션에 참가하였습니다.", Toast.LENGTH_LONG).show()
         finish()
+    }
+
+    companion object {
+        fun getIntent(context: Context, missionId: Int, missionType: CampaignList.Type = CampaignList.Type.POPULAR): Intent {
+            val intent = Intent(context, MissionDetailActivity::class.java)
+            intent.putExtra("mission_id", missionId)
+            intent.putExtra("mission_type", missionType)
+            return intent
+        }
     }
 
 }
