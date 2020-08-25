@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,19 +28,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class CertificationInputActivity : BaseActivity() {
-    companion object {
-        private const val EXTRA_THUMBNAIL = "extraThumbnail"
-        private const val EXTRA_TIME = "extraTime"
-        private const val EXTRA_MISSION_ID = "extraMissionId"
-
-        fun getIntent(activity: Activity, imageUri: String, time: Long, missionId: Int): Intent {
-            return Intent(activity, CertificationInputActivity::class.java).apply {
-                putExtra(EXTRA_THUMBNAIL, imageUri)
-                putExtra(EXTRA_TIME, time)
-                putExtra(EXTRA_MISSION_ID, missionId)
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,9 +51,7 @@ class CertificationInputActivity : BaseActivity() {
             val thumbnailUri = getStringExtra(EXTRA_THUMBNAIL) ?: ""
 
             if (thumbnailUri.isNotBlank()) {
-                Log.d("certiinput", thumbnailUri)
-                Picasso.get().load(thumbnailUri).rotate(90f)
-                    .into(thumbnail)
+                Glide.with(applicationContext).load(thumbnailUri).into(thumbnail)
             }
 
             time.text = SimpleDateFormat("yyyy.M.d (EEE) HH:mm").format(
@@ -140,5 +127,19 @@ class CertificationInputActivity : BaseActivity() {
                 )
                 finish()
             }, this::throwError)
+    }
+
+    companion object {
+        private const val EXTRA_THUMBNAIL = "extraThumbnail"
+        private const val EXTRA_TIME = "extraTime"
+        private const val EXTRA_MISSION_ID = "extraMissionId"
+
+        fun getIntent(activity: Activity, imageUri: String, time: Long, missionId: Int): Intent {
+            return Intent(activity, CertificationInputActivity::class.java).apply {
+                putExtra(EXTRA_THUMBNAIL, imageUri)
+                putExtra(EXTRA_TIME, time)
+                putExtra(EXTRA_MISSION_ID, missionId)
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-package org.greenbyme.angelhack.ui.mypage
+package org.greenbyme.angelhack.ui.mypage.editprofile
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

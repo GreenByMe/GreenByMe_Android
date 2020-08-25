@@ -61,16 +61,13 @@ class Utils {
                 try {
                     val date = sim.parse(time)
                     val ret = "${date.month + 1}/${date.date + 1}"
-                    Log.d("utils", ret)
                     return ret
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
 
             }
-
-            Log.d("utils", "fuck")
-            return " "
+            return "."
         }
 
         fun formatTimeMonthDayDate(time: String): String {
@@ -79,15 +76,26 @@ class Utils {
                 try {
                     val date = sim.parse(time)
                     val ret = "${date.month + 1}/${date.date + 1}/${getNumToDay(date.day)}"
-                    Log.d("utils", ret)
                     return ret
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
+            return "."
+        }
 
-            Log.d("utils", "fuck")
-            return " "
+        fun formatTimeYearMonthDay(time: String): String {
+            if (time.isNotBlank()) {
+                val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
+                try {
+                    val date = sim.parse(time)
+                    val ret = "${date.year+1970} . ${date.month + 1} . ${date.date + 1}"
+                    return ret
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+            return "."
         }
 
         fun shareInstagram(context: Context, view: View) {

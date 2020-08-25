@@ -48,3 +48,7 @@ Green by me, Green by earth(us)
 ---
 
 ## Android
+
+code
+1. companion object는 class 맨아래
+2. xml안에 string다 빼기

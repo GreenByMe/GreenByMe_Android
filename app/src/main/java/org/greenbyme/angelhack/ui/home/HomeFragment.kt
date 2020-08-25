@@ -29,7 +29,7 @@ import org.greenbyme.angelhack.ui.mission.more.MissionMoreActivity
 class HomeFragment : Fragment() {
     private val mHomeAdapter: HomeAdapter by lazy {
         HomeAdapter().apply {
-            itemClickListener = object : HomeItemClickListener {
+            itemClickListener = object : HomeItemClickListener() {
                 override fun onCampaignClicked() {
                     val intent = Intent(context, MissionMoreActivity::class.java)
                     context?.startActivity(intent)

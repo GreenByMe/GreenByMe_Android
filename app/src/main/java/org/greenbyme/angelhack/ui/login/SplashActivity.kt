@@ -15,7 +15,8 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         ApiService.init
-        tokenLogin()
+        startActivity(LoginActivity.getIntent(this))
+        finish()
     }
 
     fun tokenLogin() {
@@ -24,13 +25,13 @@ class SplashActivity : BaseActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                handler.postDelayed(Runnable {
-                    startActivity(MainActivity.getIntent(this))
-                    finish()
-                }, 2000)
+//                handler.postDelayed(Runnable {
+//                    startActivity(MainActivity.getIntent(this))
+//                    finish()
+//                }, 2000)
+
             }, {
-                startActivity(LoginActivity.getIntent(this))
-                finish()
+
             })
     }
 }
