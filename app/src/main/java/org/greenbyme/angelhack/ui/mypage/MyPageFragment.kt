@@ -40,11 +40,11 @@ class MyPageFragment : Fragment(), TagOnClickListener {
         val binding: FragmentMyPageBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
         val mViewmodel = MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
-        MyPageUiModel.showPostFragment.observe(this, Observer {
-            it.getContentIfNotHandled()?.let {
-                (activity as MainActivity).addFragment(FeedPostFragment())
-            }
-        })
+//        MyPageUiModel.showPostFragment.observe(this, Observer {
+//            it.getContentIfNotHandled()?.let {
+//                (activity as MainActivity).addFragment(FeedPostFragment())
+//            }
+//        })
 
         binding.mypageVm = mViewmodel
         binding.lifecycleOwner = this

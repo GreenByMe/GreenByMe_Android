@@ -26,9 +26,9 @@ class MyPageUiModel(val repo: MyPageRepo) : ViewModel() {
     }
 
     companion object {
-        private val _showPostFragment = MutableLiveData<Event<Boolean>>()
-        open val showPostFragment: LiveData<Event<Boolean>>
-            get() = _showPostFragment
+//        private val _showPostFragment = MutableLiveData<Event<Boolean>>()
+//        open val showPostFragment: LiveData<Event<Boolean>>
+//            get() = _showPostFragment
 
         @JvmStatic
         @BindingAdapter("bind:item")
@@ -36,13 +36,14 @@ class MyPageUiModel(val repo: MyPageRepo) : ViewModel() {
             recyclerView: RecyclerView,
             dao: LiveData<MyPageDAO>
         ) {
-            val mAdapter = HomeAdapter().apply {
-                itemClickListener=object : HomeItemClickListener() {
-                    override fun onMissionClicked(missionId: Int, missionType: CampaignList.Type) {
-                        _showPostFragment.value= Event(true)
-                    }
-                }
-            }
+            val mAdapter = HomeAdapter()
+//                    .apply {
+//                itemClickListener=object : HomeItemClickListener() {
+//                    override fun onMissionClicked(missionId: Int, missionType: CampaignList.Type) {
+//                        _showPostFragment.value= Event(true)
+//                    }
+//                }
+//            }
 
             mAdapter.setItems(
                 CertificationList(
