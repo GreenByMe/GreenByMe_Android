@@ -15,23 +15,35 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         ApiService.init
-        startActivity(LoginActivity.getIntent(this))
-        finish()
+        tokenLogin()
     }
 
-    fun tokenLogin() {
+    private fun tokenLogin() {
         val handler = Handler()
         val disposable = ApiService.service.tokenLogin(getToken())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-//                handler.postDelayed(Runnable {
-//                    startActivity(MainActivity.getIntent(this))
-//                    finish()
-//                }, 2000)
+                // TODO : 깔끔하게 처리하는 방법 있을지
+                when (it.status) {
+                    "201" -> {
+                        handler.postDelayed(Runnable {
+                            startActivity(MainActivity.getIntent(this))
+                            finish()
+                        }, 2000)
+                    }
+                    else -> {
+                        startLoginActivity()
+                    }
+                }
 
             }, {
-
+                startLoginActivity()
             })
+    }
+
+    private fun startLoginActivity() {
+        startActivity(LoginActivity.getIntent(this))
+        finish()
     }
 }

@@ -41,24 +41,29 @@ class LoginActivity : BaseActivity() {
     }
 
     fun login(json: JsonObject) =
-        ApiService.service.idLogin(json)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {
-                isLoading = true
-            }
-            .doFinally {
-                isLoading = false
-            }
-            .subscribe({
-                sharePreferences.edit {
-                    putString("token", it.token)
-                }
+            ApiService.service.idLogin(json)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { isLoading = true }
+                    .doFinally { isLoading = false }
+                    .subscribe({
+                        when (it.status) {
+                            "201" -> {
+                                setToken(it)
+                                startActivity(MainActivity.getIntent(applicationContext))
+                                finish()
+                            }
+                            else -> {
+                                toastMessage(it.message)
+                            }
+                        }
+                    }, this::toastMessage)
 
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }, this::toastMessage)
+    private fun setToken(it: LoginDAO) {
+        sharePreferences.edit {
+            putString("token", it.data)
+        }
+    }
 
 
     private fun toastMessage(t: Throwable) {
