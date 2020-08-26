@@ -59,7 +59,7 @@ data class CampaignList(
     var type: Type
 ) : HomeItem {
     enum class Type {
-        MY_CAMPAIGN, POPULAR
+        MY_CAMPAIGN, POPULAR,POST
     }
 
     override fun getViewType(): Int {

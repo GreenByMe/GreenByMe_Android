@@ -1,25 +1,21 @@
 package org.greenbyme.angelhack.ui.mypage
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.databinding.FragmentMyPageBinding
 import org.greenbyme.angelhack.ui.BaseActivity
-import org.greenbyme.angelhack.ui.certification.CertificationCompleteActivity
-import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
-import org.greenbyme.angelhack.ui.home.model.CertificationList
-import org.greenbyme.angelhack.ui.home.model.CertificationListItem
+import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
+import org.greenbyme.angelhack.ui.mypage.post.FeedPostFragment
 
 
 private const val ARG_PARAM1 = "profile_id"
@@ -43,8 +39,16 @@ class MyPageFragment : Fragment(), TagOnClickListener {
     ): View? {
         val binding: FragmentMyPageBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
-        binding.mypageVm = MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
+        val mViewmodel = MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
+//        MyPageUiModel.showPostFragment.observe(this, Observer {
+//            it.getContentIfNotHandled()?.let {
+//                (activity as MainActivity).addFragment(FeedPostFragment())
+//            }
+//        })
+
+        binding.mypageVm = mViewmodel
         binding.lifecycleOwner = this
+
         return binding.root
     }
 

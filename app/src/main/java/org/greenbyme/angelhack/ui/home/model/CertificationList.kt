@@ -11,4 +11,8 @@ data class CertificationList(
         return HomeItemViewType.CERTIFICATION_LIST.viewType
     }
 
+    fun toList(): List<CertificationList> {
+        return listOf(this)
+    }
+
 }

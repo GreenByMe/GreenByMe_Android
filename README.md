@@ -46,3 +46,7 @@ Green by me, Green by earth(us)
 * Picasso
 * Lottie
 * 테스트 id : test, pw : test
+
+code
+1. companion object는 class 맨아래
+2. xml안에 string다 빼기
