@@ -1,16 +1,11 @@
 ## 내가 그린(Green By Me)
 
----
-
 Green by me, Green by earth(us)
 
 "내가 그린"은 미션 기반 참여를 통해 사용자의 지속 가능한 소비와 생산을 유도하는 공간을 제공합니다.
-
-<center>![image](https://user-images.githubusercontent.com/13096845/87873545-70869b00-c9fd-11ea-9132-4cf881ad549b.png){: width="50%" height="50%"}</center>
+![image](https://user-images.githubusercontent.com/48986787/87877556-03cdc980-ca1a-11ea-8283-4e99de8730f6.png)
 
 ## 소개
-
----
 
 ### Eco-Friendly
 
@@ -24,8 +19,6 @@ Green by me, Green by earth(us)
 ### 외부 SNS 연동을 통해, 지속 가능한 소비 및 생산 행동에 대한 홍보 가능
 
 * 내 행동의 결과를 시각적으로 꾸며 제공해, 다른 사람들에게 공유 할 수 있어요.
-
----
 
 ## 주요 기능
 
@@ -45,9 +38,14 @@ Green by me, Green by earth(us)
 * 카테고리별, 기간별 미션 정보를 제공합니다.
 * 기업의 후원으로 진행되는 특별 캠페인 정보를 우선적으로 제공합니다.
 
----
 
 ## Android
+
+* 사용 라이브러리 
+* Rxjava
+* Picasso
+* Lottie
+* 테스트 id : test, pw : test
 
 code
 1. companion object는 class 맨아래
