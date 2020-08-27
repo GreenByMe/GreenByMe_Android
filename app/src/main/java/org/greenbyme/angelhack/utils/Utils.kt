@@ -83,9 +83,9 @@ class Utils {
             }
             return "."
         }
-
-        fun formatTimeYearMonthDay(time: String): String {
-            if (time.isNotBlank()) {
+        @JvmStatic
+        fun formatTimeYearMonthDay(time: String?): String {
+            if (!time.isNullOrBlank()) {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
                 try {
                     val date = sim.parse(time)

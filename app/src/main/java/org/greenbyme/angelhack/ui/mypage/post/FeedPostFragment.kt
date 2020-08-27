@@ -13,9 +13,6 @@ import org.greenbyme.angelhack.ui.BaseActivity
 
 class FeedPostFragment : Fragment() {
     var postId = -1
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +21,7 @@ class FeedPostFragment : Fragment() {
         val binding: FragmentFeedPostBinding =
                 DataBindingUtil.inflate(inflater, R.layout.fragment_feed_post, container, false)
         val mViewModel = FeedPostUiModel(repo = FeedPostRepo(activity as BaseActivity, postId))
+
         binding.feedpostVm=mViewModel
         binding.lifecycleOwner=this
         return binding.root

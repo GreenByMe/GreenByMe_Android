@@ -26,13 +26,20 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
         presenter = MissionDetailPresenter(this)
 
         val missionId = intent.getIntExtra("mission_id", -1)
-        val missionType: CampaignList.Type =
-            intent.getSerializableExtra("mission_type") as CampaignList.Type
+        val missionType: CampaignList.Type? =
+                intent.getSerializableExtra("mission_type") as CampaignList.Type
+
         if (missionId != -1) {
-            if (missionType == CampaignList.Type.POPULAR) {
-                presenter.getMissionDetail(missionId)
-            } else {
-                presenter.getMissionProgressDetail(missionId)
+            when (missionType) {
+                CampaignList.Type.POPULAR -> {
+                    presenter.getMissionDetail(missionId)
+                }
+                CampaignList.Type.MY_CAMPAIGN -> {
+                    presenter.getMissionProgressDetail(missionId)
+                }
+                null ->{
+                    toastMessage("잘못된 접근입니다.")
+                }
             }
         } else {
             toastMessage("잘못된 접근입니다.")
@@ -54,9 +61,9 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
         missionDetailContents.text = item.subject
         missionDetailDiscription.text = Html.fromHtml(item.description)
         missionDetailDate.text =
-            "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(item.endDate)}"
+                "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(item.endDate)}"
         missionDetailCategory.text =
-            "#${Utils.getCategoryStringKOR(item.category)}"
+                "#${Utils.getCategoryStringKOR(item.category)}"
         missionDetailComplete.text = "${item.passCandidatesCount}명 완료"
 
         missionDetailPlantTree.text = "${String.format("%.2f", item.expectTree)}그루"
