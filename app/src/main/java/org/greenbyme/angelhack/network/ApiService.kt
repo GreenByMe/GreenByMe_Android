@@ -10,19 +10,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 // TODO :: 장시간 어플이탈시 NULL
 class ApiService {
     companion object {
-        val BASE_URL = "https://cafecube.iptime.org"
-        lateinit var service: HomeUserAPI
-        lateinit var missionAPI: MissionAPI
-        lateinit var certAPI: CertAPI
-        lateinit var postAPI: PostAPI
+        private const val BASE_URL = "https://cafecube.iptime.org"
 
-        val init by lazy {
+        private val mRetrofit: Retrofit by lazy {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
 
             val httpClient = OkHttpClient.Builder()
             httpClient.addInterceptor(logging)
-            val retrofit = Retrofit.Builder()
+
+            Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(httpClient.build())
                 .addConverterFactory(
@@ -33,11 +30,22 @@ class ApiService {
                 )
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
+        }
 
-            service = retrofit.create(HomeUserAPI::class.java)
-            missionAPI = retrofit.create(MissionAPI::class.java)
-            certAPI = retrofit.create(CertAPI::class.java)
-            postAPI = retrofit.create(PostAPI::class.java)
+        val service: HomeUserAPI by lazy {
+            mRetrofit.create(HomeUserAPI::class.java)
+        }
+
+        val missionAPI: MissionAPI by lazy {
+            mRetrofit.create(MissionAPI::class.java)
+        }
+
+        val certAPI: CertAPI by lazy {
+            mRetrofit.create(CertAPI::class.java)
+        }
+
+        val postAPI: PostAPI by lazy {
+            mRetrofit.create(PostAPI::class.java)
         }
     }
 }

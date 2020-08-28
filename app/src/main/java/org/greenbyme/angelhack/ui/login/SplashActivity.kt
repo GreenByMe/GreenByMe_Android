@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,7 +13,6 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        ApiService.init
         tokenLogin()
     }
 

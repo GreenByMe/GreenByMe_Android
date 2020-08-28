@@ -1,5 +1,7 @@
 package org.greenbyme.angelhack.ui.mission.detail
 
+import android.annotation.SuppressLint
+import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -24,14 +26,16 @@ class MissionDetailPresenter(view: MissionDetailContract.View) :
     }
 
 
+    @SuppressLint("CheckResult")
     override fun addMission(item: MissionDetailDAO) {
-        val subscribe =
-            ApiService.missionAPI.joinMissionResponse(viewControl.getToken(), item.id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    viewControl.joinSucessed()
-                }
+        ApiService.missionAPI.joinMissionResponse(viewControl.getToken(), item.id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewControl.joinSucessed()
+            }, {
+                Log.e("MissionDetailPresenter", it.message ?: "")
+            })
     }
 
 }
