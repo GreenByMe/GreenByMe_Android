@@ -16,6 +16,11 @@ private const val ARG_PARAM1 = "user_pick"
 class MissionUserFickFragment : Fragment(), TagOnClickListener {
     private var param1: String? = null
 
+
+    override fun onClickTag(category: Int) {
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,13 +40,15 @@ class MissionUserFickFragment : Fragment(), TagOnClickListener {
     }
 
     private fun View.init() {
-        rv_mission_userpick_tag_list.adapter =
-            MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionUserFickFragment)
-        rv_mission_userpick_tag_list.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rv_mission_userpick.adapter = MissionUserpickAdapter(MissionUserpickAdapter.makeDummy())
-        rv_mission_userpick.layoutManager =
-            LinearLayoutManager(context)
+        rv_mission_userpick_tag_list.apply {
+            adapter = MissionTagAdapter(tagListener = this@MissionUserFickFragment)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        }
+
+        rv_mission_userpick.apply {
+            adapter = MissionUserpickAdapter(MissionUserpickAdapter.makeDummy())
+            layoutManager = LinearLayoutManager(context)
+        }
 
     }
 
@@ -54,9 +61,5 @@ class MissionUserFickFragment : Fragment(), TagOnClickListener {
 
                 }
             }
-    }
-
-    override fun onClickTag(category: Int) {
-
     }
 }

@@ -10,28 +10,12 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionTagDAO
 
 class MissionTagAdapter(
-    private val list: ArrayList<MissionTagDAO>,
+    private val list: ArrayList<MissionTagDAO> = makeDummy(),
     private val tagListener: TagOnClickListener,
     private val isSelected: Boolean = false
 ) :
     RecyclerView.Adapter<MissionTagAdapter.Holder>() {
     private var fontColor = R.color.tag_color
-
-    companion object {
-        var prePosition: Int = 5
-        fun makeDummy(category: Int = 5): ArrayList<MissionTagDAO> {
-            val dummy = ArrayList<MissionTagDAO>()
-            dummy.add(MissionTagDAO(missionTagCategory = 0, missionTagName = "전체"))
-            dummy.add(MissionTagDAO(missionTagCategory = 1, missionTagName = "에너지"))
-            dummy.add(MissionTagDAO(missionTagCategory = 2, missionTagName = "일회용"))
-            dummy.add(MissionTagDAO(missionTagCategory = 3, missionTagName = "교통"))
-            dummy.add(MissionTagDAO(missionTagCategory = 4, missionTagName = "수자원"))
-            dummy.add(MissionTagDAO(missionTagCategory = 5, missionTagName = "캠페인"))
-            dummy[category].isSelected = true
-            prePosition = category
-            return dummy
-        }
-    }
 
     override fun getItemCount(): Int = list.size
 
@@ -74,6 +58,22 @@ class MissionTagAdapter(
                 setTextColor(resources.getColor(fontColor))
             }
             text = "#" + list[position].missionTagName
+        }
+    }
+
+    companion object {
+        var prePosition: Int = 0
+        fun makeDummy(category: Int = 0): ArrayList<MissionTagDAO> {
+            val dummy = ArrayList<MissionTagDAO>()
+            dummy.add(MissionTagDAO(missionTagCategory = 0, missionTagName = "전체"))
+            dummy.add(MissionTagDAO(missionTagCategory = 1, missionTagName = "에너지"))
+            dummy.add(MissionTagDAO(missionTagCategory = 2, missionTagName = "일회용"))
+            dummy.add(MissionTagDAO(missionTagCategory = 3, missionTagName = "교통"))
+            dummy.add(MissionTagDAO(missionTagCategory = 4, missionTagName = "수자원"))
+            dummy.add(MissionTagDAO(missionTagCategory = 5, missionTagName = "캠페인"))
+            dummy[category].isSelected = true
+            prePosition = category
+            return dummy
         }
     }
 
