@@ -7,7 +7,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO :: 장시간 어플이탈시 NULL
 class ApiService {
     companion object {
         private const val BASE_URL = "https://cafecube.iptime.org"
