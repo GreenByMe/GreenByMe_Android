@@ -16,14 +16,14 @@ import org.greenbyme.angelhack.data.local.BaseRepository
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
-import org.greenbyme.angelhack.ui.mission.category.MissionCategorySelectFragment
+import org.greenbyme.angelhack.ui.mission.userpick.MissionUserPickFragment
 import org.greenbyme.angelhack.utils.AutoClearDisposable
 
 
 class MissionFragment : Fragment(), TagOnClickListener, BaseRepository {
     override fun onClickTag(category: Int) {
         (activity as MainActivity).addFragment(
-            MissionCategorySelectFragment.newInstance(category)
+            MissionUserPickFragment.newInstance(category)
         )
     }
 

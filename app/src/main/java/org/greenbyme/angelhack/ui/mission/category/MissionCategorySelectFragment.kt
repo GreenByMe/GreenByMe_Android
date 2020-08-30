@@ -17,7 +17,7 @@ import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
-import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
+import org.greenbyme.angelhack.ui.mission.userpick.MissionUserPickFragment
 import org.greenbyme.angelhack.utils.Utils
 
 private const val ARG_PARAM1 = "mission_select"
@@ -27,18 +27,12 @@ class MissionCategorySelectFragment : Fragment(),
     MissionCategorySelectContract.View,
     MissionRecommendDateAdapter.OnMoreClickListener {
 
+    private var category: Int = 0
+    private var currentDate = "DAY"
+
     override lateinit var presenter: MissionCategorySelectContract.Presenter
-    override fun throwError(msg: Throwable) {
-    }
 
-    override fun toastMessage(msg: String) {
-    }
-
-    override fun getToken(): String {
-        return ""
-    }
-
-    val spinnerListener = object : AdapterView.OnItemSelectedListener {
+    private val spinnerListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {}
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             currentDate =
@@ -48,9 +42,6 @@ class MissionCategorySelectFragment : Fragment(),
             getCategoryByList(category)
         }
     }
-
-    private var category: Int = 0
-    private var currentDate = "DAY"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +82,7 @@ class MissionCategorySelectFragment : Fragment(),
         }
         sp_mission_select_date.onItemSelectedListener = spinnerListener
         tv_mission_select_more.setOnClickListener {
-            (activity as MainActivity).addFragment(MissionUserFickFragment.newInstance(""))
+            (activity as MainActivity).addFragment(MissionUserPickFragment.newInstance(0))
         }
     }
 
@@ -129,5 +120,15 @@ class MissionCategorySelectFragment : Fragment(),
                     putInt(ARG_PARAM1, category)
                 }
             }
+    }
+
+    override fun throwError(msg: Throwable) {
+    }
+
+    override fun toastMessage(msg: String) {
+    }
+
+    override fun getToken(): String {
+        return ""
     }
 }
