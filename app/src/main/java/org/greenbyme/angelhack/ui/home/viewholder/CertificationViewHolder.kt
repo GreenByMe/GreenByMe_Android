@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_home_certification.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
+import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.CertificationList
 
 class CertificationViewHolder(view: View) : HomeViewHolder<CertificationList>(view) {
@@ -19,8 +20,10 @@ class CertificationViewHolder(view: View) : HomeViewHolder<CertificationList>(vi
         }
     }
 
-    override fun bind(data: CertificationList) {
+    override fun bind(data: CertificationList,itemClickListener: HomeItemClickListener?) {
         itemView.rv_home_certification_img.adapter = mAdapter
+
+        mAdapter.itemClickListener = itemClickListener
         mAdapter.setItems(data.certificationList)
         if (data.isVisibleTitle) {
             itemView.tv_home_certification_title.visibility = View.VISIBLE

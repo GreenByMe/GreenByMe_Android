@@ -11,10 +11,10 @@ import org.greenbyme.angelhack.ui.home.model.CertificationListItem
 class CertificationItemViewHolder(view: View) : HomeViewHolder<CertificationListItem>(view) {
     private val imageView: ImageView = view.findViewById(R.id.iv_home_mission_image)
 
-    override fun bind(data: CertificationListItem, listener: HomeItemClickListener?) {
-        super.bind(data, listener)
+    override fun bind(data: CertificationListItem, itemClickListener: HomeItemClickListener?) {
+        super.bind(data, itemClickListener)
         itemView.setOnClickListener {
-            listener?.onMissionClicked(
+            itemClickListener?.onMissionClicked(
                 data.postId,
                 CampaignList.Type.POST
             )

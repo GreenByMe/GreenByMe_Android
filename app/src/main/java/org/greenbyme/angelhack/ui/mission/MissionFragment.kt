@@ -7,31 +7,24 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_mission.*
 import kotlinx.android.synthetic.main.fragment_mission.view.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.data.MainMissionDAO
+import org.greenbyme.angelhack.data.local.BaseRepository
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
-import org.greenbyme.angelhack.ui.mission.category.MissionCategorySelectFragment
+import org.greenbyme.angelhack.ui.mission.userpick.MissionUserPickFragment
+import org.greenbyme.angelhack.utils.AutoClearDisposable
 
-private const val ARG_PARAM1 = "mission"
 
-class MissionFragment : Fragment(), TagOnClickListener {
-    private var param1: Int? = 0
-
+class MissionFragment : Fragment(), TagOnClickListener, BaseRepository {
     override fun onClickTag(category: Int) {
         (activity as MainActivity).addFragment(
-            MissionCategorySelectFragment.newInstance(category)
+            MissionUserPickFragment.newInstance(category)
         )
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getInt(ARG_PARAM1)
-        }
     }
 
     override fun onCreateView(
@@ -40,10 +33,8 @@ class MissionFragment : Fragment(), TagOnClickListener {
     ): View? {
         with(inflater.inflate(R.layout.fragment_mission, container, false)) {
             rv_mission_tag_list.apply {
-                adapter =
-                    MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MissionFragment, true)
-                layoutManager =
-                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = MissionTagAdapter(tagListener = this@MissionFragment, isSelected = true)
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
             getMissionList()
             return this
@@ -51,25 +42,24 @@ class MissionFragment : Fragment(), TagOnClickListener {
 
     }
 
-
-    private fun getMissionList(): Disposable =
-        ApiService.missionAPI.getAllMissionResponse()
+    private fun getMissionList() {
+        autoClearDisposable.add(ApiService.missionAPI.getAllMissionResponse()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { it ->
-                rv_mission_recommend?.apply {
-                    adapter = MissionAdapter(it.contents)
-                    layoutManager = LinearLayoutManager(context)
-                }
-            }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: Int) =
-            MissionFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_PARAM1, param1)
-                }
-            }
+            .subscribe(this::setupAdapter))
     }
+
+    private fun setupAdapter(it: MainMissionDAO) {
+        rv_mission_recommend?.apply {
+            adapter = MissionAdapter(it.contents)
+            layoutManager = LinearLayoutManager(context)
+        }
+    }
+
+    override fun observeLifeCycle() {
+        viewLifecycleOwner.lifecycle.addObserver(autoClearDisposable)
+    }
+
+    override val autoClearDisposable: AutoClearDisposable
+        get() = AutoClearDisposable(activity as BaseActivity, true)
 }

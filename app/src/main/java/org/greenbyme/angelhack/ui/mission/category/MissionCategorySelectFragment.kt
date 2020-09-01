@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.mission.category
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,7 @@ import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
-import org.greenbyme.angelhack.ui.mission.userpick.MissionUserFickFragment
+import org.greenbyme.angelhack.ui.mission.userpick.MissionUserPickFragment
 import org.greenbyme.angelhack.utils.Utils
 
 private const val ARG_PARAM1 = "mission_select"
@@ -26,24 +25,23 @@ private const val ARG_PARAM1 = "mission_select"
 class MissionCategorySelectFragment : Fragment(),
     TagOnClickListener,
     MissionCategorySelectContract.View,
-    MissionRecommendDateAdapter.OnMoreClickListener,
-    AdapterView.OnItemSelectedListener {
-
-    override lateinit var presenter: MissionCategorySelectContract.Presenter
-    override fun throwError(msg: Throwable) {
-        TODO("Not yet implemented")
-    }
-
-    override fun toastMessage(msg: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun getToken(): String {
-        TODO("Not yet implemented")
-    }
+    MissionRecommendDateAdapter.OnMoreClickListener {
 
     private var category: Int = 0
     private var currentDate = "DAY"
+
+    override lateinit var presenter: MissionCategorySelectContract.Presenter
+
+    private val spinnerListener = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            currentDate =
+                Utils.getDateString(
+                    position
+                )
+            getCategoryByList(category)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +56,9 @@ class MissionCategorySelectFragment : Fragment(),
     }
 
     override fun onMoreClick(mission_id: Int) {
-        val intent = Intent(context, MissionDetailActivity::class.java)
-        intent.putExtra("mission_id", mission_id)
-        startActivity(intent)
+        context?.let {
+            startActivity(MissionDetailActivity.getIntent(it, mission_id))
+        }
     }
 
     override fun onCreateView(
@@ -75,37 +73,19 @@ class MissionCategorySelectFragment : Fragment(),
     }
 
     private fun View.init() {
-        setTagAdapter()
         getCategoryByList(category)
-        sp_mission_select_date.onItemSelectedListener = this@MissionCategorySelectFragment
-
-        tv_mission_select_more.setOnClickListener {
-            (activity as MainActivity).addFragment(MissionUserFickFragment.newInstance(""))
-        }
-    }
-
-    private fun setTagAdapter() {
         rv_mission_select_tag_list.apply {
             adapter =
-                MissionTagAdapter(
-                    MissionTagAdapter.makeDummy(
-                        category
-                    ),
-                    this@MissionCategorySelectFragment
-                )
+                MissionTagAdapter(MissionTagAdapter.makeDummy(category), this@MissionCategorySelectFragment)
             layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
+        sp_mission_select_date.onItemSelectedListener = spinnerListener
+        tv_mission_select_more.setOnClickListener {
+            (activity as MainActivity).addFragment(MissionUserPickFragment.newInstance(0))
+        }
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {}
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        currentDate =
-            Utils.getDateString(
-                position
-            )
-        getCategoryByList(category)
-    }
 
     override fun setMissionList(response: MainMissionDAO?) {
         rv_mission_select?.apply {
@@ -142,5 +122,13 @@ class MissionCategorySelectFragment : Fragment(),
             }
     }
 
+    override fun throwError(msg: Throwable) {
+    }
 
+    override fun toastMessage(msg: String) {
+    }
+
+    override fun getToken(): String {
+        return ""
+    }
 }

@@ -176,7 +176,7 @@
                     android:background="@color/whiteGray" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    bind:item="@{mypageVm.myPageDAO}"
+                    bind:item="@{mypageVm.myPageDAO.posts}"
                     android:id="@+id/rv_mypage_user_photo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

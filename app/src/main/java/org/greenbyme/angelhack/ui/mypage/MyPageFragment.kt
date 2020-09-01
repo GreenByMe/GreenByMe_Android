@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.databinding.FragmentMyPageBinding
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
+import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
+import org.greenbyme.angelhack.ui.home.model.CampaignList
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 import org.greenbyme.angelhack.ui.mypage.post.FeedPostFragment
@@ -34,22 +37,33 @@ class MyPageFragment : Fragment(), TagOnClickListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentMyPageBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
+                DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
         val mViewmodel = MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
-//        MyPageUiModel.showPostFragment.observe(this, Observer {
-//            it.getContentIfNotHandled()?.let {
-//                (activity as MainActivity).addFragment(FeedPostFragment())
-//            }
-//        })
-
         binding.mypageVm = mViewmodel
         binding.lifecycleOwner = this
+        setAdapter(binding.rvMypageUserPhoto)
 
         return binding.root
+    }
+
+    private fun setAdapter(mRecyclerView: RecyclerView) {
+        val mAdapter = HomeAdapter().apply {
+            itemClickListener = object : HomeItemClickListener() {
+                override fun onMissionClicked(missionId: Int, missionType: CampaignList.Type) {
+                    (activity as MainActivity).addFragment(FeedPostFragment.getInstance(missionId))
+                }
+            }
+        }
+
+        mRecyclerView.apply {
+            layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = mAdapter
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,12 +76,12 @@ class MyPageFragment : Fragment(), TagOnClickListener {
 
     companion object {
         fun newInstance(param1: Int) =
-            MyPageFragment().apply {
-                this.profile_id = param1
-                arguments = Bundle().apply {
-                    putInt(ARG_PARAM1, param1)
+                MyPageFragment().apply {
+                    this.profile_id = param1
+                    arguments = Bundle().apply {
+                        putInt(ARG_PARAM1, param1)
+                    }
                 }
-            }
     }
 
 }

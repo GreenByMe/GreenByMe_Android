@@ -48,7 +48,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
                 setFragment(HomeFragment())
             }
             R.id.menu_bottom_mission -> {
-                setFragment(MissionFragment.newInstance(0))
+                setFragment(MissionFragment())
             }
             R.id.menu_bottom_certification -> {
                 setFragment(CertificationFragment())

@@ -15,15 +15,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:textSize="@dimen/header_title_size"
-                android:layout_margin="16dp"
-                android:textColor="@color/black"
-                android:id="@+id/tv_mission_header"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/frag_mission_header_title" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_mission_userpick_tag_list"
                 android:layout_width="match_parent"
