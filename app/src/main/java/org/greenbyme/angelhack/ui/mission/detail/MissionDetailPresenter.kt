@@ -23,7 +23,6 @@ class MissionDetailPresenter(view: MissionDetailContract.View) :
             .subscribe(viewControl::setMissionDetail, viewControl::throwError)
     }
 
-
     override fun addMission(item: MissionDetailDAO) {
         val subscribe =
             ApiService.missionAPI.joinMissionResponse(viewControl.getToken(), item.id)
