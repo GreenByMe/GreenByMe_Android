@@ -65,6 +65,7 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
 
         missionDetailYes.setOnClickListener {
             presenter.addMission(item)
+            setResult(RESULT_OK)
         }
     }
 
@@ -74,7 +75,11 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
     }
 
     companion object {
-        fun getIntent(context: Context, missionId: Int, missionType: CampaignList.Type = CampaignList.Type.POPULAR): Intent {
+        fun getIntent(
+            context: Context,
+            missionId: Int,
+            missionType: CampaignList.Type = CampaignList.Type.POPULAR
+        ): Intent {
             val intent = Intent(context, MissionDetailActivity::class.java)
             intent.putExtra("mission_id", missionId)
             intent.putExtra("mission_type", missionType)
