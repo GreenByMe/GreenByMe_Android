@@ -45,36 +45,46 @@
             android:background="@android:color/white"
             android:paddingBottom="64dp">
 
-            <TextView
-                android:id="@+id/tv_certification_chip1"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shape_chip"
-                android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="#자원"
-                android:textColor="@color/white"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_certification_chip2"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
+            <LinearLayout
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shape_chip"
-                android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="#채식하기"
-                android:textColor="@color/white"
-                app:layout_constraintLeft_toRightOf="@id/tv_certification_chip1"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginRight="16dp"
+                android:id="@+id/ll_certification_chip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/tv_certification_chip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_chip"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="#자원"
+                    android:textColor="@color/white"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_certification_chip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_chip"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="#채식하기"
+                    android:textColor="@color/white"
+                    app:layout_constraintLeft_toRightOf="@id/tv_certification_chip1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider_certification"
@@ -87,7 +97,7 @@
                 android:background="@color/tran_gray"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_certification_chip1" />
+                app:layout_constraintTop_toBottomOf="@id/ll_certification_chip" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_certification_input"

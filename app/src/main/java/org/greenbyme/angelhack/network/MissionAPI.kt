@@ -1,5 +1,6 @@
 package org.greenbyme.angelhack.network
 
+import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MainMissionDAO
@@ -37,7 +38,7 @@ interface MissionAPI {
     fun joinMissionResponse(
         @Header("jwt") token: String,
         @Path("missionId") missionId: Int
-    ): Maybe<MissionDetailDAO>
+    ): Completable
 
     @GET("/api/missions/populars")
     fun getPopularMission(

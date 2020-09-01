@@ -23,7 +23,6 @@ data class HomeModel(
     @SerializedName("treeSentence")
     var treeSentence: String
 
-
 ) {
     val myCampaign: CampaignList
         get() = CampaignList("진행 중인 캠페인", progressResponseDtoList.map {
