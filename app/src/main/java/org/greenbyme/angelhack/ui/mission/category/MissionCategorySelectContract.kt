@@ -4,6 +4,7 @@ import io.reactivex.disposables.Disposable
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.ui.BasePresenter
 import org.greenbyme.angelhack.ui.BaseView
+import org.greenbyme.angelhack.ui.home.model.ResponseBase
 
 
 interface MissionCategorySelectContract {
@@ -13,6 +14,6 @@ interface MissionCategorySelectContract {
     }
 
     interface View : BaseView<Presenter> {
-        fun setMissionList(response: MainMissionDAO?)
+        fun setMissionList(response: ResponseBase<MainMissionDAO>?)
     }
 }

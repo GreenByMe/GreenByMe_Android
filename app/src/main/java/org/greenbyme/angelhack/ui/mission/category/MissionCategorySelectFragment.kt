@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_mission_select.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
@@ -87,11 +88,11 @@ class MissionCategorySelectFragment : Fragment(),
     }
 
 
-    override fun setMissionList(response: MainMissionDAO?) {
+    override fun setMissionList(response: ResponseBase<MainMissionDAO>?) {
         rv_mission_select?.apply {
             adapter =
                 MissionRecommendDateAdapter(
-                    response!!.contents,
+                    response!!.data.contents,
                     this@MissionCategorySelectFragment
                 )
             orientation = ViewPager2.ORIENTATION_HORIZONTAL

@@ -15,7 +15,7 @@ class FeedPostRepo(val activity: BaseActivity, private val postId: Int) {
             ApiService.postAPI.getPosts(postId)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ ret.value = it }, activity::throwError)
+                    .subscribe({ ret.value = it.data }, activity::throwError)
             return ret
         }
     }

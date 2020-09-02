@@ -29,6 +29,6 @@ class MissionDetailPresenter(view: MissionDetailContract.View) :
         ApiService.missionAPI.joinMissionResponse(viewControl.getToken(), item.id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(viewControl::joinSucessed, viewControl::throwError)
+            .subscribe(viewControl::joinSucceed, viewControl::throwError)
     }
 }

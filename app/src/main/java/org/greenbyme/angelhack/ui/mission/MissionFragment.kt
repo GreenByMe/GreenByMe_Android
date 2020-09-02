@@ -16,6 +16,7 @@ import org.greenbyme.angelhack.data.local.BaseRepository
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import org.greenbyme.angelhack.ui.mission.userpick.MissionUserPickFragment
 import org.greenbyme.angelhack.utils.AutoClearDisposable
 
@@ -43,15 +44,15 @@ class MissionFragment : Fragment(), TagOnClickListener, BaseRepository {
     }
 
     private fun getMissionList() {
-        autoClearDisposable.add(ApiService.missionAPI.getAllMissionResponse()
+        autoClearDisposable.add(ApiService.missionAPI.getMissionResponse()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(this::setupAdapter))
     }
 
-    private fun setupAdapter(it: MainMissionDAO) {
+    private fun setupAdapter(it: ResponseBase<MainMissionDAO>) {
         rv_mission_recommend?.apply {
-            adapter = MissionAdapter(it.contents)
+            adapter = MissionAdapter(it.data.contents)
             layoutManager = LinearLayoutManager(context)
         }
     }

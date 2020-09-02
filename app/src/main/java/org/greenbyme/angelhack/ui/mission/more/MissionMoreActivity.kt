@@ -27,7 +27,7 @@ class MissionMoreActivity : BaseActivity() {
         ApiService.missionAPI.getPopularMission()
             .map { it ->
                 listOf<HomeItem>(
-                    CampaignList("", it.content.map { item ->
+                    CampaignList("", it.data.content.map { item ->
                         Campaign(
                             item.missionId,
                             item.subject,

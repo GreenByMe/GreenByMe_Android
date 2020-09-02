@@ -23,10 +23,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun loadUserHomeInfo(token: String) {
         ApiService.service.getUserHomeInfo(token)
             .map {
+
                 listOf(
-                    User.parseHomeModel(it),
-                    it.myCampaign,
-                    it.popularCampaign
+                    User.parseHomeModel(it.data),
+                    it.data.myCampaign,
+                    it.data.popularCampaign
                 )
             }.subscribeOn(Schedulers.io())
             .doOnSubscribe {

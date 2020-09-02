@@ -4,11 +4,12 @@ import io.reactivex.disposables.Disposable
 import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.ui.BasePresenter
 import org.greenbyme.angelhack.ui.BaseView
+import org.greenbyme.angelhack.ui.home.model.ResponseBase
 
 interface MissionDetailContract {
     interface View : BaseView<Presenter> {
-        fun setMissionDetail(item: MissionDetailDAO)
-        fun joinSucessed()
+        fun setMissionDetail(item: ResponseBase<MissionDetailDAO>)
+        fun joinSucceed()
     }
 
     interface Presenter : BasePresenter {

@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_mission_userpick.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 
@@ -38,6 +39,7 @@ class MissionUserPickFragment : Fragment(), TagOnClickListener {
     ): View? {
         with(inflater.inflate(R.layout.fragment_mission_userpick, container, false)) {
             init()
+            getMissionList()
             return this
         }
     }
@@ -47,22 +49,17 @@ class MissionUserPickFragment : Fragment(), TagOnClickListener {
             adapter = MissionTagAdapter(tagListener = this@MissionUserPickFragment)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
-
-        rv_mission_userpick.apply {
-            adapter = MissionPickAdapter(MissionPickAdapter.makeDummy())
-            layoutManager = LinearLayoutManager(context)
-        }
     }
 
     private fun getMissionList() {
-        (ApiService.missionAPI.getAllMissionResponse()
+        (ApiService.missionAPI.getMissionResponse()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(this::showMissionList))
     }
-    private fun showMissionList(items: MainMissionDAO){
+    private fun showMissionList(items: ResponseBase<MainMissionDAO>){
         rv_mission_userpick.apply {
-            adapter = MissionPickAdapter(items.contents)
+            adapter = MissionPickAdapter(items.data.contents)
             layoutManager = LinearLayoutManager(context)
         }
     }

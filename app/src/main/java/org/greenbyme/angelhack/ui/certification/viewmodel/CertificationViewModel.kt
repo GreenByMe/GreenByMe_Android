@@ -23,7 +23,7 @@ class CertificationViewModel(application: Application) : AndroidViewModel(applic
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                mSubCertItemList.postValue(it.personalMissions)
+                mSubCertItemList.postValue(it.data.personalMissions)
             },
                 {
                     Log.e("CertificationFragment", it.message)
