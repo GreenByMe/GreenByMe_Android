@@ -14,6 +14,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:scaleType="centerCrop"
                 android:src="@color/colorPrimary"
                 android:id="@+id/img_mission_userpick_icon"
                 android:layout_width="88dp"

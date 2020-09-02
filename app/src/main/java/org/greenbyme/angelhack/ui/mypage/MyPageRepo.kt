@@ -24,7 +24,7 @@ class MyPageRepo(val activity: BaseActivity) : BaseRepository {
             autoClearDisposable.add(ApiService.service.getUserInfo(activity.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ ret.value = it }, activity::throwError))
+                .subscribe({ ret.value = it.data }, activity::throwError))
             return ret
         }
     }

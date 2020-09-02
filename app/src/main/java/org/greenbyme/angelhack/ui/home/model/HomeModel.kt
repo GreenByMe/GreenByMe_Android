@@ -12,20 +12,18 @@ data class HomeModel(
     var expectedTree: Double,
     @SerializedName("nickName")
     var nickName: String,
-    @SerializedName("popularMissionResponseDtoList")
-    var popularCampaignList: List<PopularCampaignList>,
+    @SerializedName("pageDto")
+    var pageDto : PageDto,
     @SerializedName("progressCampaign")
     var progressCampaign: Int,
     @SerializedName("progressRates")
     var progressRates: Int,
-    @SerializedName("progressResponseDtoList")
-    var progressResponseDtoList: List<ProgressCampaign>,
     @SerializedName("treeSentence")
     var treeSentence: String
 
 ) {
     val myCampaign: CampaignList
-        get() = CampaignList("진행 중인 캠페인", progressResponseDtoList.map {
+        get() = CampaignList("진행 중인 캠페인", pageDto.progressResponseDtoList.map {
             Campaign(
                 id = it.personalMissionid,
                 title = it.missionTitle,
@@ -39,7 +37,7 @@ data class HomeModel(
         }, CampaignList.Type.MY_CAMPAIGN)
 
     val popularCampaign: CampaignList
-        get() = CampaignList("인기 캠페인", popularCampaignList.map {
+        get() = CampaignList("인기 캠페인", pageDto.popularCampaignList.map {
             Campaign(
                 id = it.missionId,
                 title = it.subject,
@@ -90,3 +88,10 @@ data class Campaign(
         return "$from~$to"
     }
 }
+
+data class PageDto(
+    @SerializedName("progressResponseDtoList")
+    var progressResponseDtoList: List<ProgressCampaign>,
+    @SerializedName("popularMissionResponseDtoList")
+    var popularCampaignList: List<PopularCampaignList>
+)

@@ -10,9 +10,9 @@ data class PopularCampaignList(
     var progressCount: Int,
     @SerializedName("subject")
     var subject: String,
-    @SerializedName("ifStartDate")
+    @SerializedName("startDate")
     var startDate: String,
-    @SerializedName("ifEndDate")
+    @SerializedName("endDate")
     var endDate: String,
     @SerializedName("pictureUrl")
     var pictureUrl: String

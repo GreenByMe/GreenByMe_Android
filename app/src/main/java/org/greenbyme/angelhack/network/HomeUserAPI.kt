@@ -6,6 +6,7 @@ import io.reactivex.Single
 import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.data.UserLoginDAO
 import org.greenbyme.angelhack.ui.home.model.HomeModel
+import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import org.greenbyme.angelhack.ui.login.LoginDAO
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -14,7 +15,8 @@ import retrofit2.http.POST
 
 interface HomeUserAPI {
     @GET("api/page/")
-    fun getUserInfo(@Header("jwt") token: String): Single<MyPageDAO>
+    fun getUserInfo(@Header("jwt") token: String
+    ): Single<ResponseBase<MyPageDAO>>
 
     @POST("api/users/signin")
     fun idLogin(
@@ -23,14 +25,15 @@ interface HomeUserAPI {
 
     @POST("api/users/refresh")
     fun tokenLogin(
-        @Header("jwt")token: String
+        @Header("jwt") token: String
     ): Maybe<LoginDAO>
 
     @POST("/api/users")
     fun signUp(
         @Body body: JsonObject
-    ): Single<UserLoginDAO>
+    ): Single<ResponseBase<UserLoginDAO>>
 
     @GET("api/page/home/")
-    fun getUserHomeInfo(@Header("jwt") token: String): Single<HomeModel>
+    fun getUserHomeInfo(@Header("jwt") token: String
+    ): Single<ResponseBase<HomeModel>>
 }

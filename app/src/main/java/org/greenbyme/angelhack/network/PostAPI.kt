@@ -7,6 +7,7 @@ import io.reactivex.disposables.Disposable
 import okhttp3.MultipartBody
 import org.greenbyme.angelhack.ui.certification.model.CertResult
 import org.greenbyme.angelhack.ui.certification.model.PostResponse
+import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import org.greenbyme.angelhack.ui.mypage.post.FeedPostDao
 import retrofit2.http.*
 
@@ -21,11 +22,11 @@ interface PostAPI {
         @Query("title") title: String,
         @Query("userId") userId: Int,
         @Part file: MultipartBody.Part
-    ): Single<PostResponse>
+    ): Single<ResponseBase<PostResponse>>
 
 
     @GET("/api/posts/{postId}")
     fun getPosts(
             @Path("postId")postId:Int
-    ): Flowable<FeedPostDao>
+    ): Flowable<ResponseBase<FeedPostDao>>
 }
