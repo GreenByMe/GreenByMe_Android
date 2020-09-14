@@ -1,16 +1,9 @@
 package org.greenbyme.angelhack.ui.mypage
 
 import android.view.View
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.RecyclerView
 import org.greenbyme.angelhack.data.MyPageDAO
-import org.greenbyme.angelhack.extention.Event
-import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
-import org.greenbyme.angelhack.ui.home.model.CertificationList
-import org.greenbyme.angelhack.ui.home.model.CertificationListItem
 
 
 class MyPageUiModel(val repo: MyPageRepo) : ViewModel() {

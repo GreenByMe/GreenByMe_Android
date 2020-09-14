@@ -6,6 +6,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenbyme.angelhack.ui.BaseActivity
+
 /*
     @params : lifecycleOwner
     @params :alwaysClearOnStop if view disposable false, or true

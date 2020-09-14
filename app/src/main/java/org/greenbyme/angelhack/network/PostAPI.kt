@@ -1,11 +1,8 @@
 package org.greenbyme.angelhack.network
 
 import io.reactivex.Flowable
-import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.disposables.Disposable
 import okhttp3.MultipartBody
-import org.greenbyme.angelhack.ui.certification.model.CertResult
 import org.greenbyme.angelhack.ui.certification.model.PostResponse
 import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import org.greenbyme.angelhack.ui.mypage.post.FeedPostDao
@@ -27,6 +24,6 @@ interface PostAPI {
 
     @GET("/api/posts/{postId}")
     fun getPosts(
-            @Path("postId")postId:Int
+        @Path("postId") postId: Int
     ): Flowable<ResponseBase<FeedPostDao>>
 }

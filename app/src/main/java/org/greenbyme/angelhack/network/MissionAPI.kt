@@ -1,7 +1,6 @@
 package org.greenbyme.angelhack.network
 
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDetailDAO

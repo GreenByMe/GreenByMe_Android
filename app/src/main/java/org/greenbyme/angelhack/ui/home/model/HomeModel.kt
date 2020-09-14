@@ -13,7 +13,7 @@ data class HomeModel(
     @SerializedName("nickName")
     var nickName: String,
     @SerializedName("pageDto")
-    var pageDto : PageDto,
+    var pageDto: PageDto,
     @SerializedName("progressCampaign")
     var progressCampaign: Int,
     @SerializedName("progressRates")
@@ -56,7 +56,7 @@ data class CampaignList(
     var type: Type
 ) : HomeItem {
     enum class Type {
-        MY_CAMPAIGN, POPULAR,POST
+        MY_CAMPAIGN, POPULAR, POST
     }
 
     override fun getViewType(): Int {

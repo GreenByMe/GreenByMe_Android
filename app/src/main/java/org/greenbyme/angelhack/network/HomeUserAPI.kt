@@ -15,7 +15,8 @@ import retrofit2.http.POST
 
 interface HomeUserAPI {
     @GET("api/page/")
-    fun getUserInfo(@Header("jwt") token: String
+    fun getUserInfo(
+        @Header("jwt") token: String
     ): Single<ResponseBase<MyPageDAO>>
 
     @POST("api/users/signin")
@@ -34,6 +35,7 @@ interface HomeUserAPI {
     ): Single<ResponseBase<UserLoginDAO>>
 
     @GET("api/page/home/")
-    fun getUserHomeInfo(@Header("jwt") token: String
+    fun getUserHomeInfo(
+        @Header("jwt") token: String
     ): Single<ResponseBase<HomeModel>>
 }

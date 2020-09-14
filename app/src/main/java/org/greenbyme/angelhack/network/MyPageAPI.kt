@@ -20,5 +20,5 @@ interface MyPageAPI {
     @PUT("/api/users/nickname")
     fun updateNickname(
         @Query("nickname") nickname: String
-    ):  Single<ResponseBase<MainMissionDAO>>
+    ): Single<ResponseBase<MainMissionDAO>>
 }

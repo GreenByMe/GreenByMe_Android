@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.certification.CertificationFragment
 import org.greenbyme.angelhack.ui.home.HomeFragment
-import org.greenbyme.angelhack.ui.login.LoginActivity
 import org.greenbyme.angelhack.ui.mission.MissionFragment
 import org.greenbyme.angelhack.ui.mypage.MyPageFragment
 
@@ -76,7 +75,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     companion object {
         var userId: Int = 0
         fun getIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java).apply{
+            return Intent(context, MainActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
         }

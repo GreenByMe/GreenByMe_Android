@@ -11,15 +11,15 @@ object MyPageBinding {
     @JvmStatic
     @BindingAdapter("bind:item")
     fun bindItem(
-            recyclerView: RecyclerView,
-            items: List<MyPageDAO.Post>?
+        recyclerView: RecyclerView,
+        items: List<MyPageDAO.Post>?
     ) {
         CertificationList(
-                certificationList = items?.map {
-                    CertificationListItem(it.postId, it.picture)
-                } ?: ArrayList<CertificationListItem>(),
-                isVisibleTitle = false,
-                title = ""
+            certificationList = items?.map {
+                CertificationListItem(it.postId, it.picture)
+            } ?: ArrayList<CertificationListItem>(),
+            isVisibleTitle = false,
+            title = ""
         ).toList().let {
             (recyclerView.adapter as HomeAdapter).setItems(it)
         }

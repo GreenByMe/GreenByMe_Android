@@ -25,7 +25,7 @@ class CertificationCompleteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_certification_complete)
 
         val content = intent.getStringExtra(CERTIFICATION_TEXT)
-        tv_complete_contents.text = content.parseAsHtml() ?: "축하합니다!"
+        tv_complete_contents.text = content.parseAsHtml()
 
         img_complete_instagram.setOnClickListener {
 

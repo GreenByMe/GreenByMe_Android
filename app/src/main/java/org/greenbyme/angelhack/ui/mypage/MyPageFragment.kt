@@ -37,11 +37,11 @@ class MyPageFragment : Fragment(), TagOnClickListener {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentMyPageBinding =
-                DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
         val mViewmodel = MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
         binding.mypageVm = mViewmodel
         binding.lifecycleOwner = this
@@ -61,7 +61,7 @@ class MyPageFragment : Fragment(), TagOnClickListener {
 
         mRecyclerView.apply {
             layoutManager =
-                    LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = mAdapter
         }
     }
@@ -76,12 +76,12 @@ class MyPageFragment : Fragment(), TagOnClickListener {
 
     companion object {
         fun newInstance(param1: Int) =
-                MyPageFragment().apply {
-                    this.profile_id = param1
-                    arguments = Bundle().apply {
-                        putInt(ARG_PARAM1, param1)
-                    }
+            MyPageFragment().apply {
+                this.profile_id = param1
+                arguments = Bundle().apply {
+                    putInt(ARG_PARAM1, param1)
                 }
+            }
     }
 
 }

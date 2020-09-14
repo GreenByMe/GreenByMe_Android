@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -63,12 +62,12 @@ class CertificationFragment : Fragment() {
             certData.observe(viewLifecycleOwner, Observer {
                 mCertAdapter.setItems(it)
                 mCertAdapter.notifyDataSetChanged()
-                indicator_certification.createIndicators(it.size,0)
+                indicator_certification.createIndicators(it.size, 0)
             })
         }
     }
 
-    private fun loadData(){
+    private fun loadData() {
         mCertViewModel.loadCertData((requireActivity() as BaseActivity).getToken())
     }
 }

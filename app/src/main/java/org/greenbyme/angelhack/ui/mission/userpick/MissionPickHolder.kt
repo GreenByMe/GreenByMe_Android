@@ -19,7 +19,7 @@ class MissionPickHolder(view: View) : RecyclerView.ViewHolder(view) {
             tv_mission_userpick_category.text = item.description.parseAsHtml()
             img_mission_userpick_icon.setBackgroundColor(15)
             tv_mission_userpick_date.text = Utils.getCategoryStringKOR(item.dayCategory)
-            tv_mission_userpick_complete.text= "${item.passCandidates}명 완료"
+            tv_mission_userpick_complete.text = "${item.passCandidates}명 완료"
         }
     }
 

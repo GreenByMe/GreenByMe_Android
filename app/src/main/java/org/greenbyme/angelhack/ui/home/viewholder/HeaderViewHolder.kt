@@ -17,7 +17,8 @@ class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
     private val mCo2: TextView = view.findViewById(R.id.co_title)
     private val mTree: TextView = view.findViewById(R.id.tree_count_title)
     private var mPercent: ProgressBar = view.findViewById(R.id.pb_home_mission_progress)
-    private var mPercent_layout: ConstraintLayout = view.findViewById(R.id.layout_home_mission_progress)
+    private var mPercent_layout: ConstraintLayout =
+        view.findViewById(R.id.layout_home_mission_progress)
     private var mPercent_text: TextView = view.findViewById(R.id.tv_home_mission_progress_text)
 
 
@@ -30,15 +31,15 @@ class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
         setProgressBar(data.rate)
     }
 
-    fun setProgressBar(persent : Int){
-        mPercent_layout.let{
+    fun setProgressBar(persent: Int) {
+        mPercent_layout.let {
             val cs = ConstraintSet().apply {
                 clone(it)
-                setHorizontalBias(R.id.layout_home_mission_progress_box, persent/10f)
+                setHorizontalBias(R.id.layout_home_mission_progress_box, persent / 10f)
                 applyTo(it)
             }
         }
-        mPercent_text.text="${persent}%"
+        mPercent_text.text = "${persent}%"
         mPercent.progress = persent
     }
 }

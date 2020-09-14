@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 
-
 class BaseAdapter<T>(val mBaseHolder: BaseHolder<T>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mItemList = mutableListOf<T>()

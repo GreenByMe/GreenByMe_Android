@@ -62,13 +62,17 @@ class MissionRecommendDateAdapter(
             missionRecommendContents.text = item.subject
             missionRecommendDiscription.text = item.description
             missionRecommendDate.text =
-                "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(
-                    item.endDate
-                )}"
+                "${Utils.formatTimeMonthDayDate(item.startDate)} - ${
+                    Utils.formatTimeMonthDayDate(
+                        item.endDate
+                    )
+                }"
             missionRecommendCategory.text =
-                "#${Utils.getCategoryStringKOR(
-                    item.category
-                )}"
+                "#${
+                    Utils.getCategoryStringKOR(
+                        item.category
+                    )
+                }"
             missionRecommendComplete.text = "${item.passCandidates}명 완료"
             Picasso.get().load(item.pictureUrl).into(missionRecommendBackgorund)
         }

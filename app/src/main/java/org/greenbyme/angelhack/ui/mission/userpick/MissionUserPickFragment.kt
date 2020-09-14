@@ -57,7 +57,8 @@ class MissionUserPickFragment : Fragment(), TagOnClickListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(this::showMissionList))
     }
-    private fun showMissionList(items: ResponseBase<MainMissionDAO>){
+
+    private fun showMissionList(items: ResponseBase<MainMissionDAO>) {
         rv_mission_userpick.apply {
             adapter = MissionPickAdapter(items.data.contents)
             layoutManager = LinearLayoutManager(context)

@@ -77,7 +77,10 @@ class MissionCategorySelectFragment : Fragment(),
         getCategoryByList(category)
         rv_mission_select_tag_list.apply {
             adapter =
-                MissionTagAdapter(MissionTagAdapter.makeDummy(category), this@MissionCategorySelectFragment)
+                MissionTagAdapter(
+                    MissionTagAdapter.makeDummy(category),
+                    this@MissionCategorySelectFragment
+                )
             layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }

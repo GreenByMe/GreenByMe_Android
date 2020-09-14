@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDAO
-import org.greenbyme.angelhack.ui.home.model.ResponseBase
 
 class MissionPickAdapter(private val list: List<MainMissionDAO.Content>) :
     RecyclerView.Adapter<MissionPickHolder>() {
