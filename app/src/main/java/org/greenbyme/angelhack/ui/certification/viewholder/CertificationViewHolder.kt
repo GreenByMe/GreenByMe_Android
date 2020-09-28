@@ -1,7 +1,9 @@
 package org.greenbyme.angelhack.ui.certification.viewholder
 
 import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -34,5 +36,14 @@ class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 toFormat
             )
         } (하루, 1회 인증)"
+    }
+
+    companion object {
+        fun from(parent: ViewGroup): CertificationViewHolder {
+            return CertificationViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_certification, parent, false)
+            )
+        }
     }
 }

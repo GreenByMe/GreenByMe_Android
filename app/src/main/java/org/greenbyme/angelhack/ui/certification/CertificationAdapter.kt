@@ -1,9 +1,7 @@
 package org.greenbyme.angelhack.ui.certification
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.certification.viewholder.CertificationViewHolder
 import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
@@ -26,10 +24,7 @@ class CertificationAdapter : RecyclerView.Adapter<CertificationViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CertificationViewHolder {
-        return CertificationViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_certification, parent, false)
-        )
+        return CertificationViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int {

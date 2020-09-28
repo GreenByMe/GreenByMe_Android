@@ -29,7 +29,7 @@ class BaseAdapter<T>(val mBaseHolder: BaseHolder<T>) :
     override fun getItemCount(): Int = mItemList.size
 
     interface BaseHolder<T> {
-        fun <T> bind(items: T)
+        fun bind(items: T)
         fun from(parent: ViewGroup): RecyclerView.ViewHolder
     }
 }
