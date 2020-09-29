@@ -2,12 +2,15 @@ package org.greenbyme.angelhack.ui.mission.detail
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import kotlinx.android.synthetic.main.activity_mission_detail.*
 import kotlinx.android.synthetic.main.item_mission_detail_eco_point.*
 import kotlinx.android.synthetic.main.item_mission_detail_header.*
@@ -23,6 +26,7 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_detail)
+
 
         presenter = MissionDetailPresenter(this)
 
@@ -73,7 +77,12 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
 
             missionDetailPlantTree.text = "${String.format("%.2f", item.expectTree)}그루"
             missionDetailCarbon.text = "${String.format("%.2f", item.expectCo2)}KgCO2"
-            Picasso.get().load(item.pictureUrl).into(missionDetailBackGround)
+
+            Glide.with(this)
+                .load(item.pictureUrl)
+                .centerCrop()
+                .transition(withCrossFade())
+                .into(missionDetailBackGround)
 
             missionDetailYes.setOnClickListener {
                 presenter.addMission(item)

@@ -67,7 +67,7 @@ class CertificationFragment : Fragment() {
             })
 
             showNoMissionFragment.observe(viewLifecycleOwner, Observer {
-                (activity as MainActivity).addFragment(NoItemCertificationFragment())
+                (activity as MainActivity).addFragment(CertificationNoItemFragment())
             })
         }
     }

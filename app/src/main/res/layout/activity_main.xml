@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:text="내가 그린"
                 android:fontFamily="@font/leesunsin"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="24dp" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

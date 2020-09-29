@@ -1,8 +1,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
+        <item name="titleTextColor">@color/main_green</item>
+        <item name="actionBarTheme">@style/ColorActionBar</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -12,7 +14,15 @@
         <item name="android:radioButtonStyle">@style/RadioButtonStyle</item>
         <item name="android:checkboxStyle">@style/CheckboxStyle</item>
     </style>
+    <style name="ColorActionBar" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="titleTextColor">@color/main_green</item>
+        <item name="tint">@color/main_green</item>
 
+        <item name="android:tint">@color/main_green</item>
+
+    </style>
     <style name="spinnerTheme">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@color/tran_black</item>
@@ -35,22 +45,22 @@
 
     <!-- widget font. -->
     <style name="TextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">
-        <item name="android:fontFamily">@font/nanum</item>
+        <item name="android:fontFamily">@font/spoqa</item>
     </style>
 
     <style name="ButtonStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
-        <item name="android:fontFamily">@font/nanum</item>
+        <item name="android:fontFamily">@font/spoqa</item>
     </style>
 
     <style name="EditTextStyle" parent="@android:style/Widget.DeviceDefault.EditText">
-        <item name="android:fontFamily">@font/nanum</item>
+        <item name="android:fontFamily">@font/spoqa</item>
     </style>
 
     <style name="RadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
-        <item name="android:fontFamily">@font/nanum</item>
+        <item name="android:fontFamily">@font/spoqa</item>
     </style>
 
     <style name="CheckboxStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">
-        <item name="android:fontFamily">@font/nanum</item>
+        <item name="android:fontFamily">@font/spoqa</item>
     </style>
 </resources>
