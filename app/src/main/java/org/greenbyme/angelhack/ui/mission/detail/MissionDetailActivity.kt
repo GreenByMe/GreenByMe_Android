@@ -2,8 +2,6 @@ package org.greenbyme.angelhack.ui.mission.detail
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Html
 import android.widget.ImageView
@@ -36,19 +34,22 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
 
         if (missionId == -1) {
             toastMessage("잘못된 접근입니다.")
-        } else {
-            when (missionType) {
-                CampaignList.Type.POPULAR -> {
-                    presenter.getMissionDetail(missionId)
-                }
-                CampaignList.Type.MY_CAMPAIGN -> {
-                    presenter.getMissionProgressDetail(missionId)
-                }
-                null -> {
-                    toastMessage("잘못된 접근입니다.")
-                }
+            finish()
+        }
+
+        when (missionType) {
+            CampaignList.Type.POPULAR -> {
+                presenter.getMissionDetail(missionId)
+            }
+            CampaignList.Type.MY_CAMPAIGN -> {
+                presenter.getMissionProgressDetail(missionId)
+            }
+            null -> {
+                toastMessage("잘못된 접근입니다.")
+                finish()
             }
         }
+
     }
 
     // TODO : MVVM update
@@ -97,8 +98,8 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
     }
 
     companion object {
-        const val PARAMS_MISSION_ID = "mission_id"
-        const val PARAMS_MISSION_TYPE = "mission_type"
+        private const val PARAMS_MISSION_ID = "mission_id"
+        private const val PARAMS_MISSION_TYPE = "mission_type"
         fun getIntent(
             context: Context,
             missionId: Int,

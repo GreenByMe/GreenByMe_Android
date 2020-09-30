@@ -18,19 +18,6 @@ import org.greenbyme.angelhack.utils.Utils
 class MissionAdapter(private val list: List<MainMissionDAO.Content>) :
     RecyclerView.Adapter<MissionAdapter.Holder>() {
 
-    companion object {
-        fun makeDummy(): ArrayList<MissionDAO> {
-            val dummy = ArrayList<MissionDAO>()
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            return dummy
-        }
-    }
-
     override fun getItemCount(): Int = list.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

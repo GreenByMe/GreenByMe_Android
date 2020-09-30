@@ -1,28 +1,34 @@
 package org.greenbyme.angelhack.ui.home.model
 
+import com.google.gson.annotations.SerializedName
+
 data class User(
-    var userId: Int = 0,
+    @SerializedName("nickName")
     var nickName: String = "",
-    var desc: String = "",
+    @SerializedName("treeSentence")
+    var treeSentence: String = "",
+    @SerializedName("progressCampaign")
     var progressCampaign: Int,
-    var co2: Double,
-    var tree: Double,
-    var rate: Int
+    @SerializedName("expectedCO2")
+    var expectedCO2: Double,
+    @SerializedName("expectedTree")
+    var expectedTree: Double,
+    @SerializedName("progressRates")
+    var progressRates: Int
 ) : HomeItem {
     override fun getViewType(): Int {
         return HomeItemViewType.HEADER.viewType
     }
 
-    companion object {
-        fun parseHomeModel(model: HomeModel): User =
-            User(
-                0,
-                model.nickName,
-                model.treeSentence,
-                model.progressCampaign,
-                model.expectedCO2,
-                model.expectedTree,
-                model.progressRates
-            )
-    }
+//    companion object {
+//        fun parseHomeModel(model: HomeModel): User =
+//            User(
+//                model.nickName,
+//                model.treeSentence,
+//                model.progressCampaign,
+//                model.,
+//                model.expectedTree,
+//                model.progressRates
+//            )
+//    }
 }

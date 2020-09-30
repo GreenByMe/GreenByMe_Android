@@ -18,7 +18,7 @@
                 android:src="@color/colorPrimary"
                 android:id="@+id/img_mission_userpick_icon"
                 android:layout_width="88dp"
-                android:layout_height="88dp" />
+                android:layout_height="match_parent" />
 
             <TextView
                 android:layout_marginLeft="16dp"

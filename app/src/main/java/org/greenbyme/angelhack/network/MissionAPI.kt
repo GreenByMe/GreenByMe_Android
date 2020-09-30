@@ -4,7 +4,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDetailDAO
-import org.greenbyme.angelhack.data.PopularMissionDAO
+import org.greenbyme.angelhack.data.MissionListDAO
 import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -38,7 +38,7 @@ interface MissionAPI {
 
     @GET("/api/missions/populars")
     fun getPopularMission(
-    ): Single<ResponseBase<PopularMissionDAO>>
+    ): Single<ResponseBase<MissionListDAO>>
 
 
 }
