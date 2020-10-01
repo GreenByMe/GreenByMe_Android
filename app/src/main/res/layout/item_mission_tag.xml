@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+
     android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginRight="12dp">
 
     <TextView
-        android:textStyle="bold"
         android:id="@+id/tv_mission_tag_title"
-        android:layout_margin="8dp"
-        android:textColor="@color/tag_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="tag"
+        android:textColor="@color/tag_color"
         android:textSize="16sp"
-        android:text="tag" />
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -15,7 +15,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:background="@color/tag_bg"
                 android:id="@+id/rv_mission_tag_list"

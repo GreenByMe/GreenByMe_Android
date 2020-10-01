@@ -25,6 +25,20 @@ interface MissionAPI {
         @Path("mission_id") mission_id: Int
     ): Single<ResponseBase<MissionDetailDAO>>
 
+    @GET("/api/missions/populars")
+    fun getPopularMissionResponse(
+    ): Single<ResponseBase<MissionListDAO>>
+
+    /*
+    *  Personal Mission
+    */
+
+    @GET("/api/personalMissions")
+    fun getPersonalMissionResponse(
+        @Header("jwt") token: String
+    ): Single<ResponseBase<MissionListDAO>>
+
+
     @GET("/api/personalMissions/{mission_id}")
     fun getMissionProgressDetailResponse(
         @Path("mission_id") mission_id: Int
@@ -36,9 +50,6 @@ interface MissionAPI {
         @Path("missionId") missionId: Int
     ): Completable
 
-    @GET("/api/missions/populars")
-    fun getPopularMission(
-    ): Single<ResponseBase<MissionListDAO>>
 
 
 }

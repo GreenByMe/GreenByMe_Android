@@ -3,7 +3,6 @@ package org.greenbyme.angelhack.ui.mission.more
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,20 +24,6 @@ class MissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener 
         setContentView(R.layout.activity_mission_more)
         tag = "MISSION_MORE"
 
-        val missionType: CampaignList.Type? =
-            intent.getSerializableExtra(PARAMS_MISSION_TYPE) as CampaignList.Type
-
-        when (missionType) {
-            CampaignList.Type.POPULAR -> {
-            }
-            CampaignList.Type.MY_CAMPAIGN -> {
-            }
-            null -> {
-                toastMessage("잘못된 접근입니다.")
-                finish()
-            }
-        }
-
         mAdapter = BaseAdapter(MissionPickHolder(rv_mission_more_list), this)
 
         rv_mission_more_list.apply {
@@ -46,11 +31,35 @@ class MissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener 
             layoutManager = LinearLayoutManager(context)
         }
 
-        getPopularMission()
+        val missionType: CampaignList.Type? =
+            intent.getSerializableExtra(PARAMS_MISSION_TYPE) as CampaignList.Type?
+
+        when (missionType) {
+            CampaignList.Type.POPULAR -> {
+                getPopularMission()
+            }
+            CampaignList.Type.MY_CAMPAIGN -> {
+                getPersonalMission()
+            }
+            null -> {
+                toastMessage("잘못된 접근입니다.")
+                finish()
+            }
+        }
+
     }
 
     private fun getPopularMission() =
-        ApiService.missionAPI.getPopularMission()
+        ApiService.missionAPI.getPopularMissionResponse()
+            .map {
+                it.data.contents
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(mAdapter::setItems, this::throwError)
+
+    private fun getPersonalMission() =
+        ApiService.missionAPI.getPersonalMissionResponse(getToken())
             .map {
                 it.data.contents
             }

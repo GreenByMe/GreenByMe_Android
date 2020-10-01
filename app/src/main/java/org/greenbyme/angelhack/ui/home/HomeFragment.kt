@@ -32,13 +32,21 @@ class HomeFragment : BaseFragment() {
         HomeAdapter().apply {
             itemClickListener = object : HomeItemClickListener() {
                 override fun onCampaignClicked() {
-                    val intent = Intent(context, MissionMoreActivity::class.java)
-                    context?.startActivity(intent)
+                    startActivity(
+                        MissionMoreActivity.getIntent(
+                            requireContext(),
+                            CampaignList.Type.MY_CAMPAIGN
+                        )
+                    )
                 }
 
                 override fun onPopularCampaignClicked() {
-                    val intent = Intent(context, MissionMoreActivity::class.java)
-                    startActivity(intent)
+                    startActivity(
+                        MissionMoreActivity.getIntent(
+                            requireContext(),
+                            CampaignList.Type.POPULAR
+                        )
+                    )
                 }
 
                 override fun onMissionClicked(missionId: Int, missionType: CampaignList.Type) {

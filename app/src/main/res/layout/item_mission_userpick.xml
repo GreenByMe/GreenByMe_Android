@@ -14,11 +14,13 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:scaleType="centerCrop"
-                android:src="@color/colorPrimary"
                 android:id="@+id/img_mission_userpick_icon"
-                android:layout_width="88dp"
-                android:layout_height="match_parent" />
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:scaleType="centerCrop"
+                android:src="@color/colorPrimary" />
 
             <TextView
                 android:layout_marginLeft="16dp"
@@ -31,7 +33,7 @@
                 android:text="텀블러 사용하기" />
 
             <TextView
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginLeft="16dp"
                 android:textSize="14sp"
                 android:textColor="@color/divider_bg"
@@ -46,7 +48,7 @@
                 android:id="@+id/tv_mission_userpick_date"
                 android:textColor="@color/colorPrimary"
                 android:text="일주일"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_toRightOf="@id/img_mission_userpick_icon"
                 android:layout_below="@id/tv_mission_userpick_category"
@@ -59,8 +61,8 @@
                 android:layout_alignTop="@id/tv_mission_userpick_date"
                 android:layout_alignBottom="@+id/tv_mission_userpick_date"
                 android:background="@color/colorPrimary"
-                android:layout_width="0.2dp"
-                android:layout_height="match_parent" />
+                android:layout_width="0.4dp"
+                android:layout_height="4dp" />
 
             <TextView
                 android:layout_marginLeft="16dp"

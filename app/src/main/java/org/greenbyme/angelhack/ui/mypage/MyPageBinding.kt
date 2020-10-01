@@ -1,7 +1,9 @@
 package org.greenbyme.angelhack.ui.mypage
 
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.greenbyme.angelhack.data.MyPageDAO
 import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.model.CertificationList
@@ -23,6 +25,12 @@ object MyPageBinding {
         ).toList().let {
             (recyclerView.adapter as HomeAdapter).setItems(it)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("bind:item")
+    fun bindSrc(imageView : de.hdodenhof.circleimageview.CircleImageView, url : String ){
+        Glide.with(imageView.context).load(url).into(imageView)
     }
 
 }
