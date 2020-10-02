@@ -23,7 +23,7 @@ class BaseAdapter<T>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return holder.from(parent,onClickListener)
+        return holder.from(parent, onClickListener)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

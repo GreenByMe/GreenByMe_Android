@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.mypage
 
-import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,7 +28,7 @@ object MyPageBinding {
 
     @JvmStatic
     @BindingAdapter("bind:item")
-    fun bindSrc(imageView : de.hdodenhof.circleimageview.CircleImageView, url : String ){
+    fun bindSrc(imageView: de.hdodenhof.circleimageview.CircleImageView, url: String) {
         Glide.with(imageView.context).load(url).into(imageView)
     }
 

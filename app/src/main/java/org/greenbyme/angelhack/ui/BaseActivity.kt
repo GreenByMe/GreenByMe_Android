@@ -31,7 +31,7 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
 
-       return super.onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item)
     }
 
     fun getToken(): String {

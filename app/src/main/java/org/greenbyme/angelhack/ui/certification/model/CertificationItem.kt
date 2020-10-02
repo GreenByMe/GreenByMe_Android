@@ -6,8 +6,8 @@ data class CertificationItem(
     var thumbnail: String,
     var title: String,
     var data: String
-):HomeItem{
+) : HomeItem {
     override fun getViewType(): Int {
-        return 1;
+        return 1
     }
 }

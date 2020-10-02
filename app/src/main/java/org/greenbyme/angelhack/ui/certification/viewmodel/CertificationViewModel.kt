@@ -31,7 +31,7 @@ class CertificationViewModel(application: Application) : AndroidViewModel(applic
             .subscribe({
                 it.data.personalMissions.let {
                     if (it.size == 0) {
-                        _showNoMissionFragment.value=Event(true);
+                        _showNoMissionFragment.value = Event(true)
                     } else {
                         mSubCertItemList.postValue(it)
                     }

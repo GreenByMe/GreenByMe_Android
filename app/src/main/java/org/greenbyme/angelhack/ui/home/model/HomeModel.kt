@@ -8,7 +8,7 @@ import org.greenbyme.angelhack.extention.convert
 data class HomeModel(
 
     @SerializedName("userHomePageDetailDto")
-    var userHomePageDetailDto : User,
+    var userHomePageDetailDto: User,
     @SerializedName("personalMissionHomePageDtos")
     var progressResponseDtoList: List<ProgressCampaign>,
     @SerializedName("popularMissionHomePageResponseDtos")

@@ -5,6 +5,6 @@ import org.greenbyme.angelhack.ui.home.model.HomeItem
 class CertificationNoItem
     : HomeItem {
     override fun getViewType(): Int {
-        return 0;
+        return 0
     }
 }

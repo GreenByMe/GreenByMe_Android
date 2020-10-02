@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.mission.userpick
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ class MissionPickHolder(mRecyclerView: View) :
     override fun getItemResId(): Int {
         return R.layout.item_mission_userpick
     }
+
     override fun bind(item: MissionListDAO.Content, onClickListener: OnClickPositionListener?) {
         with(itemView) {
             Glide.with(context).load(item.missionPictureUrl).into(img_mission_userpick_icon)
