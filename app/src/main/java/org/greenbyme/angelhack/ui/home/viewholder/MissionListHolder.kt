@@ -21,7 +21,7 @@ class MissionListHolder(mRecyclerView: View) :
         onClickListener: BaseAdapter.OnClickPositionListener?
     ) {
         with(itemView) {
-            Glide.with(context).load(item.pictureUrl).into(img_mission_userpick_icon)
+            Glide.with(context).load(item.missionPictureUrl).into(img_mission_userpick_icon)
             tv_mission_userpick_title.text = item.title.parseAsHtml()
             tv_mission_userpick_category.text = "#" + Utils.getCategoryStringKOR(item.category)
             img_mission_userpick_icon.setBackgroundColor(15)

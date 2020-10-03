@@ -32,14 +32,13 @@ interface MissionAPI {
     /*
     *  Personal Mission
     */
-
-    @GET("/api/personalMissions")
+    @GET("/api/personalmissions")
     fun getPersonalMissionResponse(
         @Header("jwt") token: String
     ): Single<ResponseBase<MissionListDAO>>
 
 
-    @GET("/api/personalMissions/{mission_id}")
+    @GET("/api/personalmissions/{mission_id}")
     fun getMissionProgressDetailResponse(
         @Path("mission_id") mission_id: Int
     ): Single<ResponseBase<MissionDetailDAO>>
@@ -49,6 +48,7 @@ interface MissionAPI {
         @Header("jwt") token: String,
         @Path("missionId") missionId: Int
     ): Completable
+
 
 
 }

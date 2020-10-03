@@ -12,7 +12,7 @@ data class MainMissionDAO(
         val endDate: String = "",
         val id: Int = 0,
         val passCandidates: Int = 0,
-        val pictureUrl: String = "",
+        val missionPictureUrl: String = "",
         val startDate: String = "",
         val subject: String = "",
         val title: String = ""
