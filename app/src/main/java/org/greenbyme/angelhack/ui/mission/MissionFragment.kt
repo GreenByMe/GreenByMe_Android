@@ -44,10 +44,12 @@ class MissionFragment : Fragment(), TagOnClickListener, BaseRepository {
     }
 
     private fun getMissionList() {
-        autoClearDisposable.add(ApiService.missionAPI.getMissionResponse()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::setupAdapter))
+        autoClearDisposable.add(
+            ApiService.missionAPI.getMissionResponse()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::setupAdapter)
+        )
     }
 
     private fun setupAdapter(it: ResponseBase<MainMissionDAO>) {

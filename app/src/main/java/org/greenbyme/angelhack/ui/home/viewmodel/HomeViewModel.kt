@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.home.model.HomeItem
-import org.greenbyme.angelhack.ui.home.model.User
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -25,7 +24,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             .map {
 
                 listOf(
-                    User.parseHomeModel(it.data),
+                    it.data.userHomePageDetailDto,
                     it.data.myCampaign,
                     it.data.popularCampaign
                 )

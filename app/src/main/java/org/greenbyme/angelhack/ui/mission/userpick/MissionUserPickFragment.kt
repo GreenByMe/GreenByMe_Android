@@ -13,7 +13,9 @@ import kotlinx.android.synthetic.main.fragment_mission_userpick.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.BaseAdapter
 import org.greenbyme.angelhack.ui.home.model.ResponseBase
+import org.greenbyme.angelhack.ui.home.viewholder.MissionListHolder
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
 
@@ -57,9 +59,13 @@ class MissionUserPickFragment : Fragment(), TagOnClickListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(this::showMissionList))
     }
-    private fun showMissionList(items: ResponseBase<MainMissionDAO>){
+
+    private fun showMissionList(items: ResponseBase<MainMissionDAO>) {
         rv_mission_userpick.apply {
-            adapter = MissionPickAdapter(items.data.contents)
+            adapter = BaseAdapter(MissionListHolder(this))
+                .apply {
+                    setItems(items.data.contents)
+                }
             layoutManager = LinearLayoutManager(context)
         }
     }

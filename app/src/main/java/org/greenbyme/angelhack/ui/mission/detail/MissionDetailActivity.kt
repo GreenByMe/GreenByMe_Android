@@ -7,7 +7,8 @@ import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import kotlinx.android.synthetic.main.activity_mission_detail.*
 import kotlinx.android.synthetic.main.item_mission_detail_eco_point.*
 import kotlinx.android.synthetic.main.item_mission_detail_header.*
@@ -24,6 +25,7 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_detail)
 
+
         presenter = MissionDetailPresenter(this)
 
         val missionId = intent.getIntExtra(PARAMS_MISSION_ID, -1)
@@ -32,19 +34,22 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
 
         if (missionId == -1) {
             toastMessage("잘못된 접근입니다.")
-        } else {
-            when (missionType) {
-                CampaignList.Type.POPULAR -> {
-                    presenter.getMissionDetail(missionId)
-                }
-                CampaignList.Type.MY_CAMPAIGN -> {
-                    presenter.getMissionProgressDetail(missionId)
-                }
-                null -> {
-                    toastMessage("잘못된 접근입니다.")
-                }
+            finish()
+        }
+
+        when (missionType) {
+            CampaignList.Type.POPULAR -> {
+                presenter.getMissionDetail(missionId)
+            }
+            CampaignList.Type.MY_CAMPAIGN -> {
+                presenter.getMissionProgressDetail(missionId)
+            }
+            null -> {
+                toastMessage("잘못된 접근입니다.")
+                finish()
             }
         }
+
     }
 
     // TODO : MVVM update
@@ -73,7 +78,12 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
 
             missionDetailPlantTree.text = "${String.format("%.2f", item.expectTree)}그루"
             missionDetailCarbon.text = "${String.format("%.2f", item.expectCo2)}KgCO2"
-            Picasso.get().load(item.pictureUrl).into(missionDetailBackGround)
+
+            Glide.with(this)
+                .load(item.pictureUrl)
+                .centerCrop()
+                .transition(withCrossFade())
+                .into(missionDetailBackGround)
 
             missionDetailYes.setOnClickListener {
                 presenter.addMission(item)
@@ -88,8 +98,8 @@ class MissionDetailActivity : BaseActivity(), MissionDetailContract.View {
     }
 
     companion object {
-        const val PARAMS_MISSION_ID = "mission_id"
-        const val PARAMS_MISSION_TYPE = "mission_type"
+        private const val PARAMS_MISSION_ID = "mission_id"
+        private const val PARAMS_MISSION_TYPE = "mission_type"
         fun getIntent(
             context: Context,
             missionId: Int,

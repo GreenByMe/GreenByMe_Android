@@ -15,6 +15,7 @@ class ApiService {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
 
+
             val httpClient = OkHttpClient.Builder()
             httpClient.addInterceptor(logging)
 

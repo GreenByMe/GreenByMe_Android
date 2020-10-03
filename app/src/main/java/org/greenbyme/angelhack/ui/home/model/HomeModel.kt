@@ -6,24 +6,17 @@ import com.google.gson.annotations.SerializedName
 import org.greenbyme.angelhack.extention.convert
 
 data class HomeModel(
-    @SerializedName("expectedCO2")
-    var expectedCO2: Double,
-    @SerializedName("expectedTree")
-    var expectedTree: Double,
-    @SerializedName("nickName")
-    var nickName: String,
-    @SerializedName("pageDto")
-    var pageDto : PageDto,
-    @SerializedName("progressCampaign")
-    var progressCampaign: Int,
-    @SerializedName("progressRates")
-    var progressRates: Int,
-    @SerializedName("treeSentence")
-    var treeSentence: String
+
+    @SerializedName("userHomePageDetailDto")
+    var userHomePageDetailDto: User,
+    @SerializedName("personalMissionHomePageDtos")
+    var progressResponseDtoList: List<ProgressCampaign>,
+    @SerializedName("popularMissionHomePageResponseDtos")
+    var popularCampaignList: List<PopularCampaignList>
 
 ) {
     val myCampaign: CampaignList
-        get() = CampaignList("진행 중인 캠페인", pageDto.progressResponseDtoList.map {
+        get() = CampaignList("진행 중인 캠페인", progressResponseDtoList.map {
             Campaign(
                 id = it.personalMissionid,
                 title = it.missionTitle,
@@ -37,7 +30,7 @@ data class HomeModel(
         }, CampaignList.Type.MY_CAMPAIGN)
 
     val popularCampaign: CampaignList
-        get() = CampaignList("인기 캠페인", pageDto.popularCampaignList.map {
+        get() = CampaignList("인기 캠페인", popularCampaignList.map {
             Campaign(
                 id = it.missionId,
                 title = it.subject,
@@ -56,7 +49,7 @@ data class CampaignList(
     var type: Type
 ) : HomeItem {
     enum class Type {
-        MY_CAMPAIGN, POPULAR,POST
+        MY_CAMPAIGN, POPULAR, POST
     }
 
     override fun getViewType(): Int {
@@ -88,10 +81,3 @@ data class Campaign(
         return "$from~$to"
     }
 }
-
-data class PageDto(
-    @SerializedName("progressResponseDtoList")
-    var progressResponseDtoList: List<ProgressCampaign>,
-    @SerializedName("popularMissionResponseDtoList")
-    var popularCampaignList: List<PopularCampaignList>
-)

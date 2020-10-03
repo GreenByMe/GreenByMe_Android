@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -12,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_certification.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.BaseActivity
+import org.greenbyme.angelhack.ui.MainActivity
 import org.greenbyme.angelhack.ui.certification.viewmodel.CertificationViewModel
 import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
@@ -63,12 +63,16 @@ class CertificationFragment : Fragment() {
             certData.observe(viewLifecycleOwner, Observer {
                 mCertAdapter.setItems(it)
                 mCertAdapter.notifyDataSetChanged()
-                indicator_certification.createIndicators(it.size,0)
+                indicator_certification.createIndicators(it.size, 0)
+            })
+
+            showNoMissionFragment.observe(viewLifecycleOwner, Observer {
+                (activity as MainActivity).addFragment(CertificationNoItemFragment())
             })
         }
     }
 
-    private fun loadData(){
+    private fun loadData() {
         mCertViewModel.loadCertData((requireActivity() as BaseActivity).getToken())
     }
 }

@@ -21,10 +21,12 @@ class MyPageRepo(val activity: BaseActivity) : BaseRepository {
 
     fun getProfile(): LiveData<MyPageDAO> {
         MutableLiveData<MyPageDAO>().let { ret ->
-            autoClearDisposable.add(ApiService.service.getUserInfo(activity.getToken())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ ret.value = it.data }, activity::throwError))
+            autoClearDisposable.add(
+                ApiService.service.getUserInfo(activity.getToken())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ ret.value = it.data }, activity::throwError)
+            )
             return ret
         }
     }

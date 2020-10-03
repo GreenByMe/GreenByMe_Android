@@ -21,19 +21,19 @@
                 android:layout_height="wrap_content" />
 
             <View
-                android:layout_margin="8dp"
+                android:layout_margin="4dp"
                 android:background="@color/divider_bg"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/divider" />
 
             <Spinner
-                android:layout_margin="8dp"
                 android:entries="@array/city"
                 android:id="@+id/sp_mission_userpick_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="8dp"
                 android:id="@+id/rv_mission_userpick"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

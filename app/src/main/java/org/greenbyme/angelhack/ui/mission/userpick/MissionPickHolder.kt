@@ -4,37 +4,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.parseAsHtml
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_mission_userpick.view.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MainMissionDAO
+import org.greenbyme.angelhack.data.MissionListDAO
+import org.greenbyme.angelhack.ui.BaseAdapter
+import org.greenbyme.angelhack.ui.BaseAdapter.OnClickPositionListener
 import org.greenbyme.angelhack.utils.Utils
 
-class MissionPickHolder(view: View) : RecyclerView.ViewHolder(view) {
-    fun bind(item: MainMissionDAO.Content) {
+
+class MissionPickHolder(mRecyclerView: View) :
+    BaseAdapter.BaseHolder<MissionListDAO.Content>(mRecyclerView) {
+    override fun getItemResId(): Int {
+        return R.layout.item_mission_userpick
+    }
+
+    override fun bind(item: MissionListDAO.Content, onClickListener: OnClickPositionListener?) {
         with(itemView) {
-            Glide.with(context).load(item.pictureUrl).into(img_mission_userpick_icon)
+            Glide.with(context).load(item.missionPictureUrl).into(img_mission_userpick_icon)
             tv_mission_userpick_title.text = item.title.parseAsHtml()
             tv_mission_userpick_category.text = item.description.parseAsHtml()
             img_mission_userpick_icon.setBackgroundColor(15)
             tv_mission_userpick_date.text = Utils.getCategoryStringKOR(item.dayCategory)
-            tv_mission_userpick_complete.text= "${item.passCandidates}명 완료"
+            tv_mission_userpick_complete.text = "${item.passCandidatesCount}명 완료"
         }
     }
 
-    companion object {
-        fun from(parent: ViewGroup): MissionPickHolder {
-            val layoutInflater = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_mission_userpick, parent, false)
+    override fun from(
+        parent: ViewGroup,
+        onClickListener: OnClickPositionListener?
+    ): MissionPickHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+            .inflate(getItemResId(), parent, false)
 
-            return MissionPickHolder(
-                layoutInflater
-            ).apply {
-                itemView.setOnClickListener {
-
-                }
+        return MissionPickHolder(layoutInflater).apply {
+            itemView.setOnClickListener {
+                onClickListener?.onClick(it, adapterPosition)
             }
         }
     }
+
 }

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- ViewModel 정의 -->
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="mypageVm"
             type="org.greenbyme.angelhack.ui.mypage.MyPageUiModel" />
@@ -27,26 +30,37 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_maypage_profile"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                <FrameLayout
                     android:layout_marginTop="16dp"
-                    android:src="@color/colorPrimary" />
+                    android:elevation="8dp"
+                    android:background="@drawable/shape_circle_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_maypage_profile"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@color/colorPrimary"
+                        android:elevation="80dp"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="4dp"
+                        bind:src="@{mypageVm.myPageDAO.pictureUrl}" />
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/tv_mypage_edit_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:background="@drawable/bg_round_button_gray"
+                    android:textColor="@color/black"
+                    android:background="@drawable/bg_round_button_orange"
+                    android:onClick="@{mypageVm.onClickNickName}"
                     android:paddingLeft="8dp"
                     android:paddingTop="4dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="4dp"
-                    android:onClick="@{mypageVm.onClickNickName}"
-                    android:text='@{mypageVm.myPageDAO.nickName+"asd"}' />
+                    android:text='@{mypageVm.myPageDAO.nickName+">"}' />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,6 +91,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
@@ -86,7 +101,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
                             android:text="완료한 캠페인" />
 
                     </LinearLayout>
@@ -115,6 +129,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
@@ -124,7 +139,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
                             android:text="줄어든 탄소발자국" />
 
                     </LinearLayout>
@@ -153,6 +167,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
@@ -162,7 +177,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
                             android:text="심은 나무 수" />
 
                     </LinearLayout>
@@ -176,10 +190,10 @@
                     android:background="@color/whiteGray" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    bind:item="@{mypageVm.myPageDAO.posts}"
                     android:id="@+id/rv_mypage_user_photo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    bind:item="@{mypageVm.myPageDAO.posts}" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

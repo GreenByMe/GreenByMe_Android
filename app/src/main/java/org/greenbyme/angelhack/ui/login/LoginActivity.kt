@@ -41,23 +41,23 @@ class LoginActivity : BaseActivity() {
     }
 
     fun login(json: JsonObject) =
-            ApiService.service.idLogin(json)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { isLoading = true }
-                    .doFinally { isLoading = false }
-                    .subscribe({
-                        when (it.status) {
-                            "201" -> {
-                                setToken(it)
-                                startActivity(MainActivity.getIntent(applicationContext))
-                                finish()
-                            }
-                            else -> {
-                                toastMessage(it.message)
-                            }
-                        }
-                    }, this::toastMessage)
+        ApiService.service.idLogin(json)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { isLoading = true }
+            .doFinally { isLoading = false }
+            .subscribe({
+                when (it.status) {
+                    "201" -> {
+                        setToken(it)
+                        startActivity(MainActivity.getIntent(applicationContext))
+                        finish()
+                    }
+                    else -> {
+                        toastMessage(it.message)
+                    }
+                }
+            }, this::toastMessage)
 
     private fun setToken(it: LoginDAO) {
         sharePreferences.edit {

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_mission_recommend_date.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
@@ -62,15 +62,19 @@ class MissionRecommendDateAdapter(
             missionRecommendContents.text = item.subject
             missionRecommendDiscription.text = item.description
             missionRecommendDate.text =
-                "${Utils.formatTimeMonthDayDate(item.startDate)} - ${Utils.formatTimeMonthDayDate(
-                    item.endDate
-                )}"
+                "${Utils.formatTimeMonthDayDate(item.startDate)} - ${
+                    Utils.formatTimeMonthDayDate(
+                        item.endDate
+                    )
+                }"
             missionRecommendCategory.text =
-                "#${Utils.getCategoryStringKOR(
-                    item.category
-                )}"
+                "#${
+                    Utils.getCategoryStringKOR(
+                        item.category
+                    )
+                }"
             missionRecommendComplete.text = "${item.passCandidates}명 완료"
-            Picasso.get().load(item.pictureUrl).into(missionRecommendBackgorund)
+            Glide.with(itemView).load(item.missionPictureUrl).into(missionRecommendBackgorund)
         }
     }
 

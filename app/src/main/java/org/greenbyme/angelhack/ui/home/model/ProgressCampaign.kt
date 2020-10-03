@@ -22,7 +22,7 @@ data class ProgressCampaign(
     @SerializedName("progress")
     var progress: Int,
     @SerializedName("startDate")
-    var startDate: String="",
+    var startDate: String = "",
     @SerializedName("endDate")
     var endDate: String,
     @SerializedName("certifiaciontTest")

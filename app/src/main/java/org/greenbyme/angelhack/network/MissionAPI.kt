@@ -1,11 +1,10 @@
 package org.greenbyme.angelhack.network
 
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDetailDAO
-import org.greenbyme.angelhack.data.PopularMissionDAO
+import org.greenbyme.angelhack.data.MissionListDAO
 import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -26,7 +25,20 @@ interface MissionAPI {
         @Path("mission_id") mission_id: Int
     ): Single<ResponseBase<MissionDetailDAO>>
 
-    @GET("/api/personalMissions/{mission_id}")
+    @GET("/api/missions/populars")
+    fun getPopularMissionResponse(
+    ): Single<ResponseBase<MissionListDAO>>
+
+    /*
+    *  Personal Mission
+    */
+    @GET("/api/personalmissions")
+    fun getPersonalMissionResponse(
+        @Header("jwt") token: String
+    ): Single<ResponseBase<MissionListDAO>>
+
+
+    @GET("/api/personalmissions/{mission_id}")
     fun getMissionProgressDetailResponse(
         @Path("mission_id") mission_id: Int
     ): Single<ResponseBase<MissionDetailDAO>>
@@ -37,9 +49,6 @@ interface MissionAPI {
         @Path("missionId") missionId: Int
     ): Completable
 
-    @GET("/api/missions/populars")
-    fun getPopularMission(
-    ): Single<ResponseBase<PopularMissionDAO>>
 
 
 }

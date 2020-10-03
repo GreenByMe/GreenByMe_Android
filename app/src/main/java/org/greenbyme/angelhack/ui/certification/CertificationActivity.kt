@@ -14,7 +14,10 @@ class CertificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_certification)
+        init()
+    }
 
+    private fun init() {
         setSupportActionBar(toolbar_certification)
         supportActionBar?.run {
             title = "인증"

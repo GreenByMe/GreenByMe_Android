@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
@@ -83,13 +82,14 @@ class Utils {
             }
             return "."
         }
+
         @JvmStatic
         fun formatTimeYearMonthDay(time: String?): String {
             if (!time.isNullOrBlank()) {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
                 try {
                     val date = sim.parse(time)
-                    val ret = "${date.year+1970} . ${date.month + 1} . ${date.date + 1}"
+                    val ret = "${date.year + 1970} . ${date.month + 1} . ${date.date + 1}"
                     return ret
                 } catch (e: Exception) {
                     e.printStackTrace()

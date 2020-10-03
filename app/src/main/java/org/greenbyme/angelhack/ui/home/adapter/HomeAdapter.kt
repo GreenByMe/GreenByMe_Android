@@ -36,7 +36,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
             HomeItemViewType.CAMPAIGN_LIST -> {
                 CampaignListViewHolder(
                     layoutInflater.inflate(
-                        R.layout.row_horizontal_list,
+                        R.layout.item_home_mission_list,
                         parent,
                         false
                     )

@@ -7,29 +7,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_mission_recommend.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
-import org.greenbyme.angelhack.data.MissionDAO
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionAdapter(private val list: List<MainMissionDAO.Content>) :
     RecyclerView.Adapter<MissionAdapter.Holder>() {
-
-    companion object {
-        fun makeDummy(): ArrayList<MissionDAO> {
-            val dummy = ArrayList<MissionDAO>()
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            return dummy
-        }
-    }
 
     override fun getItemCount(): Int = list.size
 
@@ -60,7 +47,7 @@ class MissionAdapter(private val list: List<MainMissionDAO.Content>) :
         private val missionRecommendUserCount: TextView = view.tv_mission_recommend_user_count
 
         fun bind(item: MainMissionDAO.Content) {
-            Picasso.get().load(item.pictureUrl).into(missionRecommendBackgound)
+            Glide.with(itemView.context).load(item.missionPictureUrl).into(missionRecommendBackgound)
             missionRecommendContents.text = Html.fromHtml(item.subject)
             missionRecommendDiscription.text = Html.fromHtml(item.description)
             missionRecommendDate.text = Utils.formatTimeMonthDay(item.startDate)
