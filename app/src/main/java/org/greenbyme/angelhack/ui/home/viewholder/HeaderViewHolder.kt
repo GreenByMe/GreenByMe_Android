@@ -35,7 +35,7 @@ class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
         mPercent_layout.let {
             val cs = ConstraintSet().apply {
                 clone(it)
-                setHorizontalBias(R.id.layout_home_mission_progress_box, persent / 10f)
+                setHorizontalBias(R.id.layout_home_mission_progress_box, persent / 100f)
                 applyTo(it)
             }
         }

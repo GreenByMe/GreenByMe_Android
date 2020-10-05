@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_mission_recommend.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
@@ -29,7 +28,7 @@ class MissionAdapter(private val list: List<MainMissionDAO.Content>) :
         return Holder(view).apply {
             itemView.setOnClickListener {
                 context.startActivity(
-                    MissionDetailActivity.getIntent(context, list[adapterPosition].id)
+                    MissionDetailActivity.getIntent(context, list[adapterPosition].missionId)
                 )
             }
         }

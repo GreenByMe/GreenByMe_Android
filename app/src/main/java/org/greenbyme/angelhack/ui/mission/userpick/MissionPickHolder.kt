@@ -22,8 +22,8 @@ class MissionPickHolder(mRecyclerView: View) :
     override fun bind(item: MissionListDAO.Content, onClickListener: OnClickPositionListener?) {
         with(itemView) {
             Glide.with(context).load(item.missionPictureUrl).into(img_mission_userpick_icon)
-            tv_mission_userpick_title.text = item.title.parseAsHtml()
-            tv_mission_userpick_category.text = item.description.parseAsHtml()
+            tv_mission_userpick_title.text = item.missionTitle.parseAsHtml()
+            tv_mission_userpick_category.text = Utils.getCategoryStringKOR(item.category)
             img_mission_userpick_icon.setBackgroundColor(15)
             tv_mission_userpick_date.text = Utils.getCategoryStringKOR(item.dayCategory)
             tv_mission_userpick_complete.text = "${item.passCandidatesCount}명 완료"

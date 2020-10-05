@@ -17,8 +17,6 @@
                 android:id="@+id/img_mission_userpick_icon"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="0dp"
                 android:scaleType="centerCrop"
                 android:src="@color/colorPrimary" />
 

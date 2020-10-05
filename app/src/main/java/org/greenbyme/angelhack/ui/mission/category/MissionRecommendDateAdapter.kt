@@ -38,7 +38,7 @@ class MissionRecommendDateAdapter(
                 .inflate(R.layout.item_mission_recommend_date, parent, false)
         return Holder(view).apply {
             missionRecommendMore.setOnClickListener {
-                onClickListener.onMoreClick(list[adapterPosition].id)
+                onClickListener.onMoreClick(list[adapterPosition].missionId)
             }
         }
     }

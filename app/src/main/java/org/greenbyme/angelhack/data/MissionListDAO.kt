@@ -16,6 +16,6 @@ data class MissionListDAO(
         val missionPictureUrl: String,
         val passCandidatesCount: Int,
         val subject: String,
-        val title: String
+        val missionTitle: String
     )
 }
