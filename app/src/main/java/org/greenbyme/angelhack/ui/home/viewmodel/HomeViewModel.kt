@@ -13,10 +13,11 @@ import org.greenbyme.angelhack.ui.home.model.HomeItem
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val mLoadingData = MutableLiveData<Boolean>()
+    val loadingData: LiveData<Boolean> = mLoadingData
+
     private val mSubHomeItemList = MutableLiveData<List<HomeItem>>()
 
     val homeData: LiveData<List<HomeItem>> = mSubHomeItemList
-    val loadingData: LiveData<Boolean> = mLoadingData
 
     @SuppressLint("CheckResult")
     fun loadUserHomeInfo(token: String) {

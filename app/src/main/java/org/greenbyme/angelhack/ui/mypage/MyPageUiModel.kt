@@ -2,8 +2,11 @@ package org.greenbyme.angelhack.ui.mypage
 
 import android.view.View
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.greenbyme.angelhack.data.MyPageDAO
+import org.greenbyme.angelhack.extention.Event
+import org.greenbyme.angelhack.ui.mypage.editprofile.EditProfileActivity
 
 
 class MyPageUiModel(val repo: MyPageRepo) : ViewModel() {
@@ -19,7 +22,10 @@ class MyPageUiModel(val repo: MyPageRepo) : ViewModel() {
         view.context.let {
             if (myPageDAO.value == null)
                 return
-            // todo : 닉네임변경
+            val nickname = myPageDAO.value!!.nickName
+            val profileImg = myPageDAO.value!!.pictureUrl
+
+            it.startActivity(EditProfileActivity.getIntent(it, nickname, profileImg))
         }
     }
 }

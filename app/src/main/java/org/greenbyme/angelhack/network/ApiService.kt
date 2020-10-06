@@ -47,5 +47,9 @@ class ApiService {
         val postAPI: PostAPI by lazy {
             mRetrofit.create(PostAPI::class.java)
         }
+
+        val mypageAPI: MyPageAPI by lazy {
+            mRetrofit.create(MyPageAPI::class.java)
+        }
     }
 }

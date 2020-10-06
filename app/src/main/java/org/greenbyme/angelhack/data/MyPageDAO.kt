@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class MyPageDAO(
     @SerializedName("email")
     val email: String,
-    val expectCo2: Int,
-    val expectTree: Int,
+    val expectCo2: Double,
+    val expectTree: Double,
     val personalMissions: List<MissionInfo>,
     val nickName: String,
     val passMissionCount: Int,

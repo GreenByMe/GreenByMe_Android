@@ -42,8 +42,9 @@ class MyPageFragment : Fragment(), TagOnClickListener {
     ): View? {
         val binding: FragmentMyPageBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
-        val mViewmodel = MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
-        binding.mypageVm = mViewmodel
+        val mViewModel = MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
+
+        binding.mypageVm = mViewModel
         binding.lifecycleOwner = this
         setAdapter(binding.rvMypageUserPhoto)
 
@@ -68,6 +69,7 @@ class MyPageFragment : Fragment(), TagOnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         rv_mypage_tag_list.apply {
             adapter = MissionTagAdapter(MissionTagAdapter.makeDummy(), this@MyPageFragment)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

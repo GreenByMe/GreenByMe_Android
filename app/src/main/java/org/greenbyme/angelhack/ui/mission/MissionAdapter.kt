@@ -46,7 +46,8 @@ class MissionAdapter(private val list: List<MainMissionDAO.Content>) :
         private val missionRecommendUserCount: TextView = view.tv_mission_recommend_user_count
 
         fun bind(item: MainMissionDAO.Content) {
-            Glide.with(itemView.context).load(item.missionPictureUrl).into(missionRecommendBackgound)
+            Glide.with(itemView.context).load(item.missionPictureUrl)
+                .into(missionRecommendBackgound)
             missionRecommendContents.text = Html.fromHtml(item.subject)
             missionRecommendDiscription.text = Html.fromHtml(item.description)
             missionRecommendDate.text = Utils.formatTimeMonthDay(item.startDate)
