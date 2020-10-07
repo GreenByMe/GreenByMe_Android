@@ -1,5 +1,6 @@
 package org.greenbyme.angelhack.ui.login
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.edit
 import com.google.gson.JsonObject
+import com.nhn.android.naverlogin.OAuthLogin
+import com.nhn.android.naverlogin.OAuthLoginHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
@@ -14,12 +17,15 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.utils.LoginUtil
 
 class LoginActivity : BaseActivity() {
     var isLoading = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        loginNaver()
 
         bt_login.setOnClickListener {
             if (!isLoading) {
@@ -75,6 +81,30 @@ class LoginActivity : BaseActivity() {
     companion object {
         fun getIntent(context: Context): Intent {
             return Intent(context, LoginActivity::class.java)
+        }
+    }
+
+    private val mLoginHandler: OAuthLoginHandler by lazy {
+        @SuppressLint("HandlerLeak") object : OAuthLoginHandler() {
+            private val context = this@LoginActivity
+
+            override fun run(success: Boolean) {
+                if (success) {
+                    startActivity(MainActivity.getIntent(applicationContext))
+                } else {
+                    Toast.makeText(context, "err", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun loginNaver() {
+        bt_login_naver.run {
+            setOAuthLoginHandler(mLoginHandler)
+
+            setOnClickListener {
+                LoginUtil.startLoginActivity(this@LoginActivity, mLoginHandler)
+            }
         }
     }
 }

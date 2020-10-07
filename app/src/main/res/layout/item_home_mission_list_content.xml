@@ -48,7 +48,7 @@
     <TextView
         android:id="@+id/tv_home_mission_date"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
+        android:layout_height="18dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_round_button_gray"
         android:includeFontPadding="false"
