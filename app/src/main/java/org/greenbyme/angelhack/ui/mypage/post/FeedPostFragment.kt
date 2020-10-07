@@ -20,7 +20,7 @@ class FeedPostFragment : Fragment() {
     ): View? {
         val binding: FragmentFeedPostBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_feed_post, container, false)
-        val mViewModel = FeedPostUiModel(repo = FeedPostRepo(activity as BaseActivity, postId))
+        val mViewModel = FeedPostUiModel(FeedPostRepo(activity as BaseActivity, postId))
 
         binding.feedpostVm = mViewModel
         binding.lifecycleOwner = this

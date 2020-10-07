@@ -3,65 +3,50 @@ package org.greenbyme.angelhack.ui.mypage.editprofile
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.widget.addTextChangedListener
+import android.util.Log
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.databinding.ActivityEditProfileBinding
 import org.greenbyme.angelhack.ui.BaseActivity
-import org.greenbyme.angelhack.ui.home.model.ResponseBase
 
 class EditProfileActivity : BaseActivity() {
-    var isCheckedNickname = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_profile)
+
+        val binding: ActivityEditProfileBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
+        val mViewModel = EditProfileUIModel(EditProfileRepository(this))
+
         initView()
+        mViewModel.nickname.observe(this@EditProfileActivity, Observer {
+            mViewModel.checkNickname(it)
+        })
+        mViewModel.isCheckedNickname.observe(this@EditProfileActivity, Observer {
+            updateNicknameCaption(it)
+        })
+        mViewModel.isFinished.observe(this@EditProfileActivity, Observer {
+            finish()
+        })
+
+        binding.editprofileVm = mViewModel
+        binding.lifecycleOwner = this
     }
 
     private fun initView() {
         val nickname = intent.getStringExtra(PARAMS_NICKNAME)
         val profile = intent.getStringExtra(PARAMS_PROFILE_IMG)
-
         supportActionBar?.title = "프로필설정"
-
         et_mypage_edit_nickname.hint = nickname
         Glide.with(this).load(profile).into(img_mypage_edit_profile)
-
-        img_mypage_edit_add.setOnClickListener {
-            //TODO:사진선택
-        }
-
-        btn_mypage_edit_save.setOnClickListener {
-            if (isCheckedNickname) {
-                putNickname(et_mypage_edit_nickname.text.toString())
-                finish()
-            }
-        }
-
-        et_mypage_edit_nickname.addTextChangedListener {
-            checkNickname(it.toString())
-        }
     }
 
-    private fun putNickname(nickname: String) =
-        ApiService.mypageAPI.updateNickname(getToken(),nickname)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
+    private fun updateNicknameCaption(it: Boolean?) {
 
-    private fun checkNickname(nickname: String) =
-        ApiService.mypageAPI.checkNickname(nickname)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                checkNicknameApply(it)
-            }, this::throwError)
-
-    private fun checkNicknameApply(it: ResponseBase<Boolean>) {
-        isCheckedNickname = it.data
+        Log.d("Eidtuimodle",it.toString())
+        val isCheckedNickname = it ?: false
         btn_mypage_edit_save.isEnabled = isCheckedNickname
         if (isCheckedNickname) {
             tv_mypage_edit_caption.text = "사용가능한 닉네임 입니다."
@@ -71,7 +56,6 @@ class EditProfileActivity : BaseActivity() {
             tv_mypage_edit_caption.setTextColor(resources.getColor(R.color.red))
         }
     }
-
 
     companion object {
         const val PARAMS_NICKNAME = "nickname"

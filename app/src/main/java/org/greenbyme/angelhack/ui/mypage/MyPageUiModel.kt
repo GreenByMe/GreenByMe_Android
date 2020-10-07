@@ -2,10 +2,8 @@ package org.greenbyme.angelhack.ui.mypage
 
 import android.view.View
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.greenbyme.angelhack.data.MyPageDAO
-import org.greenbyme.angelhack.extention.Event
 import org.greenbyme.angelhack.ui.mypage.editprofile.EditProfileActivity
 
 

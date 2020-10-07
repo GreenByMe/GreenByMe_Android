@@ -18,7 +18,7 @@ interface MyPageAPI {
     //TODO : Require API UPDATE
     @PUT("/api/users")
     fun updateNickname(
-        @Header("jwt") token:String,
+        @Header("jwt") token: String,
         @Query("nickName") nickname: String
     ): Completable
 
