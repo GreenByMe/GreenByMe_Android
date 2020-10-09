@@ -1,9 +1,5 @@
 package org.greenbyme.angelhack.ui.mypage.editprofile
 
-import android.widget.EditText
-import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -29,16 +25,16 @@ class EditProfileRepository(val activity: BaseActivity) : BaseRepository {
         )
 
 
-    fun checkNickname(nickname: String,data :MutableLiveData<Boolean>)=
-            autoClearDisposable.add(
-                ApiService.mypageAPI.checkNickname(nickname)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
+    fun checkNickname(nickname: String, data: MutableLiveData<Boolean>) =
+        autoClearDisposable.add(
+            ApiService.mypageAPI.checkNickname(nickname)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
 
-                        data.value = it.data
-                    }, activity::throwError)
-            )
+                    data.value = it.data
+                }, activity::throwError)
+        )
 
 
 }

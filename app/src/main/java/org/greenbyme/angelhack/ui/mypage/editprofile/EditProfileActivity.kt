@@ -45,7 +45,7 @@ class EditProfileActivity : BaseActivity() {
 
     private fun updateNicknameCaption(it: Boolean?) {
 
-        Log.d("Eidtuimodle",it.toString())
+        Log.d("Eidtuimodle", it.toString())
         val isCheckedNickname = it ?: false
         btn_mypage_edit_save.isEnabled = isCheckedNickname
         if (isCheckedNickname) {

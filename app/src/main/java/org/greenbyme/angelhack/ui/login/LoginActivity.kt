@@ -62,6 +62,7 @@ class LoginActivity : BaseActivity() {
     private fun setToken(it: LoginDAO) {
         sharePreferences.edit {
             putString("token", it.data)
+            ApiService.token=it.data
         }
     }
 
