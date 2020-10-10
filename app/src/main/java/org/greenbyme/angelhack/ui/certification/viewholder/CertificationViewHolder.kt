@@ -26,7 +26,7 @@ class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             Glide.with(itemView).load(data.pictureUrl).into(newsImg)
         }
 
-        mTitle.text = data.subject ?: ""
+        mTitle.text = data.missionTitle
 
         mDate.text = "${data.startDate.convert(fromFormat, toFormat)}~${
             data.endDate.convert(

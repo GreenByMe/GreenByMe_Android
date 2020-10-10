@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.mission.userpick
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.parseAsHtml
@@ -34,10 +33,8 @@ class MissionPickHolder(mRecyclerView: View) :
         parent: ViewGroup,
         onClickListener: OnClickPositionListener?
     ): MissionPickHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-            .inflate(getItemResId(), parent, false)
 
-        return MissionPickHolder(layoutInflater).apply {
+        return MissionPickHolder(getInflater(parent)).apply {
             itemView.setOnClickListener {
                 onClickListener?.onClick(it, adapterPosition)
             }

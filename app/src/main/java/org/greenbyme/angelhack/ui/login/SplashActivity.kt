@@ -26,7 +26,7 @@ class SplashActivity : BaseActivity() {
                 when (it.status) {
                     "201" -> {
                         handler.postDelayed(Runnable {
-                            ApiService.token=getToken()
+                            ApiService.token = getToken()
                             startActivity(MainActivity.getIntent(this))
                             finish()
                         }, 2000)

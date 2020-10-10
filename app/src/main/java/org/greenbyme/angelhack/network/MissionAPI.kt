@@ -5,6 +5,7 @@ import io.reactivex.Single
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.data.MissionListDAO
+import org.greenbyme.angelhack.ui.home.model.ProgressItem
 import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -35,7 +36,7 @@ interface MissionAPI {
     @GET("/api/personalmissions")
     fun getPersonalMissionResponse(
         @Header("jwt") token: String
-    ): Single<ResponseBase<MissionListDAO>>
+    ): Single<ResponseBase<ProgressItem>>
 
 
     @GET("/api/personalmissions/{mission_id}")

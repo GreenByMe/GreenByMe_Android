@@ -4,9 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.extention.load
-import org.greenbyme.angelhack.extention.parseGlideUri
-import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.extention.loadUriWithToken
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.CampaignList
 import org.greenbyme.angelhack.ui.home.model.CertificationListItem
@@ -22,6 +20,6 @@ class CertificationItemViewHolder(view: View) : HomeViewHolder<CertificationList
                 CampaignList.Type.POST
             )
         }
-        Glide.with(itemView.context).load(data.thumbnail,ApiService.token).into(imageView)
+        Glide.with(itemView.context).loadUriWithToken(data.thumbnail).into(imageView)
     }
 }

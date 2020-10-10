@@ -4,39 +4,47 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_mission_more.*
 import org.greenbyme.angelhack.R
-import org.greenbyme.angelhack.data.MissionListDAO
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.BaseAdapter
 import org.greenbyme.angelhack.ui.home.model.CampaignList
+import org.greenbyme.angelhack.ui.home.model.ProgressItem
+import org.greenbyme.angelhack.ui.home.viewholder.ProgressViewHolder
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
-import org.greenbyme.angelhack.ui.mission.userpick.MissionPickHolder
 
-class MissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener {
-    private lateinit var mAdapter: BaseAdapter<MissionListDAO.Content>
-    private var missionType: CampaignList.Type? = null
+class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener {
+    private lateinit var mAdapter: BaseAdapter<ProgressItem.Content>
+
+    override fun onClick(view: View, position: Int) {
+        val missionId = mAdapter.getItem(position).personalMissionId
+        startActivity(MissionDetailActivity.getIntent(this, missionId))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mission_more)
+        setContentView(R.layout.activity_personal_mission_more)
+        init()
+    }
+
+    private fun init() {
         tag = "MISSION_MORE"
+        supportActionBar?.title = "진행중인 캠페인"
 
-        missionType = intent.getSerializableExtra(PARAMS_MISSION_TYPE) as CampaignList.Type?
-        mAdapter = BaseAdapter(MissionPickHolder(rv_mission_more_list), this)
-        getPopularMission()
-
+        mAdapter = BaseAdapter(ProgressViewHolder(rv_mission_more_list), this)
+        getPersonalMission()
         rv_mission_more_list.apply {
             adapter = mAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 2)
         }
     }
 
-    private fun getPopularMission() =
-        ApiService.missionAPI.getPopularMissionResponse()
+    private fun getPersonalMission() =
+        ApiService.missionAPI.getPersonalMissionResponse(getToken())
             .map {
                 it.data.contents
             }
@@ -44,17 +52,11 @@ class MissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener 
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(mAdapter::setItems, this::throwError)
 
-    override fun onClick(view: View, position: Int) {
-        val missionId: Int = mAdapter.getItem(position).missionId
-        startActivity(MissionDetailActivity.getIntent(this, missionId))
-
-    }
-
     companion object {
         private const val PARAMS_MISSION_TYPE = "mission_type"
 
         fun getIntent(context: Context, missionType: CampaignList.Type): Intent {
-            return Intent(context, MissionMoreActivity::class.java).apply {
+            return Intent(context, PersonalMissionMoreActivity::class.java).apply {
                 putExtra(PARAMS_MISSION_TYPE, missionType)
             }
         }
