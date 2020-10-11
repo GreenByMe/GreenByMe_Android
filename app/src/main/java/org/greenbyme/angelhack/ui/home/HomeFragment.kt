@@ -96,7 +96,7 @@ class HomeFragment : BaseFragment() {
     private fun setViewModel() {
         mHomeViewModel.run {
             loadingData.observe(viewLifecycleOwner, Observer {
-                //refreshLayout.isRefreshing = it
+                refreshLayout.isRefreshing = it
             })
 
             homeData.observe(viewLifecycleOwner, Observer {
