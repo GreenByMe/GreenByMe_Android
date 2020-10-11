@@ -21,6 +21,7 @@ class CertificationViewHolder(view: View) : HomeViewHolder<CertificationList>(vi
     }
 
     override fun bind(data: CertificationList, itemClickListener: HomeItemClickListener?) {
+        super.bind(data, itemClickListener)
         itemView.rv_home_certification_img.adapter = mAdapter
 
         mAdapter.itemClickListener = itemClickListener

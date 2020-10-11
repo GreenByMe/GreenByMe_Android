@@ -1,31 +1,45 @@
 package org.greenbyme.angelhack.ui.home.viewholder
 
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import com.squareup.picasso.Picasso
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.item_mission_progress.view.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.ui.BaseAdapter
 import org.greenbyme.angelhack.ui.home.model.ProgressItem
+import org.greenbyme.angelhack.utils.Utils
 
-class ProgressViewHolder(view: View) : HomeViewHolder<ProgressItem>(view) {
+class ProgressViewHolder(view: View) : BaseAdapter.BaseHolder<ProgressItem.Content>(view) {
 
+    override fun getItemResId(): Int {
+        return R.layout.item_mission_progress
+    }
 
-    private val picasso = Picasso.get()
+    override fun bind(
+        items: ProgressItem.Content,
+        onClickListener: BaseAdapter.OnClickPositionListener?
+    ) {
+        with(itemView) {
+            // TODO : API 업데이트후 끝난미션 안가리기
+            Glide.with(itemView).load(items.missionPictureUrl).into(img_mission_progress_bg)
+            tv_mission_progress_day.text = Utils.formatTimeMonthDay(items.endDate)
+            tv_mission_progress_user_count.text = "${items.finishCount}명 도전중"
+            tv_mission_progress_contents.text = items.missionTitle
+            tv_mission_progress_percents.text = (items.progress / items.finishCount).toString()
+            tv_mission_progress_percents_count.text =
+                items.progress.toString() + "/" + items.finishCount.toString()
+        }
+    }
 
-    private val mImg: ImageView = view.findViewById(R.id.img_mission_progress_bg)
-    private val mDate: TextView = view.findViewById(R.id.tv_mission_progress_day)
-    private val mUserCnt: TextView = view.findViewById(R.id.tv_mission_progress_user_count)
-    private val mTitle: TextView = view.findViewById(R.id.tv_mission_progress_contents)
-    private val mRate: TextView = view.findViewById(R.id.tv_mission_progress_percents)
-    private val mCurMax: TextView = view.findViewById(R.id.tv_mission_progress_percents_count)
-
-    override fun bind(data: ProgressItem) {
-        picasso.load(data.img).into(mImg)
-        mDate.text = data.date
-        mUserCnt.text = data.userCnt
-        mTitle.text = data.title
-        mRate.text = data.rate
-        mCurMax.text = data.curCnt.toString() + "/" + data.maxCnt.toString()
-
+    override fun from(
+        parent: ViewGroup,
+        onClickListener: BaseAdapter.OnClickPositionListener?
+    ): RecyclerView.ViewHolder {
+        return ProgressViewHolder(getInflater(parent)).apply {
+            itemView.setOnClickListener {
+                onClickListener?.onClick(itemView, adapterPosition)
+            }
+        }
     }
 }

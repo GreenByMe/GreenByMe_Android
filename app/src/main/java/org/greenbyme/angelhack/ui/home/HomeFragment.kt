@@ -20,6 +20,7 @@ import org.greenbyme.angelhack.ui.home.model.CampaignList
 import org.greenbyme.angelhack.ui.home.viewmodel.HomeViewModel
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.ui.mission.more.MissionMoreActivity
+import org.greenbyme.angelhack.ui.mission.more.PersonalMissionMoreActivity
 
 
 /**
@@ -33,7 +34,7 @@ class HomeFragment : BaseFragment() {
             itemClickListener = object : HomeItemClickListener() {
                 override fun onCampaignClicked() {
                     startActivity(
-                        MissionMoreActivity.getIntent(
+                        PersonalMissionMoreActivity.getIntent(
                             requireContext(),
                             CampaignList.Type.MY_CAMPAIGN
                         )

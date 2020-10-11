@@ -18,14 +18,15 @@ data class HomeModel(
     val myCampaign: CampaignList
         get() = CampaignList("진행 중인 캠페인", progressResponseDtoList.map {
             Campaign(
-                id = it.personalMissionid,
+                id = it.personalMissionId,
                 title = it.missionTitle,
                 progress = it.progress,
                 memberCount = it.manyPeople,
                 startDate = it.startDate,
                 endDate = it.endDate,
                 imageUrl = it.pictureUrl,
-                missionType = CampaignList.Type.MY_CAMPAIGN
+                missionType = CampaignList.Type.MY_CAMPAIGN,
+                status = it.status
             )
         }, CampaignList.Type.MY_CAMPAIGN)
 
@@ -65,7 +66,9 @@ data class Campaign(
     var memberCount: Int = 0,
     var startDate: String = "",
     var endDate: String = "",
-    var missionType: CampaignList.Type = CampaignList.Type.MY_CAMPAIGN
+    var missionType: CampaignList.Type = CampaignList.Type.MY_CAMPAIGN,
+    @SerializedName("status")
+    var status: String = ""
 ) : HomeItem {
     override fun getViewType(): Int {
         return HomeItemViewType.CAMPAIGN_LIST_ITEM.viewType

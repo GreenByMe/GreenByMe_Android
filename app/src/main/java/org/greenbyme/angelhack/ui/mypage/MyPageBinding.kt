@@ -4,6 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.greenbyme.angelhack.data.MyPageDAO
+import org.greenbyme.angelhack.extention.loadUriWithToken
 import org.greenbyme.angelhack.ui.home.adapter.HomeAdapter
 import org.greenbyme.angelhack.ui.home.model.CertificationList
 import org.greenbyme.angelhack.ui.home.model.CertificationListItem
@@ -29,7 +30,7 @@ object MyPageBinding {
     @JvmStatic
     @BindingAdapter("bind:item")
     fun bindSrc(imageView: de.hdodenhof.circleimageview.CircleImageView, url: String) {
-        Glide.with(imageView.context).load(url).into(imageView)
+        Glide.with(imageView.context).loadUriWithToken(url).into(imageView)
     }
 
 }

@@ -9,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiService {
     companion object {
+        var token: String = ""
         private const val BASE_URL = "https://cafecube.iptime.org"
 
         private val mRetrofit: Retrofit by lazy {
@@ -46,6 +47,10 @@ class ApiService {
 
         val postAPI: PostAPI by lazy {
             mRetrofit.create(PostAPI::class.java)
+        }
+
+        val mypageAPI: MyPageAPI by lazy {
+            mRetrofit.create(MyPageAPI::class.java)
         }
     }
 }

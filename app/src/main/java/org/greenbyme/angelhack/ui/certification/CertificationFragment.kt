@@ -52,7 +52,9 @@ class CertificationFragment : Fragment() {
         tv_certification_go.setOnClickListener {
             startActivity(
                 TakePictureActivity.getIntent(
-                    requireActivity(), mCampaign?.subject ?: "", mCampaign?.personalMissionid ?: 0
+                    requireActivity(),
+                    mCampaign?.missionTitle ?: "",
+                    mCampaign?.personalMissionId ?: 0
                 )
             )
         }

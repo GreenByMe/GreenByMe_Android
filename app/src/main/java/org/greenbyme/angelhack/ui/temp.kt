@@ -1,7 +1,6 @@
-package org.greenbyme.angelhack.ui.home.model
+package org.greenbyme.angelhack.ui
 
-
-data class ProgressCampaign(
+data class temp(
     val endDate: String,
     val finishCount: Int,
     val manyPeople: Int,

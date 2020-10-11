@@ -1,6 +1,5 @@
 package org.greenbyme.angelhack.ui.mission.userpick
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.parseAsHtml
@@ -22,8 +21,8 @@ class MissionPickHolder(mRecyclerView: View) :
     override fun bind(item: MissionListDAO.Content, onClickListener: OnClickPositionListener?) {
         with(itemView) {
             Glide.with(context).load(item.missionPictureUrl).into(img_mission_userpick_icon)
-            tv_mission_userpick_title.text = item.title.parseAsHtml()
-            tv_mission_userpick_category.text = item.description.parseAsHtml()
+            tv_mission_userpick_title.text = item.missionTitle.parseAsHtml()
+            tv_mission_userpick_category.text = Utils.getCategoryStringKOR(item.category)
             img_mission_userpick_icon.setBackgroundColor(15)
             tv_mission_userpick_date.text = Utils.getCategoryStringKOR(item.dayCategory)
             tv_mission_userpick_complete.text = "${item.passCandidatesCount}명 완료"
@@ -34,10 +33,8 @@ class MissionPickHolder(mRecyclerView: View) :
         parent: ViewGroup,
         onClickListener: OnClickPositionListener?
     ): MissionPickHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-            .inflate(getItemResId(), parent, false)
 
-        return MissionPickHolder(layoutInflater).apply {
+        return MissionPickHolder(getInflater(parent)).apply {
             itemView.setOnClickListener {
                 onClickListener?.onClick(it, adapterPosition)
             }

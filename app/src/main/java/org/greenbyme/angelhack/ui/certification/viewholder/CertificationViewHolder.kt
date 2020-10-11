@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.extention.convert
 import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
 class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-    private val mPicasso = Picasso.get()
     private val newsImg: ImageView = view.findViewById(R.id.iv_certification_mission_thumbnail)
     private val mTitle: TextView = view.findViewById(R.id.tv_certification_mission_title)
     private val mDate: TextView = view.findViewById(R.id.tv_certification_mission_date)
@@ -25,10 +23,10 @@ class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val toFormat = "M/d/EEE"
 
         if (data.pictureUrl.isNotBlank()) {
-            mPicasso.load(data.pictureUrl).into(newsImg)
+            Glide.with(itemView).load(data.pictureUrl).into(newsImg)
         }
 
-        mTitle.text = data.subject ?: ""
+        mTitle.text = data.missionTitle
 
         mDate.text = "${data.startDate.convert(fromFormat, toFormat)}~${
             data.endDate.convert(
