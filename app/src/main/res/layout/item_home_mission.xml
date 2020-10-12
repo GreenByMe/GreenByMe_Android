@@ -19,13 +19,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textColor="@color/white"
-        android:gravity="center"
         android:id="@+id/tv_home_tag"
         android:layout_width="43dp"
         android:layout_height="15dp"
         android:background="#FE9776"
+        android:gravity="center"
+        android:includeFontPadding="false"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="10sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -45,6 +46,7 @@
         tools:text="오늘 하루 채식하기" />
 
     <TextView
+        android:includeFontPadding="false"
         android:id="@+id/tv_home_mission_date"
         android:layout_width="wrap_content"
         android:layout_height="16dp"
@@ -76,5 +78,23 @@
         tools:ignore="SmallSp"
         tools:text="300명 도전중" />
 
+    <ImageView
+        android:id="@+id/img_home_mission_ended_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@color/tran_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_home_mission_ended_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_mission_ended_text"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
