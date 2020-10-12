@@ -10,4 +10,6 @@
     <string name="login_login">로그인</string>
     <string name="mypage_editprofile_save">저장하기</string>
     <string name="mypage_edit_caption">변경할 닉네임을 입력해주세요</string>
+    <string name="home_mission_ended_text">마감된 캠페인</string>
+    <string name="home_header_title">이번주에만 벌써\n0개의 나무를 심으셨군요!</string>
 </resources>

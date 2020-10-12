@@ -17,6 +17,7 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:includeFontPadding="false"
             android:id="@+id/tv_mission_recommend_day_count"
             android:layout_width="60dp"
             android:layout_height="24dp"
@@ -50,6 +51,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:maxLines="2"
             android:id="@+id/tv_mission_recommend_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

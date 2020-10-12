@@ -27,7 +27,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/spoqal"
         android:lineSpacingMultiplier="0.8"
-        android:text="이번주에만 벌써\n0개의 나무를 심으셨군요!"
+        android:text="@string/home_header_title"
         android:textColor="@color/black"
         android:textSize="32sp"
         app:layout_constraintLeft_toLeftOf="parent"
