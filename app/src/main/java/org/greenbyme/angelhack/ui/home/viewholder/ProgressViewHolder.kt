@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_mission_progress.view.*
+import kotlinx.android.synthetic.main.item_mission_personal.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.BaseAdapter
 import org.greenbyme.angelhack.ui.home.model.ProgressItem
@@ -13,7 +13,7 @@ import org.greenbyme.angelhack.utils.Utils
 class ProgressViewHolder(view: View) : BaseAdapter.BaseHolder<ProgressItem.Content>(view) {
 
     override fun getItemResId(): Int {
-        return R.layout.item_mission_progress
+        return R.layout.item_mission_personal
     }
 
     override fun bind(

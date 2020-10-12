@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_home_mission.view.*
+import kotlinx.android.synthetic.main.item_home_mission_list_content.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.Campaign

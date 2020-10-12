@@ -22,10 +22,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="내가 그린"
+                android:text="@string/app_title"
                 android:fontFamily="@font/leesunsin"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

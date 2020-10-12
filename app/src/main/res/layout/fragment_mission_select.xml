@@ -39,7 +39,7 @@
             android:layout_weight="1"
             android:id="@+id/rv_mission_select"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp" />
 
         <TextView
             android:id="@+id/tv_mission_select_more"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
-            android:text="모든 캠페인 보러가기"
+            android:text="@string/mission_more_all_mission_caption"
             android:textSize="16sp" />
     </LinearLayout>
 

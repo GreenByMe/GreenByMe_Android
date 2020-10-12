@@ -13,76 +13,75 @@
         android:layout_height="wrap_content">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_centerHorizontal="true"
             android:id="@+id/an_complete"
             android:layout_width="240dp"
             android:layout_height="240dp"
+            android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
             app:lottie_autoPlay="true"
-            app:lottie_speed="0.35"
-            app:lottie_rawRes="@raw/tree_anim2" />
+            app:lottie_rawRes="@raw/tree_anim2"
+            app:lottie_speed="0.35" />
 
         <TextView
             android:id="@+id/tv_complete_contents"
-            android:layout_marginTop="16dp"
-            android:textSize="40sp"
-            android:textColor="@color/black"
-            android:layout_below="@id/an_complete"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="김민석님 축하드려요 방금 나무 0.2그루를 심었어요!!" />
+            android:layout_below="@id/an_complete"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            tools:text="김민석님 축하드려요 방금 나무 0.2그루를 심었어요!!" />
     </RelativeLayout>
 
 
     <TextView
-        android:layout_marginTop="32dp"
-        android:layout_below="@id/img_complete_facebook"
         android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:text="공유하기" />
+        android:layout_below="@id/img_complete_facebook"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/certification_complete_share" />
 
     <ImageView
-        android:layout_marginTop="64dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/fl_complete_share"
         android:id="@+id/img_complete_facebook"
-        android:src="@drawable/facebook"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fl_complete_share"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginRight="32dp"
+        android:src="@drawable/facebook" />
 
     <ImageView
-        android:layout_toLeftOf="@id/img_complete_facebook"
-        android:layout_alignTop="@id/img_complete_facebook"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/fl_complete_share"
         android:id="@+id/img_complete_twitter"
-        android:src="@drawable/twitter"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <ImageView
-        android:layout_toRightOf="@id/img_complete_facebook"
-
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fl_complete_share"
         android:layout_alignTop="@id/img_complete_facebook"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/fl_complete_share"
+        android:layout_toStartOf="@id/img_complete_facebook"
+        android:src="@drawable/twitter" />
+
+    <ImageView
         android:id="@+id/img_complete_instagram"
-        android:src="@drawable/logo_instar_xxxhdpi"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fl_complete_share"
+        android:layout_alignTop="@id/img_complete_facebook"
+        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@id/img_complete_facebook"
+        android:src="@drawable/logo_instar_xxxhdpi" />
 
     <TextView
-        android:textSize="20sp"
-        android:layout_marginTop="88dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/img_complete_facebook"
         android:id="@+id/tv_complete_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="인증페이지로 돌아가기" />
+        android:layout_below="@id/img_complete_facebook"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp"
+        android:text="@string/certification_complete_finish"
+        android:textSize="20sp" />
 
 </RelativeLayout>

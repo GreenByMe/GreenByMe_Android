@@ -38,7 +38,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="인증하러가기"
+        android:text="@string/certification_capture_mission"
         android:textColor="#FE9776"
         android:textSize="14sp"
         android:textStyle="bold"

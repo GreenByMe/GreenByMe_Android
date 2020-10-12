@@ -1,15 +1,54 @@
 <resources>
-    <string name="app_name">내가그린</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="frag_mission_header_title">카테고리 선택</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="login_signup"><![CDATA[회원가입하기 >]]></string>
-    <string name="login_login">로그인</string>
-    <string name="mypage_editprofile_save">저장하기</string>
-    <string name="mypage_edit_caption">변경할 닉네임을 입력해주세요</string>
+    <!-- Home Fragment -->
     <string name="home_mission_ended_text">마감된 캠페인</string>
     <string name="home_header_title">이번주에만 벌써\n0개의 나무를 심으셨군요!</string>
+    <string name="home_mission_ended_title">마감된 캠페인</string>
+    <string name="home_personal_mission_title">진행중인 캠페인</string>
+    <string name="home_header_hello">안녕하세요.</string>
+
+    <!-- Mission Fragment -->
+    <string name="mission_detail_eco_point_caption">캠페인 참여시</string>
+    <string name="mission_detail_tree_count_caption">심은 나무 수</string>
+    <string name="mission_detail_tree_count_default">0그루</string>
+    <string name="mission_detail_co2_count_caption">CO2 저감량</string>
+    <string name="mission_detail_co2_count_default">0 kgCO2</string>
+
+    <string name="mission_more_all_mission_caption">모든 캠페인 보러가기</string>
+    <string name="mission_recommend_sponser_title">기업과 함께하는 캠페인</string>
+    <string name="mission_recommend_sponser_caption">기업과 함께하는 특별 캠페인을 통해\n 환경도 생각하고, 기부도 하는 경험을 해보세요!</string>
+
+    <!-- Certification Fragment -->
+    <string name="certification_nomission_caption">미션이 없습니다 미션을 추가해보세요!</string>
+    <string name="certification_nomission_go_mission"><![CDATA[미션 보러가기 >]]></string>
+    <string name="certification_capture_mission">인증하러가기</string>
+
+    <string name="certification_post_content_hint">원하시는 글을 써주세요...</string>
+    <string name="certification_complete_share">공유하기</string>
+    <string name="certification_complete_finish">인증페이지로 돌아가기</string>
+
+    <!-- MyPage Fragment -->
+
+    <string name="mypage_feed_like_caption">likes</string>
+    <string name="mypage_editprofile_save">저장하기</string>
+    <string name="mypage_edit_caption">변경할 닉네임을 입력해주세요</string>
+
+    <!-- Login Activity -->
+    <string name="login_signup"><![CDATA[회원가입하기 >]]></string>
+    <string name="login_login">로그인</string>
+    <string name="login_signin_id_hint">아이디</string>
+
+    <!-- ETC -->
+    <string name="app_name">내가그린</string>
+    <string name="frag_mission_header_title">카테고리 선택</string>
+    <string name="sign_in">회원 가입</string>
+    <string name="sign_in_check_password">비밀번호 확인</string>
+    <string name="sign_in_password">비밀번호</string>
+    <string name="sign_in_nickname">닉네임</string>
+    <string name="sign_in_name">이름</string>
+    <string name="home_personal_mission_add_mission">캠페인 추가하기</string>
+    <string name="mission_certification_capture">실천하기</string>
+    <string name="app_title">내가 그린</string>
+    <string name="login_id_hint">ID</string>
+    <string name="login_password_hint">PassWord</string>
+
 </resources>

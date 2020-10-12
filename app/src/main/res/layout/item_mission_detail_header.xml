@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingBottom="16dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="16dp">
 
     <ImageView
         android:id="@+id/img_mission_detail_bg"
@@ -14,15 +15,15 @@
         android:src="@drawable/ex" />
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/tv_mission_recommend_date_contents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="이번주는 자전거로 이동해보는 것 어떨까요?"
-        android:textSize="32sp" />
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        tools:text="이번주는 자전거로 이동해보는 것 어떨까요?" />
 
     <TextView
         android:id="@+id/tv_mission_recommend_date"
@@ -31,8 +32,8 @@
         android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="07/13/월 - 07/20/일 (1주, 3회 인증)"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:text="07/13/월 - 07/20/일 (1주, 3회 인증)" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,18 +51,18 @@
             android:paddingTop="2dp"
             android:paddingRight="8dp"
             android:paddingBottom="2dp"
-            android:text="#태그"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:text="#태그" />
 
         <TextView
             android:id="@+id/tv_mission_recommend_date_complete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:gravity="center"
-            android:text="1,899명 완료"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="1,899명 완료" />
     </LinearLayout>
 
 </LinearLayout>
