@@ -20,16 +20,6 @@ class MissionRecommendDateAdapter(
 ) :
     RecyclerView.Adapter<MissionRecommendDateAdapter.Holder>() {
 
-    companion object {
-        fun makeDummy(): ArrayList<MissionDAO> {
-            val dummy = ArrayList<MissionDAO>()
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            dummy.add(MissionDAO())
-            return dummy
-        }
-    }
-
     override fun getItemCount(): Int = list.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

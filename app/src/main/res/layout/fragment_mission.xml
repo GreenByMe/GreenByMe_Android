@@ -10,16 +10,16 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:background="@color/tag_bg"
                 android:id="@+id/rv_mission_tag_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@color/tag_bg" />
 
             <View
                 android:layout_width="match_parent"
@@ -37,32 +37,32 @@
                     android:layout_alignStart="@+id/tv_mission_campaign"
                     android:layout_alignEnd="@+id/tv_mission_campaign"
                     android:layout_alignBottom="@id/tv_mission_campaign"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:background="#F7D31D" />
 
                 <TextView
-                    android:includeFontPadding="false"
-                    android:gravity="bottom"
                     android:id="@+id/tv_mission_campaign"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:text="기업과 함께하는 캠페인"
+                    android:layout_marginStart="16dp"
+                    android:gravity="bottom"
+                    android:includeFontPadding="false"
+                    android:text="@string/mission_recommend_sponser_title"
                     android:textColor="@color/black"
-                    android:textSize="22dp" />
+                    android:textSize="22sp" />
             </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:layout_marginLeft="16dp"
-                android:text="기업과 함께하는 특별 캠페인을 통해\n 환경도 생각하고, 기부도 하는 경험을 해보세요!" />
+                android:layout_marginStart="16dp"
+                android:text="@string/mission_recommend_sponser_caption" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_mission_recommend"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

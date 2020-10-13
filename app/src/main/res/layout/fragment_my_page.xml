@@ -3,8 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="mypageVm"
             type="org.greenbyme.angelhack.ui.mypage.MyPageUiModel" />
@@ -27,24 +30,25 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_marginTop="16dp"
-                    android:elevation="8dp"
-                    android:background="@drawable/shape_circle_gray"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/shape_circle_gray"
+                    android:elevation="8dp">
 
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:id="@+id/img_maypage_profile"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@color/colorPrimary"
                         android:elevation="80dp"
+                        android:src="@color/colorPrimary"
                         app:civ_border_color="@color/white"
                         app:civ_border_width="4dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         bind:src="@{mypageVm.myPageDAO.pictureUrl}" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -53,14 +57,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:textColor="@color/black"
                     android:background="@drawable/bg_round_button_orange"
                     android:onClick="@{mypageVm.onClickNickName}"
                     android:paddingLeft="8dp"
                     android:paddingTop="4dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="4dp"
-                    android:text='@{mypageVm.myPageDAO.nickName+" >"}' />
+                    android:text='@{mypageVm.myPageDAO.nickName+" >"}'
+                    android:textColor="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,11 +95,11 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
-                                android:text="개" />
+                                android:text="개"
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
                         <TextView
@@ -129,11 +133,11 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
-                                android:text="Kg Co2" />
+                                android:text="Kg Co2"
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
                         <TextView
@@ -167,11 +171,11 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
-                                android:text="그루" />
+                                android:text="그루"
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
                         <TextView

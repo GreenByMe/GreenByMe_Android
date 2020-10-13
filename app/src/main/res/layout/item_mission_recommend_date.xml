@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        android:elevation="32dp">
+        android:elevation="32dp"
+        app:cardCornerRadius="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,9 +30,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:gravity="center"
-                android:text="이번주는 자전거로 이동해보는 것 어떨까요?"
                 android:textColor="@color/black"
-                android:textSize="28sp" />
+                android:textSize="28sp"
+                tools:text="이번주는 자전거로 이동해보는 것 어떨까요?" />
 
             <TextView
                 android:id="@+id/tv_mission_recommend_date"
@@ -39,9 +40,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:gravity="center"
-                android:text="07/13/월 - 07/20/일 (1주, 3회 인증)"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="07/13/월 - 07/20/일 (1주, 3회 인증)" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,35 +60,34 @@
                     android:paddingTop="2dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="2dp"
-                    android:text="#태그"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    tools:text="#태그" />
 
                 <TextView
                     android:id="@+id/tv_mission_recommend_date_complete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:gravity="center"
-                    android:text="1,899명 완료"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="1,899명 완료" />
             </LinearLayout>
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <Button
-
                 android:id="@+id/bt_mission_recommend_date_yes"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="16dp"
                 android:background="@color/colorPrimary"
-                android:text="자세히 보기"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                tools:text="자세히 보기" />
 
         </LinearLayout>
 

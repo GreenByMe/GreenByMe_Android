@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,7 +9,6 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/whiteGray"
@@ -33,14 +33,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="왜 자전거인가요?" />
+                    tools:text="왜 자전거인가요?" />
             </LinearLayout>
 
             <!--other user feed-->
             <include layout="@layout/item_mission_detail_other_feed" />
 
             <include layout="@layout/item_mission_detail_certification_way" />
-
 
             <Button
                 android:id="@+id/bt_mission_recommend_date_yes"
@@ -49,7 +48,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="실천하기"
+                android:text="@string/mission_certification_capture"
                 android:textColor="@color/white" />
 
         </LinearLayout>

@@ -14,9 +14,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="16dp"
-            android:text="캠페인 참여시"
+            android:text="@string/mission_detail_eco_point_caption"
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </FrameLayout>
 
@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="심은 나무 수"
+                    android:text="@string/mission_detail_tree_count_caption"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -50,7 +50,7 @@
                     android:id="@+id/tv_mission_detail_plant_tree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.2그루"
+                    android:text="@string/mission_detail_tree_count_default"
                     android:textColor="@color/orange"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -74,7 +74,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CO2 저감량"
+                    android:text="@string/mission_detail_co2_count_caption"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -82,7 +82,7 @@
                     android:id="@+id/tv_mission_detail_carbon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.6kgCO2"
+                    android:text="@string/mission_detail_co2_count_default"
                     android:textColor="@color/orange"
                     android:textSize="20sp"
                     android:textStyle="bold" />

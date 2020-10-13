@@ -9,14 +9,14 @@
     <FrameLayout
         android:id="@+id/frame_main_frag"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:background="@color/white"
-        app:labelVisibilityMode="labeled"
         android:id="@+id/menu_bottom_navi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_bottom" />
 </LinearLayout>

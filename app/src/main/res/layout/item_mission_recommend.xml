@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="24dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="240dp"
+    android:layout_marginTop="24dp"
     android:background="@color/colorPrimary">
 
     <ImageView
-        android:scaleType="centerCrop"
         android:id="@+id/img_mission_recommend_bg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
     <RelativeLayout
-        android:background="@color/tran_gray"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/tran_gray">
 
         <TextView
-            android:includeFontPadding="false"
             android:id="@+id/tv_mission_recommend_day_count"
             android:layout_width="60dp"
             android:layout_height="24dp"
             android:background="@color/orange"
             android:gravity="center"
-            android:text="NEW!"
+            android:includeFontPadding="false"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="NEW!" />
 
         <TextView
             android:id="@+id/tv_mission_progress_user_count"
@@ -33,66 +34,66 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tv_mission_recommend_day_count"
             android:layout_alignBottom="@+id/tv_mission_recommend_day_count"
-            android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@+id/tv_mission_recommend_day_count"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/tv_mission_recommend_day_count"
             android:gravity="center"
-            android:text="Sponser"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:text="Sponser" />
 
         <TextView
             android:id="@+id/tv_mission_recommend_contents"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:text="한달동안 텀블러 들고다니기"
+            android:layout_marginStart="16dp"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="한달동안 텀블러 들고다니기" />
 
         <TextView
-            android:maxLines="2"
             android:id="@+id/tv_mission_recommend_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_mission_recommend_contents"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="일회용 컵 대신 텀블러를 사용해 보세요. \n아껴진 탄소발자국의 양만큼 나무를 심어드려요!"
+            android:maxLines="2"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="일회용 컵 대신 텀블러를 사용해 보세요. \n아껴진 탄소발자국의 양만큼 나무를 심어드려요!" />
 
         <TextView
-            android:layout_alignParentBottom="true"
             android:id="@+id/tv_mission_recommend_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_round_button_gray"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
             android:paddingLeft="8dp"
+            android:paddingTop="2dp"
             android:paddingRight="8dp"
-            android:text="8/10 ~ 8/20"
-            android:textColor="@color/white" />
+            android:paddingBottom="2dp"
+            android:textColor="@color/white"
+            tools:text="8/10 ~ 8/20" />
 
         <TextView
-            android:layout_marginBottom="8dp"
-            android:layout_alignParentBottom="true"
             android:id="@+id/tv_mission_recommend_user_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_mission_recommend_date"
-            android:layout_marginLeft="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@+id/tv_mission_recommend_date"
             android:background="@drawable/bg_round_button_gray"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
             android:paddingLeft="8dp"
+            android:paddingTop="2dp"
             android:paddingRight="8dp"
-            android:text="0명 참여중"
-            android:textColor="@color/white" />
+            android:paddingBottom="2dp"
+            android:textColor="@color/white"
+            tools:text="0명 참여중" />
     </RelativeLayout>
 </FrameLayout>

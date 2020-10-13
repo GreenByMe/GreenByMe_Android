@@ -23,7 +23,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="80dp"
         android:layout_marginRight="32dp"
-        android:hint="ID"
+        android:hint="@string/login_id_hint"
         android:inputType="textAutoComplete" />
 
     <EditText
@@ -34,7 +34,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginRight="32dp"
-        android:hint="PW"
+        android:hint="@string/login_password_hint"
         android:imeOptions="actionSend"
         android:inputType="textPassword"
         android:nextFocusDown="@id/bt_login" />

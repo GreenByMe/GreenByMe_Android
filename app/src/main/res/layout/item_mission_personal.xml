@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
@@ -24,28 +25,28 @@
         android:background="@drawable/bg_round_button_gray"
         android:gravity="center"
         android:padding="4dp"
-        android:text="7/13"
         android:textColor="@color/white"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/img_mission_progress_bg"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="7/13" />
 
     <TextView
         android:id="@+id/tv_mission_progress_user_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/img_mission_progress_bg"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_toRightOf="@+id/tv_mission_progress_day"
+        android:layout_toEndOf="@+id/tv_mission_progress_day"
         android:background="@drawable/bg_round_button_gray"
         android:gravity="center"
         android:padding="4dp"
-        android:text="300명 도전중"
         android:textColor="@color/white"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@id/img_mission_progress_bg"
-        app:layout_constraintLeft_toRightOf="@id/tv_mission_progress_day" />
+        app:layout_constraintLeft_toRightOf="@id/tv_mission_progress_day"
+        tools:text="300명 도전중" />
 
     <TextView
         android:id="@+id/tv_mission_progress_contents"
@@ -55,27 +56,27 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="16dp"
-        android:text="한달동안 텀블러 들고다니기"
+        android:layout_marginEnd="16dp"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_mission_progress_bg" />
+        app:layout_constraintTop_toBottomOf="@+id/img_mission_progress_bg"
+        tools:text="한달동안 텀블러 들고다니기" />
 
     <TextView
         android:id="@+id/tv_mission_progress_percents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="30%"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="12dp"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_mission_progress_contents"
-        app:layout_constraintTop_toBottomOf="@+id/tv_mission_progress_contents" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_mission_progress_contents"
+        tools:text="30%" />
 
     <ProgressBar
         android:id="@+id/pb_mission_progress_complete"
@@ -99,33 +100,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/pb_mission_progress_complete"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="8dp"
         android:layout_marginBottom="10dp"
-        android:text="13/31"
         android:textColor="@color/black"
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pb_mission_progress_complete" />
+        app:layout_constraintTop_toBottomOf="@id/pb_mission_progress_complete"
+        tools:text="13/31" />
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/img_mission_progress_ended_bg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@color/tran_gray"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_mission_progress_ended_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="마감된 캠페인"
+        android:text="@string/home_mission_ended_title"
         android:textColor="@color/white"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

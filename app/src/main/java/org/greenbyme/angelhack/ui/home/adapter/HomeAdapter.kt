@@ -45,7 +45,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
             HomeItemViewType.CAMPAIGN_LIST_ITEM -> {
                 CampaignListItemViewHolder(
                     layoutInflater.inflate(
-                        R.layout.item_home_mission,
+                        R.layout.item_home_mission_list_content,
                         parent,
                         false
                     )
@@ -55,7 +55,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
             HomeItemViewType.CAMPAIGN_DETAIL_ITEM -> {
                 ProgressViewHolder(
                     layoutInflater.inflate(
-                        R.layout.item_mission_progress,
+                        R.layout.item_mission_personal,
                         parent,
                         false
                     )
@@ -81,7 +81,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeViewHolder<HomeItem>>() {
             }
 
             else -> {
-                EmptyViewHolder(layoutInflater.inflate(R.layout.row_empty, parent, false))
+                EmptyViewHolder(layoutInflater.inflate(R.layout.item_mission_empty, parent, false))
             }
         } as HomeViewHolder<HomeItem>
     }
