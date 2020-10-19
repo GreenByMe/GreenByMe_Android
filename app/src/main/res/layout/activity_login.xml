@@ -60,13 +60,34 @@
         android:layout_marginTop="16dp"
         android:text="@string/login_signup" />
 
-    <com.nhn.android.naverlogin.ui.view.OAuthLoginButton
+    <Button
         android:id="@+id/bt_login_naver"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
         android:layout_below="@id/tv_login_sign_up"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/naver_login_icon" />
+
+    <Button
+        android:id="@+id/bt_login_google"
+        android:background="@drawable/google_login"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_below="@id/bt_login_naver"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:stateListAnimator="@null" />
+
+    <com.kakao.usermgmt.LoginButton
+        android:id="@+id/bt_login_kakao"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_below="@id/bt_login_google"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="32dp" />
 
 </RelativeLayout>

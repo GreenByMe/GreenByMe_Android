@@ -49,6 +49,9 @@
     <string name="mission_certification_capture">실천하기</string>
     <string name="app_title">내가 그린</string>
     <string name="login_id_hint">ID</string>
-    <string name="login_password_hint">PassWord</string>
+    <string name="login_password_hint">PassWord</string>ng>
+
+    <!-- Kakao AppKey -->
+    <string name="kakao_app_key">4a9acf7b9dcabb88af2b6bfb8fb18d9a</string>
 
 </resources>
