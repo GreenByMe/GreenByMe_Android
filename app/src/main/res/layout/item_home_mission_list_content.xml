@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/tv_home_tag"
         android:layout_width="43dp"
-        android:layout_height="15dp"
+        android:layout_height="18dp"
         android:background="#FE9776"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -46,16 +46,15 @@
         tools:text="오늘 하루 채식하기" />
 
     <TextView
-        android:includeFontPadding="false"
         android:id="@+id/tv_home_mission_date"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
+        android:layout_height="18dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_round_button_gray"
+        android:includeFontPadding="false"
         android:paddingLeft="8dp"
         android:paddingTop="-6dp"
         android:paddingRight="8dp"
-        android:paddingBottom="2dp"
         android:textAlignment="center"
         android:textSize="10sp"
         app:layout_constraintLeft_toLeftOf="parent"

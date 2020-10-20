@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "702765650321",
+    "firebase_url": "https://mygreen-e67ab.firebaseio.com",
+    "project_id": "mygreen-e67ab",
+    "storage_bucket": "mygreen-e67ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702765650321:android:335a08fa683333f4130a30",
+        "android_client_info": {
+          "package_name": "org.greenbyme.angelhack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702765650321-fp3q6fq7ne7pirdhqcdkbd84drk80ksf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.greenbyme.angelhack",
+            "certificate_hash": "1c125a8587eee63de0adeb4df90f6b05fbfe345a"
+          }
+        },
+        {
+          "client_id": "702765650321-78k9gu33so7hf9b5grat21qsa15enko9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtdwt9ICpBkl0bZvP6nOY7RAPx6Hj7lGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702765650321-78k9gu33so7hf9b5grat21qsa15enko9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
