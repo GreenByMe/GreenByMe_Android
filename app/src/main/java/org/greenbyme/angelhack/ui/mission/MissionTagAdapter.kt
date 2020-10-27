@@ -29,7 +29,8 @@ class MissionTagAdapter(
                 LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_mission_tag, parent, false)
             }
-        with(Holder(view)) {
+
+        return Holder(view).apply {
             itemView.setOnClickListener {
                 if (prePosition != adapterPosition) {
                     tagListener.onClickTag(adapterPosition)
@@ -45,7 +46,6 @@ class MissionTagAdapter(
                 prePosition = adapterPosition
                 notifyDataSetChanged()
             }
-            return this
         }
     }
 

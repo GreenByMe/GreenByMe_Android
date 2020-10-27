@@ -48,13 +48,13 @@ class LoginActivity : BaseActivity() {
             .doFinally { isLoading = false }
             .subscribe({
                 when (it.status) {
-                    "201" -> {
+                    "200" -> {
                         setToken(it)
                         startActivity(MainActivity.getIntent(applicationContext))
                         finish()
                     }
                     else -> {
-                        toastMessage(it.message)
+                        toastMessage(it.message.toString())
                     }
                 }
             }, this::toastMessage)

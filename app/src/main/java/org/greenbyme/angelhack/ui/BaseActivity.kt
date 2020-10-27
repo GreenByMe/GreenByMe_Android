@@ -1,6 +1,7 @@
 package org.greenbyme.angelhack.ui
 
 import android.app.Activity
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -33,6 +34,10 @@ open class BaseActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+    val context: Context
+        get() = this
+
 
     fun getToken(): String {
         return sharePreferences.getString("token", "") ?: ""

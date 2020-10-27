@@ -29,6 +29,7 @@ class Utils {
             return "NONE"
         }
 
+        @JvmStatic
         fun getCategoryStringKOR(category: String?): String {
             when (category) {
                 "ENERGY" -> return "에너지"
@@ -54,6 +55,7 @@ class Utils {
             return list[day]
         }
 
+        @JvmStatic
         fun formatTimeMonthDay(time: String): String {
             if (time.isNotBlank()) {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
@@ -69,8 +71,9 @@ class Utils {
             return "."
         }
 
-        fun formatTimeMonthDayDate(time: String): String {
-            if (time.isNotBlank()) {
+        @JvmStatic
+        fun formatTimeMonthDayDate(time: String?): String {
+            if (!time.isNullOrBlank()) {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
                 try {
                     val date = sim.parse(time)

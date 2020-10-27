@@ -46,7 +46,6 @@ interface MissionAPI {
 
     @POST("/api/personalmissions/missions/{missionId}")
     fun joinMissionResponse(
-        @Header("jwt") token: String,
         @Path("missionId") missionId: Int
     ): Completable
 

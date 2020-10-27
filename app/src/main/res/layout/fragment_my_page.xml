@@ -10,7 +10,7 @@
 
         <variable
             name="mypageVm"
-            type="org.greenbyme.angelhack.ui.mypage.MyPageUiModel" />
+            type="org.greenbyme.angelhack.ui.mypage.MyPageViewModel" />
     </data>
 
     <LinearLayout

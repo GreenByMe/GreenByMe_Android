@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
-import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -29,7 +28,6 @@ class CertificationInputActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_certification_input)
-
         initActionBar()
         initViews()
     }
@@ -81,19 +79,11 @@ class CertificationInputActivity : BaseActivity() {
         progressDialog.setMessage("업로드 중입니다. 잠시만 기다려주세요")
         progressDialog.show()
 
-        var json = JsonObject()
-
-        json.addProperty("missionInfoId", intent.getIntExtra(EXTRA_MISSION_ID, 0))
-        json.addProperty("open", cb_certification_open.isChecked)
-        json.addProperty("text", et_certification_input.text.toString())
-        json.addProperty("title", et_certification_input.text.toString())
-        json.addProperty("userId", MainActivity.userId)
-
         val thumbnailUri = intent.getStringExtra(EXTRA_THUMBNAIL) ?: ""
         val realFile = File(thumbnailUri)
         realFile.let { file ->
-            val surveyBody = file.asRequestBody("image/*".toMediaType())
-            val multipart = MultipartBody.Part.createFormData("file", file.name, surveyBody)
+            val requestBody = file.asRequestBody("image/*".toMediaType())
+            val multipart = MultipartBody.Part.createFormData("file", file.name, requestBody)
             postCertification(multipart, progressDialog)
         }
         return true

@@ -7,7 +7,7 @@
 
         <variable
             name="editprofileVm"
-            type="org.greenbyme.angelhack.ui.mypage.editprofile.EditProfileUIModel" />
+            type="org.greenbyme.angelhack.ui.mypage.editprofile.EditProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

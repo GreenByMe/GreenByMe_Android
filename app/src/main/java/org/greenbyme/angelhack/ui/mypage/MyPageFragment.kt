@@ -42,7 +42,7 @@ class MyPageFragment : Fragment(), TagOnClickListener {
     ): View? {
         val binding: FragmentMyPageBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
-        val mViewModel = MyPageUiModel(repo = MyPageRepo(activity as BaseActivity))
+        val mViewModel = MyPageViewModel(repo = MyPageRepo(activity as BaseActivity))
 
         binding.mypageVm = mViewModel
         binding.lifecycleOwner = this

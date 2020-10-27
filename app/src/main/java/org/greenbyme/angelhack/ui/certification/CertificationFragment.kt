@@ -54,7 +54,7 @@ class CertificationFragment : Fragment() {
                 TakePictureActivity.getIntent(
                     requireActivity(),
                     mCampaign?.missionTitle ?: "",
-                    mCampaign?.personalMissionId ?: 0
+                    mCampaign?.personalMissionId ?: -1
                 )
             )
         }

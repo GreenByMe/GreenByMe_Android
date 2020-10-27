@@ -1,58 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.core.widget.NestedScrollView
+    <data>
+
+        <variable
+            name="missionDetailVm"
+            type="org.greenbyme.angelhack.ui.mission.detail.MissionDetailViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/whiteGray"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <!--Header -->
-            <include layout="@layout/item_mission_detail_header" />
-
-            <!--eco point report -->
-            <include layout="@layout/item_mission_detail_eco_point" />
-
-            <!--mission description -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/white"
-                android:padding="16dp">
+                android:layout_height="match_parent"
+                android:background="@color/whiteGray"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_mission_detail_description"
+                <!--Header -->
+                <include
+                    layout="@layout/item_mission_detail_header"
+                    app:missionDetailVm="@{missionDetailVm}" />
+
+                <!--eco point report -->
+                <include
+                    layout="@layout/item_mission_detail_eco_point"
+                    app:missionDetailVm="@{missionDetailVm}" />
+
+                <!--mission description -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    tools:text="왜 자전거인가요?" />
+                    android:layout_marginTop="16dp"
+                    android:background="@color/white"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tv_mission_detail_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{missionDetailVm.getDetail.subject}"
+                        tools:text="왜 자전거인가요?" />
+                </LinearLayout>
+
+                <!--other user feed-->
+                <include
+                    layout="@layout/item_mission_detail_other_feed"
+                    app:missionDetailVm="@{missionDetailVm}" />
+
+                <include
+                    layout="@layout/item_mission_detail_certification_way"
+                    app:missionDetailVm="@{missionDetailVm}" />
+
+                <Button
+                    android:id="@+id/bt_mission_recommend_date_yes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{missionDetailVm.joinMission}"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/mission_certification_capture"
+                    android:textColor="@color/white" />
+
             </LinearLayout>
 
-            <!--other user feed-->
-            <include layout="@layout/item_mission_detail_other_feed" />
+        </androidx.core.widget.NestedScrollView>
 
-            <include layout="@layout/item_mission_detail_certification_way" />
-
-            <Button
-                android:id="@+id/bt_mission_recommend_date_yes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/mission_certification_capture"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</LinearLayout>
+    </LinearLayout>
+</layout>
