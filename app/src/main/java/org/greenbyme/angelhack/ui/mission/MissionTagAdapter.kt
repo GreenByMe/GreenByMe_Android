@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_mission_tag.view.*
 import org.greenbyme.angelhack.R
@@ -39,9 +40,9 @@ class MissionTagAdapter(
                 }
 
                 if (list[adapterPosition].isSelected) {
-                    missionTag.setTextColor(itemView.resources.getColor(R.color.colorPrimary))
+                    missionTag.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
                 } else {
-                    missionTag.setTextColor(itemView.resources.getColor(fontColor))
+                    missionTag.setTextColor(ContextCompat.getColor(itemView.context, fontColor))
                 }
                 prePosition = adapterPosition
                 notifyDataSetChanged()
@@ -53,9 +54,9 @@ class MissionTagAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.missionTag.apply {
             if (list[position].isSelected) {
-                setTextColor(resources.getColor(R.color.colorPrimary))
+                setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
             } else {
-                setTextColor(resources.getColor(fontColor))
+                setTextColor(ContextCompat.getColor(context, fontColor))
             }
             text = "#" + list[position].missionTagName
         }

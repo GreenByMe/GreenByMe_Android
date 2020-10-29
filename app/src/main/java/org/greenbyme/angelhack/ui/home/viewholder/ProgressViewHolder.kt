@@ -24,7 +24,7 @@ class ProgressViewHolder(view: View) : BaseAdapter.BaseHolder<ProgressItem.Conte
             // TODO : API 업데이트후 끝난미션 안가리기
             Glide.with(itemView).load(items.missionPictureUrl).into(img_mission_progress_bg)
             tv_mission_progress_day.text = Utils.formatTimeMonthDay(items.endDate)
-            tv_mission_progress_user_count.text = "${items.finishCount}명 도전중"
+            tv_mission_recommend_sponser.text = "${items.finishCount}명 도전중"
             tv_mission_progress_contents.text = items.missionTitle
             tv_mission_progress_percents.text = (items.progress / items.finishCount).toString()
             tv_mission_progress_percents_count.text =

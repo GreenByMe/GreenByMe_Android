@@ -20,6 +20,7 @@ class Utils {
     companion object {
         fun getCategoryString(category: Int?): String {
             when (category) {
+                0 -> return "ALL"
                 1 -> return "ENERGY"
                 2 -> return "DISPOSABLE"
                 3 -> return "TRAFFIC"
