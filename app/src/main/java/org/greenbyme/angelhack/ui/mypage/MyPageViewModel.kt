@@ -20,8 +20,8 @@ class MyPageViewModel(val repo: MyPageRepo) : ViewModel() {
         view.context.let {
             if (myPageDAO.value == null)
                 return
-            val nickname = myPageDAO.value!!.nickName
-            val profileImg = myPageDAO.value!!.pictureUrl
+            val nickname = myPageDAO.value?.nickName ?: ""
+            val profileImg = myPageDAO.value?.pictureUrl ?: ""
 
             it.startActivity(EditProfileActivity.getIntent(it, nickname, profileImg))
         }

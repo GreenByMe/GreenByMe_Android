@@ -14,7 +14,11 @@ class ApiService {
         var token: String = ""
         private const val BASE_URL = "https://cafecube.iptime.org"
         private val defaultHttpClient: OkHttpClient by lazy {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+
             OkHttpClient.Builder()
+                .addInterceptor(logging)
                 .addInterceptor { chain ->
                     val request: Request = chain.request().newBuilder()
                         .addHeader("jwt", token).build()
@@ -22,13 +26,6 @@ class ApiService {
                 }.build()
         }
         private val mRetrofit: Retrofit by lazy {
-            val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
-
-
-            val httpClient = OkHttpClient.Builder()
-            httpClient.addInterceptor(logging)
-
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(defaultHttpClient)

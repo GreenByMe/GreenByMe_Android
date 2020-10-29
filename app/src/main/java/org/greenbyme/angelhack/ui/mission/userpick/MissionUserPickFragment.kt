@@ -1,12 +1,16 @@
 package org.greenbyme.angelhack.ui.mission.userpick
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_mission_userpick.*
 import kotlinx.android.synthetic.main.fragment_mission_userpick.view.*
@@ -18,14 +22,36 @@ import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import org.greenbyme.angelhack.ui.home.viewholder.MissionListHolder
 import org.greenbyme.angelhack.ui.mission.MissionTagAdapter
 import org.greenbyme.angelhack.ui.mission.TagOnClickListener
+import org.greenbyme.angelhack.utils.Utils
 
 private const val ARG_PARAM1 = "user_pick"
 
 class MissionUserPickFragment : Fragment(), TagOnClickListener {
-    private var category: Int? = null
+    private var category: Int = 0
+    private var currentDate: String = "ALL"
+    private val spinnerListener: AdapterView.OnItemSelectedListener =
+        object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                currentDate = Utils.getDateString(position)
+                getCategoryByList(category)
+            }
+        }
 
     override fun onClickTag(category: Int) {
+        getCategoryByList(category)
+    }
 
+    private fun getCategoryByList(category: Int) {
+        if (category == 0) {
+            getMissionList()
+        } else
+            getMissionList(category, currentDate)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +77,12 @@ class MissionUserPickFragment : Fragment(), TagOnClickListener {
             adapter = MissionTagAdapter(tagListener = this@MissionUserPickFragment)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
+
+        rv_mission_userpick.apply {
+            adapter = BaseAdapter(MissionListHolder(this))
+            layoutManager = LinearLayoutManager(context)
+        }
+        sp_mission_userpick_date.onItemSelectedListener = spinnerListener
     }
 
     private fun getMissionList() {
@@ -60,14 +92,19 @@ class MissionUserPickFragment : Fragment(), TagOnClickListener {
             .subscribe(this::showMissionList))
     }
 
+    private fun getMissionList(category: Int, currentDate: String): Disposable =
+        ApiService.missionAPI
+            .getMissionResponse(
+                Utils.getCategoryString(
+                    category
+                ), currentDate
+            )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::showMissionList)
+
     private fun showMissionList(items: ResponseBase<MainMissionDAO>) {
-        rv_mission_userpick.apply {
-            adapter = BaseAdapter(MissionListHolder(this))
-                .apply {
-                    setItems(items.data.contents)
-                }
-            layoutManager = LinearLayoutManager(context)
-        }
+        (rv_mission_userpick.adapter as BaseAdapter<MainMissionDAO.Content>).setItems(items.data.contents)
     }
 
     companion object {

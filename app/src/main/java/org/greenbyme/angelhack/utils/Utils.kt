@@ -43,11 +43,12 @@ class Utils {
 
         fun getDateString(day: Int): String {
             when (day) {
-                0 -> return "DAY"
-                1 -> return "WEEK"
-                2 -> return "MONTH"
+                0 -> return "ALL"
+                1 -> return "DAY"
+                2 -> return "WEEK"
+                3 -> return "MONTH"
             }
-            return "DAY"
+            return "ALL"
         }
 
         fun getNumToDay(day: Int): String {

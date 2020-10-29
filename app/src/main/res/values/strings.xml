@@ -50,5 +50,10 @@
     <string name="app_title">내가 그린</string>
     <string name="app_name">내가그린</string>
     <string name="frag_mission_header_title">카테고리 선택</string>
+    <!-- spinner  -->
+    <string name="all_category">전체</string>
+    <string name="day_category">일일미션</string>
+    <string name="week_category">주간미션</string>
+    <string name="month_category">월간미션</string>
 
 </resources>
