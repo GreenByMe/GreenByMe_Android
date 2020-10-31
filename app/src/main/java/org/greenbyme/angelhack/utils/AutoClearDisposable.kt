@@ -40,4 +40,8 @@ class AutoClearDisposable(
         compositeDisposable.clear()
         lifecycleOwner.lifecycle.removeObserver(this)
     }
+
+    operator fun plusAssign(subscribe: Disposable) {
+        add(subscribe)
+    }
 }

@@ -33,7 +33,6 @@ class MissionPickHolder(mRecyclerView: View) :
         parent: ViewGroup,
         onClickListener: OnClickPositionListener?
     ): MissionPickHolder {
-
         return MissionPickHolder(getInflater(parent)).apply {
             itemView.setOnClickListener {
                 onClickListener?.onClick(it, adapterPosition)

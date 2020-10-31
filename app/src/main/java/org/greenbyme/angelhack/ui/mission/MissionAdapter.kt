@@ -16,9 +16,7 @@ import org.greenbyme.angelhack.utils.Utils
 
 class MissionAdapter(private val list: List<MainMissionDAO.Content>) :
     RecyclerView.Adapter<MissionAdapter.Holder>() {
-
     override fun getItemCount(): Int = list.size
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view =
             LayoutInflater.from(parent.context)

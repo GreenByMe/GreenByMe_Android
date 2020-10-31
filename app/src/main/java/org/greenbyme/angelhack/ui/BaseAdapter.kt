@@ -35,7 +35,7 @@ class BaseAdapter<T>(
     fun getItem(position: Int): T {
         return mItemList[position]
     }
-
+    
     open interface OnClickPositionListener {
         fun onClick(view: View, position: Int)
     }
