@@ -12,12 +12,10 @@ interface PostAPI {
     @Multipart
     @POST("/api/posts")
     fun postCertification(
-        @Header("jwt") token: String,
         @Query("personalMission_id") personalMissionId: Int,
         @Query("open") open: Boolean,
         @Query("text") text: String,
         @Query("title") title: String,
-        @Query("userId") userId: Int,
         @Part file: MultipartBody.Part
     ): Single<ResponseBase<PostResponse>>
 

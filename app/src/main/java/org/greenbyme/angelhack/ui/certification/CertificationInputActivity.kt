@@ -19,6 +19,7 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.utils.Utils
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -44,11 +45,11 @@ class CertificationInputActivity : BaseActivity() {
     private fun initViews() {
         intent?.run {
             val thumbnailUri = getStringExtra(EXTRA_THUMBNAIL) ?: ""
-
+            val category = getStringExtra(EXTRA_CATEGORY) ?: ""
             if (thumbnailUri.isNotBlank()) {
                 Glide.with(applicationContext).load(thumbnailUri).into(thumbnail)
             }
-
+            tv_certification_chip1.text = "#${Utils.getCategoryStringKOR(category)}"
             time.text = SimpleDateFormat("yyyy.M.d (EEE) HH:mm").format(
                 Date(
                     getLongExtra(
@@ -94,12 +95,10 @@ class CertificationInputActivity : BaseActivity() {
         progressDialog: ProgressDialog
     ): Disposable {
         return ApiService.postAPI.postCertification(
-            token = getToken(),
-            personalMissionId = intent.getIntExtra(EXTRA_MISSION_ID, 0),
+            personalMissionId = intent.getIntExtra(EXTRA_MISSION_ID, -1),
             open = cb_certification_open.isChecked,
             text = et_certification_input.text.toString(),
             title = et_certification_input.text.toString(),
-            userId = MainActivity.userId,
             file = multipart
         )
             .subscribeOn(Schedulers.io())
@@ -120,12 +119,13 @@ class CertificationInputActivity : BaseActivity() {
         private const val EXTRA_THUMBNAIL = "extraThumbnail"
         private const val EXTRA_TIME = "extraTime"
         private const val EXTRA_MISSION_ID = "extraMissionId"
-
-        fun getIntent(activity: Activity, imageUri: String, time: Long, missionId: Int): Intent {
+        private const val EXTRA_CATEGORY = "extraCategory"
+        fun getIntent(activity: Activity, imageUri: String, time: Long, missionId: Int, category: String): Intent {
             return Intent(activity, CertificationInputActivity::class.java).apply {
                 putExtra(EXTRA_THUMBNAIL, imageUri)
                 putExtra(EXTRA_TIME, time)
                 putExtra(EXTRA_MISSION_ID, missionId)
+                putExtra(EXTRA_CATEGORY, category)
             }
         }
     }

@@ -11,11 +11,11 @@ import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.extention.Event
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.certification.CertificationAdapter
-import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
+import org.greenbyme.angelhack.ui.certification.model.CertificationItems
 
 class CertificationViewModel(application: Application) : AndroidViewModel(application) {
     private val mCertAdapter = CertificationAdapter()
-    private val mSubCertItemList = MutableLiveData<List<ProgressCampaign>>()
+    private val mSubCertItemList = MutableLiveData<List<CertificationItems>>()
 
     private val _showNoMissionFragment = MutableLiveData<Event<Boolean>>()
     val showNoMissionFragment: LiveData<Event<Boolean>>

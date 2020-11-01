@@ -36,7 +36,7 @@ class MissionUserPickFragment : Fragment() {
     private var onClickPositionListener = object : BaseAdapter.OnClickPositionListener {
         override fun onClick(view: View, position: Int) {
             (rv_mission_userpick.adapter as BaseAdapter<MainMissionDAO.Content>).getItem(position).let {
-                startActivity(MissionDetailActivity.getIntent(view.context, it.missionId))
+                startActivity(MissionDetailActivity.getIntent(requireContext(), it.missionId))
             }
         }
     }
