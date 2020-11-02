@@ -7,7 +7,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_mission_more.*
+import kotlinx.android.synthetic.main.activity_personal_mission_more.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
@@ -16,6 +16,7 @@ import org.greenbyme.angelhack.ui.home.model.CampaignList
 import org.greenbyme.angelhack.ui.home.model.ProgressItem
 import org.greenbyme.angelhack.ui.home.viewholder.ProgressViewHolder
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
+import org.greenbyme.angelhack.ui.mission.userpick.MissionUserPickFragment
 
 class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener {
     private lateinit var mAdapter: BaseAdapter<ProgressItem.Content>
@@ -41,20 +42,23 @@ class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionL
             adapter = mAdapter
             layoutManager = GridLayoutManager(context, 2)
         }
+
+        tv_mission_more_add_campaign.setOnClickListener {
+            setResult(RESULT_CODE_GO_MISSION)
+            finish()
+        }
     }
 
     private fun getPersonalMission() =
         ApiService.missionAPI.getPersonalMissionResponse(getToken())
-            .map {
-                it.data.contents
-            }
+            .map { it.data.contents }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(mAdapter::setItems, this::throwError)
 
     companion object {
         private const val PARAMS_MISSION_TYPE = "mission_type"
-
+        const val RESULT_CODE_GO_MISSION= 1
         fun getIntent(context: Context, missionType: CampaignList.Type): Intent {
             return Intent(context, PersonalMissionMoreActivity::class.java).apply {
                 putExtra(PARAMS_MISSION_TYPE, missionType)

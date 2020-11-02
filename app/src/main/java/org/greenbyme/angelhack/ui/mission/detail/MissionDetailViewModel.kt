@@ -9,13 +9,16 @@ import org.greenbyme.angelhack.extention.Event
 
 class MissionDetailViewModel(val repository: MissionDetailRepository, val missionId: Int) :
     ViewModel() {
-    val getDetail: MutableLiveData<MissionDetailDAO> =
+    val missionDetail: MutableLiveData<MissionDetailDAO> =
         repository.getMissionDetail(missionId)
+
+    val otherUserPost =
+        repository.getOtherUserFeed(missionId)
 
     private var addMission = MutableLiveData<Event<Boolean>>()
     val mAddMission: LiveData<Event<Boolean>> = addMission
 
-    fun joinMission(view : View) {
+    fun joinMission(view: View) {
         addMission = repository.addMission(missionId)
     }
 

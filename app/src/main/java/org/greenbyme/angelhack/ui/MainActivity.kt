@@ -3,6 +3,7 @@ package org.greenbyme.angelhack.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -34,6 +35,16 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d(tag, "reqestCode:$requestCode resultCode: $resultCode")
+        if (resultCode == 1) {
+            setFragment(MissionFragment())
+            menu_bottom_navi.selectedItemId = R.id.menu_bottom_mission
+        }
+
     }
 
     private fun init() {

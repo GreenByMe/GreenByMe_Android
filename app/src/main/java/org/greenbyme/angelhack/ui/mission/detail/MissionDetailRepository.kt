@@ -11,6 +11,17 @@ import org.greenbyme.angelhack.extention.Event
 import org.greenbyme.angelhack.network.ApiService
 
 class MissionDetailRepository(context: Context) {
+    fun getOtherUserFeed(mission_id: Int): MutableLiveData<UserFeedPostDAO> {
+        val response: MutableLiveData<UserFeedPostDAO> = MutableLiveData()
+        ApiService.postAPI.getOtherUserFromMissionId(mission_id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { item ->
+                response.value = item.data
+            }
+        return response
+    }
+
     fun getMissionDetail(mission_id: Int): MutableLiveData<MissionDetailDAO> {
         val response: MutableLiveData<MissionDetailDAO> = MutableLiveData()
         ApiService.missionAPI.getMissionDetailResponse(mission_id)

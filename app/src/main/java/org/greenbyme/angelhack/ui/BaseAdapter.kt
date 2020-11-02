@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class BaseAdapter<T>(
     private var holder: BaseHolder<T>,
-    private val onClickListener: OnClickPositionListener? = null
+    val onClickListener: OnClickPositionListener? = null
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mItemList = mutableListOf<T>()

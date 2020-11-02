@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:scaleType="centerCrop"
-            bind:src="@{missionDetailVm.getDetail.pictureUrl}" />
+            bind:src="@{missionDetailVm.missionDetail.pictureUrl}" />
 
         <TextView
             android:id="@+id/tv_mission_recommend_date_contents"
@@ -34,7 +34,7 @@
             android:layout_marginTop="32dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@{missionDetailVm.getDetail.title}"
+            android:text="@{missionDetailVm.missionDetail.title}"
             android:textColor="@color/black"
             android:textSize="32sp"
             tools:text="이번주는 자전거로 이동해보는 것 어떨까요?" />
@@ -46,7 +46,7 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text='@{Utils.formatTimeMonthDayDate(missionDetailVm.getDetail.startDate)+"-"+Utils.formatTimeMonthDayDate(missionDetailVm.getDetail.endDate)}'
+            android:text='@{Utils.formatTimeMonthDayDate(missionDetailVm.missionDetail.startDate)+"-"+Utils.formatTimeMonthDayDate(missionDetailVm.missionDetail.endDate)}'
             android:textSize="16sp"
             tools:text="07/13/월 - 07/20/일 (1주, 3회 인증)" />
 
@@ -67,7 +67,7 @@
                 android:paddingRight="8dp"
                 android:paddingBottom="2dp"
                 android:textColor="@color/white"
-                android:text="@{Utils.getCategoryStringKOR(missionDetailVm.getDetail.category)}"
+                android:text="@{Utils.getCategoryStringKOR(missionDetailVm.missionDetail.category)}"
                 tools:text="#태그" />
 
             <TextView
@@ -78,7 +78,7 @@
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
-                android:text='@{missionDetailVm.getDetail.passCandidatesCount+"people complete"}'
+                android:text='@{missionDetailVm.missionDetail.passCandidatesCount+"people complete"}'
                 tools:text="1,899명 완료" />
         </LinearLayout>
 

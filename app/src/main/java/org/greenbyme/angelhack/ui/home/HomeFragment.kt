@@ -33,11 +33,12 @@ class HomeFragment : BaseFragment() {
         HomeAdapter().apply {
             itemClickListener = object : HomeItemClickListener() {
                 override fun onCampaignClicked() {
-                    startActivity(
+                    startActivityForResult(
                         PersonalMissionMoreActivity.getIntent(
                             requireContext(),
                             CampaignList.Type.MY_CAMPAIGN
-                        )
+                        ), PersonalMissionMoreActivity.RESULT_CODE_GO_MISSION
+
                     )
                 }
 

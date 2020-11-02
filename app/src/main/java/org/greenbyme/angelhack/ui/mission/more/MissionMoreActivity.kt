@@ -24,22 +24,19 @@ class MissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_more)
         tag = "MISSION_MORE"
-
+        supportActionBar?.title = "인기 캠페인"
         missionType = intent.getSerializableExtra(PARAMS_MISSION_TYPE) as CampaignList.Type?
-        mAdapter = BaseAdapter(MissionPickHolder(rv_mission_more_list), this)
-        getPopularMission()
-
-        rv_mission_more_list.apply {
+        mAdapter = BaseAdapter(MissionPickHolder(rv_mission_popular_more_list), this)
+        rv_mission_popular_more_list.apply {
             adapter = mAdapter
             layoutManager = LinearLayoutManager(context)
         }
+        getPopularMission()
     }
 
     private fun getPopularMission() =
         ApiService.missionAPI.getPopularMissionResponse()
-            .map {
-                it.data.contents
-            }
+            .map { it.data.contents }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(mAdapter::setItems, this::throwError)
@@ -47,7 +44,6 @@ class MissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener 
     override fun onClick(view: View, position: Int) {
         val missionId: Int = mAdapter.getItem(position).missionId
         startActivity(MissionDetailActivity.getIntent(this, missionId))
-
     }
 
     companion object {

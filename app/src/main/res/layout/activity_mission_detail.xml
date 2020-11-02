@@ -47,7 +47,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@{missionDetailVm.getDetail.subject}"
+                        android:text="@{missionDetailVm.missionDetail.subject}"
                         tools:text="왜 자전거인가요?" />
                 </LinearLayout>
 
@@ -66,8 +66,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
-                    android:onClick="@{missionDetailVm.joinMission}"
                     android:background="@color/colorPrimary"
+                    android:onClick="@{missionDetailVm.joinMission}"
                     android:text="@string/mission_certification_capture"
                     android:textColor="@color/white" />
 
