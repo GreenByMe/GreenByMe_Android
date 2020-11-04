@@ -70,7 +70,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         return true
     }
 
-    private fun setFragment(frag: Fragment) {
+    fun setFragment(frag: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_frag, frag)
             .commit()

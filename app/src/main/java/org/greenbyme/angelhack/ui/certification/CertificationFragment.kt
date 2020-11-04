@@ -1,6 +1,7 @@
 package org.greenbyme.angelhack.ui.certification
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,7 @@ class CertificationFragment : Fragment() {
     }
 
     private fun initViews() {
+        Log.d("certifrag", "initviews")
         vp_certification.run {
             adapter = mCertAdapter
             ViewPager2.ORIENTATION_HORIZONTAL
@@ -61,7 +63,15 @@ class CertificationFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Log.d("certifrag", "destroy")
+    }
+
     private fun setViewModel() {
+
+        Log.d("certifrag", "setmodel")
         mCertViewModel.run {
             certData.observe(viewLifecycleOwner, Observer {
                 mCertAdapter.setItems(it)
@@ -69,13 +79,18 @@ class CertificationFragment : Fragment() {
                 indicator_certification.createIndicators(it.size, 0)
             })
 
+            // TODO : 백키누르면 계속 set됨
             showNoMissionFragment.observe(viewLifecycleOwner, Observer {
-                (activity as MainActivity).addFragment(CertificationNoItemFragment())
+                if (it.peekContent()) {
+                    (activity as MainActivity).setFragment(CertificationNoItemFragment())
+                }
             })
         }
     }
 
     private fun loadData() {
+
+        Log.d("certifrag", "loaddata")
         mCertViewModel.loadCertData((requireActivity() as BaseActivity).getToken())
     }
 }

@@ -32,6 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@{missionDetailVm.missionDetail.title}"
@@ -78,7 +80,7 @@
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
-                android:text='@{missionDetailVm.missionDetail.passCandidatesCount+"people complete"}'
+                android:text='@{missionDetailVm.missionDetail.passCandidatesCount+@string/mission_detail_complete_count}'
                 tools:text="1,899명 완료" />
         </LinearLayout>
 

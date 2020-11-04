@@ -26,8 +26,8 @@ class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
         mUserName.text = "안녕하세요 ${data.nickName} 님"
         mSentence.text = data.treeSentence.parseAsHtml()
         mCampaign.text = data.progressCampaign.toString()
-        mCo2.text = data.expectedCO2.toString()
-        mTree.text = data.expectedTree.toString()
+        mCo2.text = String.format("%.2f",data.expectedCO2)
+        mTree.text = String.format("%.2f",data.expectedTree)
         setProgressBar(data.progressRates)
     }
 

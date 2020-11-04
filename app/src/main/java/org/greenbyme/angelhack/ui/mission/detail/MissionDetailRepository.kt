@@ -16,9 +16,9 @@ class MissionDetailRepository(context: Context) {
         ApiService.postAPI.getOtherUserFromMissionId(mission_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { item ->
+            .subscribe ({ item ->
                 response.value = item.data
-            }
+            },{Log.e("missiondetail",it.localizedMessage)})
         return response
     }
 
@@ -27,9 +27,20 @@ class MissionDetailRepository(context: Context) {
         ApiService.missionAPI.getMissionDetailResponse(mission_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { item ->
+            .subscribe({ item ->
                 response.value = item.data
-            }
+            }, { Log.e("missiondetail", it.localizedMessage) })
+        return response
+    }
+
+    fun getPersonalMissionDetail(mission_id: Int): MutableLiveData<MissionDetailDAO> {
+        val response: MutableLiveData<MissionDetailDAO> = MutableLiveData()
+        ApiService.missionAPI.getMissionProgressDetailResponse(mission_id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ item ->
+                response.value = item.data
+            }, { Log.e("missiondetail", it.localizedMessage) })
         return response
     }
 

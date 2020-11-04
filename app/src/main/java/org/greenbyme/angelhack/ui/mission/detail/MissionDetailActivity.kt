@@ -24,7 +24,7 @@ class MissionDetailActivity : BaseActivity() {
             intent.getSerializableExtra(PARAMS_MISSION_TYPE) as CampaignList.Type
 
         binding = ActivityMissionDetailBinding.inflate(layoutInflater)
-        viewModel = MissionDetailViewModel(MissionDetailRepository(context), missionId)
+        viewModel = MissionDetailViewModel(MissionDetailRepository(context), missionId, missionType ?: CampaignList.Type.MY_CAMPAIGN)
         viewModel.mAddMission.observe(this) {
             if (it.peekContent()) {
                 joinSucceed()
@@ -33,15 +33,13 @@ class MissionDetailActivity : BaseActivity() {
         binding.missionDetailVm = viewModel
         binding.lifecycleOwner = this
         setContentView(binding.root)
-        val onClickListener = object: BaseAdapter.OnClickPositionListener{
+        val onClickListener = object : BaseAdapter.OnClickPositionListener {
             override fun onClick(view: View, position: Int) {
 
             }
         }
         rv_mission_detail_user_photo.apply {
-            adapter = BaseAdapter(ImageViewHolder(rv_mission_detail_user_photo)).apply {
-
-            }
+            adapter = BaseAdapter(ImageViewHolder(rv_mission_detail_user_photo))
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
         if (missionId == -1) {

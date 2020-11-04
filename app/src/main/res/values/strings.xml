@@ -11,7 +11,9 @@
     <string name="mission_detail_tree_count_caption">심은 나무 수</string>
     <string name="mission_detail_tree_count_default">0그루</string>
     <string name="mission_detail_co2_count_caption">CO2 저감량</string>
-    <string name="mission_detail_co2_count_default">0 kgCO2</string>
+    <string name="mission_detail_co2_count_default">0 kgCO2</string>완
+    <string name="mission_detail_description_title">미션 소개</string>
+    <string name="mission_detail_complete_count">명 완료</string>
 
     <string name="mission_more_all_mission_caption">모든 캠페인 보러가기</string>
     <string name="mission_recommend_sponser_title">기업과 함께하는 캠페인</string>

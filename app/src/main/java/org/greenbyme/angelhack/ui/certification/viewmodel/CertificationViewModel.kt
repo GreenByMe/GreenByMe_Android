@@ -17,7 +17,9 @@ class CertificationViewModel(application: Application) : AndroidViewModel(applic
     private val mCertAdapter = CertificationAdapter()
     private val mSubCertItemList = MutableLiveData<List<CertificationItems>>()
 
-    private val _showNoMissionFragment = MutableLiveData<Event<Boolean>>()
+    private val _showNoMissionFragment = MutableLiveData<Event<Boolean>>().apply {
+        value = Event(false)
+    }
     val showNoMissionFragment: LiveData<Event<Boolean>>
         get() = _showNoMissionFragment
 
@@ -30,7 +32,7 @@ class CertificationViewModel(application: Application) : AndroidViewModel(applic
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 it.data.personalMissions.let {
-                    if (it.size == 0) {
+                    if (it.isEmpty()) {
                         _showNoMissionFragment.value = Event(true)
                     } else {
                         mSubCertItemList.postValue(it)
