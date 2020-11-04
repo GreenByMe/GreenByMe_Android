@@ -184,12 +184,6 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                         .startOauthLoginActivity(mContext, mOAuthLoginHandler)
             }
         }
-        logout.run {
-            setOnClickListener {
-                NaverLoginUtil.logout(mContext)
-                Toast.makeText(this@LoginActivity, "logout", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
 
