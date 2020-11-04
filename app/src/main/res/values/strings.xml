@@ -50,6 +50,7 @@
     <string name="app_title">내가 그린</string>
     <string name="login_id_hint">ID</string>
     <string name="login_password_hint">PassWord</string>ng>
+    <string name="sign_up_email">이메일</string>
 
     <!-- Kakao AppKey -->
     <string name="kakao_app_key">4a9acf7b9dcabb88af2b6bfb8fb18d9a</string>

@@ -38,4 +38,14 @@ interface HomeUserAPI {
     fun getUserHomeInfo(
         @Header("jwt") token: String
     ): Single<ResponseBase<HomeModel>>
+
+    @POST("/api/users/signup/social")
+    fun socialSignUp(
+        @Body body: JsonObject
+    ): Single<ResponseBase<String>>
+
+    @POST("/api/users/signin/social")
+    fun socialLogin(
+        @Body body: JsonObject
+    ): Maybe<LoginDAO>
 }

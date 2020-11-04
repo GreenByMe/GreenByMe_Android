@@ -90,4 +90,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="32dp" />
 
+    <Button
+        android:id="@+id/logout"
+        android:background="@color/black"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
 </RelativeLayout>
