@@ -16,7 +16,7 @@ data class NaverUserDAO(
         var id: String,
         @SerializedName("name")
         var name: String,
-        @SerializedName("nickname")
-        var nickname: String
+        @SerializedName("email")
+        var email: String
     )
 }

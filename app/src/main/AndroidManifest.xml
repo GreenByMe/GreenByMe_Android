@@ -33,6 +33,7 @@
             android:value="@string/kakao_app_key" />
         <activity android:name=".ui.mission.more.PersonalMissionMoreActivity"></activity>
         <activity android:name=".ui.login.SignupActivity" />
+        <activity android:name=".ui.login.SocialSignupActivity" />
         <activity android:name=".ui.mission.more.MissionMoreActivity" />
 
         <provider

@@ -5,8 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.edit
 import com.google.android.gms.auth.api.Auth
@@ -15,7 +13,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
 import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
@@ -112,6 +109,42 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         }
     }
 
+    fun socialLogin(json: JsonObject, type: String, id: String?) =
+        ApiService.service.socialLogin(json)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { isLoading = true }
+            .doFinally { isLoading = false }
+            .subscribe({
+                when (it.status) {
+                    "200" -> {
+                        setToken(it)
+                        startActivity(MainActivity.getIntent(applicationContext))
+                        finish()
+                    }
+                    else -> {
+                        toastMessage(it.message)
+                    }
+                }
+            }, {
+                Log.e("ERR", it.toString())
+                val intent =
+                    Intent(this@LoginActivity, SocialSignupActivity::class.java)
+                intent.putExtra("type", type)
+                when (type) {
+                    "NAVER" -> {
+                        intent.putExtra("naverId", id)
+                    }
+                    "GOOGLE" -> {
+                        intent.putExtra("googleId", id)
+                    }
+                    "KAKAO" -> {
+                        intent.putExtra("kakaoId", id)
+                    }
+                }
+                startActivity(intent)
+                finish()
+            })
 
     // 네이버 로그인 세션
     private val mOAuthLoginHandler: OAuthLoginHandler =
@@ -121,11 +154,9 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                 if (success) {
                     val accessToken: String =
                         NaverLoginUtil.getAccessToken(mContext)
-                    val refreshToken: String = NaverLoginUtil.getRefreshToken(mContext)
                     if (accessToken.isNotBlank()) {
-                        naverGetProfile(accessToken)
+                        getNaverId(accessToken)
                     }
-
                 } else {
                     NaverLoginUtil.getError(mContext)
                 }
@@ -133,23 +164,24 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         }
 
     @SuppressLint("CheckResult")
-    private fun naverGetProfile(accessToken: String) {
+    private fun getNaverId(accessToken: String) {
         NaverLoginAPI.naverService.getUserID("Bearer $accessToken")
+            .map {
+                val json = JsonObject()
+                json.addProperty("platformId", it.response.id)
+                socialLogin(json, "NAVER", it.response.id)
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Log.e("네아디성공", it.response.id)
-            }, {
-                Log.e("네아디실패", it.message)
-            })
+            .subscribe({}, this::toastMessage)
     }
 
     private fun loginUsingNaver() {
 
         bt_login_naver.run {
             setOnClickListener {
-                NaverLoginUtil.getLoginModule(mContext)
-                    .startOauthLoginActivity(mContext, mOAuthLoginHandler)
+                    NaverLoginUtil.getLoginModule(mContext)
+                        .startOauthLoginActivity(mContext, mOAuthLoginHandler)
             }
         }
     }
@@ -162,20 +194,22 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
             .requestEmail()
             .build()
 
-        val googleApicClient = GoogleApiClient.Builder(this)
+        val googleApiClient = GoogleApiClient.Builder(this)
             .enableAutoManage(this, this)
             .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
             .build()
 
         val account: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(mContext)
 
-        if (account != null) {
-            startActivity(MainActivity.getIntent(applicationContext))
-        }
-
         bt_login_google.setOnClickListener {
-            val signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApicClient)
-            startActivityForResult(signInIntent, REQ_SIGN_GOOGLE)
+            if (account != null) {
+                val json = JsonObject()
+                json.addProperty("platformId", account.id)
+                socialLogin(json, "GOOGLE", account.id)
+            } else {
+                val signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient)
+                startActivityForResult(signInIntent, REQ_SIGN_GOOGLE)
+            }
         }
     }
 
@@ -184,7 +218,9 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Log.e("구글로그인아이디", account.id.toString())
+                    val json = JsonObject()
+                    json.addProperty("id", account.id.toString())
+                    socialLogin(json, "GOOGLE", account.id.toString())
                 } else {
                     TODO("Error handling")
                 }
@@ -197,9 +233,9 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
 
     // 카카오 로그인 세션
     private fun loginUsingKakao() {
-        sessionCallback = SessionCallback()
-        Session.getCurrentSession().addCallback(sessionCallback)
-        Session.getCurrentSession().checkAndImplicitOpen()
+            sessionCallback = SessionCallback()
+            Session.getCurrentSession().addCallback(sessionCallback)
+            Session.getCurrentSession().checkAndImplicitOpen()
     }
 
     inner class SessionCallback : ISessionCallback {
@@ -232,8 +268,9 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                 }
 
                 override fun onSuccess(result: MeV2Response) {
-                    Toast.makeText(this@LoginActivity, "카카오 로그인 성공", Toast.LENGTH_SHORT).show()
-                    Log.e("카카오로그인 아이디", result.id.toString())
+                    val json = JsonObject()
+                    json.addProperty("platformId", result.id.toString())
+                    socialLogin(json, "KAKAO", result.id.toString())
                 }
             })
         }

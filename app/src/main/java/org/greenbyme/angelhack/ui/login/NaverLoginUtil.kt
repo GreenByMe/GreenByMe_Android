@@ -37,6 +37,12 @@ object NaverLoginUtil {
         return getLoginModule(context).getState(context) == OAuthLoginState.OK
     }
 
+    fun logout(context: Context) {
+        getLoginModule(context).run {
+            logoutAndDeleteToken(context)
+        }
+    }
+
     fun getError(context: Context) {
         val errorCode: String = getLoginModule(context).getLastErrorCode(context).code
         val errorDesc: String = getLoginModule(context).getLastErrorDesc(context)
