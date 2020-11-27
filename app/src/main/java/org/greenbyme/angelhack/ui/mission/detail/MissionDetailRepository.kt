@@ -16,9 +16,9 @@ class MissionDetailRepository(context: Context) {
         ApiService.postAPI.getOtherUserFromMissionId(mission_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ item ->
+            .subscribe({ item ->
                 response.value = item.data
-            },{Log.e("missiondetail",it.localizedMessage)})
+            }, { Log.e("missiondetail", it.localizedMessage) })
         return response
     }
 

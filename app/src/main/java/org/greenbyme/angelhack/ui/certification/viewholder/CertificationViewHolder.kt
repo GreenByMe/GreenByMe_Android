@@ -29,10 +29,10 @@ class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         mTitle.text = data.subject
 
         mDate.text = "${data.startDate.convert(fromFormat, toFormat)}~${
-            data.endDate.convert(
-                fromFormat,
-                toFormat
-            )
+        data.endDate.convert(
+            fromFormat,
+            toFormat
+        )
         } (하루, 1회 인증)"
     }
 

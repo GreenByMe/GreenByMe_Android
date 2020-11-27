@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_mission_recommend_date.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
-import org.greenbyme.angelhack.data.MissionDAO
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionRecommendDateAdapter(
@@ -53,15 +52,15 @@ class MissionRecommendDateAdapter(
             missionRecommendDiscription.text = item.description
             missionRecommendDate.text =
                 "${Utils.formatTimeMonthDayDate(item.startDate)} - ${
-                    Utils.formatTimeMonthDayDate(
-                        item.endDate
-                    )
+                Utils.formatTimeMonthDayDate(
+                    item.endDate
+                )
                 }"
             missionRecommendCategory.text =
                 "#${
-                    Utils.getCategoryStringKOR(
-                        item.category
-                    )
+                Utils.getCategoryStringKOR(
+                    item.category
+                )
                 }"
             missionRecommendComplete.text = "${item.passCandidates}명 완료"
             Glide.with(itemView).load(item.missionPictureUrl).into(missionRecommendBackgorund)

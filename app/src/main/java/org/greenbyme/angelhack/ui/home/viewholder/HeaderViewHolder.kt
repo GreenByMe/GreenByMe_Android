@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.text.parseAsHtml
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.extention.roundTo2Decimal
 import org.greenbyme.angelhack.ui.home.model.User
 
 
@@ -26,8 +27,8 @@ class HeaderViewHolder(view: View) : HomeViewHolder<User>(view) {
         mUserName.text = "안녕하세요 ${data.nickName} 님"
         mSentence.text = data.treeSentence.parseAsHtml()
         mCampaign.text = data.progressCampaign.toString()
-        mCo2.text = String.format("%.2f",data.expectedCO2)
-        mTree.text = String.format("%.2f",data.expectedTree)
+        mCo2.text = data.expectedCO2.roundTo2Decimal().toString()
+        mTree.text = data.expectedTree.roundTo2Decimal().toString()
         setProgressBar(data.progressRates)
     }
 

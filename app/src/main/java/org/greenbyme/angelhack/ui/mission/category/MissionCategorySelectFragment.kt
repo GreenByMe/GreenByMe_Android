@@ -34,7 +34,7 @@ class MissionCategorySelectFragment : Fragment(),
 
     override lateinit var presenter: MissionCategorySelectContract.Presenter
 
-    private val spinnerListener:AdapterView.OnItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+    private val spinnerListener: AdapterView.OnItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {}
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             currentDate =
@@ -54,7 +54,7 @@ class MissionCategorySelectFragment : Fragment(),
     }
 
     override fun onClickTag(category: Int) {
-        Log.d("categoryselect",category.toString())
+        Log.d("categoryselect", category.toString())
         getCategoryByList(category)
     }
 

@@ -16,7 +16,6 @@ import org.greenbyme.angelhack.ui.home.model.CampaignList
 import org.greenbyme.angelhack.ui.home.model.ProgressItem
 import org.greenbyme.angelhack.ui.home.viewholder.ProgressViewHolder
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
-import org.greenbyme.angelhack.ui.mission.userpick.MissionUserPickFragment
 
 class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener {
     private lateinit var mAdapter: BaseAdapter<ProgressItem.Content>
@@ -58,7 +57,7 @@ class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionL
 
     companion object {
         private const val PARAMS_MISSION_TYPE = "mission_type"
-        const val RESULT_CODE_GO_MISSION= 1
+        const val RESULT_CODE_GO_MISSION = 1
         fun getIntent(context: Context, missionType: CampaignList.Type): Intent {
             return Intent(context, PersonalMissionMoreActivity::class.java).apply {
                 putExtra(PARAMS_MISSION_TYPE, missionType)

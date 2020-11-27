@@ -94,7 +94,7 @@ class Utils {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
                 try {
                     val date = sim.parse(time)
-                    val ret = "${date.year+1900} . ${date.month + 1} . ${date.date + 1}"
+                    val ret = "${date.year + 1900} . ${date.month + 1} . ${date.date + 1}"
                     return ret
                 } catch (e: Exception) {
                     e.printStackTrace()
