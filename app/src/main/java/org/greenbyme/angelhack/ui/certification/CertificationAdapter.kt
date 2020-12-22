@@ -2,17 +2,17 @@ package org.greenbyme.angelhack.ui.certification
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.greenbyme.angelhack.ui.certification.model.CertificationItems
 import org.greenbyme.angelhack.ui.certification.viewholder.CertificationViewHolder
-import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
 class CertificationAdapter : RecyclerView.Adapter<CertificationViewHolder>() {
-    private val mItems = mutableListOf<ProgressCampaign>()
+    private val mItems = mutableListOf<CertificationItems>()
 
-    fun getItem(index: Int): ProgressCampaign? {
+    fun getItem(index: Int): CertificationItems? {
         return mItems.getOrNull(index)
     }
 
-    fun setItems(items: List<ProgressCampaign>) {
+    fun setItems(items: List<CertificationItems>) {
         synchronized(mItems) {
             mItems.run {
                 clear()

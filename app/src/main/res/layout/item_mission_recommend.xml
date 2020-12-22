@@ -29,7 +29,7 @@
             tools:text="NEW!" />
 
         <TextView
-            android:id="@+id/tv_mission_progress_user_count"
+            android:id="@+id/tv_mission_recommend_sponser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tv_mission_recommend_day_count"

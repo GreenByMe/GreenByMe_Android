@@ -1,6 +1,7 @@
 package org.greenbyme.angelhack.ui.certification
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +13,12 @@ import kotlinx.android.synthetic.main.fragment_certification.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.ui.certification.model.CertificationItems
 import org.greenbyme.angelhack.ui.certification.viewmodel.CertificationViewModel
-import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
 
 class CertificationFragment : Fragment() {
     private val mCertAdapter = CertificationAdapter()
-    private var mCampaign: ProgressCampaign? = null
+    private var mCampaign: CertificationItems? = null
     private val mCertViewModel: CertificationViewModel by viewModels()
 
     override fun onCreateView(
@@ -35,6 +36,7 @@ class CertificationFragment : Fragment() {
     }
 
     private fun initViews() {
+        Log.d("certifrag", "initviews")
         vp_certification.run {
             adapter = mCertAdapter
             ViewPager2.ORIENTATION_HORIZONTAL
@@ -53,14 +55,23 @@ class CertificationFragment : Fragment() {
             startActivity(
                 TakePictureActivity.getIntent(
                     requireActivity(),
-                    mCampaign?.missionTitle ?: "",
-                    mCampaign?.personalMissionId ?: 0
+                    mCampaign?.subject ?: "",
+                    mCampaign?.personalMissionId ?: -1,
+                    mCampaign?.category ?: ""
                 )
             )
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Log.d("certifrag", "destroy")
+    }
+
     private fun setViewModel() {
+
+        Log.d("certifrag", "setmodel")
         mCertViewModel.run {
             certData.observe(viewLifecycleOwner, Observer {
                 mCertAdapter.setItems(it)
@@ -68,13 +79,18 @@ class CertificationFragment : Fragment() {
                 indicator_certification.createIndicators(it.size, 0)
             })
 
+            // TODO : 백키누르면 계속 set됨
             showNoMissionFragment.observe(viewLifecycleOwner, Observer {
-                (activity as MainActivity).addFragment(CertificationNoItemFragment())
+                if (it.peekContent()) {
+                    (activity as MainActivity).setFragment(CertificationNoItemFragment())
+                }
             })
         }
     }
 
     private fun loadData() {
+
+        Log.d("certifrag", "loaddata")
         mCertViewModel.loadCertData((requireActivity() as BaseActivity).getToken())
     }
 }

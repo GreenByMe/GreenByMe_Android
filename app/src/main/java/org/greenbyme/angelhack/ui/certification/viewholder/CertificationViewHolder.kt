@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.extention.convert
-import org.greenbyme.angelhack.ui.home.model.ProgressCampaign
+import org.greenbyme.angelhack.ui.certification.model.CertificationItems
 
 class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val newsImg: ImageView = view.findViewById(R.id.iv_certification_mission_thumbnail)
@@ -18,7 +18,7 @@ class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val mDate: TextView = view.findViewById(R.id.tv_certification_mission_date)
 
     @SuppressLint("SetTextI18n")
-    fun bind(data: ProgressCampaign) {
+    fun bind(data: CertificationItems) {
         val fromFormat = "yyyy-MM-dd'T'HH:mm:ss"
         val toFormat = "M/d/EEE"
 
@@ -26,13 +26,13 @@ class CertificationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             Glide.with(itemView).load(data.pictureUrl).into(newsImg)
         }
 
-        mTitle.text = data.missionTitle
+        mTitle.text = data.subject
 
         mDate.text = "${data.startDate.convert(fromFormat, toFormat)}~${
-            data.endDate.convert(
-                fromFormat,
-                toFormat
-            )
+        data.endDate.convert(
+            fromFormat,
+            toFormat
+        )
         } (하루, 1회 인증)"
     }
 

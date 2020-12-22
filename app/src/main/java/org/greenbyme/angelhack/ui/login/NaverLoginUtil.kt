@@ -14,7 +14,7 @@ object NaverLoginUtil {
 
     fun getLoginModule(context: Context): OAuthLogin {
         return mLoginModule ?: run {
-            val authLogin= OAuthLogin.getInstance()
+            val authLogin = OAuthLogin.getInstance()
             authLogin.init(
                 context, CLIENT_ID, CLIENT_SECRET, CLIENT_NAME
             )

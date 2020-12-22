@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_mission.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
 import org.greenbyme.angelhack.data.local.BaseRepository
+import org.greenbyme.angelhack.extention.AnimationEndListener
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
@@ -23,9 +26,17 @@ import org.greenbyme.angelhack.utils.AutoClearDisposable
 
 class MissionFragment : Fragment(), TagOnClickListener, BaseRepository {
     override fun onClickTag(category: Int) {
-        (activity as MainActivity).addFragment(
-            MissionUserPickFragment.newInstance(category)
-        )
+        rv_mission_tag_list.startAnimation(closeAnimation(category))
+    }
+
+    private fun closeAnimation(category: Int): Animation? {
+        val closeAnimation = AnimationUtils.loadAnimation(context, R.anim.close_animation)
+        closeAnimation.setAnimationListener(object : AnimationEndListener() {
+            override fun onAnimationEnd(animation: Animation?) {
+                (activity as MainActivity).addFragment(MissionUserPickFragment.newInstance(category))
+            }
+        })
+        return closeAnimation
     }
 
     override fun onCreateView(

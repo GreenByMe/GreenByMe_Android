@@ -1,17 +1,13 @@
 package org.greenbyme.angelhack.ui.login
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.core.content.edit
 import com.google.gson.JsonObject
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_social_signup.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService

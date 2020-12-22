@@ -18,7 +18,7 @@ class EditProfileActivity : BaseActivity() {
 
         val binding: ActivityEditProfileBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
-        val mViewModel = EditProfileUIModel(EditProfileRepository(this))
+        val mViewModel = EditProfileViewModel(EditProfileRepository(this))
 
         initView()
         mViewModel.nickname.observe(this@EditProfileActivity, Observer {

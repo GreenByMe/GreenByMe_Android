@@ -48,9 +48,6 @@ class NaverLoginAPI {
 class NaverProfileGet(var accessToken: String) : AsyncTask<String?, Void?, String>() {
     //네이버 프로필 조회 API에 보낼 헤더. 그대로 쓰면 된다.
     var header = "Bearer $accessToken"
-    override fun onPreExecute() {
-        super.onPreExecute()
-    }
 
     //네이버 프로필 조회 API에서 받은 jSON에서 원하는 데이터를 뽑아내는 부분
     //여기서는 닉네임, 프로필사진 주소, 이메일을 얻어오지만, 다른 값도 얻어올 수 있다.
@@ -86,14 +83,14 @@ class NaverProfileGet(var accessToken: String) : AsyncTask<String?, Void?, Strin
             val apiURL = "https://openapi.naver.com/v1/nid/me"
             val url = URL(apiURL)
             val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
-            conn.setRequestMethod("GET")
+            conn.requestMethod = "GET"
             conn.setRequestProperty("Authorization", header)
-            val responseCode: Int = conn.getResponseCode()
+            val responseCode: Int = conn.responseCode
             val br: BufferedReader
             if (responseCode == 200) {
-                br = BufferedReader(InputStreamReader(conn.getInputStream()))
+                br = BufferedReader(InputStreamReader(conn.inputStream))
             } else {
-                br = BufferedReader(InputStreamReader(conn.getErrorStream()))
+                br = BufferedReader(InputStreamReader(conn.errorStream))
             }
             var inputLine: String?
             while (br.readLine().also { inputLine = it } != null) {

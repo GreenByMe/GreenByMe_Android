@@ -20,6 +20,7 @@ class Utils {
     companion object {
         fun getCategoryString(category: Int?): String {
             when (category) {
+                0 -> return "ALL"
                 1 -> return "ENERGY"
                 2 -> return "DISPOSABLE"
                 3 -> return "TRAFFIC"
@@ -29,6 +30,7 @@ class Utils {
             return "NONE"
         }
 
+        @JvmStatic
         fun getCategoryStringKOR(category: String?): String {
             when (category) {
                 "ENERGY" -> return "에너지"
@@ -42,11 +44,12 @@ class Utils {
 
         fun getDateString(day: Int): String {
             when (day) {
-                0 -> return "DAY"
-                1 -> return "WEEK"
-                2 -> return "MONTH"
+                0 -> return "ALL"
+                1 -> return "DAY"
+                2 -> return "WEEK"
+                3 -> return "MONTH"
             }
-            return "DAY"
+            return "ALL"
         }
 
         fun getNumToDay(day: Int): String {
@@ -54,6 +57,7 @@ class Utils {
             return list[day]
         }
 
+        @JvmStatic
         fun formatTimeMonthDay(time: String): String {
             if (time.isNotBlank()) {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
@@ -69,8 +73,9 @@ class Utils {
             return "."
         }
 
-        fun formatTimeMonthDayDate(time: String): String {
-            if (time.isNotBlank()) {
+        @JvmStatic
+        fun formatTimeMonthDayDate(time: String?): String {
+            if (!time.isNullOrBlank()) {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
                 try {
                     val date = sim.parse(time)
@@ -89,7 +94,7 @@ class Utils {
                 val sim = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss")
                 try {
                     val date = sim.parse(time)
-                    val ret = "${date.year + 1970} . ${date.month + 1} . ${date.date + 1}"
+                    val ret = "${date.year + 1900} . ${date.month + 1} . ${date.date + 1}"
                     return ret
                 } catch (e: Exception) {
                     e.printStackTrace()

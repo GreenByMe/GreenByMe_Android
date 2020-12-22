@@ -79,13 +79,13 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
             .doFinally { isLoading = false }
             .subscribe({
                 when (it.status) {
-                    "201" -> {
+                    "200" -> {
                         setToken(it)
                         startActivity(MainActivity.getIntent(applicationContext))
                         finish()
                     }
                     else -> {
-                        toastMessage(it.message)
+                        toastMessage(it.message.toString())
                     }
                 }
             }, this::toastMessage)
@@ -177,11 +177,10 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
     }
 
     private fun loginUsingNaver() {
-
         bt_login_naver.run {
             setOnClickListener {
-                    NaverLoginUtil.getLoginModule(mContext)
-                        .startOauthLoginActivity(mContext, mOAuthLoginHandler)
+                NaverLoginUtil.getLoginModule(mContext)
+                    .startOauthLoginActivity(mContext, mOAuthLoginHandler)
             }
         }
     }
@@ -222,7 +221,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     json.addProperty("id", account.id.toString())
                     socialLogin(json, "GOOGLE", account.id.toString())
                 } else {
-                    TODO("Error handling")
+                    Log.e("ACT_LOGIN", "GOOGlE ERR")
                 }
             }
     }
@@ -233,9 +232,9 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
 
     // 카카오 로그인 세션
     private fun loginUsingKakao() {
-            sessionCallback = SessionCallback()
-            Session.getCurrentSession().addCallback(sessionCallback)
-            Session.getCurrentSession().checkAndImplicitOpen()
+        sessionCallback = SessionCallback()
+        Session.getCurrentSession().addCallback(sessionCallback)
+        Session.getCurrentSession().checkAndImplicitOpen()
     }
 
     inner class SessionCallback : ISessionCallback {
@@ -295,7 +294,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         //구글 로그인에서 값이 넘어온 경우
         if (requestCode == REQ_SIGN_GOOGLE) {
             val result: GoogleSignInResult? = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            if (result?.isSuccess == true) {
+            if (result!!.isSuccess == true) {
                 val account: GoogleSignInAccount? = result.signInAccount
                 if (account != null) {
                     googleLoginResult(account)

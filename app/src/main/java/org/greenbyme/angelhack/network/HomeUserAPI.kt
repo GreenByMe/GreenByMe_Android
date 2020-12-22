@@ -29,7 +29,7 @@ interface HomeUserAPI {
         @Header("jwt") token: String
     ): Maybe<LoginDAO>
 
-    @POST("/api/users")
+    @POST("/api/users/signup")
     fun signUp(
         @Body body: JsonObject
     ): Single<ResponseBase<UserLoginDAO>>

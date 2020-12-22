@@ -36,10 +36,12 @@ class TakePictureActivity : BaseActivity() {
         private const val REQUEST_CAMERA = 1001
         private const val EXTRA_SUBJECT = "extraKeySubject"
         private const val EXTRA_MISSION_ID = "extraMissionId"
-        fun getIntent(activity: Activity, subject: String, missionId: Int): Intent {
+        private const val EXTRA_CATEGORY = "extraCategory"
+        fun getIntent(activity: Activity, subject: String, missionId: Int, category: String): Intent {
             return Intent(activity, TakePictureActivity::class.java).apply {
                 putExtra(EXTRA_SUBJECT, subject)
                 putExtra(EXTRA_MISSION_ID, missionId)
+                putExtra(EXTRA_CATEGORY, category)
             }
         }
     }
@@ -89,12 +91,14 @@ class TakePictureActivity : BaseActivity() {
                             }
 
                             val missionId = intent.getIntExtra(EXTRA_MISSION_ID, 0)
+                            val category = intent.getStringExtra(EXTRA_CATEGORY) ?: ""
                             startActivity(
                                 CertificationInputActivity.getIntent(
                                     this@TakePictureActivity,
                                     pictureFile.toString(),
                                     System.currentTimeMillis(),
-                                    missionId
+                                    missionId,
+                                    category
                                 )
                             )
                         } catch (e: Exception) {

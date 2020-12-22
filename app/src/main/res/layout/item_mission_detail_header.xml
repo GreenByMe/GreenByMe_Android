@@ -1,68 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:paddingBottom="16dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/img_mission_detail_bg"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ex" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_mission_recommend_date_contents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        tools:text="이번주는 자전거로 이동해보는 것 어떨까요?" />
+        <import type="org.greenbyme.angelhack.utils.Utils" />
 
-    <TextView
-        android:id="@+id/tv_mission_recommend_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textSize="16sp"
-        tools:text="07/13/월 - 07/20/일 (1주, 3회 인증)" />
+        <variable
+            name="missionDetailVm"
+            type="org.greenbyme.angelhack.ui.mission.detail.MissionDetailViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        tools:context=".ui.mission.detail.MissionDetailActivity">
+
+        <ImageView
+            android:id="@+id/img_mission_detail_bg"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:scaleType="centerCrop"
+            bind:src="@{missionDetailVm.missionDetail.pictureUrl}" />
 
         <TextView
-            android:id="@+id/tv_mission_recommend_category"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_mission_recommend_date_contents"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_round_button_green"
-            android:paddingLeft="8dp"
-            android:paddingTop="2dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="2dp"
-            android:textColor="@color/white"
-            tools:text="#태그" />
-
-        <TextView
-            android:id="@+id/tv_mission_recommend_date_complete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
-            tools:text="1,899명 완료" />
-    </LinearLayout>
+            android:text="@{missionDetailVm.missionDetail.title}"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            tools:text="이번주는 자전거로 이동해보는 것 어떨까요?" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_mission_recommend_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text='@{Utils.formatTimeMonthDayDate(missionDetailVm.missionDetail.startDate)+"-"+Utils.formatTimeMonthDayDate(missionDetailVm.missionDetail.endDate)}'
+            android:textSize="16sp"
+            tools:text="07/13/월 - 07/20/일 (1주, 3회 인증)" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_mission_recommend_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round_button_green"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/white"
+                android:text="@{Utils.getCategoryStringKOR(missionDetailVm.missionDetail.category)}"
+                tools:text="#태그" />
+
+            <TextView
+                android:id="@+id/tv_mission_recommend_date_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:text='@{missionDetailVm.missionDetail.passCandidatesCount+@string/mission_detail_complete_count}'
+                tools:text="1,899명 완료" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -40,7 +40,7 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
         super.bind(data, itemClickListener)
 
         itemView.setOnClickListener {
-            itemClickListener?.onMissionClicked(data.id, data.missionType)
+            itemClickListener?.onMissionClicked(data.missionId, data.missionType)
         }
     }
 }

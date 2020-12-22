@@ -5,6 +5,7 @@ import io.reactivex.Single
 import okhttp3.MultipartBody
 import org.greenbyme.angelhack.ui.certification.model.PostResponse
 import org.greenbyme.angelhack.ui.home.model.ResponseBase
+import org.greenbyme.angelhack.ui.mission.detail.UserFeedPostDAO
 import org.greenbyme.angelhack.ui.mypage.post.FeedPostDao
 import retrofit2.http.*
 
@@ -12,12 +13,10 @@ interface PostAPI {
     @Multipart
     @POST("/api/posts")
     fun postCertification(
-        @Header("jwt") token: String,
         @Query("personalMission_id") personalMissionId: Int,
         @Query("open") open: Boolean,
         @Query("text") text: String,
         @Query("title") title: String,
-        @Query("userId") userId: Int,
         @Part file: MultipartBody.Part
     ): Single<ResponseBase<PostResponse>>
 
@@ -26,4 +25,10 @@ interface PostAPI {
     fun getPosts(
         @Path("postId") postId: Int
     ): Flowable<ResponseBase<FeedPostDao>>
+
+    @GET("/api/posts/missions/{missionId}")
+    fun getOtherUserFromMissionId(
+        @Path("missionId") postId: Int
+    ): Flowable<ResponseBase<UserFeedPostDAO>>
+
 }
