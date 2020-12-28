@@ -41,7 +41,7 @@ Green by me, Green by earth(us)
 
 ## Android
 
-* 사용 라이브러리 
+사용 라이브러리 
 * Android Jetpack(DataBinding, LiveData, ViewModel, Navigation)
 * Kotlin
 * Rxjava
