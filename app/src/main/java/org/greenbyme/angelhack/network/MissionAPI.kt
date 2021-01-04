@@ -33,7 +33,7 @@ interface MissionAPI {
     /*
     *  Personal Mission
     */
-    @GET("/api/personalmissions")
+    @GET("/api/users/personalMissions")
     fun getPersonalMissionResponse(
         @Header("jwt") token: String
     ): Single<ResponseBase<ProgressItem>>

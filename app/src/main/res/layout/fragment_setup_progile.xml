@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.mypage.editprofile.EditProfileActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_setup_profile"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="32dp"
+        android:src="@color/colorPrimary"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_setup_profile_add"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/camera_01"
+        app:layout_constraintBottom_toBottomOf="@+id/img_setup_profile"
+        app:layout_constraintEnd_toEndOf="@+id/img_setup_profile" />
+
+    <EditText
+        android:id="@+id/et_setup_profile_nickname"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:hint="변경할닉네임"
+        android:text="@={editprofileVm.mNickname}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_setup_profile" />
+
+    <Button
+        android:id="@+id/btn_setup_profile_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_green_square_select"
+        android:enabled="false"
+        android:onClick="@{() -> editprofileVm.onClickSave(editprofileVm.nickname)}"
+        android:text="@string/mypage_editprofile_save"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

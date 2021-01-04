@@ -48,6 +48,7 @@ class MissionFragment : Fragment(), TagOnClickListener, BaseRepository {
                 adapter = MissionTagAdapter(tagListener = this@MissionFragment, isSelected = true)
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
+
             getMissionList()
             return this
         }

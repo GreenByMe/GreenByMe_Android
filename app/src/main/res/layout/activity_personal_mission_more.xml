@@ -7,12 +7,20 @@
     android:layout_marginTop="8dp"
     tools:context=".ui.mission.more.MissionMoreActivity">
 
+    <Spinner
+        android:id="@+id/sp_mission_more_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/missionState"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_mission_more_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_mission_more_add_campaign"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_mission_more_type" />
 
     <TextView
         android:id="@+id/tv_mission_more_add_campaign"

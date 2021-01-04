@@ -16,6 +16,18 @@
         android:background="@color/white"
         tools:context=".ui.mypage.editprofile.EditProfileActivity">
 
+        <TextView
+            android:onClick="@{editprofileVm.onClickLogout}"
+            android:id="@+id/tv_mypage_edit_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textSize="16sp"
+            android:text="@string/mypage_edit_logout"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_mypage_edit_profile"
             android:layout_width="128dp"

@@ -42,7 +42,7 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun startLoginActivity() {
-        startActivity(LoginActivity.getIntent(this))
+        startActivity(LoginMainActivity.getIntent(this))
         finish()
     }
 }

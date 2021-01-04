@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navi_gragh"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="org.greenbyme.angelhack.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_socialSignInFragment"
+            app:destination="@id/socialSignInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="org.greenbyme.angelhack.ui.login.signin.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_setupProgileFragment"
+            app:destination="@id/setupProgileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/socialSignInFragment"
+        android:name="org.greenbyme.angelhack.SocialSignInFragment"
+        android:label="fragment_social_sign_in"
+        tools:layout="@layout/fragment_social_sign_in" >
+        <action
+            android:id="@+id/action_socialSignInFragment_to_setupProgileFragment"
+            app:destination="@id/setupProgileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setupProgileFragment"
+        android:name="org.greenbyme.angelhack.SetupProgileFragment"
+        android:label="fragment_setup_progile"
+        tools:layout="@layout/fragment_setup_progile" >
+        <action
+            android:id="@+id/action_setupProgileFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="org.greenbyme.angelhack.ui.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+</navigation>

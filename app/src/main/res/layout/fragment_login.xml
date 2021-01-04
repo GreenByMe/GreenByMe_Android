@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    tools:context=".ui.login.LoginMainActivity">
+
+    <TextView
+        android:id="@+id/tv_signin_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqal"
+        android:text="@string/login_login"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_login_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_id_hint"
+        android:inputType="textAutoComplete"
+        app:layout_constraintBottom_toTopOf="@+id/et_login_pw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <EditText
+        android:id="@+id/et_login_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/login_password_hint"
+        android:imeOptions="actionSend"
+        android:inputType="textPassword"
+        android:nextFocusDown="@id/bt_login"
+        app:layout_constraintBottom_toTopOf="@+id/bt_login"
+        app:layout_constraintEnd_toEndOf="@+id/et_login_id"
+        app:layout_constraintStart_toStartOf="@+id/et_login_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_id" />
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shape_btn"
+        android:text="@string/login_login"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tv_login_sign_up"
+        app:layout_constraintEnd_toEndOf="@+id/et_login_pw"
+        app:layout_constraintStart_toStartOf="@+id/et_login_pw"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_pw" />
+
+    <TextView
+        android:id="@+id/tv_login_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/login_signup"
+        app:layout_constraintBottom_toTopOf="@+id/bt_login_naver"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_login" />
+
+    <ImageView
+        android:id="@+id/bt_login_naver"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_naver_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bt_login_kakao"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/bt_login_google"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_sign_up" />
+
+    <ImageView
+        android:id="@+id/bt_login_google"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_google_login"
+        android:stateListAnimator="@null"
+        app:layout_constraintEnd_toStartOf="@id/bt_login_naver"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bt_login_naver" />
+
+    <ImageView
+        android:id="@+id/bt_login_kakao"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_kakao_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bt_login_naver"
+        app:layout_constraintTop_toTopOf="@+id/bt_login_naver" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

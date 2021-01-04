@@ -1,4 +1,4 @@
-package org.greenbyme.angelhack.ui.login
+package org.greenbyme.angelhack.ui.login.social
 
 import android.app.Application
 import com.kakao.auth.*

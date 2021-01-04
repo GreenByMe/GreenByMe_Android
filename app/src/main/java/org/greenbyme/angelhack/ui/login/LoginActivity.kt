@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.core.content.edit
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -34,11 +33,12 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.MainActivity
+import org.greenbyme.angelhack.ui.login.social.NaverLoginAPI
+import org.greenbyme.angelhack.ui.login.social.NaverLoginUtil
 
 
 class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener {
     private val REQ_SIGN_GOOGLE = 100
-    private val mContext = this@LoginActivity
     var isLoading = false
     val firebaseAuth = FirebaseAuth.getInstance()
 
@@ -47,7 +47,6 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         loginUsingNaver()
         loginUsingGoogle()
         loginUsingKakao()
@@ -65,7 +64,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
 
 
         tv_login_sign_up.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
+            val intent = Intent(this, SocialSignupActivity::class.java)
             startActivity(intent)
         }
 
@@ -80,7 +79,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
             .subscribe({
                 when (it.status) {
                     "200" -> {
-                        setToken(it)
+                        setToken(it.data)
                         startActivity(MainActivity.getIntent(applicationContext))
                         finish()
                     }
@@ -89,13 +88,6 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     }
                 }
             }, this::toastMessage)
-
-    private fun setToken(it: LoginDAO) {
-        sharePreferences.edit {
-            putString("token", it.data)
-            ApiService.token = it.data
-        }
-    }
 
 
     private fun toastMessage(t: Throwable) {
@@ -118,7 +110,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
             .subscribe({
                 when (it.status) {
                     "200" -> {
-                        setToken(it)
+                        setToken(it.data)
                         startActivity(MainActivity.getIntent(applicationContext))
                         finish()
                     }
@@ -153,12 +145,12 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
             override fun run(success: Boolean) {
                 if (success) {
                     val accessToken: String =
-                        NaverLoginUtil.getAccessToken(mContext)
+                        NaverLoginUtil.getAccessToken(activityContext)
                     if (accessToken.isNotBlank()) {
                         getNaverId(accessToken)
                     }
                 } else {
-                    NaverLoginUtil.getError(mContext)
+                    NaverLoginUtil.getError(activityContext)
                 }
             }
         }
@@ -179,8 +171,8 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
     private fun loginUsingNaver() {
         bt_login_naver.run {
             setOnClickListener {
-                NaverLoginUtil.getLoginModule(mContext)
-                    .startOauthLoginActivity(mContext, mOAuthLoginHandler)
+                NaverLoginUtil.getLoginModule(activityContext)
+                    .startOauthLoginActivity(activityContext, mOAuthLoginHandler)
             }
         }
     }
@@ -198,7 +190,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
             .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
             .build()
 
-        val account: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(mContext)
+        val account: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(activityContext)
 
         bt_login_google.setOnClickListener {
             if (account != null) {

@@ -26,7 +26,9 @@ class ProgressViewHolder(view: View) : BaseAdapter.BaseHolder<ProgressItem.Conte
             tv_mission_progress_day.text = Utils.formatTimeMonthDay(items.endDate)
             tv_mission_recommend_sponser.text = "${items.finishCount}명 도전중"
             tv_mission_progress_contents.text = items.missionTitle
-            tv_mission_progress_percents.text = (items.progress / items.finishCount).toString()
+            val missionProgress = (items.progress.toFloat() / items.finishCount.toFloat()) * 100f
+            pb_mission_progress_complete.progress = missionProgress.toInt()
+            tv_mission_progress_percents.text = "${missionProgress.toInt()}%"
             tv_mission_progress_percents_count.text =
                 items.progress.toString() + "/" + items.finishCount.toString()
         }

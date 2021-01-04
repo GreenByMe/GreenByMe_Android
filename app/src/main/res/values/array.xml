@@ -6,4 +6,11 @@
         <item>@string/week_category</item>
         <item>@string/month_category</item>
     </string-array>
+
+    <string-array name="missionState">
+        <item>@string/all_state</item>
+        <item>@string/progress_state</item>
+        <item>@string/finish_state</item>
+        <item>@string/fail_state</item>
+    </string-array>
 </resources>

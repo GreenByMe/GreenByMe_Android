@@ -19,7 +19,7 @@ data class ProgressItem(
         @SerializedName("missionPictureUrl")
         val missionPictureUrl: String,
         @SerializedName("missionTitle")
-        val missionTitle: String,
+        var missionTitle: String,
         @SerializedName("personalMissionId")
         val personalMissionId: Int,
         @SerializedName("progress")

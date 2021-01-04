@@ -17,12 +17,12 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
     private val mNums: TextView = view.findViewById(R.id.tv_home_nums)
 
     override fun bind(data: Campaign) {
-        if (data.status == "FAIL") {
-            itemView.img_home_mission_ended_bg.visibility = View.VISIBLE
-            itemView.tv_home_mission_ended_title.visibility = View.VISIBLE
-        } else {
+        if (data.status == "IN_PROGRESS" || data.status.isNullOrBlank()) {
             itemView.img_home_mission_ended_bg.visibility = View.GONE
             itemView.tv_home_mission_ended_title.visibility = View.GONE
+        } else {
+            itemView.img_home_mission_ended_bg.visibility = View.VISIBLE
+            itemView.tv_home_mission_ended_title.visibility = View.VISIBLE
         }
         if (data.imageUrl.isNotBlank()) {
             Glide.with(itemView).load(data.imageUrl).into(mThumbnail)

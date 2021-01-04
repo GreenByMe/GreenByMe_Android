@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import androidx.recyclerview.widget.GridLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -19,9 +20,15 @@ import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 
 class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionListener {
     private lateinit var mAdapter: BaseAdapter<ProgressItem.Content>
+    private val onSelectedMissionState: AdapterView.OnItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+        }
+    }
 
     override fun onClick(view: View, position: Int) {
-        val missionId = mAdapter.getItem(position).personalMissionId
+        val missionId = mAdapter.getItem(position).missionId
         startActivity(MissionDetailActivity.getIntent(this, missionId))
     }
 
@@ -37,6 +44,8 @@ class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionL
 
         mAdapter = BaseAdapter(ProgressViewHolder(rv_mission_more_list), this)
         getPersonalMission()
+
+        sp_mission_more_type.onItemSelectedListener = onSelectedMissionState
         rv_mission_more_list.apply {
             adapter = mAdapter
             layoutManager = GridLayoutManager(context, 2)
@@ -48,12 +57,26 @@ class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionL
         }
     }
 
+    // TODO: 임시 로직 개선
     private fun getPersonalMission() =
         ApiService.missionAPI.getPersonalMissionResponse(getToken())
-            .map { it.data.contents }
+            .map {
+                it.data.contents
+                    .map { origin ->
+                    ApiService.missionAPI.getMissionDetailResponse(origin.missionId)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe({ find ->
+                            origin.missionTitle = find.data.title
+                            mAdapter.notifyDataSetChanged() // need position
+
+                        }, this::throwError)
+                    origin
+                }
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(mAdapter::setItems, this::throwError)
+
 
     companion object {
         private const val PARAMS_MISSION_TYPE = "mission_type"

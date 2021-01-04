@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.content.edit
 import com.google.gson.JsonObject
-import com.nhn.android.naverlogin.OAuthLoginHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_social_signup.*
@@ -21,6 +20,11 @@ class SocialSignupActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_social_signup)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(false)
+            title = "내가 그린"
+        }
+
         val loginType = intent.getStringExtra("type")
 
         when (loginType) {
@@ -40,6 +44,7 @@ class SocialSignupActivity : BaseActivity() {
             signUp(json)
         }
     }
+
 
     @SuppressLint("CheckResult")
     private fun signUp(json: JsonObject) {
@@ -77,7 +82,7 @@ class SocialSignupActivity : BaseActivity() {
     }
 
     private fun setToken(it: LoginDAO) {
-        sharePreferences.edit {
+        sharePreferences.edit{
             putString("token", it.data)
             ApiService.token = it.data
         }

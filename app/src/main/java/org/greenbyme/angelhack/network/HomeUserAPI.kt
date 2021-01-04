@@ -8,10 +8,7 @@ import org.greenbyme.angelhack.data.UserLoginDAO
 import org.greenbyme.angelhack.ui.home.model.HomeModel
 import org.greenbyme.angelhack.ui.home.model.ResponseBase
 import org.greenbyme.angelhack.ui.login.LoginDAO
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface HomeUserAPI {
     @GET("api/page/")
@@ -32,7 +29,7 @@ interface HomeUserAPI {
     @POST("/api/users/signup")
     fun signUp(
         @Body body: JsonObject
-    ): Single<ResponseBase<UserLoginDAO>>
+    ): Single<ResponseBase<String>>
 
     @GET("api/page/home/")
     fun getUserHomeInfo(
@@ -48,4 +45,14 @@ interface HomeUserAPI {
     fun socialLogin(
         @Body body: JsonObject
     ): Maybe<LoginDAO>
+
+    @GET("/api/users/email/{email}")
+    fun emailCheck(
+        @Path("email") email: String
+    ): Single<ResponseBase<Boolean>>
+
+    @GET("/api/users/nickname/{nickname}")
+    fun nicknameCheck(
+        @Path("nickname") nickname: String
+    ): Single<ResponseBase<Boolean>>
 }

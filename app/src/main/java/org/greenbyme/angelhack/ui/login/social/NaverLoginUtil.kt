@@ -1,4 +1,4 @@
-package org.greenbyme.angelhack.ui.login
+package org.greenbyme.angelhack.ui.login.social
 
 import android.content.Context
 import android.widget.Toast
@@ -16,7 +16,10 @@ object NaverLoginUtil {
         return mLoginModule ?: run {
             val authLogin = OAuthLogin.getInstance()
             authLogin.init(
-                context, CLIENT_ID, CLIENT_SECRET, CLIENT_NAME
+                context,
+                CLIENT_ID,
+                CLIENT_SECRET,
+                CLIENT_NAME
             )
             authLogin.getAccessToken(context)
 
@@ -26,11 +29,15 @@ object NaverLoginUtil {
     }
 
     fun getAccessToken(context: Context): String {
-        return if (isLoggedIn(context)) getLoginModule(context).getAccessToken(context) else ""
+        return if (isLoggedIn(context)) getLoginModule(
+            context
+        ).getAccessToken(context) else ""
     }
 
     fun getRefreshToken(context: Context): String {
-        return if (isLoggedIn(context)) getLoginModule(context).getRefreshToken(context) else ""
+        return if (isLoggedIn(context)) getLoginModule(
+            context
+        ).getRefreshToken(context) else ""
     }
 
     fun isLoggedIn(context: Context): Boolean {

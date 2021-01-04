@@ -9,11 +9,12 @@ import org.greenbyme.angelhack.network.ApiService
 import org.greenbyme.angelhack.utils.Utils
 
 class MissionPickRepository(context: Context) {
+
+    private val missionListResponse = MutableLiveData<List<MainMissionDAO.Content>>()
     fun getMissionList(
         category: Int = 0,
         currentDate: String = "ALL"
     ): MutableLiveData<List<MainMissionDAO.Content>> {
-        val data = MutableLiveData<List<MainMissionDAO.Content>>()
         ApiService.missionAPI
             .getMissionResponse(
                 Utils.getCategoryString(
@@ -23,10 +24,9 @@ class MissionPickRepository(context: Context) {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                data.postValue(it.data.contents)
+                missionListResponse.postValue(it.data.contents)
             }, {})
 
-
-        return data
+        return missionListResponse
     }
 }

@@ -61,9 +61,6 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    companion object {
-        const val REQ_CAMPAIGN_DETAIL = 1001
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -116,7 +113,10 @@ class HomeFragment : BaseFragment() {
                 }
             }
         }
-
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    companion object {
+        const val REQ_CAMPAIGN_DETAIL = 1001
     }
 }
