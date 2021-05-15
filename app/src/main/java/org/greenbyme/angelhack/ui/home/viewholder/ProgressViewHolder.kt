@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_mission_personal.view.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.extention.loadUriWithToken
 import org.greenbyme.angelhack.ui.BaseAdapter
 import org.greenbyme.angelhack.ui.home.model.ProgressItem
 import org.greenbyme.angelhack.utils.Utils
@@ -22,7 +23,7 @@ class ProgressViewHolder(view: View) : BaseAdapter.BaseHolder<ProgressItem.Conte
     ) {
         with(itemView) {
             // TODO : API 업데이트후 끝난미션 안가리기
-            Glide.with(itemView).load(items.missionPictureUrl).into(img_mission_progress_bg)
+            Glide.with(itemView).loadUriWithToken(items.missionPictureUrl).into(img_mission_progress_bg)
             tv_mission_progress_day.text = Utils.formatTimeMonthDay(items.endDate)
             tv_mission_recommend_sponser.text = "${items.finishCount}명 도전중"
             tv_mission_progress_contents.text = items.missionTitle

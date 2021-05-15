@@ -77,7 +77,6 @@ class PersonalMissionMoreActivity : BaseActivity(), BaseAdapter.OnClickPositionL
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(mAdapter::setItems, this::throwError)
 
-
     companion object {
         private const val PARAMS_MISSION_TYPE = "mission_type"
         const val RESULT_CODE_GO_MISSION = 1

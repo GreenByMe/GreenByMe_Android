@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_mission_userpick.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MissionListDAO
+import org.greenbyme.angelhack.extention.loadUriWithToken
 import org.greenbyme.angelhack.ui.BaseAdapter
 import org.greenbyme.angelhack.ui.BaseAdapter.OnClickPositionListener
 import org.greenbyme.angelhack.utils.Utils
@@ -20,7 +21,7 @@ class MissionPickHolder(mRecyclerView: View) :
 
     override fun bind(item: MissionListDAO.Content, onClickListener: OnClickPositionListener?) {
         with(itemView) {
-            Glide.with(context).load(item.missionPictureUrl).into(img_mission_userpick_icon)
+            Glide.with(context).loadUriWithToken(item.missionPictureUrl).into(img_mission_userpick_icon)
             tv_mission_userpick_title.text = item.missionTitle.parseAsHtml()
             tv_mission_userpick_category.text = Utils.getCategoryStringKOR(item.category)
             img_mission_userpick_icon.setBackgroundColor(15)

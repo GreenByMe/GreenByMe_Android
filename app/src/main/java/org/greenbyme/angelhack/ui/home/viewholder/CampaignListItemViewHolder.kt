@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_home_mission_list_content.view.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.extention.loadUriWithToken
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.Campaign
 
@@ -25,7 +26,7 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
             itemView.tv_home_mission_ended_title.visibility = View.VISIBLE
         }
         if (data.imageUrl.isNotBlank()) {
-            Glide.with(itemView).load(data.imageUrl).into(mThumbnail)
+            Glide.with(itemView).loadUriWithToken(data.imageUrl).into(mThumbnail)
         }
         mName.text = data.title
         mTag.run {
