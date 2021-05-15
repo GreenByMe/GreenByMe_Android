@@ -24,15 +24,18 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.mission.detail.other.OtherUserFeedActivity"></activity>
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity android:name=".ui.mission.more.PersonalMissionMoreActivity"></activity>
+        <activity android:name=".ui.mission.more.PersonalMissionMoreActivity" />
         <activity
             android:name=".ui.login.SignupActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -11,6 +11,8 @@ import org.greenbyme.angelhack.databinding.ActivityMissionDetailBinding
 import org.greenbyme.angelhack.ui.BaseActivity
 import org.greenbyme.angelhack.ui.BaseAdapter
 import org.greenbyme.angelhack.ui.home.model.CampaignList
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MissionDetailActivity : BaseActivity() {
     private lateinit var binding: ActivityMissionDetailBinding
@@ -33,7 +35,7 @@ class MissionDetailActivity : BaseActivity() {
     }
 
     private fun initView() {
-        viewModel = MissionDetailViewModel(MissionDetailRepository(activityContext), missionId, missionType ?: CampaignList.Type.MY_CAMPAIGN)
+        viewModel = MissionDetailViewModel(MissionDetailRepository(), missionId, missionType ?: CampaignList.Type.MY_CAMPAIGN)
         viewModel.mAddMission.observe(this) {
             if (it.peekContent()) {
                 joinSucceed()

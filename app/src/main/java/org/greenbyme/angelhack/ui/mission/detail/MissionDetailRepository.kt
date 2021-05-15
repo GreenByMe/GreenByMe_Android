@@ -1,16 +1,17 @@
 package org.greenbyme.angelhack.ui.mission.detail
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.extention.Event
 import org.greenbyme.angelhack.network.ApiService
+import org.greenbyme.angelhack.ui.BaseRepository
 
-class MissionDetailRepository(context: Context) {
+class MissionDetailRepository() : BaseRepository() {
     fun getOtherUserFeed(mission_id: Int): MutableLiveData<UserFeedPostDAO> {
         val response: MutableLiveData<UserFeedPostDAO> = MutableLiveData()
         ApiService.postAPI.getOtherUserFromMissionId(mission_id)
@@ -18,7 +19,8 @@ class MissionDetailRepository(context: Context) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ item ->
                 response.value = item.data
-            }, { Log.e("missiondetail", it.localizedMessage) })
+            }, this::throwError)
+            .addTo(disposable)
         return response
     }
 

@@ -8,7 +8,7 @@ import org.greenbyme.angelhack.data.MissionDetailDAO
 import org.greenbyme.angelhack.extention.Event
 import org.greenbyme.angelhack.ui.home.model.CampaignList
 
-class MissionDetailViewModel(val repository: MissionDetailRepository, val missionId: Int, val missionType: CampaignList.Type) :
+class MissionDetailViewModel(private val repository: MissionDetailRepository, val missionId: Int, val missionType: CampaignList.Type) :
     ViewModel() {
     val missionDetail: MutableLiveData<MissionDetailDAO> = repository.getMissionDetail(missionId)
 
