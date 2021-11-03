@@ -4,7 +4,7 @@ import org.greenbyme.angelhack.ui.home.model.HomeItemViewType
 
 data class CertificationList(
     var title: String = "",
-    var certificationList: List<CertificationListItem> = ArrayList<CertificationListItem>(),
+    var certificationList: List<CertificationListItem> = ArrayList(),
     var isVisibleTitle: Boolean = true
 ) : HomeItem {
     override fun getViewType(): Int {

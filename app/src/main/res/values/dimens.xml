@@ -2,4 +2,7 @@
 <resources>
     <dimen name="header_title_size">24sp</dimen>
     <dimen name="divider" type="dimen" format="float">0.2dp</dimen>
+    <dimen name="actionbar_titile_size">27sp</dimen>
+    <dimen name="signin_text_space_dp">88dp</dimen>
+    <dimen name="caption_text_size_sp">12sp</dimen>
 </resources>

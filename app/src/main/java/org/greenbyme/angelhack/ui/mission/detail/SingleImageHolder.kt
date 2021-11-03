@@ -8,7 +8,7 @@ import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.extention.loadUriWithToken
 import org.greenbyme.angelhack.ui.BaseAdapter
 
-class ImageViewHolder(view: View) : BaseAdapter.BaseHolder<UserFeedPostDAO.Contents>(view) {
+class SingleImageHolder(view: View) : BaseAdapter.BaseHolder<UserFeedPostDAO.Contents>(view) {
     override fun getItemResId(): Int {
         return R.layout.item_user_feed_img
     }
@@ -22,7 +22,7 @@ class ImageViewHolder(view: View) : BaseAdapter.BaseHolder<UserFeedPostDAO.Conte
     }
 
     override fun from(parent: ViewGroup, onClickListener: BaseAdapter.OnClickPositionListener?): RecyclerView.ViewHolder {
-        return ImageViewHolder(getInflater(parent)).apply {
+        return SingleImageHolder(getInflater(parent)).apply {
             itemView.setOnClickListener {
                 onClickListener?.onClick(itemView, adapterPosition)
             }

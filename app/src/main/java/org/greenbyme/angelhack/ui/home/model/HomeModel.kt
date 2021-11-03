@@ -16,7 +16,7 @@ data class HomeModel(
 
 ) {
     val myCampaign: CampaignList
-        get() = CampaignList("민석님의 캠페인", progressResponseDtoList.map {
+        get() = CampaignList("진행중인 캠페인", progressResponseDtoList.map {
             Campaign(
                 id = it.personalMissionId,
                 missionId = it.missionId,

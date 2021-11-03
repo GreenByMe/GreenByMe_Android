@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="signinVm"
+            type="org.greenbyme.angelhack.ui.login.signin.SignInViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".ui.login.signin.SignInFragment">
+
+        <TextView
+            android:id="@+id/tv_signin_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqal"
+            android:text="@string/sign_in"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_signin_email_caption"
+            android:layout_width="@dimen/signin_text_space_dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/signin_email_hint"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/et_signin_email"
+            app:layout_constraintEnd_toStartOf="@id/et_signin_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_signin_email" />
+
+        <ImageView
+            android:id="@+id/img_signin_email_validation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_done_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/et_signin_email"
+            app:layout_constraintEnd_toEndOf="@id/et_signin_email"
+            app:layout_constraintTop_toTopOf="@id/et_signin_email"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/et_signin_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/signin_email_hint"
+            android:inputType="textWebEmailAddress"
+            android:importantForAutofill="no"
+            android:text="@={signinVm.email}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_signin_email_validation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_signin_email_caption"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signin_title"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_signin_email_validation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/signin_email_validation_caption"
+            android:textColor="@color/invalid_caption_color"
+            android:textSize="@dimen/caption_text_size_sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/et_signin_password"
+            app:layout_constraintStart_toStartOf="@id/et_signin_email"
+            app:layout_constraintTop_toBottomOf="@+id/et_signin_email"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_signin_password_caption"
+            android:layout_width="@dimen/signin_text_space_dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/signin_password_hint"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/et_signin_password"
+            app:layout_constraintEnd_toStartOf="@id/et_signin_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_signin_password" />
+
+        <ImageView
+            android:id="@+id/img_signin_password_validation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_done_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/et_signin_password"
+            app:layout_constraintEnd_toEndOf="@id/et_signin_password"
+            app:layout_constraintTop_toTopOf="@id/et_signin_password"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/et_signin_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/signin_password_hint"
+            android:inputType="textPassword"
+            android:text="@={signinVm.password}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_signin_password_validation_caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/tv_signin_password_caption"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signin_email_validation" />
+
+        <TextView
+            android:id="@+id/tv_signin_password_check_caption"
+            android:layout_width="@dimen/signin_text_space_dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/signin_password_check"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/et_signin_password_check"
+            app:layout_constraintEnd_toStartOf="@id/et_signin_password_check"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_signin_password_check" />
+
+        <TextView
+            android:id="@+id/tv_signin_password_validation_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/signin_password_validation_caption"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/caption_text_size_sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_signin_password_check"
+            app:layout_constraintStart_toStartOf="@id/et_signin_password_check"
+            app:layout_constraintTop_toBottomOf="@+id/et_signin_password" />
+
+        <ImageView
+            android:id="@+id/img_signin_password_check_validation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_done_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/et_signin_password_check"
+            app:layout_constraintEnd_toEndOf="@id/et_signin_password_check"
+            app:layout_constraintTop_toTopOf="@id/et_signin_password_check"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/et_signin_password_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/signin_password_check"
+            android:inputType="textPassword"
+            android:text="@={signinVm.passwordCheck}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_signin_password_check_validation_caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/tv_signin_password_check_caption"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signin_password_validation_caption" />
+
+        <TextView
+            android:id="@+id/tv_signin_password_check_validation_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/signin_password_check_validation_caption"
+            android:textColor="@color/invalid_caption_color"
+            android:textSize="@dimen/caption_text_size_sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/et_signin_nickname"
+            app:layout_constraintStart_toStartOf="@id/et_signin_password_check"
+            app:layout_constraintTop_toBottomOf="@+id/et_signin_password_check"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_signin_nickname_caption"
+            android:layout_width="@dimen/signin_text_space_dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/signin_nickname_hint"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/et_signin_nickname"
+            app:layout_constraintEnd_toStartOf="@id/et_signin_nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_signin_nickname" />
+
+        <ImageView
+            android:id="@+id/img_signin_nickname_validation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_done_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/et_signin_nickname"
+            app:layout_constraintEnd_toEndOf="@id/et_signin_nickname"
+            app:layout_constraintTop_toTopOf="@id/et_signin_nickname"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/et_signin_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="@string/signin_nickname_hint"
+            android:inputType="text"
+            android:text="@={signinVm.nickName}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_signin_nickname_validation_caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/tv_signin_nickname_caption"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signin_password_check_validation_caption" />
+
+        <TextView
+            android:id="@+id/tv_signin_nickname_validation_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/signin_nickname_validation_caption"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/caption_text_size_sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_signin_service_terms_caption"
+            app:layout_constraintStart_toStartOf="@id/et_signin_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/et_signin_nickname" />
+
+
+        <TextView
+            android:id="@+id/tv_signin_service_terms_caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/signin_service_terms_caption"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_signin_service_terms_validation_caption"
+            app:layout_constraintEnd_toStartOf="@id/cb_signin_service_terms"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signin_nickname_validation_caption" />
+
+        <CheckBox
+            android:id="@+id/cb_signin_service_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:checked="@={signinVm.serviceTerms}"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_signin_service_terms_caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_signin_service_terms_caption"
+            app:layout_constraintTop_toTopOf="@id/tv_signin_service_terms_caption" />
+
+        <TextView
+            android:id="@+id/tv_signin_service_terms_validation_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/signin_service_terms_validation_caption"
+            android:textColor="@color/invalid_caption_color"
+            android:textSize="@dimen/caption_text_size_sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tv_signin_marketing_terms_caption"
+            app:layout_constraintStart_toStartOf="@id/tv_signin_service_terms_caption"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signin_service_terms_caption"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_signin_marketing_terms_caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/signin_marketing_terms_caption"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_signin_complete"
+            app:layout_constraintEnd_toStartOf="@id/cb_signin_marketing_terms"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_signin_service_terms_validation_caption" />
+
+        <CheckBox
+            android:id="@+id/cb_signin_marketing_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:checked="@={signinVm.marketingTerms}"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_signin_marketing_terms_caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_signin_service_terms_caption"
+            app:layout_constraintTop_toTopOf="@id/tv_signin_marketing_terms_caption" />
+
+        <Button
+            android:id="@+id/btn_signin_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_green_round_select"
+            android:text="@string/signin_next"
+            android:onClick="@{signinVm.onClickSignIn}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

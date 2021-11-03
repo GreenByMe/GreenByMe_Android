@@ -28,18 +28,10 @@ class SignupActivity : BaseActivity() {
                 json.addProperty("nickname", nickname)
                 json.addProperty("password", password)
 
-                ApiService.service.signUp(json)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        toastMessage("회원가입성공")
-                        finish()
-                    }, {
-                        throwError(it)
-                        toastMessage("회원가입실패")
-                    })
+
             }
         }
 
     }
+
 }

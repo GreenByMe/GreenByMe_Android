@@ -1,4 +1,4 @@
-package org.greenbyme.angelhack.ui.login
+package org.greenbyme.angelhack.ui.login.social
 
 import android.os.AsyncTask
 import android.util.Log

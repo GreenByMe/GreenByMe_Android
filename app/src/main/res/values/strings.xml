@@ -34,14 +34,36 @@
     <string name="mypage_feed_like_caption">likes</string>
     <string name="mypage_editprofile_save">저장하기</string>
     <string name="mypage_edit_caption">변경할 닉네임을 입력해주세요</string>
+    <!-- SignIn Activity -->
+    <string name="signin_email_hint">이메일</string>
+    <string name="signin_password_hint">비밀번호</string>
+    <string name="signin_gender_male">남자</string>
+    <string name="signin_gender_female">여자</string>
+    <string name="signin_gender_none">선택안함</string>
+    <string name="signin_complete">회원가입</string>
+    <string name="signin_password_check">비밀번호 확인</string>
+    <string name="signin_nickname_hint">닉네임</string>
+    <string name="signin_birthday_hint">생년월일</string>
+    <string name="signin_gender_hint">성별</string>
+    <string name="signin_service_terms_caption">서비스 약관 동의 (필수)</string>
+    <string name="signin_marketing_terms_caption">마케팅 광고 수신 동의 (선택)</string>
+    <string name="signin_email_validation_caption">사용 할 수 없는 이메일 입니다.</string>
+    <string name="signin_password_validation_caption">대문자, 소문자, 숫자 1개이상 포함, 8글자이상</string>
+    <string name="signin_password_check_validation_caption">비밀번호가 같지 않습니다.</string>
+    <string name="signin_nickname_validation_caption">8글자 이상 30글자 이하</string>
+    <string name="signin_birthday_validation_caption">생년월일을 입력해주세요.</string>
+    <string name="signin_gender_validation_caption">성별을 입력해주세요.</string>
+    <string name="signin_service_terms_validation_caption">약관에 동의해 주세요.</string>
+    <string name="result_header_caption">회원가입 결과</string>
+    <string name="result_exit">종료</string>
 
     <!-- Login Activity -->
     <string name="login_signup"><![CDATA[회원가입하기 >]]></string>
     <string name="login_login">로그인</string>
-    <string name="login_id_hint">ID</string>
-    <string name="login_password_hint">PassWord</string>
+    <string name="login_id_hint">아이디</string>
+    <string name="login_password_hint">패스워드</string>
 
-    <string name="sign_in">회원 가입</string>
+    <string name="sign_in">회원가입</string>
     <string name="login_signin_id_hint">아이디</string>
     <string name="sign_in_check_password">비밀번호 확인</string>
     <string name="sign_in_password">비밀번호</string>
@@ -57,9 +79,20 @@
     <string name="day_category">일일미션</string>
     <string name="week_category">주간미션</string>
     <string name="month_category">월간미션</string>
+
+    <string name="all_state">전체 미션</string>
+    <string name="progress_state">진행중인 미션</string>
+    <string name="finish_state">완료한 미션</string>
+    <string name="fail_state">실패한 미션</string>
+
+
     <string name="sign_up_email">이메일</string>
 
     <!-- Kakao AppKey -->
     <string name="kakao_app_key">4a9acf7b9dcabb88af2b6bfb8fb18d9a</string>
+    <string name="mypage_edit_logout">로그아웃</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signin_next">다음</string>
 
 </resources>

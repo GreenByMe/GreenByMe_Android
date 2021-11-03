@@ -8,8 +8,10 @@
     <color name="sub_green">#26B679</color>
 
     <color name="red">#ff0000</color>
+    <color name="invalid_caption_color">#ff0000</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="green">#4CAF50</color>
     <color name="divider_bg">#6A6A6A</color>
     <color name="tag_highlight">#2354DF</color>
 

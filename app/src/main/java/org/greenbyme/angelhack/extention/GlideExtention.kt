@@ -10,7 +10,7 @@ import org.greenbyme.angelhack.network.ApiService
 fun RequestManager.loadUriWithToken(uri: String): RequestBuilder<Drawable> {
     return (this.load(
         GlideUrl(
-            uri, LazyHeaders.Builder()
+            uri.replace("iptime.org","greenbyme.shop"), LazyHeaders.Builder()
                 .addHeader("jwt", ApiService.token)
                 .build()
         )

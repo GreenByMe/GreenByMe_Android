@@ -20,20 +20,28 @@
     </queries>
 
     <application
-        android:name=".ui.login.KakaoGlobalApplication"
+        android:name=".ui.login.social.KakaoGlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.mission.detail.other.OtherUserFeedActivity"></activity>
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-        <activity android:name=".ui.mission.more.PersonalMissionMoreActivity"></activity>
-        <activity android:name=".ui.login.SignupActivity" />
-        <activity android:name=".ui.login.SocialSignupActivity" />
+
+        <activity android:name=".ui.mission.more.PersonalMissionMoreActivity" />
+        <activity
+            android:name=".ui.login.SignupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.login.SocialSignupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.mission.more.MissionMoreActivity" />
 
         <provider
@@ -49,6 +57,7 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
+
         <activity
             android:name=".ui.login.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -63,6 +72,9 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.login.LoginMainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.certification.CertificationActivity" />
         <activity

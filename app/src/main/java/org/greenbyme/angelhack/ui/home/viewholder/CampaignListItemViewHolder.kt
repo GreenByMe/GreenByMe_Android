@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_home_mission_list_content.view.*
 import org.greenbyme.angelhack.R
+import org.greenbyme.angelhack.extention.loadUriWithToken
 import org.greenbyme.angelhack.ui.home.adapter.HomeItemClickListener
 import org.greenbyme.angelhack.ui.home.model.Campaign
 
@@ -17,15 +18,15 @@ class CampaignListItemViewHolder(view: View) : HomeViewHolder<Campaign>(view) {
     private val mNums: TextView = view.findViewById(R.id.tv_home_nums)
 
     override fun bind(data: Campaign) {
-        if (data.status == "FAIL") {
-            itemView.img_home_mission_ended_bg.visibility = View.VISIBLE
-            itemView.tv_home_mission_ended_title.visibility = View.VISIBLE
-        } else {
+        if (data.status == "IN_PROGRESS" || data.status.isNullOrBlank()) {
             itemView.img_home_mission_ended_bg.visibility = View.GONE
             itemView.tv_home_mission_ended_title.visibility = View.GONE
+        } else {
+            itemView.img_home_mission_ended_bg.visibility = View.VISIBLE
+            itemView.tv_home_mission_ended_title.visibility = View.VISIBLE
         }
         if (data.imageUrl.isNotBlank()) {
-            Glide.with(itemView).load(data.imageUrl).into(mThumbnail)
+            Glide.with(itemView).loadUriWithToken(data.imageUrl).into(mThumbnail)
         }
         mName.text = data.title
         mTag.run {

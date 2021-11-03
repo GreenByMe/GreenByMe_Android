@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_mission_recommend.view.*
 import org.greenbyme.angelhack.R
 import org.greenbyme.angelhack.data.MainMissionDAO
+import org.greenbyme.angelhack.extention.loadUriWithToken
 import org.greenbyme.angelhack.ui.mission.detail.MissionDetailActivity
 import org.greenbyme.angelhack.utils.Utils
 
@@ -50,7 +51,7 @@ class MissionAdapter(private val list: List<MainMissionDAO.Content>) :
             missionRecommendCaption.text = "NEW!"
             missionRecommendSponser.text = "내가그린"
 
-            Glide.with(itemView.context).load(item.missionPictureUrl)
+            Glide.with(itemView.context).loadUriWithToken(item.missionPictureUrl)
                 .into(missionRecommendBackgound)
             missionRecommendContents.text = Html.fromHtml(item.subject)
             missionRecommendDiscription.text = Html.fromHtml(item.description)
