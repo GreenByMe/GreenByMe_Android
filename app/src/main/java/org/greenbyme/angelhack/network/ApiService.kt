@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiService {
     companion object {
         var token: String = ""
-        private const val BASE_URL = "https://cafecube.greenbyme.shop"
+        private const val BASE_URL = "https://psplog.greenbyme.shop/"
         private val defaultHttpClient: OkHttpClient by lazy {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
